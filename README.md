@@ -5,7 +5,7 @@
 	<style type="text/css">
 		body {
 			background-color: red;
-			transition: background-color 7s;
+			transition: background-color 0.3s;
 		}
 	</style>
 </head>
@@ -21,7 +21,7 @@
 			if (i === colors.length){
 				i=0;
 			}
-		}, 5000);
+		}, 90);
 	</script>
   <script type="text/javascript">
 function whichsite(form){
@@ -34,7 +34,7 @@ function whichsite(form){
 }
 </script>
 <h1><strong>Welcome</strong></h1>
-<form action="#" onsubmit="open(whichsite(this), '_blank'); return false;">
+<form action="#" onsubmit="location.open(whichsite(this), '_blank'); return false;">
 <b>Want to see another rainbow?:</b><br>
 <p>
 <input type="radio" name="site" value="https://rubenkollen.github.io"> Yes<br>
