@@ -37,7 +37,7 @@ function whichsite(form){
  <b>Want to see another rainbow?:</b><br>
  <p>
  <input type="radio" name="site" value="https://rubenkollen.github.io"> Yes<br>
- <input type="radio" name="site" value="https://youixentoo.github.io"> No<br>
+ <input type="radio" name="site"> No<br>
  </p>
  <input type="submit" value="Submit">
  </form>
