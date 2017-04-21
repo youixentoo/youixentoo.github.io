@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html>
   <body>
     <head>
@@ -24,8 +24,9 @@
 		}, 5000);
 	</script>
   <form action="https://rubenkollen.github.io/">
- Interesses:<br>
- <input type="text" name="Interesses"><br>
+ Want to see another rainbow?:<br>
+ <input type="radio" name="rainbow" value="YES"> Yes<br>
+ <input type="radio" name="rainbow" value="NO"> No<br>
  <input type="submit" value="Submit">
  </form>
 
