@@ -9,6 +9,7 @@
 		}
 	</style>
 </head>
+</body>
 <body>
 	<script type="text/javascript">
 		var colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
@@ -33,7 +34,6 @@ function whichsite(form){
 	}
 }
 </script>
-</body>
 <h1><strong>Welcome</strong></h1>
 <form action="#" onsubmit="window.open(whichsite(this), '_blank'); return false;">
 <b>Want to see another rainbow?:</b><br>
@@ -43,8 +43,8 @@ function whichsite(form){
 </p>
 <input type="submit" value="Submit">
 </form>
-  <p>Table 1</p>
-  <table border="1">
+  <p>MY EYES, THEY BLEED</p>
+  <table border="1" draggable="true" background: "none" >
       <tr> <td>Wat?</td>
         <td>?</td> </tr>
         <tr> <td>Kopieren plakken</td>
