@@ -23,10 +23,22 @@
 			}
 		}, 5000);
 	</script>
-  <form action="https://rubenkollen.github.io/">
- Want to see another rainbow?:<br>
- <input type="radio" name="rainbow" value="YES"> Yes<br>
- <input type="radio" name="rainbow" value="NO"> No<br>
+  <script type="text/javascript">
+function whichsite(form){
+	var sites = form.elements.site, i = sites.length;
+	while (--i > -1){
+		if(sites[i].checked){
+			return sites[i].value;
+		}
+	}
+}
+</script>
+  <form action="#" onsubmit="window.open(whichsite(this), '_blank'); return false;">
+ <b>Want to see another rainbow?:</b><br>
+ <p>
+ <input type="radio" name="site" value="https://rubenkollen.github.io"> Yes<br>
+ <input type="radio" name="site" value="NO"> No<br>
+ </p>
  <input type="submit" value="Submit">
  </form>
 
