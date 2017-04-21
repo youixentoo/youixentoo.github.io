@@ -34,11 +34,11 @@ function whichsite(form){
 }
 </script>
 <h1><strong>Welcome</strong></h1>
-<form action="#" onsubmit="window.open(whichsite(this), '_blank'); return false;">
+<form action="#" onsubmit="open(whichsite(this), '_blank'); return false;">
 <b>Want to see another rainbow?:</b><br>
 <p>
 <input type="radio" name="site" value="https://rubenkollen.github.io"> Yes<br>
-<input type="radio"> No<br>
+<input type="radio" name="site" value="https://youixentoo.github.io"> No<br>
 </p>
 <input type="submit" value="Submit">
 </form>
