@@ -33,6 +33,7 @@ function whichsite(form){
 	}
 }
 </script>
+</body>
 <h1><strong>Welcome</strong></h1>
 <form action="#" onsubmit="window.open(whichsite(this), '_blank'); return false;">
 <b>Want to see another rainbow?:</b><br>
