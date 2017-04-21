@@ -30,7 +30,7 @@
  </form>
 
 </body>
-    <h1>Page title</h1>
+    <h1>Bad page</h1>
     <p>Random afvink 1</p>
     <table border="1">
       <tr> <td>Wat?</td>
