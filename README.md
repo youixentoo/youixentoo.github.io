@@ -23,6 +23,12 @@
 			}
 		}, 5000);
 	</script>
+  <form action="https://rubenkollen.github.io/">
+ Interesses:<br>
+ <input type="text" name="Interesses"><br>
+ <input type="submit" value="Submit">
+ </form>
+
 </body>
     <h1>Page title</h1>
     <p>Random afvink 1</p>
