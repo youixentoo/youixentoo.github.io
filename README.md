@@ -43,8 +43,8 @@ function whichsite(form){
 </p>
 <input type="submit" value="Submit">
 </form>
-  <p><font size=6>MY EYES, THEY BLEED</font></p>
-  <table border="1" draggable="true" background-color: rgba(216,240,218,0) >
+  <p style="font-size:40px">MY EYES, THEY BLEED</p>
+  <table border="1" style="background-color:rgba(0, 0, 0, 0);" >
       <tr> <td>Wat?</td>
         <td>?</td> </tr>
         <tr> <td>Kopieren plakken</td>
