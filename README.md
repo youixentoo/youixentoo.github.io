@@ -33,26 +33,26 @@ function whichsite(form){
 	}
 }
 </script>
-  <form action="#" onsubmit="window.open(whichsite(this), '_blank'); return false;">
- <b>Want to see another rainbow?:</b><br>
- <p>
- <input type="radio" name="site" value="https://rubenkollen.github.io"> Yes<br>
- <input type="radio" name="site"> No<br>
- </p>
- <input type="submit" value="Submit">
- </form>
-
-</body>
-    <h1>Bad page</h1>
-    <p>Random afvink 1</p>
-    <table border="1">
+<h1><strong>Welcome</strong></h1>
+<form action="#" onsubmit="window.open(whichsite(this), '_blank'); return false;">
+<b>Want to see another rainbow?:</b><br>
+<p>
+<input type="radio" name="site" value="https://rubenkollen.github.io"> Yes<br>
+<input type="radio"> No<br>
+</p>
+<input type="submit" value="Submit">
+</form>
+  <p>Table 1</p>
+  <table border="1">
       <tr> <td>Wat?</td>
         <td>?</td> </tr>
         <tr> <td>Kopieren plakken</td>
           <td>JA</td> </tr>
-        </table>
+        </table><br>
       <a href="http://assets.nkstatic.com/Games/gameswfs/sas4/sas4.swf?v=new">
         <img src="SAS4_Icon.jpg" alt="SAS4" style="width:144px;height:144px;border:0;">
       </a>
+      <p>
+        <b><i> Random lines are the best </i></b>
     </body>
 </html>
