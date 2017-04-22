@@ -64,8 +64,6 @@ function whichsite(form){
       else {window.alert("95% chance of getting this")}
     }
     </script>
-  <form action="#" onsubmit="random5()">
-  <input id="clickme" type="button" value="clickme" onclick="random5()">
-  </form>
+  <input id="clickme" type="button" value="clickme" onclick="random5();"/>
 
 </html>
