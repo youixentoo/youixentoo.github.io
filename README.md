@@ -5,7 +5,7 @@
 	<style type="text/css">
 		body {
 			background-color: red;
-			transition: background-color 0.2s;
+			transition: background-color 60s;
 		}
 	</style>
 </head>
@@ -22,8 +22,16 @@
 			if (i === colors.length){
 				i=0;
 			}
-		}, 86);
+		}, 60000);
 	</script>
+  <h1><strong>Welcome</strong></h1>
+<br>
+<b> Game: </b><br>
+  <a href="http://assets.nkstatic.com/Games/gameswfs/sas4/sas4.swf?v=new">
+    <img src="SAS4_Icon.jpg" alt="SAS4" style="width:144px;height:144px;border:0;">
+  </a>
+  <br>
+  <br>
   <script type="text/javascript">
 function whichsite(form){
 	var sites = form.elements.site, i = sites.length;
@@ -34,25 +42,20 @@ function whichsite(form){
 	}
 }
 </script>
-<h1><strong>Welcome</strong></h1>
 <form action="#" onsubmit="window.open(whichsite(this), '_blank'); return false;">
-<b>Want to see another rainbow?:</b><br>
+<b>Other sites:</b><br>
 <p>
-<input type="radio" name="site" value="https://rubenkollen.github.io"> Antoher<br>
-<input type="radio" name="site" value="https://youixentoo.github.io"> Same<br>
+<input type="radio" name="site" value="https://ninjakiwi.com"> Main page<br>
+<input type="radio" name="site" value="https://forums.ninjakiwi.com"> Forum<br>
 </p>
-<input type="submit" value="Submit">
+<input type="submit" value="Go">
 </form>
-  <p style="font-size:40px">MY EYES, THEY BLEED</p>
-  <table border="1" style="background-color:rgba(0, 0, 0, 0);" >
+  <table border="" style="background-color:rgba(0, 0, 0, 0);" >
       <tr> <td>Wat?</td>
         <td>?</td> </tr>
         <tr> <td>Kopieren plakken</td>
           <td>JA</td> </tr>
         </table><br>
-      <a href="http://assets.nkstatic.com/Games/gameswfs/sas4/sas4.swf?v=new">
-        <img src="SAS4_Icon.jpg" alt="SAS4" style="width:144px;height:144px;border:0;">
-      </a>
       <p>
         <b><i> Random lines are the best </i></b>
     </body>
