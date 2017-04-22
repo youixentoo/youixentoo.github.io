@@ -10,7 +10,6 @@
 	</style>
 </head>
 </body>
-<body>
 	<script type="text/javascript">
 		var colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
 
@@ -51,12 +50,23 @@ function whichsite(form){
 <input type="submit" value="Go">
 </form>
   <table border="" style="background-color:rgba(0, 0, 0, 0);" >
-      <tr> <td>Wat?</td>
-        <td>?</td> </tr>
-        <tr> <td>Kopieren plakken</td>
-          <td>JA</td> </tr>
-        </table><br>
+    <tr> <td>Wat?</td>
+      <td>?</td> </tr>
+      <tr> <td>Kopieren plakken</td>
+        <td>JA</td> </tr>
+      </table><br>
       <p>
-        <b><i> Random lines are the best </i></b>
-    </body>
+        <b>%5 chance?</b><br>
+      </p>
+    <script type="text/javascript">
+    function random5(){
+      var x = Math.random()
+      if x <= 0.05 {document.alert("5% chance of getting this")}
+      else {document.alert("95% chance of getting this")}
+    }
+    </script>
+  <form action="#" onsubmit="random5()">
+  <input type="submit" value="Go">
+</form>
+
 </html>
