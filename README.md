@@ -55,18 +55,17 @@ function whichsite(form){
       <tr> <td>Kopieren plakken</td>
         <td>JA</td> </tr>
       </table><br>
-      <p>
-        <b>%5 chance?</b><br>
-      </p>
+    <p>
+      <b>%5 chance?</b><br>
+    </p>
     <script type="text/javascript">
     function random5(){
-      var x = Math.random()
-      if x <= 0.05 {document.alert("5% chance of getting this")}
-      else {document.alert("95% chance of getting this")}
+      if Math.random() <= 0,05 {window.alert("5% chance of getting this")}
+      else {window.alert("95% chance of getting this")}
     }
     </script>
   <form action="#" onsubmit="random5()">
-  <input type="submit" value="Go">
+  <input id="clickme" type="button" value="clickme" onclick="random5()">
   </form>
 
 </html>
