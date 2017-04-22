@@ -5,7 +5,7 @@
 	<style type="text/css">
 		body {
 			background-color: red;
-			transition: background-color 60s;
+			transition: background-color 150s;
 		}
 	</style>
 </head>
@@ -22,7 +22,7 @@
 			if (i === colors.length){
 				i=0;
 			}
-		}, 60000);
+		}, 150000);
 	</script>
   <h1><strong>Welcome</strong></h1>
 <br>
