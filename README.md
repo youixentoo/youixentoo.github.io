@@ -67,6 +67,6 @@ function whichsite(form){
     </script>
   <form action="#" onsubmit="random5()">
   <input type="submit" value="Go">
-</form>
+  </form>
 
 </html>
