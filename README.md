@@ -60,8 +60,8 @@ function whichsite(form){
     </p>
     <script type="text/javascript">
     function random5(){
-      if Math.random() <= 0,05 {window.alert("5% chance of getting this")}
-      else {window.alert("95% chance of getting this")}
+      if Math.random() <= 0,05 {alert("5% chance of getting this")}
+      else {alert("95% chance of getting this")}
     }
     </script>
   <input id="clickme" type="button" value="clickme" onclick="random5();"/>
