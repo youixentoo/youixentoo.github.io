@@ -9,7 +9,6 @@
 		}
 	</style>
 </head>
-</body>
 	<script type="text/javascript">
 		var colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
 
@@ -60,10 +59,9 @@ function whichsite(form){
     </p>
     <script type="text/javascript">
     function random5(){
-      if Math.random() <= 0,05 {alert("5% chance of getting this")}
-      else {alert("95% chance of getting this")}
+      if Math.random() <= 0,05 {window.open("https://onderwijsonline.han.nl/")}
     }
     </script>
   <input id="clickme" type="button" value="clickme" onclick="random5();"/>
-
+</body>
 </html>
