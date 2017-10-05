@@ -1,4 +1,4 @@
-<script>
+script>
 window.onload= function(){
 if(window.location.href=="http://demogorgon22.weebly.com/tower-keepers-calculator.html"){
 document.body.className=""
