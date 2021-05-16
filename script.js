@@ -1,3 +1,5 @@
+//! author : youixentoo
+
 function editTimezone(){
   var val = document.getElementById("timezone").value
   var timezoneSelected = val.valueOf();
