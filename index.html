@@ -14,13 +14,13 @@
       <hr>
       <div class="textDiv">
         <h2>SAS4 mobile boost schedule</h2>
-        Times are in GMT 0. If the time is in cursive, the person isn't always available.
-
+        <p id="scheduleInfo"></p>
       </div>
       <hr>
 
       <div class="tableDiv">
-        <table border="1" id="sas4Table">
+        <table border="1" id="sas4Table" class="sas4Table">
+          <tbody>
         <tr style="font-weight: bold; background-color: #aaa;">
         <td>Names</td><td>Role to tag</td><td>Monday</td><td>Tuesday</td><td>Wednesday</td><td>Thursday</td><td>Friday</td><td>Saturday</td><td>Sunday</td><td>Total days</td>
         </tr>
@@ -39,18 +39,17 @@
         <tr style="background-color: #f0f0f0">
         <td>Papabear</td><td>Shift F</td><td>07:00 - 08:00</td><td><i>07:00 - 08:00</i></td><td>07:00 - 08:00</td><td>07:00 - 08:00</td><td>07:00 - 08:00</td><td>07:00 - 08:00</td><td>07:00 - 08:00</td><td align="right">7</td>
         </tr>
+      </tbody>
         </table>
       </div>
       <hr>
       <div class="timeDiv">
         <h3>Time conversion</h3>
-        As the times are listed for GMT 0. You can select your own timezone here if it is different. If you're currently in summer time, add 1. <br>
-        So, if you're in GMT +1 and it's summer time, select GMT +2 (Europe). <br>
-        <br>
+        <p id=conversionInfo></p>
 
         Select your timezone:
         <from name="timezoneSelect">
-          <select name="timezone" id="timezone" onchange="selectTimezone()">
+          <select name="timezone" id="timezone" onchange="editTimezone()">
             <option value=-12>GMT -12</option>
             <option value=-11>GMT -11</option>
             <option value=-10>GMT -10</option>
