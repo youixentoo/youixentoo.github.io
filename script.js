@@ -51,7 +51,7 @@ function timezoneText(timezoneNumber){
   document.getElementById("conversionInfo").innerHTML = "";
 
   scheduleInfo.innerHTML = `Times are in GMT ${timezoneNumber}. If the time is in cursive, the person isn't always available.`;
-  conversionInfo.innerHTML = `As the times are listed for GMT ${timezoneNumber}. You can select your own timezone here if it is different. If you're currently in summer time, add 1. <br>So, if you're in GMT +1 and it's summer time, select GMT +2 (Europe).`
+  conversionInfo.innerHTML = `As the times are listed for GMT ${timezoneNumber}. You can select your own timezone here if it is different. If you're currently in summer time, add 1. <br>For example, if you're in GMT +1 and it's summer time, select GMT +2 (Europe).`
   //console.log(timezoneNumber)
 }
 
