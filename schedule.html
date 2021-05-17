@@ -1,0 +1,83 @@
+<html>
+    <head>
+      <title>SAS4 Schedule</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+      <link href="static/css/schedule.css" rel="stylesheet">
+      <link href="static/css/general.css" rel="stylesheet">
+      <script src="static/js/schedule.js"></script>
+      <script src="static/js/moment.js"></script>
+    </head>
+    <body>
+    <div class="content">
+      <hr>
+      <div class="textDiv">
+        <h2>SAS4 mobile boosting schedule</h2>
+        <p id="scheduleInfo"></p>
+      </div>
+      <hr>
+
+      <div class="tableDiv">
+        <table border="1" id="sas4Table" class="sas4Table">
+          <tbody>
+        <tr style="font-weight: bold; background-color: #aaa;">
+        <td>Names</td><td>Role to tag</td><td>Monday</td><td>Tuesday</td><td>Wednesday</td><td>Thursday</td><td>Friday</td><td>Saturday</td><td>Sunday</td><td>Total days</td>
+        </tr>
+        <tr style="background-color: #f0f0f0">
+        <td>Matt</td><td>Shift A</td><td><i>14:00 - 15:00</i></td><td><i>14:00 - 15:00</i></td><td><i>14:00 - 15:00</i></td><td><i>14:00 - 15:00</i></td><td><i>14:00 - 15:00</i></td><td><i>14:00 - 15:00</i></td><td><i>14:00 - 15:00</i></td><td align="right">7</td>
+        </tr>
+        <tr style="background-color: #ffffff">
+        <td>Alpha</td><td>Shift B</td><td>05:00 - 06:00</td><td>None</td><td>05:00 - 06:00</td><td>None</td><td>05:00 - 06:00</td><td><i>05:00 - 06:00</i></td><td>None</td><td align="right">4</td>
+        </tr>
+        <tr style="background-color: #f0f0f0">
+        <td>LegendEx</td><td>Shift D</td><td><i>03:00 - 07:00</i></td><td><i>03:00 - 07:00</i></td><td><i>03:00 - 07:00</i></td><td><i>03:00 - 07:00</i></td><td>03:00 - 07:00</td><td>03:00 - 07:00</td><td>03:00 - 07:00</td><td align="right">7</td>
+        </tr>
+        <tr style="background-color: #ffffff">
+        <td>Tatsumi</td><td>Shift E</td><td>10:00 - 11:00</td><td>10:00 - 11:00</td><td>10:00 - 11:00</td><td>10:00 - 11:00</td><td>10:00 - 11:00</td><td><i>10:00 - 11:00</i></td><td><i>10:00 - 11:00</i></td><td align="right">7</td>
+        </tr>
+        <tr style="background-color: #f0f0f0">
+        <td>Papabear</td><td>Shift F</td><td>07:00 - 08:00</td><td><i>07:00 - 08:00</i></td><td>07:00 - 08:00</td><td>07:00 - 08:00</td><td>07:00 - 08:00</td><td>07:00 - 08:00</td><td>07:00 - 08:00</td><td align="right">7</td>
+        </tr>
+      </tbody>
+        </table>
+      </div>
+      <hr>
+      <div class="timeDiv">
+        <h3>Time conversion</h3>
+        <p id=conversionInfo></p>
+
+        Select your timezone:
+        <from name="timezoneSelect">
+          <select name="timezone" id="timezone" onchange="editTimezone()">
+            <option value=-12>GMT -12</option>
+            <option value=-11>GMT -11</option>
+            <option value=-10>GMT -10</option>
+            <option value=-9>GMT -9</option>
+            <option value=-8>GMT -8</option>
+            <option value=-7>GMT -7</option>
+            <option value=-6>GMT -6</option>
+            <option value=-5>GMT -5</option>
+            <option value=-4>GMT -4</option>
+            <option value=-3>GMT -3</option>
+            <option value=-2>GMT -2</option>
+            <option value=-1>GMT -1</option>
+            <option value=0 selected>GMT 0</option>
+            <option value=1>GMT +1</option>
+            <option value=2>GMT +2</option>
+            <option value=3>GMT +3</option>
+            <option value=4>GMT +4</option>
+            <option value=5>GMT +5</option>
+            <option value=6>GMT +6</option>
+            <option value=7>GMT +7</option>
+            <option value=8>GMT +8</option>
+            <option value=9>GMT +9</option>
+            <option value=10>GMT +10</option>
+            <option value=11>GMT +11</option>
+            <option value=12>GMT +12</option>
+          </select>
+        </form>
+      </div>
+    </div>
+    </body>
+</html>
