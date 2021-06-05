@@ -17,8 +17,8 @@ function editTimezone(){
 
       if(cellItem != "None"){
         //console.log(cellItem)
-        const cursive = cellItem.startsWith("<i>")
-        if(cursive){
+        const underlined = cellItem.startsWith("<u>")
+        if(underlined){
           cellItem = cellItem.replace(/<[^>]*>?/gm, '');
         }
 
@@ -28,8 +28,8 @@ function editTimezone(){
         //console.log("table item;", startTime, endTime)
 
         var cellContent = ""
-        if(cursive){
-          cellContent = "<i>" + startTime + " - " + endTime + "</i>";
+        if(underlined){
+          cellContent = "<u>" + startTime + " - " + endTime + "</u>";
         }else{
           cellContent = startTime + " - " + endTime;
         }
@@ -50,7 +50,7 @@ function timezoneText(timezoneNumber){
   document.getElementById("scheduleInfo").innerHTML = "";
   document.getElementById("conversionInfo").innerHTML = "";
 
-  scheduleInfo.innerHTML = `Times are in GMT ${timezoneNumber}. If the time is in cursive, the person isn't always available.`;
+  scheduleInfo.innerHTML = `Times are in GMT ${timezoneNumber}. If the time is underlined, the person should always be available.`;
   conversionInfo.innerHTML = `As the times are listed for GMT ${timezoneNumber}. You can select your own timezone here if it is different. If you're currently in summer time, add 1. <br>For example, if you're in GMT +1 and it's summer time, select GMT +2 (Europe).`
   //console.log(timezoneNumber)
 }
