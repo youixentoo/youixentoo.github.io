@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
       <title>Armour calculator</title>
@@ -53,9 +54,114 @@
         </div>
         <hr>
         <div class="row gx-1">
-          <div id="armourSelection" class="col-md-auto">
-            <div class="p-3 border">
-              <p>Temp</p>
+          <div id="armourSelection" class="col">
+            <div class="p-3 border row">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Piece</th>
+                    <th>Version</th>
+                    <th>Armour</th>
+                    <th>Augments</th>
+                    <th>Cores</th>
+                  </tr>
+                  <tr>
+                    <td>Helmet</td>
+                    <td>
+                      <div id="vHelmets">
+                        <select id="versionHelm" name="versionHelm" onchange="setHelmets(this.value)">
+                          <option value="Normal" selected="selected">Normal</option>
+                          <option value="Red">Red</option>
+                          <option value="Black">Black</option>
+                          <option value="Faction">Faction</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <div id="helmets">
+                      </div>
+                    </td>
+                    <td>Placeholder</td>
+                    <td>Placeholder</td>
+                  </tr>
+                  <tr>
+                    <td>Vest</td>
+                    <td>
+                      <div id="vVests">
+                        <select id="versionVest" name="versionVest" onchange="setVests(this.value)">
+                          <option value="Normal" selected="selected">Normal</option>
+                          <option value="Red">Red</option>
+                          <option value="Black">Black</option>
+                          <option value="Faction">Faction</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <div id="vests">
+                      </div>
+                    </td>
+                    <td>Placeholder</td>
+                    <td>Placeholder</td>
+                  </tr>
+                  <tr>
+                    <td>Gloves</td>
+                    <td>
+                      <div id="vGloves">
+                        <select id="versionGloves" name="versionGloves" onchange="setGloves(this.value)">
+                          <option value="Normal" selected="selected">Normal</option>
+                          <option value="Red">Red</option>
+                          <option value="Black">Black</option>
+                          <option value="Faction">Faction</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <div id="gloves">
+                      </div>
+                    </td>
+                    <td>Placeholder</td>
+                    <td>Placeholder</td>
+                  </tr>
+                  <tr>
+                    <td>Pants</td>
+                    <td>
+                      <div id=vPants>
+                        <select id="versionPants" name="versionPants" onchange="setPants(this.value)">
+                          <option value="Normal" selected="selected">Normal</option>
+                          <option value="Red">Red</option>
+                          <option value="Black">Black</option>
+                          <option value="Faction">Faction</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <div id="pants">
+                      </div>
+                    </td>
+                    <td>Placeholder</td>
+                    <td>Placeholder</td>
+                  </tr>
+                  <tr>
+                    <td>Boots</td>
+                    <td>
+                      <div id="vBoots">
+                        <select id="versionBoots" name="versionBoots" onchange="setBoots(this.value)">
+                          <option value="Normal" selected="selected">Normal</option>
+                          <option value="Red">Red</option>
+                          <option value="Black">Black</option>
+                          <option value="Faction">Faction</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <div id="boots">
+                      </div>
+                    </td>
+                    <td>Placeholder</td>
+                    <td>Placeholder</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           <div id="bonusSelection" class="col">
