@@ -1,23 +1,110 @@
 function getArmour(){
   var armourData = armourJSON()
 
-  var selectedVerHelm = 8;
-  var selectedVerVest = $("#versionVest option:selected").val();
-  var selectedVerGloves = $("#versionGloves option:selected").val();
-  var selectedVerPants = $("#versionPants option:selected").val();
-  var selectedVerBoots = $("#versionBoots option:selected").val();
+  var helmRes = armourData["Helmet"][$("#versionHelm option:selected").val()][$("#Helmet option:selected").val()];
+  var vestRes = armourData["Vest"][$("#versionVest option:selected").val()][$("#Vest option:selected").val()];
+  var gloveRes = armourData["Gloves"][$("#versionGloves option:selected").val()][$("#Glove option:selected").val()];
+  var pantRes = armourData["Pants"][$("#versionPants option:selected").val()][$("#Pant option:selected").val()];
+  var bootRes = armourData["Boots"][$("#versionBoots option:selected").val()][$("#Boot option:selected").val()];
+  //console.log(helmRes, vestRes, gloveRes, pantRes, bootRes)
 
-  var helm = armourData["Helmet"][$("#versionHelm option:selected").val()][$("#Helmet option:selected").val()]
-  console.log(helm)
+
+  var helmResists = calcResists(helmRes, [$("#helmAug1 option:selected").val(), $("#helmAugLv1").val()], [$("#helmAug2 option:selected").val(), $("#helmAugLv2").val()], [$("#helmAug3 option:selected").val(), $("#helmAugLv3").val()], 14, 0, 100, 24)
+  console.log(helmResists)
+
+  //TODO: Add bonusses from masteries and collections
+  //TODO: Extract core and bae data from page
+  //TODO: Ask what the 24,40,12,24,12 numbers are about (armourMod)
+
   document.getElementById("mod").innerHTML = "";
-  mod.innerHTML = `${$("#versionHelm option:selected").val()} ${$("#Helmet option:selected").val()} resists: ${helm}`;
+  mod.innerHTML = `${$("#versionHelm option:selected").val()} ${$("#Helmet option:selected").val()} resists:<br> Fortified ${helmResists["Fortified"]}, Heat: ${helmResists["Heat Resistant"]}, Hazchem: ${helmResists["Hazchem"]}`;
 }
+
+
+
+function calcResists(armourBaseFHC, aug1_lv, aug2_lv, aug3_lv, bae, core, addedRes, armourMod){
+  var fortified = 0;
+  var heatRes = 0;
+  var hazchem = 0;
+  if($.inArray(aug1_lv[0], ["Fortified", "Heat Resistant", "Hazchem"]) != -1){
+    var resType1 = aug1_lv[0];
+    var resLv1 = aug1_lv[1];
+    var res1 = singleResist(armourBaseFHC, armourMod, resType1, resLv1, bae, core, addedRes)
+    if(res1[0] == "Fortified"){
+      fortified = res1[1]
+    }else if(res1[0] == "Heat Resistant"){
+      heatRes = res1[1]
+    }else{
+      hazchem = res1[1]
+    }
+  }
+
+  if($.inArray(aug2_lv[0], ["Fortified", "Heat Resistant", "Hazchem"]) != -1){
+    var resType2 = aug2_lv[0];
+    var resLv2 = aug2_lv[1];
+    var res2 = singleResist(armourBaseFHC, armourMod, resType2, resLv2, bae, core, addedRes)
+    if(res2[0] == "Fortified"){
+      fortified = res2[1]
+    }else if(res2[0] == "Heat Resistant"){
+      heatRes = res2[1]
+    }else{
+      hazchem = res2[1]
+    }
+  }
+
+  if($.inArray(aug3_lv[0], ["Fortified", "Heat Resistant", "Hazchem"]) != -1){
+    var resType3 = aug3_lv[0];
+    var resLv3 = aug3_lv[1];
+    var res3 = singleResist(armourBaseFHC, armourMod, resType3, resLv3, bae, core, addedRes)
+    if(res3[0] == "Fortified"){
+      fortified = res3[1]
+    }else if(res3[0] == "Heat Resistant"){
+      heatRes = res3[1]
+    }else{
+      hazchem = res3[1]
+    }
+  }
+
+  return {"Fortified": fortified, "Heat Resistant": heatRes, "Hazchem": hazchem}
+}
+
+
+function singleResist(armourBaseFHC, armourMod, resType, resLv, bae, core, addedRes){
+  var resists = 0;
+  if(resType == "Fortified"){
+    if(resLv > 5){
+      var resAugs = armourBaseFHC[0]*((0.3*resLv+0.5)+(0.05*core))+(armourMod*resLv)
+      resists = (1+0.07*bae)*resAugs+addedRes
+    }else{
+      var resAugs = armourBaseFHC[0]*((0.2*resLv+1)+(0.05*core))+(armourMod*resLv)
+      resists = (1+0.07*bae)*resAugs+addedRes
+    }
+  }else if(resType == "Heat Resistant"){
+    if(resLv > 5){
+      var resAugs = armourBaseFHC[1]*((0.3*resLv+0.5)+(0.05*core))+(armourMod*resLv)
+      resists = (1+0.07*bae)*resAugs+addedRes
+    }else{
+      var resAugs = armourBaseFHC[1]*((0.2*resLv+1)+(0.05*core))+(armourMod*resLv)
+      resists = (1+0.07*bae)*resAugs+addedRes
+    }
+  }else{
+    if(resLv > 4){
+      var resAugs = armourBaseFHC[2]*((0.4*resLv+0.6)+(0.05*core))+(armourMod*resLv)
+      resists = (1+0.07*bae)*resAugs+addedRes
+    }else{
+      var resAugs = armourBaseFHC[2]*((0.3*resLv+1)+(0.05*core))+(armourMod*resLv)
+      resists = (1+0.07*bae)*resAugs+addedRes
+    }
+  }
+  return [resType, resists]
+}
+
 
 
 function setHelmets(version){
   document.getElementById("helmets").innerHTML = "";
   if(version == "Faction"){
-    helmets.innerHTML = `<select id="Helmet" name="Helmet">
+    helmets.innerHTML = `<select id="Helmet" name="Helmet" type="armour">
       <option value="---" selected="selected">---</option>
       <option value="Dynamo Helmet">Dynamo Helmet</option>
       <option value="Overwatch Helmet">Overwatch Helmet</option>
@@ -26,7 +113,7 @@ function setHelmets(version){
       <option value="Mako Helmet">Mako Helmet</option>
     </select>`
   }else{
-    helmets.innerHTML = `<select id="Helmet" name="Helmet">
+    helmets.innerHTML = `<select id="Helmet" name="Helmet" type="armour">
       <option value="---" selected="selected">---</option>
       <option value="HVM Kevlar Helmet">HVM Kevlar Helmet</option>
       <option value="HVM Carbon Fibre Helmet">HVM Carbon Fibre Helmet</option>
@@ -37,7 +124,7 @@ function setHelmets(version){
       <option value="Dragonfly Helmet">Dragonfly Helmet</option>
       <option value="R1 Interceptor Helm">R1 Interceptor Helm</option>
       <option value="Graphene Combat Hood">Graphene Combat Hood</option>
-      <option value="Titan IRN HUD">Titan IRN HUD</option>
+      <option value="Titan IRN HUD" selected>Titan IRN HUD</option>
       <option value="Medusa Helmet">Medusa Helmet</option>
     </select>`
   }
@@ -46,7 +133,7 @@ function setHelmets(version){
 function setVests(version){
   document.getElementById("vests").innerHTML = "";
   if(version == "Faction"){
-    vests.innerHTML = `<select id="Vest" name="Vest">
+    vests.innerHTML = `<select id="Vest" name="Vest" type="armour">
     <option value="---" selected="selected">---</option>
     <option value="Dynamo Chest">Dynamo Chest</option>
     <option value="Overwatch Chest">Overwatch Chest</option>
@@ -55,7 +142,7 @@ function setVests(version){
     <option value="Mako Vest">Mako Vest</option>
     </select>`
   }else{
-    vests.innerHTML = `<select id="Vest" name="Vest">
+    vests.innerHTML = `<select id="Vest" name="Vest" type="armour">
     <option value="---" selected="selected">---</option>
     <option value="HVM Kevlar Vest">HVM Kevlar Vest</option>
     <option value="HVM Carbon Fibre Vest">HVM Carbon Fibre Vest</option>
@@ -77,7 +164,7 @@ function setVests(version){
 function setGloves(version){
   document.getElementById("gloves").innerHTML = "";
   if(version == "Faction"){
-    gloves.innerHTML = `<select id="Glove" name="Gloves">
+    gloves.innerHTML = `<select id="Glove" name="Gloves" type="armour">
     <option value="---" selected="selected">---</option>
     <option value="Dynamo Gloves">Dynamo Gloves</option>
     <option value="Overwatch Gloves">Overwatch Gloves</option>
@@ -86,7 +173,7 @@ function setGloves(version){
     <option value="Mako Gloves">Mako Gloves</option>
     </select>`
   }else{
-    gloves.innerHTML = `<select id="Glove" name="Gloves">
+    gloves.innerHTML = `<select id="Glove" name="Gloves" type="armour">
     <option value="---" selected="selected">---</option>
     <option value="HVM Kevlar Gloves">HVM Kevlar Gloves</option>
     <option value="HVM Carbon Fibre Gloves">HVM Carbon Fibre Gloves</option>
@@ -106,7 +193,7 @@ function setGloves(version){
 function setPants(version){
   document.getElementById("pants").innerHTML = "";
   if(version == "Faction"){
-    pants.innerHTML = `<select id="Pant" name="Pants">
+    pants.innerHTML = `<select id="Pant" name="Pants" type="armour">
       <option value="---" selected="selected">---</option>
       <option value="Dynamo Legs">Dynamo Legs</option>
       <option value="Overwatch Pants">Overwatch Pants</option>
@@ -115,7 +202,7 @@ function setPants(version){
       <option value="Mako Pants">Mako Pants</option>
     </select>`
   }else{
-    pants.innerHTML = `<select id="Pant" name="Pants">
+    pants.innerHTML = `<select id="Pant" name="Pants" type="armour">
       <option value="---" selected="selected">---</option>
       <option value="HVM Kevlar Pants">HVM Kevlar Pants</option>
       <option value="HVM Carbon Fibre Pants">HVM Carbon Fibre Pants</option>
@@ -135,7 +222,7 @@ function setPants(version){
 function setBoots(version){
   document.getElementById("boots").innerHTML = "";
   if(version == "Faction"){
-    boots.innerHTML = `<select id="Boot" name="Boots">
+    boots.innerHTML = `<select id="Boot" name="Boots" type="armour">
       <option value="---" selected="selected">---</option>
       <option value="Dynamo Boots">Dynamo Boots</option>
       <option value="Overwatch Boots">Overwatch Boots</option>
@@ -144,7 +231,7 @@ function setBoots(version){
       <option value="Mako Boots">Mako Boots</option>
     </select>`
   }else{
-    boots.innerHTML = `<select id="Boot" name="Boots">
+    boots.innerHTML = `<select id="Boot" name="Boots" type="armour">
       <option value="---" selected="selected">---</option>
       <option value="HVM Combat Boots">HVM Combat Boots</option>
       <option value="HVM Carbon Fibre Boots">HVM Carbon Fibre Boots</option>

@@ -3,3 +3,16 @@
   margin-left: 5%;
   margin-right: 5%
 }
+
+input[type="number"] {
+  width: 3em;
+  margin: 2px;
+}
+
+select[type="aug"] {
+  width:170px;
+}
+
+select[type="armour"]{
+  width: 240px;
+}
