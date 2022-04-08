@@ -43,7 +43,12 @@ function getArmour(){
     var bootsResists = {"Fortified": 0, "Heat Resistant": 0, "Hazchem": 0}
   }
 
-  //TODO: Ask what the 24,40,12,24,12 numbers are about (armourMod)
+  var totalFort = helmResists["Fortified"] + vestResists["Fortified"] + glovesResists["Fortified"] + pantsResists["Fortified"] + bootsResists["Fortified"];
+  var totalHeat = helmResists["Heat Resistant"] + vestResists["Heat Resistant"] + glovesResists["Heat Resistant"] + pantsResists["Heat Resistant"] + bootsResists["Heat Resistant"];
+  var totalHaz = helmResists["Hazchem"] + vestResists["Hazchem"] + glovesResists["Hazchem"] + pantsResists["Hazchem"] + bootsResists["Hazchem"];
+
+  console.log(totalFort, totalHeat, totalHaz);
+
   //TODO: % calculation
   //TODO: Output visualisation
 
