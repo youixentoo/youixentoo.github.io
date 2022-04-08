@@ -148,8 +148,10 @@ function calcBootsResists(bootsRes, bae, checkboxValues){
   var bootsMast = $('input[name="bootsMast"]').val();
   if(bootsMast == 5){
     var addRes = [100,100,125]
-  }else if(bootsMast > 0){
+  }else if(bootsMast == 1){
     var addRes = [0,0,25]
+  }else if(bootsMast > 1){
+    var addRes = [0,25,25]
   }else{
     var addRes = [0,0,0]
   }
