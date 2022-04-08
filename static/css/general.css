@@ -9,10 +9,19 @@ input[type="number"] {
   margin: 2px;
 }
 
+td{
+  vertical-align: middle;
+  text-align: center;
+}
+
 select[type="aug"] {
   width:170px;
 }
 
 select[type="armour"]{
   width: 240px;
+}
+
+th[name="Collections"]{
+  border: none;
 }
