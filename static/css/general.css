@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-.content
-{
-=======
+
 #site-wrapper{
->>>>>>> development
   position: relative;
   margin-left: 5%;
   margin-right: 5%
 }
-<<<<<<< HEAD
-=======
 
 input[type="number"] {
   width: 3em;
@@ -39,4 +33,3 @@ th[name="Collections"]{
 	background: url(../img/unknown.png) no-repeat center center fixed;
   background-size: 100% 100%;
 }
->>>>>>> development
