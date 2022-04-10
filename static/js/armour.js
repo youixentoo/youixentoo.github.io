@@ -1,3 +1,6 @@
+
+  //TODO: Output visualisation
+
 function getArmour(){
   const armourData = armourJSON()
 
@@ -47,17 +50,37 @@ function getArmour(){
   var totalHeat = helmResists["Heat Resistant"] + vestResists["Heat Resistant"] + glovesResists["Heat Resistant"] + pantsResists["Heat Resistant"] + bootsResists["Heat Resistant"];
   var totalHaz = helmResists["Hazchem"] + vestResists["Hazchem"] + glovesResists["Hazchem"] + pantsResists["Hazchem"] + bootsResists["Hazchem"];
 
-  console.log(totalFort, totalHeat, totalHaz);
-
-  //TODO: % calculation
-  //TODO: Output visualisation
+  var percFort = getPercResists(totalFort);
+  var percHeat = getPercResists(totalHeat);
+  var percHaz = getPercResists(totalHaz);
 
   document.getElementById("mod").innerHTML = "";
-  mod.innerHTML = `<b>${$("#versionHelm option:selected").val()} ${$("#Helmet option:selected").val()}:</b> Fortified ${helmResists["Fortified"]}, Heat: ${helmResists["Heat Resistant"]}, Hazchem: ${helmResists["Hazchem"]}<br>
+  mod.innerHTML = `<u>Total resists:</u><br>
+                   <b>Fortified:</b> ${percFort}% <b>Heat:</b> ${percHeat}% <b>Hazchem:</b> ${percHaz}%<br>
+                   <b>Fortified:</b> ${roundToTwo(totalFort)} <b>Heat:</b> ${roundToTwo(totalHeat)} <b>Hazchem:</b> ${roundToTwo(totalHaz)}<br><br>
+                   <u>Totals per armour piece:</u><br>
+                   <b>${$("#versionHelm option:selected").val()} ${$("#Helmet option:selected").val()}:</b> Fortified ${helmResists["Fortified"]}, Heat: ${helmResists["Heat Resistant"]}, Hazchem: ${helmResists["Hazchem"]}<br>
                    <b>${$("#versionVest option:selected").val()} ${$("#Vest option:selected").val()}:</b> Fortified ${vestResists["Fortified"]}, Heat: ${vestResists["Heat Resistant"]}, Hazchem: ${vestResists["Hazchem"]}<br>
-                   <b>${$("#versionGloves option:selected").val()} ${$("#Boot option:selected").val()}:</b> Fortified ${glovesResists["Fortified"]}, Heat: ${glovesResists["Heat Resistant"]}, Hazchem: ${glovesResists["Hazchem"]}<br>
+                   <b>${$("#versionGloves option:selected").val()} ${$("#Glove option:selected").val()}:</b> Fortified ${glovesResists["Fortified"]}, Heat: ${glovesResists["Heat Resistant"]}, Hazchem: ${glovesResists["Hazchem"]}<br>
                    <b>${$("#versionPants option:selected").val()} ${$("#Pant option:selected").val()}:</b> Fortified ${pantsResists["Fortified"]}, Heat: ${pantsResists["Heat Resistant"]}, Hazchem: ${pantsResists["Hazchem"]}<br>
                    <b>${$("#versionBoots option:selected").val()} ${$("#Boot option:selected").val()}:</b> Fortified ${bootsResists["Fortified"]}, Heat: ${bootsResists["Heat Resistant"]}, Hazchem: ${bootsResists["Hazchem"]}<br>`;
+}
+
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+
+function getPercResists(totalRes){
+  var perc = 0;
+  if(totalRes > 6000){
+     perc = (Math.sqrt(totalRes - 6000)/5)+74
+    if(perc > 99){
+      perc = 99
+    }
+  }else{
+    perc = Math.sqrt(totalRes)
+  }
+  return roundToTwo(perc)
 }
 
 
@@ -152,7 +175,7 @@ function calcPantsResists(pantsRes, bae, checkboxValues){
 function calcBootsResists(bootsRes, bae, checkboxValues){
   var bootsMast = $('input[name="bootsMast"]').val();
   if(bootsMast == 5){
-    var addRes = [100,100,125]
+    var addRes = [100,125,125]
   }else if(bootsMast == 1){
     var addRes = [0,0,25]
   }else if(bootsMast > 1){
@@ -225,13 +248,13 @@ function calcResists(armourBaseFHC, aug1_lv, aug2_lv, aug3_lv, bae, core, addedR
   }
 
   if(fortified == 0){
-    fortified = armourBaseFHC[0]*(1+0.07*bae)
+    fortified = (armourBaseFHC[0]*(1+(0.05*core)))*(1+0.07*bae)
   }
   if(heatRes == 0){
-    heatRes = armourBaseFHC[1]*(1+0.07*bae)
+    heatRes = (armourBaseFHC[1]*(1+(0.05*core)))*(1+0.07*bae)
   }
   if(hazchem == 0){
-    hazchem = armourBaseFHC[2]*(1+0.07*bae)
+    hazchem = (armourBaseFHC[2]*(1+(0.05*core)))*(1+0.07*bae)
   }
 
   return {"Fortified": fortified+addedResFHC[0], "Heat Resistant": heatRes+addedResFHC[1], "Hazchem": hazchem+addedResFHC[2]}
@@ -257,7 +280,10 @@ function singleResist(armourBaseFHC, armourMod, resType, resLv, bae, core, added
       resists = (1+0.07*bae)*resAugs+addedRes
     }
   }else{
-    if(resLv > 4){
+    if(resLv > 6){
+      var resAugs = armourBaseFHC[2]*((0.5*resLv)+(0.05*core))+(armourMod*resLv)
+      resists = (1+0.07*bae)*resAugs+addedRes
+    }else if(resLv > 4){
       var resAugs = armourBaseFHC[2]*((0.4*resLv+0.6)+(0.05*core))+(armourMod*resLv)
       resists = (1+0.07*bae)*resAugs+addedRes
     }else{
@@ -268,13 +294,36 @@ function singleResist(armourBaseFHC, armourMod, resType, resLv, bae, core, added
   return [resType, resists]
 }
 
+function setSelection(armourType, version){
+
+}
+
+function update(value){
+    let storedData = JSON.parse(sessionStorage.getItem('armourData'));
+    Object.keys(value).forEach(function(val, key){
+         storedData[val] = value[val];
+    })
+    sessionStorage.setItem('armourData', JSON.stringify(storedData));
+}
+
 
 
 function setHelmets(version){
+  let storedData = JSON.parse(sessionStorage.getItem("armourData"));
+  update({"Helmets": version})
+
+  if(version == "Faction"){
+    setHelmetsSelection(version)
+  }else if(storedData["Helmets"] == "Faction"){
+    setHelmetsSelection(version)
+  }
+}
+
+function setHelmetsSelection(version){
   document.getElementById("helmets").innerHTML = "";
   if(version == "Faction"){
     helmets.innerHTML = `<select id="Helmet" name="Helmet" type="armour">
-      <option value="---" selected="selected">---</option>
+      <option value="---">---</option>
       <option value="Dynamo Helmet">Dynamo Helmet</option>
       <option value="Overwatch Helmet">Overwatch Helmet</option>
       <option value="Mastodon Helm">Mastodon Helm</option>
@@ -283,7 +332,7 @@ function setHelmets(version){
     </select>`
   }else{
     helmets.innerHTML = `<select id="Helmet" name="Helmet" type="armour">
-      <option value="---" selected="selected">---</option>
+      <option value="---">---</option>
       <option value="HVM Kevlar Helmet">HVM Kevlar Helmet</option>
       <option value="HVM Carbon Fibre Helmet">HVM Carbon Fibre Helmet</option>
       <option value="Trooper Helmet">Trooper Helmet</option>
@@ -293,26 +342,37 @@ function setHelmets(version){
       <option value="Dragonfly Helmet">Dragonfly Helmet</option>
       <option value="R1 Interceptor Helm">R1 Interceptor Helm</option>
       <option value="Graphene Combat Hood">Graphene Combat Hood</option>
-      <option value="Titan IRN HUD" selected>Titan IRN HUD</option>
+      <option value="Titan IRN HUD">Titan IRN HUD</option>
       <option value="Medusa Helmet">Medusa Helmet</option>
     </select>`
   }
 }
 
 function setVests(version){
+  let storedData = JSON.parse(sessionStorage.getItem("armourData"));
+  update({"Vests": version})
+
+  if(version == "Faction"){
+    setVestsSelection(version)
+  }else if(storedData["Vests"] == "Faction"){
+    setVestsSelection(version)
+  }
+}
+
+function setVestsSelection(version){
   document.getElementById("vests").innerHTML = "";
   if(version == "Faction"){
     vests.innerHTML = `<select id="Vest" name="Vest" type="armour">
-    <option value="---" selected="selected">---</option>
+    <option value="---">---</option>
     <option value="Dynamo Chest">Dynamo Chest</option>
-    <option value="Overwatch Chest" selected>Overwatch Chest</option>
+    <option value="Overwatch Chest">Overwatch Chest</option>
     <option value="Mastodon Chest">Mastodon Chest</option>
     <option value="Vulkan Vest">Vulkan Vest</option>
     <option value="Mako Vest">Mako Vest</option>
     </select>`
   }else{
     vests.innerHTML = `<select id="Vest" name="Vest" type="armour">
-    <option value="---" selected="selected">---</option>
+    <option value="---">---</option>
     <option value="HVM Kevlar Vest">HVM Kevlar Vest</option>
     <option value="HVM Carbon Fibre Vest">HVM Carbon Fibre Vest</option>
     <option value="Trooper Vest">Trooper Vest</option>
@@ -331,10 +391,21 @@ function setVests(version){
 }
 
 function setGloves(version){
+  let storedData = JSON.parse(sessionStorage.getItem("armourData"));
+  update({"Gloves": version})
+
+  if(version == "Faction"){
+    setGlovesSelection(version)
+  }else if(storedData["Gloves"] == "Faction"){
+    setGlovesSelection(version)
+  }
+}
+
+function setGlovesSelection(version){
   document.getElementById("gloves").innerHTML = "";
   if(version == "Faction"){
     gloves.innerHTML = `<select id="Glove" name="Gloves" type="armour">
-    <option value="---" selected="selected">---</option>
+    <option value="---">---</option>
     <option value="Dynamo Gloves">Dynamo Gloves</option>
     <option value="Overwatch Gloves">Overwatch Gloves</option>
     <option value="Mastodon Gauntlets">Mastodon Gauntlets</option>
@@ -353,17 +424,28 @@ function setGloves(version){
     <option value="Dragonfly Gloves">Dragonfly Gloves</option>
     <option value="R6 Flamejuggler Gloves">R6 Flamejuggler Gloves</option>
     <option value="Graphene Gloves">Graphene Gloves</option>
-    <option value="Titan IDS 01" selected>Titan IDS 01</option>
+    <option value="Titan IDS 01">Titan IDS 01</option>
     <option value="Medusa Gloves">Medusa Gloves</option>
     </select>`
   }
 }
 
 function setPants(version){
+  let storedData = JSON.parse(sessionStorage.getItem("armourData"));
+  update({"Pants": version})
+
+  if(version == "Faction"){
+    setPantsSelection(version)
+  }else if(storedData["Pants"] == "Faction"){
+    setPantsSelection(version)
+  }
+}
+
+function setPantsSelection(version){
   document.getElementById("pants").innerHTML = "";
   if(version == "Faction"){
     pants.innerHTML = `<select id="Pant" name="Pants" type="armour">
-      <option value="---" selected="selected">---</option>
+      <option value="---">---</option>
       <option value="Dynamo Legs">Dynamo Legs</option>
       <option value="Overwatch Pants">Overwatch Pants</option>
       <option value="Mastodon Legs">Mastodon Legs</option>
@@ -372,7 +454,7 @@ function setPants(version){
     </select>`
   }else{
     pants.innerHTML = `<select id="Pant" name="Pants" type="armour">
-      <option value="---" selected="selected">---</option>
+      <option value="---">---</option>
       <option value="HVM Kevlar Pants">HVM Kevlar Pants</option>
       <option value="HVM Carbon Fibre Pants">HVM Carbon Fibre Pants</option>
       <option value="Trooper Pants">Trooper Pants</option>
@@ -383,16 +465,27 @@ function setPants(version){
       <option value="R7 Guardian Pants">R7 Guardian Pants</option>
       <option value="Graphene Body Suit Bottom">Graphene Body Suit Bottom</option>
       <option value="Titan MEM Trooper">Titan MEM Trooper</option>
-      <option value="Medusa Pants" selected>Medusa Pants</option>
+      <option value="Medusa Pants">Medusa Pants</option>
     </select>`
   }
 }
 
 function setBoots(version){
+  let storedData = JSON.parse(sessionStorage.getItem("armourData"));
+  update({"Boots": version})
+
+  if(version == "Faction"){
+    setBootsSelection(version)
+  }else if(storedData["Boots"] == "Faction"){
+    setBootsSelection(version)
+  }
+}
+
+function setBootsSelection(version){
   document.getElementById("boots").innerHTML = "";
   if(version == "Faction"){
     boots.innerHTML = `<select id="Boot" name="Boots" type="armour">
-      <option value="---" selected="selected">---</option>
+      <option value="---">---</option>
       <option value="Dynamo Boots">Dynamo Boots</option>
       <option value="Overwatch Boots">Overwatch Boots</option>
       <option value="Mastodon Boots">Mastodon Boots</option>
@@ -411,7 +504,7 @@ function setBoots(version){
       <option value="Dragonfly Boots">Dragonfly Boots</option>
       <option value="R8 Huntsman Boots">R8 Huntsman Boots</option>
       <option value="Graphene Boots">Graphene Boots</option>
-      <option value="Titan MEM Sprint" selected>Titan MEM Sprint</option>
+      <option value="Titan MEM Sprint">Titan MEM Sprint</option>
       <option value="Medusa Boots">Medusa Boots</option>
     </select>`
   }
@@ -421,10 +514,29 @@ function setBoots(version){
 document.addEventListener('readystatechange', event => {
     // When HTML/DOM elements are ready:
     if (event.target.readyState === "interactive") {   //does same as:  ..addEventListener("DOMContentLoaded"..
-        setHelmets("Black")
-        setVests("Faction")
-        setGloves("Black")
-        setPants("Black")
-        setBoots("Black")
+        if(pageAccessedByReload){
+          let storedData = JSON.parse(sessionStorage.getItem("armourData"));
+          setHelmetsSelection(storedData["Helmets"])
+          setVestsSelection(storedData["Vests"])
+          setGlovesSelection(storedData["Gloves"])
+          setPantsSelection(storedData["Pants"])
+          setBootsSelection(storedData["Boots"])
+        }else{
+          setHelmetsSelection("Normal")
+          setVestsSelection("Normal")
+          setGlovesSelection("Normal")
+          setPantsSelection("Normal")
+          setBootsSelection("Normal")
+          let data = {"Helmets": "null", "Vests": "null", "Gloves": "null", "Pants": "null", "Boots": "null"}
+          sessionStorage.setItem('armourData', JSON.stringify(data));
+        }
     }
 });
+
+const pageAccessedByReload = (
+  (window.performance.navigation && window.performance.navigation.type === 1) ||
+    window.performance
+      .getEntriesByType('navigation')
+      .map((nav) => nav.type)
+      .includes('reload')
+);
