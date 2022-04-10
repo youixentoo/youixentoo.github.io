@@ -25,3 +25,10 @@ select[type="armour"]{
 th[name="Collections"]{
   border: none;
 }
+
+.indexBody {
+	margin: 0;
+	padding: 0;
+	background: url(../img/unknown.png) no-repeat center center fixed;
+  background-size: 100% 100%;
+}
