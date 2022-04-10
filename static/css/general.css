@@ -1,6 +1,42 @@
+<<<<<<< HEAD
 .content
 {
+=======
+#site-wrapper{
+>>>>>>> development
   position: relative;
   margin-left: 5%;
   margin-right: 5%
 }
+<<<<<<< HEAD
+=======
+
+input[type="number"] {
+  width: 3em;
+  margin: 2px;
+}
+
+td{
+  vertical-align: middle;
+  text-align: center;
+}
+
+select[type="aug"] {
+  width:170px;
+}
+
+select[type="armour"]{
+  width: 240px;
+}
+
+th[name="Collections"]{
+  border: none;
+}
+
+.indexBody {
+	margin: 0;
+	padding: 0;
+	background: url(../img/unknown.png) no-repeat center center fixed;
+  background-size: 100% 100%;
+}
+>>>>>>> development
