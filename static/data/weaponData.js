@@ -288,8 +288,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "shotgun5": 0
         },
         "Shotgun": {
-            "gun_dmg": 1,
-            "gun_rps": 1,
+            "gun_dmg": 0,
+            "gun_rps": 0,
             "gun_critc": 0,
             "gun_critdmg": 0,
             "gun_capacity": 0,
@@ -300,7 +300,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "shotgun5": 1 * (gunMasteryLevel == 5)
         },
         "SMG": {
-            "gun_dmg": 1,
+            "gun_dmg": 0,
             "gun_rps": 15 * (gunMasteryLevel >= 4),
             "gun_critc": 0,
             "gun_critdmg": 0,
@@ -313,7 +313,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
         },
         "Assault Rifle": {
             "gun_dmg": 5 * (gunMasteryLevel >= 4),
-            "gun_rps": 1,
+            "gun_rps": 0,
             "gun_critc": 2 * (gunMasteryLevel >= 1),
             "gun_critdmg": 0,
             "gun_capacity": 10 * (gunMasteryLevel >= 2),
@@ -325,7 +325,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
         },
         "Sniper": {
             "gun_dmg": 5 * (gunMasteryLevel >= 1),
-            "gun_rps": 1,
+            "gun_rps": 0,
             "gun_critc": 5 * (gunMasteryLevel >= 3),
             "gun_critdmg": 25 * (gunMasteryLevel >= 4),
             "gun_capacity": 0,
@@ -337,7 +337,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
         },
         "Launcher": {
             "gun_dmg": 5 * (gunMasteryLevel >= 2),
-            "gun_rps": 1,
+            "gun_rps": 0,
             "gun_critc": 0,
             "gun_critdmg": 0,
             "gun_capacity": 0,
@@ -348,8 +348,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "shotgun5": 0
         },
         "Flamethrower": {
-            "gun_dmg": 1,
-            "gun_rps": 1,
+            "gun_dmg": 0,
+            "gun_rps": 0,
             "gun_critc": 0,
             "gun_critdmg": 0,
             "gun_capacity": 25 * (gunMasteryLevel >= 2),
@@ -361,7 +361,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
         },
         "LMG": {
             "gun_dmg": 5 * (gunMasteryLevel >= 1),
-            "gun_rps": 1,
+            "gun_rps": 0,
             "gun_critc": 0,
             "gun_critdmg": 0,
             "gun_capacity": 50 * (gunMasteryLevel >= 4),
