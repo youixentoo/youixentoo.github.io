@@ -1,0 +1,37 @@
+input[type="number"] {
+  width: 3rem;
+  margin: 0.125rem;
+}
+
+input[name="mobileView"]{
+  margin-left: 0.3rem;
+}
+
+td{
+  vertical-align: middle;
+  text-align: center;
+}
+
+select[type="version"]{
+  width:6.25rem;
+}
+
+select[type="aug"] {
+  width:8.75rem;
+}
+
+select[type="armour"]{
+  width: 12.5rem;
+}
+
+th[name="borderless"]{
+  border: none;
+}
+
+label[name="mobileOut"]{
+  margin-left: 1rem;
+}
+
+.getArmour{
+  vertical-align: middle;
+}
