@@ -41,8 +41,10 @@ function getDPS() {
     const armourData = armourDPSJSON();
     const armourWithoutVersion = ["Dynamo", "Overwatch", "Mastodon", "Mako", "Vulkan", "Other"];
     let weaponName = "CM Proton Arc";
+//    let weaponName = "Hornet";
+//    let weaponName = "HIKS 888 CAW";
     let weapon = weaponData["Premium"][weaponName];
-    let cores = 10;
+    let cores = $('input[name="core"]').val();
 
     let class_char = $('input[name="character"]:checked').val();
     let class_level = 0;
@@ -93,28 +95,27 @@ function getDPS() {
 
     // let weapon_class = "Flamethrower" // weapon["Class"]
     let masteries = getMasteries(weapon["Class"], $('input[name="gun_mastery"]').val(), $('select[name="hda"] option:selected').val(), $('input[name="helmet_mastery"]').val());
-    console.log("Masteries: ", masteries)
+//    console.log("Masteries: ", masteries)
 
     let helmetColl = $('input[name="helmet_collections_rel"]').is(":checked") ? true : false;
     let gunNormal = $('input[name="gun_collections_normal"]').is(":checked") ? true : false;
     let gunRed = $('input[name="gun_collections_red"]').is(":checked") ? true : false;
     let gunBlack = $('input[name="gun_collections_black"]').is(":checked") ? true : false;
     let collections = getCollections(weapon["Class"], gunNormal, gunRed, gunBlack, helmetColl);
-    console.log("Collections: ", collections)
-
-    // So guns have reload bonusses from amsteries and collections
-    let gun_reload_mastery = 0;
-    let gun_reload_collections = 0;
-    let reload_bonus = getReload($('input[name="fr"]').val(), helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, $('input[name="nimble"]').val(), gun_reload_mastery, gun_reload_collections);
+//    console.log("Collections: ", collections)
+    // weapon["Class"]
+    // TODO: "Race Modded"
+    let gun_mast_coll_reload = masteries["gun_reload"] + collections["reload"];
+    let gloves_reload_mastery = 0.1 * ($('input[name="gloves_mastery"]').val() >= 3); 
+    let gloves_reload_collections = $('input[name="gloves_collections_red"]').is(":checked") ? 0.1 : 0;
+    let reload_bonus = getReload($('input[name="fr"]').val(), helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, $('input[name="nimble"]').val(), gun_mast_coll_reload, gloves_reload_mastery, gloves_reload_collections);
+//    console.log("Reload return:", reload_bonus)
 
     calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus);
 }
 
 
 function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus) {
-    //TODO: Fit super crit in this mess somewhere
-    //TODO: Fix rounding error in multiplication of augments
-    //TODO: Cap aug and add support for +5% lmg cap from collections and the +10% one from pistol masteries -- special for mustang
     //TODO: Mastodon clip size increase?
     //TODO: Add mastery lv 3 flamer
     let base_dmg = weapon["Damage"];
@@ -127,28 +128,27 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let gun_base_crit = weapon["Crit"];
     let base_cores = 1 + (0.05 * cores);
 
-    let pinpoint = (3 + (1 * (weaponAugments["pinpoint"] - 1))) * (weaponAugments["pinpoint"] > 0);
-    // if mustang
-    let cap_aug = clip_size * ([0, 1.1, 1.3, 1.6, 1.8, 2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 3.4][weaponAugments["capacity"]]);
-    let capacity = (clip_size * base_cores) + cap_aug;
-    //console.log(capacity)
-    let adaptive = weaponAugments["adaptive"];
+    let pinpoint = (3 + (1 * (weaponAugments["Pinpoint"] - 1))) * (weaponAugments["Pinpoint"] > 0);
+    let adaptive = weaponAugments["Adaptive"];
     let smart_target = [0, 0.02, 0.04, 0.06, 0.08, 0.095, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17][armourAugments["smart_target"]];
     let target_assist = (2.5 + (0.5 * (armourAugments["target_assist"] - 1))) * (armourAugments["target_assist"] > 0);
 
     let hda_bonus = masteries["hda_mult"];
     let helm_mastery2 = 1 + (0.01 * masteries["helm_mast2"]);
-    let gun_dmg_mastery = masteries["gun_dmg"];
-    let gun_rps_mastery = masteries["gun_rps"];
+    let gun_dmg_mastery = 1 + (0.01 * masteries["gun_dmg"]);
+    let gun_rps_mastery = 1 + (0.01 * masteries["gun_rps"]);
     let gun_crit_mastery = masteries["gun_critc"];
     let gun_critdmg_mastery = masteries["gun_critdmg"];
     let gun_pierce_mastery = masteries["gun_pierce"];
+    let gun_capacity_mastery = masteries["gun_capacity"];
     let shotgun_mastery5 = masteries["shotgun5"];
+    let super_crit = 1 + (0.45 * masteries["superCrit"]);
 
-    let gun_dmg_collections = collections["gun_dmg"];
-    let gun_rps_collections = collections["gun_rps"];
-    let gun_pierce_collections = collections["gun_pierce"];
-    let gun_critdmg_collections = collections["gun_critdmg"];
+    let gun_dmg_collections = 1 + (0.01 * collections["dmg"]);
+    let gun_rps_collections = 1 + (0.01 * collections["rps"]);
+    let gun_pierce_collections = collections["pierce"];
+    let gun_capacity_collections = collections["capacity"];
+    let gun_critdmg_collections = collections["critdmg"];
     let helmet_collections = 1 * collections["helmet"];
 
     let class_bonus;
@@ -161,26 +161,48 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
         class_bonus = 1;
     }
 
+    // Capacity
+    let additionalCap = 0;
+    if (typeof gun_capacity_mastery === 'string' || gun_capacity_mastery instanceof String) {
+        if(weaponName === "Mustang"){
+            additionalCap = 0; //TODO: Implement
+        }else{
+            additionalCap += (clip_size * 1 + Math.round(0.01 * parseInt(gun_capacity_mastery.slice(0,-1))));
+        }
+    } else {
+        additionalCap += gun_capacity_mastery;
+    }
+
+    if (typeof gun_capacity_collections === 'string' || gun_capacity_collections instanceof String) {
+        additionalCap += (clip_size * 1 + Math.round(0.01 * parseInt(gun_capacity_collections.slice(0,-2)))); // So, "5%" gets stored as "5%0"
+    } else {
+        additionalCap += gun_capacity_collections;
+    }
+
+    let cap_aug = clip_size * ([0, 0.1, 0.3, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.5][weaponAugments["Capacity"]]);
+    let capacity = (clip_size * base_cores) + cap_aug + additionalCap;
+
     // Crit
     let crit_skill_chance = (4 + (0.5 * (crit_level - 1))) * (crit_level > 0); //0% 4%-16%
-    let crit_skill_mult = (1 + (0.05 + (0.04 * (crit_level - 1))) * (crit_level > 0)) + gun_critdmg_mastery + gun_critdmg_collections; //1 1.05-2.01
+    let crit_skill_mult = (1 + (0.05 + (0.04 * (crit_level - 1))) * (crit_level > 0)) + (gun_critdmg_mastery + gun_critdmg_collections) / 100; //1 1.05-2.01
     let crit_chance = pinpoint + target_assist + crit_skill_chance + gun_crit_mastery + helmet_collections + helmet_base_crit_bonus + gloves_base_crit_bonus + gun_base_crit;
-    let crit_bonus = (crit_chance * crit_skill_mult) / 100;
+    let crit_bonus = (crit_chance * crit_skill_mult * super_crit) / 100;
+//    console.log(crit_bonus, crit_chance, crit_skill_mult, super_crit)
 
     // Main dps formula:
-    let pure_damage = (1 + (0.1 * weaponAugments["deadly"])) * base_dmg * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * hda_bonus * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force)) * (class_bonus + crit_bonus) * (pellets + shotgun_mastery5);
-    let pure_DOT = (1 + (0.1 * weaponAugments["tenacious"])) * base_DOT * base_cores * hda_bonus; // Every gun that doesn't have DOT has base_DOT = 0
-    let pure_rps = (1 + (0.1 * weaponAugments["oc"])) * base_cores * base_rps * gun_rps_collections * gun_rps_mastery;
-    let pure_dps = (pure_damage + pure_DOT) * pure_rps;
-
+    let pure_damage = (1 + (0.1 * weaponAugments["Deadly"])) * base_dmg * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * hda_bonus * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force)) * (class_bonus + crit_bonus) * (pellets + shotgun_mastery5);
+    let pure_DOT = (1 + (0.1 * weaponAugments["Tenacious"])) * base_DOT * base_cores * hda_bonus; // Every gun that doesn't have DOT has base_DOT = 0
+    let pure_rps = (1 + (0.1 * weaponAugments["Overclocked"])) * base_cores * base_rps * gun_rps_collections * gun_rps_mastery;
+    let pure_dps = Math.floor((pure_damage + pure_DOT) * pure_rps);
+    
     // Average
     let uptime = (capacity - 1) / pure_rps / ((capacity - 1) / pure_rps + reload_bonus * reload); // clip_size-1 because the last shot and reloading happen at the same time
-    let average_dps = pure_dps * uptime;
+    let average_dps = Math.floor(pure_dps * uptime);
 
     // Pierce
-    let gun_pierce = (base_pierce * base_cores * (1 + (0.1 * weaponAugments["pierce"])) + gun_pierce_mastery + gun_pierce_collections) * class_bonus;
-    let pure_pierce = pure_dps * gun_pierce;
-    let average_pierce = average_dps * gun_pierce;
+    let gun_pierce = (base_pierce * base_cores * (1 + (0.1 * weaponAugments["Piercing"])) + gun_pierce_mastery + gun_pierce_collections) * class_bonus;
+    let pure_pierce = Math.floor(pure_dps * gun_pierce);
+    let average_pierce = Math.floor(average_dps * gun_pierce);
 
     console.log("------------")
     console.log("DPS:")
@@ -193,25 +215,40 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     // Calamity, T-189 MGL, Krakatoa, Every LMG, Every Pistol --> esp. Mustang
 }
 
-function getReload(reload_skill, helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, nimble, gun_reload_mastery, gun_reload_collections) {
-    return 0.2;
+function getReload(reload_skill, helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, nimble, gun_mast_coll_reload, gloves_reload_mastery, gloves_reload_collections) {
+    // Guns have mastery reload OR coll reload OR none, not both
+    let fastReload = 1-Math.pow(0.965, reload_skill);
+    let glovesReload = gloves_base_reload_bonus + (2.5*parseInt(nimble));
+//    console.log(helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, nimble, gun_reload_mastery, gun_reload_collections, gloves_reload_mastery, gloves_reload_collections)
+//    console.log("Calced")
+//    console.log(fastReload, glovesReload)
+    let reloadCalced = ((100-(glovesReload+helmet_base_reload_bonus+vest_base_reload_bonus))/100)*(1-fastReload)*(1-gun_mast_coll_reload)-(gloves_reload_mastery+gloves_reload_collections);
+    let reloadBonus = roundNumber(reloadCalced, 4);
+//    console.log("Reload:", reloadBonus) //, ((100-(glovesReload+helmet_base_reload_bonus+vest_base_reload_bonus))/100), (1-fastReload), (1-placeholder_gun_mast_coll), (gloves_reload_mastery+gloves_reload_collections));
+    if(reloadBonus < 0.2){
+        return 0.2;
+    }else{
+        return reloadBonus;
+    }
 }
 
-function getAugments(augment1, augment2, augment3, augment4) {
-    console.log(augment1)
-    console.log(augment2)
-    console.log(augment3)
-    console.log(augment4)
-
+function getAugments(...augments) {
     let weaponAugments = {
-        "deadly": 12,
-        "oc": 12,
-        "tenacious": 0,
-        "pinpoint": 12,
-        "adaptive": 12,
-        "pierce": 0,
-        "capacity": 0
+        "Deadly": 0,
+        "Overclocked": 0,
+        "Tenacious": 0,
+        "Pinpoint": 0,
+        "Adaptive": 0,
+        "Piercing": 0,
+        "Capacity": 0,
+        "Race Modded": 0
     };
+    
+    augments.forEach((augment) => {
+       if(weaponAugments.hasOwnProperty(augment[0])){
+           weaponAugments[augment[0]] = parseInt(augment[1]);
+       }
+    });
 
     return weaponAugments;
 }
@@ -223,26 +260,57 @@ function getMasteries(weaponClass, gunMasteryLevel, hda_mult, HelmetMastery) {
         "hda_mult": hda_mult,
         "helm_mast2": HelmetMastery >= 2
     };
-    
+
     let masteries = Object.assign({}, masteryStats, otherMasteries);
     return masteries;
 }
 
 function getCollections(weaponClass, gunNormal, gunRed, gunBlack, helmetColl) {
     const weaponColl = weaponCollections();
-    let collectionStats = weaponColl[weaponClass];
+    let normalColl, redColl, blackColl = {};
 
+    if (gunNormal) {
+        normalColl = weaponColl[weaponClass]["Normal"];
+    }
+    if (gunRed) {
+        redColl = weaponColl[weaponClass]["Red"];
+    }
+    if (gunBlack) {
+        blackColl = weaponColl[weaponClass]["Black"];
+    }
 
-    let collections = {
-        "gun_dmg": 1,
-        "gun_rps": 1,
-        "gun_pierce": 0,
-        "gun_critc": 0,
-        "gun_critdmg": 0,
-        "gun_capacity": 0,
-        "gun_reload": 0,
-        "helmet": helmetColl
-    };
+    if (!(gunNormal & gunRed & gunBlack)) {
+        normalColl = {
+            "dmg": 0,
+            "rps": 0,
+            "pierce": 0,
+            "critc": 0,
+            "critdmg": 0,
+            "capacity": 0,
+            "reload": 0
+
+        };
+    }
+
+    let tempColl = addToCollDict(normalColl, redColl);
+    let collections = addToCollDict(tempColl, blackColl);
+    collections["helmet"] = helmetColl;
 
     return collections;
+}
+
+function addToCollDict(dict1, dict2) {
+    //TODO: Check
+    for (var key in dict2) {
+        if (dict2.hasOwnProperty(key)) {
+            dict1[key] = dict2[key] + dict1[key];
+        }
+    }
+    return dict1;
+}
+
+function roundNumber(num, decimalPlaces = 0) {
+    var p = Math.pow(10, decimalPlaces);
+    var n = (num * p) * (1 + Number.EPSILON);
+    return Math.round(n) / p;
 }

@@ -55,6 +55,7 @@
                 <hr>
                 <div class="header">
                     <h2>Weapon dps</h2>
+                    <p>Disclaimer: Due to rounding errors, results might not be 100% accurate</p>
                 </div>
                 <hr>
                 <div class="row gx-1">
@@ -79,12 +80,12 @@
                                             <label>Fast Reload: <input type="number" min="0" max="25" step="1" value="0" name="fr"></label>
                                         </td>
                                         <td id="char_skills1">
-                                            <label>Killing Spree: <input type="number" min="0" max="25" step="1" value="0" name="ks"></label>
+                                            <label>Killing Spree: <input type="number" min="0" max="25" step="1" value="25" name="ks"></label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label>Critical Shot: <input type="number" min="0" max="25" step="1" value="0" name="crit"></label>
+                                            <label>Critical Shot: <input type="number" min="0" max="25" step="1" value="25" name="crit"></label>
                                         </td>
                                         <td id="char_skills2">
                                             <label>Deadly Force: <input type="number" min="0" max="25" step="1" value="0" name="df"></label>
@@ -109,22 +110,22 @@
                                 <tbody>
                                     <tr>
                                         <td>Helmet</td>
-                                        <td><input type="number" min="0" max="5" step="1" value="0" name="helmet_mastery"></td>
+                                        <td><input type="number" min="0" max="5" step="1" value="5" name="helmet_mastery"></td>
                                         <td>
                                             <div><label><input type="checkbox" name="helmet_collections_rel" value="Normal">Standard</label></div>
                                             <div><label><input type="checkbox" name="helmet_collections" value="Red">[RED]</label></div>
                                             <div><label><input type="checkbox" name="helmet_collections" value="Black">[BLACK]</label></div>
                                         </td>
                                         <td>
-                                            <div><label>Smart Target <input type="number" min="0" max="12" step="1" value="0" name="smart_target"></label></div>
-                                            <div><label>Target Assist <input type="number" min="0" max="12" step="1" value="0" name="target_assist"></label></div>
+                                            <div><label>Smart Target <input type="number" min="0" max="12" step="1" value="12" name="smart_target"></label></div>
+                                            <div><label>Target Assist <input type="number" min="0" max="12" step="1" value="12" name="target_assist"></label></div>
                                         </td>
                                         <td>
                                             <select name="select_helmet">
                                                 <option value="Hardplate">Hardplate</option>
                                                 <option value="Dragonfly">Dragonfly</option>
                                                 <option value="Titan">Titan</option>
-                                                <option value="Medusa">Medusa</option>
+                                                <option value="Medusa" selected="">Medusa</option>
                                                 <option value="Dynamo">Dynamo</option>
                                                 <option value="Mastodon">Mastodon</option>
                                                 <option value="Overwatch">Overwatch</option>
@@ -157,9 +158,9 @@
                                         <td>Gloves</td>
                                         <td><input type="number" min="0" max="5" step="1" value="0" name="gloves_mastery"></td>
                                         <td>
-                                            <div><label><input type="checkbox" name="gloves_collections" value="Normal">Standard</label></div>
-                                            <div><label><input type="checkbox" name="gloves_collections" value="Red">[RED]</label></div>
-                                            <div><label><input type="checkbox" name="gloves_collections" value="Black">[BLACK]</label></div>
+                                            <div><label><input type="checkbox" name="gloves_collections_normal" value="Normal">Standard</label></div>
+                                            <div><label><input type="checkbox" name="gloves_collections_red" value="Red">[RED]</label></div>
+                                            <div><label><input type="checkbox" name="gloves_collections_black" value="Black">[BLACK]</label></div>
                                         </td>
                                         <td><label>Nimble <input type="number" min="0" max="12" step="1" value="0" name="nimble"></label></td>
                                         <td>
@@ -356,7 +357,7 @@
                                         </td>
                                         <td><input type="number" min="0" max="12" step="1" value="0" name="aug1_grade"></td>
                                         <td>Mastery</td>
-                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="5" step="1" value="0" name="gun_mastery"></td>
+                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="5" step="1" value="5" name="gun_mastery"></td>
                                     </tr>
                                     <tr>
                                         <td>Augment 2</td>
@@ -404,7 +405,7 @@
                                         </td>
                                         <td><input type="number" min="0" max="12" step="1" value="0" name="aug3_grade"></td>
                                         <td>Cores</td>
-                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="10" step="1" value="0" name="core" id="core"></td>
+                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="10" step="1" value="10" name="core" id="core"></td>
                                     </tr>
                                     <tr>
                                         <td>Augment 4</td>
@@ -433,7 +434,7 @@
                                                 <option value=1.3>HDA with mastery 2</option>
                                                 <option value=1.35>HDA with mastery 3</option>
                                                 <option value=1.4>HDA with mastery 4</option>
-                                                <option value=1.5>HDA with mastery 5</option>
+                                                <option value=1.5 selected="">HDA with mastery 5</option>
                                             </select>
                                         </td>
                                     </tr>

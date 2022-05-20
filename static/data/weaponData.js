@@ -13,6 +13,18 @@ function weaponJSON() {
         "Black": {
             "Hotspot": {
 
+            },
+            "Hornet":{
+                "Class": "Sniper",
+                "Type": "Energy",
+                "Damage": 2775,
+                "DOT": 0,
+                "RPS": 5,
+                "Clip": 30,
+                "Reload": 2.4,
+                "Pierce": 4,
+                "Pellets": 1,
+                "Crit": 0
             }
         },
         "Premium": {
@@ -25,6 +37,18 @@ function weaponJSON() {
                 "Clip": 650,
                 "Reload": 5.0,
                 "Pierce": 1,
+                "Pellets": 1,
+                "Crit": 0
+            },
+            "HIKS 888 CAW":{
+                "Class": "Sniper",
+                "Type": "Energy",
+                "Damage": 3500,
+                "DOT": 0,
+                "RPS": 2,
+                "Clip": 50,
+                "Reload": 2.8,
+                "Pierce": 50,
                 "Pellets": 1,
                 "Crit": 0
             }
@@ -285,7 +309,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_pierce": 0,
             "gun_reload": 0,
             "flamer3": false,
-            "shotgun5": 0
+            "shotgun5": 0,
+            "superCrit": false
         },
         "Shotgun": {
             "gun_dmg": 0,
@@ -295,9 +320,10 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_capacity": 0,
             "gun_adaptive": 0,
             "gun_pierce": 0,
-            "gun_reload": 5 * (gunMasteryLevel >= 1),
+            "gun_reload": 0.05 * (gunMasteryLevel >= 1),
             "flamer3": false,
-            "shotgun5": 1 * (gunMasteryLevel == 5)
+            "shotgun5": 1 * (gunMasteryLevel == 5),
+            "superCrit": false
         },
         "SMG": {
             "gun_dmg": 0,
@@ -309,7 +335,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_pierce": 1 * (gunMasteryLevel == 5),
             "gun_reload": 0,
             "flamer3": false,
-            "shotgun5": 0
+            "shotgun5": 0,
+            "superCrit": false
         },
         "Assault Rifle": {
             "gun_dmg": 5 * (gunMasteryLevel >= 4),
@@ -321,7 +348,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_pierce": 1 * (gunMasteryLevel == 5),
             "gun_reload": 0,
             "flamer3": false,
-            "shotgun5": 0
+            "shotgun5": 0,
+            "superCrit": false
         },
         "Sniper": {
             "gun_dmg": 5 * (gunMasteryLevel >= 1),
@@ -333,7 +361,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_pierce": 1 * (gunMasteryLevel >= 2),
             "gun_reload": 0,
             "flamer3": false,
-            "shotgun5": 0
+            "shotgun5": 0,
+            "superCrit": (gunMasteryLevel == 5)
         },
         "Launcher": {
             "gun_dmg": 5 * (gunMasteryLevel >= 2),
@@ -345,7 +374,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_pierce": 2 * (gunMasteryLevel >= 4),
             "gun_reload": 0,
             "flamer3": false,
-            "shotgun5": 0
+            "shotgun5": 0,
+            "superCrit": false
         },
         "Flamethrower": {
             "gun_dmg": 0,
@@ -357,7 +387,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_pierce": 1 * (gunMasteryLevel >= 1),
             "gun_reload": 0,
             "flamer3": (gunMasteryLevel >= 3),
-            "shotgun5": 0
+            "shotgun5": 0,
+            "superCrit": false
         },
         "LMG": {
             "gun_dmg": 5 * (gunMasteryLevel >= 1),
@@ -369,7 +400,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_pierce": 1 * (gunMasteryLevel >= 3),
             "gun_reload": 0,
             "flamer3": false,
-            "shotgun5": 0
+            "shotgun5": 0,
+            "superCrit": false
         },
         "Disc Thrower": {
             "gun_dmg": 0,
@@ -381,7 +413,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_pierce": 0,
             "gun_reload": 0,
             "flamer3": false,
-            "shotgun5": 0
+            "shotgun5": 0,
+            "superCrit": false
         },
         "Laser": {
             "gun_dmg": 0,
@@ -393,7 +426,8 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_pierce": 0,
             "gun_reload": 0,
             "flamer3": false,
-            "shotgun5": 0
+            "shotgun5": 0,
+            "superCrit": false
         }
     }
     return data[weaponClass];
@@ -563,7 +597,7 @@ function weaponCollections() {
                 "critc": 0,
                 "critdmg": 0,
                 "capacity": 0,
-                "reload": 5
+                "reload": 0.05
             },
             "Black": {
                 "dmg": 10,
