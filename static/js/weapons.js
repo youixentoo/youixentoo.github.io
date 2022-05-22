@@ -193,7 +193,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     // Main dps formula:
     let displayed_damage = (1 + (0.1 * weaponAugments["Deadly"])) * base_dmg * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force));
     let pure_damage = displayed_damage * hda_bonus * (class_bonus + crit_bonus) * (pellets + shotgun_mastery5);
-    let pure_DOT = (1 + (0.1 * weaponAugments["Tenacious"])) * base_DOT * base_cores * hda_bonus; // Every gun that doesn't have DOT has base_DOT = 0
+    let pure_DOT = (1 + (0.1 * weaponAugments["Tenacious"])) * base_DOT * base_cores * hda_bonus * (pellets + shotgun_mastery5); // Every gun that doesn't have DOT has base_DOT = 0
     let pure_rps = (1 + (0.1 * weaponAugments["Overclocked"])) * base_cores * base_rps * gun_rps_collections * gun_rps_mastery;
     let pure_dps = Math.floor((pure_damage + pure_DOT) * pure_rps);
     console.log("############")
