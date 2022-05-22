@@ -54,8 +54,14 @@
             <div id="site-wrapper">
                 <hr>
                 <div class="header">
-                    <h2>Weapon dps</h2>
-                    <p>Disclaimer: Due to rounding errors, results might not be 100% accurate</p>
+                    <h2>Weapon dps - BETA</h2>
+                    <p>
+                        Disclaimer: Due to rounding errors, results might not be 100% accurate. <br>
+                        Also, "Displayed stats" might not always line up with the displayed values in-game.<br><br>
+                        
+                        If a gun only has 1 version, you can select Standard, Red or Black, it will give the same values.<br>
+                        As for the Black pistols that don't have any stats, they just won't show.
+                    </p>
                 </div>
                 <hr>
                 <div class="row gx-1">
@@ -80,12 +86,12 @@
                                             <label>Fast Reload: <input type="number" min="0" max="25" step="1" value="0" name="fr"></label>
                                         </td>
                                         <td id="char_skills1">
-                                            <label>Killing Spree: <input type="number" min="0" max="25" step="1" value="25" name="ks"></label>
+                                            <label>Killing Spree: <input type="number" min="0" max="25" step="1" value="0" name="ks"></label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label>Critical Shot: <input type="number" min="0" max="25" step="1" value="25" name="crit"></label>
+                                            <label>Critical Shot: <input type="number" min="0" max="25" step="1" value="0" name="crit"></label>
                                         </td>
                                         <td id="char_skills2">
                                             <label>Deadly Force: <input type="number" min="0" max="25" step="1" value="0" name="df"></label>
@@ -110,22 +116,22 @@
                                 <tbody>
                                     <tr>
                                         <td>Helmet</td>
-                                        <td><input type="number" min="0" max="5" step="1" value="5" name="helmet_mastery"></td>
+                                        <td><input type="number" min="0" max="5" step="1" value="0" name="helmet_mastery"></td>
                                         <td>
                                             <div><label><input type="checkbox" name="helmet_collections_rel" value="Normal">Standard</label></div>
                                             <div><label><input type="checkbox" name="helmet_collections" value="Red">[RED]</label></div>
                                             <div><label><input type="checkbox" name="helmet_collections" value="Black">[BLACK]</label></div>
                                         </td>
                                         <td>
-                                            <div><label>Smart Target <input type="number" min="0" max="12" step="1" value="12" name="smart_target"></label></div>
-                                            <div><label>Target Assist <input type="number" min="0" max="12" step="1" value="12" name="target_assist"></label></div>
+                                            <div><label>Smart Target <input type="number" min="0" max="12" step="1" value="0" name="smart_target"></label></div>
+                                            <div><label>Target Assist <input type="number" min="0" max="12" step="1" value="0" name="target_assist"></label></div>
                                         </td>
                                         <td>
                                             <select name="select_helmet">
                                                 <option value="Hardplate">Hardplate</option>
                                                 <option value="Dragonfly">Dragonfly</option>
-                                                <option value="Titan">Titan</option>
-                                                <option value="Medusa" selected="">Medusa</option>
+                                                <option value="Titan" selected>Titan</option>
+                                                <option value="Medusa">Medusa</option>
                                                 <option value="Dynamo">Dynamo</option>
                                                 <option value="Mastodon">Mastodon</option>
                                                 <option value="Overwatch">Overwatch</option>
@@ -167,7 +173,7 @@
                                             <select name="select_gloves">
                                                 <option value="Hardplate">Hardplate</option>
                                                 <option value="Dragonfly">Dragonfly</option>
-                                                <option value="Titan">Titan</option>
+                                                <option value="Titan" selected>Titan</option>
                                                 <option value="Medusa">Medusa</option>
                                                 <option value="Ronson">Ronson</option>
                                                 <option value="Dynamo">Dynamo</option>
@@ -197,7 +203,7 @@
                                 <tbody class="table-light">
                                     <tr>
                                         <td>
-                                            <select name="gun_name" onchange="setGun(this.value)">
+                                            <select name="gun_name">
                                                 <optgroup label="Critical Mass">
                                                     <option value="CM 202">CM 202</option>
                                                     <option value="CM 205">CM 205</option>
@@ -332,9 +338,9 @@
                                             </select>
                                         </td>
                                         <td colspan="4">
-                                            <label><input type="radio" name="version" value="Normal" checked="checked" onchange="setVersion(this.value)">Standard</label>
-                                            <label><input type="radio" name="version" value="Red" onchange="setVersion(this.value)">[RED]</label>
-                                            <label><input type="radio" name="version" value="Black" onchange="setVersion(this.value)">[BLACK]</label>
+                                            <label><input type="radio" name="version" value="Normal" checked="checked">Standard</label>
+                                            <label><input type="radio" name="version" value="Red">[RED]</label>
+                                            <label><input type="radio" name="version" value="Black">[BLACK]</label>
                                         </td>
                                     </tr>
                                     <tr>
@@ -357,7 +363,7 @@
                                         </td>
                                         <td><input type="number" min="0" max="12" step="1" value="0" name="aug1_grade"></td>
                                         <td>Mastery</td>
-                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="5" step="1" value="5" name="gun_mastery"></td>
+                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="5" step="1" value="0" name="gun_mastery"></td>
                                     </tr>
                                     <tr>
                                         <td>Augment 2</td>
@@ -405,7 +411,7 @@
                                         </td>
                                         <td><input type="number" min="0" max="12" step="1" value="0" name="aug3_grade"></td>
                                         <td>Cores</td>
-                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="10" step="1" value="10" name="core" id="core"></td>
+                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="10" step="1" value="0" name="core" id="core"></td>
                                     </tr>
                                     <tr>
                                         <td>Augment 4</td>
@@ -429,12 +435,12 @@
                                         <td>Ammo</td>
                                         <td colspan="2">
                                             <select name="hda">
-                                                <option value=1.0>Normal ammo</option>
+                                                <option value=1.0 selected>Normal ammo</option>
                                                 <option value=1.25>HDA with mastery 1</option>
                                                 <option value=1.3>HDA with mastery 2</option>
                                                 <option value=1.35>HDA with mastery 3</option>
                                                 <option value=1.4>HDA with mastery 4</option>
-                                                <option value=1.5 selected="">HDA with mastery 5</option>
+                                                <option value=1.5>HDA with mastery 5</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -443,11 +449,12 @@
                         </div>
                     </div>
                     <div id="resultsNormal" class="col-auto">
+                        
                     </div>
                     <div id="calculations">
                         <div id="getArmour">
                             <button type="button" class="btn btn-light btn-outline-dark" onclick="getDPS()">Calc</button>
-                            <label>Mobile output <input id="MobileView" class="form-check-input" type="checkbox" name="mobileView" value="true"></label>
+                            <!-- <label>Mobile output <input id="MobileView" class="form-check-input" type="checkbox" name="mobileView" value="true"></label> -->
                         </div>
                     </div>
                     <div id="mobileResults" class="col-auto table-responsive">

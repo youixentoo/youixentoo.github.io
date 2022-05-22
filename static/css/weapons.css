@@ -7,3 +7,8 @@ td{
 input[name="mobileView"]{
   margin-left: 0.3rem;
 }
+
+
+button{
+    margin-bottom: 10rem;
+}

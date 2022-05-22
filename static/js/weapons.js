@@ -1,8 +1,15 @@
+/*
+ * TODO List
+ * Add support for:
+    Calamity, T-189 MGL, Krakatoa, Starfury, Mustang, Raptor and others if I forgot any
+    Adaptive augment
 
+   Add time to kill a necro?
 
-function setGun(gun) {
-    console.log(gun);
-}
+   Add comments
+ * 
+ */
+
 
 function setClass(character) {
 //    console.log(character);
@@ -18,32 +25,20 @@ function setClass(character) {
     }
 }
 
-function setVersion(version) {
-    console.log(version);
-}
-
-function setHelmet(helmet) {
-    console.log(helmet);
-}
-
-function setVest(vest) {
-    console.log(vest);
-}
-
-function setGloves(gloves) {
-    console.log(gloves);
-}
-
-
 function getDPS() {
-    //TODO: Calc reload
     const weaponData = weaponJSON();
     const armourData = armourDPSJSON();
     const armourWithoutVersion = ["Dynamo", "Overwatch", "Mastodon", "Mako", "Vulkan", "Other"];
-    let weaponName = "CM Proton Arc";
-//    let weaponName = "Hornet";
-//    let weaponName = "HIKS 888 CAW";
-    let weapon = weaponData["Premium"][weaponName];
+
+    let weaponVersion = $('input[name="version"]:checked').val();
+    let weaponName = $('select[name="gun_name"] option:selected').val();
+    let weapon = weaponData[weaponVersion][weaponName];
+    // Easiest to just check if not undefined
+    if (!weapon) {
+        setOutput("")
+        console.error("Error getting weapon data")
+        return null;
+    }
     let cores = $('input[name="core"]').val();
 
     let class_char = $('input[name="character"]:checked').val();
@@ -88,10 +83,9 @@ function getDPS() {
         "target_assist": $('input[name="target_assist"]').val()
     };
 
-    //console.log(weapon)
     let weaponAugments = getAugments([$('select[name="aug1"] option:selected').val(), $('input[name="aug1_grade"]').val()], [$('select[name="aug2"] option:selected').val(), $('input[name="aug2_grade"]').val()],
             [$('select[name="aug3"] option:selected').val(), $('input[name="aug3_grade"]').val()], [$('select[name="aug4"] option:selected').val(), $('input[name="aug4_grade"]').val()]);
-    console.log("Augs: ", weaponAugments)
+//    console.log("Augs: ", weaponAugments)
 
     // let weapon_class = "Flamethrower" // weapon["Class"]
     let masteries = getMasteries(weapon["Class"], $('input[name="gun_mastery"]').val(), $('select[name="hda"] option:selected').val(), $('input[name="helmet_mastery"]').val());
@@ -106,12 +100,17 @@ function getDPS() {
     // weapon["Class"]
     // TODO: "Race Modded"
     let gun_mast_coll_reload = masteries["gun_reload"] + collections["reload"];
-    let gloves_reload_mastery = 0.1 * ($('input[name="gloves_mastery"]').val() >= 3); 
+    let gloves_reload_mastery = 0.1 * ($('input[name="gloves_mastery"]').val() >= 3);
     let gloves_reload_collections = $('input[name="gloves_collections_red"]').is(":checked") ? 0.1 : 0;
     let reload_bonus = getReload($('input[name="fr"]').val(), helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, $('input[name="nimble"]').val(), gun_mast_coll_reload, gloves_reload_mastery, gloves_reload_collections);
 //    console.log("Reload return:", reload_bonus)
 
-    calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus);
+    let output = calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus);
+    setOutput(output);
+}
+
+function setOutput(output) {
+    $("#resultsNormal").html(output);
 }
 
 
@@ -148,6 +147,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let gun_rps_collections = 1 + (0.01 * collections["rps"]);
     let gun_pierce_collections = collections["pierce"];
     let gun_capacity_collections = collections["capacity"];
+    let gun_crit_collections = collections["critc"];
     let gun_critdmg_collections = collections["critdmg"];
     let helmet_collections = 1 * collections["helmet"];
 
@@ -164,17 +164,17 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     // Capacity
     let additionalCap = 0;
     if (typeof gun_capacity_mastery === 'string' || gun_capacity_mastery instanceof String) {
-        if(weaponName === "Mustang"){
+        if (weaponName === "Mustang") {
             additionalCap = 0; //TODO: Implement
-        }else{
-            additionalCap += (clip_size * 1 + Math.round(0.01 * parseInt(gun_capacity_mastery.slice(0,-1))));
+        } else {
+            additionalCap += (clip_size * 1 + Math.round(0.01 * parseInt(gun_capacity_mastery.slice(0, -1))));
         }
     } else {
         additionalCap += gun_capacity_mastery;
     }
 
     if (typeof gun_capacity_collections === 'string' || gun_capacity_collections instanceof String) {
-        additionalCap += (clip_size * 1 + Math.round(0.01 * parseInt(gun_capacity_collections.slice(0,-2)))); // So, "5%" gets stored as "5%0"
+        additionalCap += (clip_size * 1 + Math.round(0.01 * parseInt(gun_capacity_collections.slice(0, -2)))); // So, "5%" gets stored as "5%0"
     } else {
         additionalCap += gun_capacity_collections;
     }
@@ -185,16 +185,22 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     // Crit
     let crit_skill_chance = (4 + (0.5 * (crit_level - 1))) * (crit_level > 0); //0% 4%-16%
     let crit_skill_mult = (1 + (0.05 + (0.04 * (crit_level - 1))) * (crit_level > 0)) + (gun_critdmg_mastery + gun_critdmg_collections) / 100; //1 1.05-2.01
-    let crit_chance = pinpoint + target_assist + crit_skill_chance + gun_crit_mastery + helmet_collections + helmet_base_crit_bonus + gloves_base_crit_bonus + gun_base_crit;
+    let crit_chance = pinpoint + target_assist + crit_skill_chance + gun_crit_mastery + gun_crit_collections + helmet_collections + helmet_base_crit_bonus + gloves_base_crit_bonus + gun_base_crit;
     let crit_bonus = (crit_chance * crit_skill_mult * super_crit) / 100;
-//    console.log(crit_bonus, crit_chance, crit_skill_mult, super_crit)
+    console.log("crit_bonus, crit_chance, crit_skill_mult, super_crit - Values:")
+    console.log(crit_bonus, crit_chance, crit_skill_mult, super_crit)
 
     // Main dps formula:
-    let pure_damage = (1 + (0.1 * weaponAugments["Deadly"])) * base_dmg * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * hda_bonus * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force)) * (class_bonus + crit_bonus) * (pellets + shotgun_mastery5);
+    let displayed_damage = (1 + (0.1 * weaponAugments["Deadly"])) * base_dmg * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force));
+    let pure_damage = displayed_damage * hda_bonus * (class_bonus + crit_bonus) * (pellets + shotgun_mastery5);
     let pure_DOT = (1 + (0.1 * weaponAugments["Tenacious"])) * base_DOT * base_cores * hda_bonus; // Every gun that doesn't have DOT has base_DOT = 0
     let pure_rps = (1 + (0.1 * weaponAugments["Overclocked"])) * base_cores * base_rps * gun_rps_collections * gun_rps_mastery;
     let pure_dps = Math.floor((pure_damage + pure_DOT) * pure_rps);
-    
+    console.log("############")
+    console.log("Displayed dmg:", displayed_damage);
+    console.log("Displayed rps:", pure_rps);
+    console.log("Displayed cap:", capacity);
+
     // Average
     let uptime = (capacity - 1) / pure_rps / ((capacity - 1) / pure_rps + reload_bonus * reload); // clip_size-1 because the last shot and reloading happen at the same time
     let average_dps = Math.floor(pure_dps * uptime);
@@ -204,30 +210,44 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let pure_pierce = Math.floor(pure_dps * gun_pierce);
     let average_pierce = Math.floor(average_dps * gun_pierce);
 
+    let tempOutput = `<p><br>
+    <u><b>${weaponName}:</u></b><br>
+    <i>DPS:</i><br>
+    <b>Pure:</b> ${pure_dps.toLocaleString('en-US')}<br>
+    <b>Average:</b> ${average_dps.toLocaleString('en-US')}<br>
+    <b>Pure pierce:</b> ${pure_pierce.toLocaleString('en-US')}<br>
+    <b>Average pierce:</b> ${average_pierce.toLocaleString('en-US')}<br><br>
+    <i>Displayed stats:</i><br>    
+    <b>Damage: </b> ${displayed_damage.toLocaleString('en-US')}<br>
+    <b>RPS: </b> ${pure_rps.toLocaleString('en-US')}<br>
+    <b>Capacity: </b> ${capacity.toLocaleString('en-US')}
+    </p>`;
     console.log("------------")
     console.log("DPS:")
     console.log("Pure: ", pure_dps);
     console.log("Average: ", average_dps);
     console.log("Pure pierce: ", pure_pierce);
     console.log("Average pierce: ", average_pierce);
+    console.log("############end")
 
+    return tempOutput;
     // Special cases:
-    // Calamity, T-189 MGL, Krakatoa, Every LMG, Every Pistol --> esp. Mustang
+    // Calamity, T-189 MGL, Krakatoa, Starfury, Mustang, Raptor
 }
 
 function getReload(reload_skill, helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, nimble, gun_mast_coll_reload, gloves_reload_mastery, gloves_reload_collections) {
     // Guns have mastery reload OR coll reload OR none, not both
-    let fastReload = 1-Math.pow(0.965, reload_skill);
-    let glovesReload = gloves_base_reload_bonus + (2.5*parseInt(nimble));
+    let fastReload = 1 - Math.pow(0.965, reload_skill);
+    let glovesReload = gloves_base_reload_bonus + (2.5 * parseInt(nimble));
 //    console.log(helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, nimble, gun_reload_mastery, gun_reload_collections, gloves_reload_mastery, gloves_reload_collections)
 //    console.log("Calced")
 //    console.log(fastReload, glovesReload)
-    let reloadCalced = ((100-(glovesReload+helmet_base_reload_bonus+vest_base_reload_bonus))/100)*(1-fastReload)*(1-gun_mast_coll_reload)-(gloves_reload_mastery+gloves_reload_collections);
+    let reloadCalced = ((100 - (glovesReload + helmet_base_reload_bonus + vest_base_reload_bonus)) / 100) * (1 - fastReload) * (1 - gun_mast_coll_reload) - (gloves_reload_mastery + gloves_reload_collections);
     let reloadBonus = roundNumber(reloadCalced, 4);
 //    console.log("Reload:", reloadBonus) //, ((100-(glovesReload+helmet_base_reload_bonus+vest_base_reload_bonus))/100), (1-fastReload), (1-placeholder_gun_mast_coll), (gloves_reload_mastery+gloves_reload_collections));
-    if(reloadBonus < 0.2){
+    if (reloadBonus < 0.2) {
         return 0.2;
-    }else{
+    } else {
         return reloadBonus;
     }
 }
@@ -243,11 +263,11 @@ function getAugments(...augments) {
         "Capacity": 0,
         "Race Modded": 0
     };
-    
+
     augments.forEach((augment) => {
-       if(weaponAugments.hasOwnProperty(augment[0])){
-           weaponAugments[augment[0]] = parseInt(augment[1]);
-       }
+        if (weaponAugments.hasOwnProperty(augment[0])) {
+            weaponAugments[augment[0]] = parseInt(augment[1]);
+        }
     });
 
     return weaponAugments;
@@ -267,19 +287,11 @@ function getMasteries(weaponClass, gunMasteryLevel, hda_mult, HelmetMastery) {
 
 function getCollections(weaponClass, gunNormal, gunRed, gunBlack, helmetColl) {
     const weaponColl = weaponCollections();
-    let normalColl, redColl, blackColl = {};
+    let normalColl, redColl, blackColl;
 
     if (gunNormal) {
         normalColl = weaponColl[weaponClass]["Normal"];
-    }
-    if (gunRed) {
-        redColl = weaponColl[weaponClass]["Red"];
-    }
-    if (gunBlack) {
-        blackColl = weaponColl[weaponClass]["Black"];
-    }
-
-    if (!(gunNormal & gunRed & gunBlack)) {
+    } else {
         normalColl = {
             "dmg": 0,
             "rps": 0,
@@ -290,6 +302,12 @@ function getCollections(weaponClass, gunNormal, gunRed, gunBlack, helmetColl) {
             "reload": 0
 
         };
+    }
+    if (gunRed) {
+        redColl = weaponColl[weaponClass]["Red"];
+    }
+    if (gunBlack) {
+        blackColl = weaponColl[weaponClass]["Black"];
     }
 
     let tempColl = addToCollDict(normalColl, redColl);
