@@ -1,13 +1,19 @@
 /*
  * TODO List
  * Add support for:
-    Calamity, T-189 MGL, Krakatoa, Starfury, Mustang, Raptor and others if I forgot any
+    Calamity, T-189 MGL, Krakatoa, Starfury, Mustang, Raptor, Zerf and others if I forgot any
+    Any flamer --> mastery
     Adaptive augment
 
-   Add time to kill a necro?
+   Add time to kill a necro? - 18M hp
 
    Add comments
- * 
+
+   Add note explaining pure/average dps
+   Add note explaining DoT and other basic terms* trim
+
+   Change super crit formula
+ *
  */
 
 
@@ -217,7 +223,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     <b>Average:</b> ${average_dps.toLocaleString('en-US')}<br>
     <b>Pure pierce:</b> ${pure_pierce.toLocaleString('en-US')}<br>
     <b>Average pierce:</b> ${average_pierce.toLocaleString('en-US')}<br><br>
-    <i>Displayed stats:</i><br>    
+    <i>Displayed stats:</i><br>
     <b>Damage: </b> ${displayed_damage.toLocaleString('en-US')}<br>
     <b>RPS: </b> ${pure_rps.toLocaleString('en-US')}<br>
     <b>Capacity: </b> ${capacity.toLocaleString('en-US')}
