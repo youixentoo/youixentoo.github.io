@@ -1,18 +1,18 @@
 /*
  * TODO List
  * Add support for:
-    Calamity, T-189 MGL, Krakatoa, Starfury, Mustang, Raptor, Zerf and others if I forgot any
-    Any flamer --> mastery
-    Adaptive augment
-
-   Add time to kill a necro? - 18M hp
-
-   Add comments
-
-   Add note explaining pure/average dps
-   Add note explaining DoT and other basic terms* trim
-
-   Change super crit formula
+ Calamity, T-189 MGL, Krakatoa, Starfury, Mustang, Raptor, Zerf and others if I forgot any
+ Any flamer --> mastery
+ Adaptive augment
+ 
+ Add time to kill a necro? - 18M hp
+ 
+ Add comments
+ 
+ Add note explaining pure/average dps
+ Add note explaining DoT and other basic terms* trim
+ 
+ Change super crit formula
  *
  */
 
@@ -34,7 +34,7 @@ function setClass(character) {
 function getDPS() {
     const weaponData = weaponJSON();
     const armourData = armourDPSJSON();
-    const armourWithoutVersion = ["Dynamo", "Overwatch", "Mastodon", "Mako", "Vulkan", "Other"];
+    //const armourWithoutVersion = ["Dynamo", "Overwatch", "Mastodon", "Mako", "Vulkan", "Other"];
 
     let weaponVersion = $('input[name="version"]:checked').val();
     let weaponName = $('select[name="gun_name"] option:selected').val();
@@ -62,15 +62,15 @@ function getDPS() {
     let helmetVersion = "Normal";
     let glovesVersion = "Normal";
     let selectedHelmet = $('select[name="select_helmet"] option:selected').val();
-    if ($.inArray(selectedHelmet, armourWithoutVersion)) {
-        helmetVersion = $('input[name="helmet_ver"]:checked').val();
-    }
+//    if ($.inArray(selectedHelmet, armourWithoutVersion)) {
+//        helmetVersion = $('input[name="helmet_ver"]:checked').val();
+//    }
 
     let selectedVest = $('input[name="select_vest"]:checked').val();
     let selectedGloves = $('select[name="select_gloves"] option:selected').val();
-    if ($.inArray(selectedGloves, armourWithoutVersion)) {
-        glovesVersion = $('input[name="gloves_ver"]:checked').val();
-    }
+//    if ($.inArray(selectedGloves, armourWithoutVersion)) {
+//        glovesVersion = $('input[name="gloves_ver"]:checked').val();
+//    }
 
     let helmetStats = armourData["Helmet"][selectedHelmet][helmetVersion];
     let vestStats = armourData["Vest"][selectedVest];
@@ -109,7 +109,7 @@ function getDPS() {
     let gloves_reload_mastery = 0.1 * ($('input[name="gloves_mastery"]').val() >= 3);
     let gloves_reload_collections = $('input[name="gloves_collections_red"]').is(":checked") ? 0.1 : 0;
     let reload_bonus = getReload($('input[name="fr"]').val(), helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, $('input[name="nimble"]').val(), gun_mast_coll_reload, gloves_reload_mastery, gloves_reload_collections);
-//    console.log("Reload return:", reload_bonus)
+    console.log("Reload return:", reload_bonus)
 
     let output = calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus);
     setOutput(output);
@@ -193,8 +193,8 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let crit_skill_mult = (1 + (0.05 + (0.04 * (crit_level - 1))) * (crit_level > 0)) + (gun_critdmg_mastery + gun_critdmg_collections) / 100; //1 1.05-2.01
     let crit_chance = pinpoint + target_assist + crit_skill_chance + gun_crit_mastery + gun_crit_collections + helmet_collections + helmet_base_crit_bonus + gloves_base_crit_bonus + gun_base_crit;
     let crit_bonus = (crit_chance * crit_skill_mult * super_crit) / 100;
-    console.log("crit_bonus, crit_chance, crit_skill_mult, super_crit - Values:")
-    console.log(crit_bonus, crit_chance, crit_skill_mult, super_crit)
+//    console.log("crit_bonus, crit_chance, crit_skill_mult, super_crit - Values:")
+//    console.log(crit_bonus, crit_chance, crit_skill_mult, super_crit)
 
     // Main dps formula:
     let displayed_damage = (1 + (0.1 * weaponAugments["Deadly"])) * base_dmg * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force));
