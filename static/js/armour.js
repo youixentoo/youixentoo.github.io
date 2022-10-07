@@ -482,6 +482,7 @@ function setVestsSelection(version) {
     <option value="Mastodon Chest">Mastodon Chest</option>
     <option value="Vulkan Vest">Vulkan Vest</option>
     <option value="Mako Vest">Mako Vest</option>
+    <option value="Clown Chest">Clown Chest</option>
     </select>`
     } else {
         vests.innerHTML = `<select class="form-select form-select-sm" id="Vest" name="Vest" type="armour">
@@ -524,6 +525,7 @@ function setGlovesSelection(version) {
     <option value="Mastodon Gauntlets">Mastodon Gauntlets</option>
     <option value="Vulkan Gloves">Vulkan Gloves</option>
     <option value="Mako Gloves">Mako Gloves</option>
+    <option value="Clown Gauntlets">Clown Gauntlets</option>
     </select>`
     } else {
         gloves.innerHTML = `<select class="form-select form-select-sm" id="Glove" name="Gloves" type="armour">
@@ -564,6 +566,7 @@ function setPantsSelection(version) {
       <option value="Mastodon Legs">Mastodon Legs</option>
       <option value="Vulkan Pants">Vulkan Pants</option>
       <option value="Mako Pants">Mako Pants</option>
+      <option value="Clown Legs">Clown Legs</option>
     </select>`
     } else {
         pants.innerHTML = `<select class="form-select form-select-sm" id="Pant" name="Pants" type="armour">
@@ -604,6 +607,7 @@ function setBootsSelection(version) {
       <option value="Mastodon Boots">Mastodon Boots</option>
       <option value="Vulkan Boots">Vulkan Boots</option>
       <option value="Mako Boots">Mako Boots</option>
+      <option value="Clown Boots">Clown Boots</option>
     </select>`
     } else {
         boots.innerHTML = `<select class="form-select form-select-sm" id="Boot" name="Boots" type="armour">
