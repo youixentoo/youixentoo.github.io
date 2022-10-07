@@ -424,16 +424,16 @@ function setHelmets(version) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
     update({"Helmets": version})
 
-    if (version == "Faction") {
+    if (version == "Other") {
         setHelmetsSelection(version)
-    } else if (storedData["Helmets"] == "Faction") {
+    } else if (storedData["Helmets"] == "Other") {
         setHelmetsSelection(version)
     }
 }
 
 function setHelmetsSelection(version) {
     document.getElementById("helmets").innerHTML = "";
-    if (version == "Faction") {
+    if (version == "Other") {
         helmets.innerHTML = `<select class="form-select form-select-sm" id="Helmet" name="Helmet" type="armour">
       <option value="---">---</option>
       <option value="Dynamo Helmet">Dynamo Helmet</option>
@@ -441,22 +441,23 @@ function setHelmetsSelection(version) {
       <option value="Mastodon Helm">Mastodon Helm</option>
       <option value="Vulkan Helmet">Vulkan Helmet</option>
       <option value="Mako Helmet">Mako Helmet</option>
+      <option value="Clown Helm">Clown Helm</option>
     </select>`
     } else {
         helmets.innerHTML = `<select class="form-select form-select-sm" id="Helmet" name="Helmet" type="armour">
-      <option value="---">---</option>
-      <option value="HVM Kevlar Helmet">HVM Kevlar Helmet</option>
-      <option value="HVM Carbon Fibre Helmet">HVM Carbon Fibre Helmet</option>
-      <option value="Trooper Helmet">Trooper Helmet</option>
-      <option value="Special Forces Helmet">Special Forces Helmet</option>
-      <option value="Hardplate Helm">Hardplate Helm</option>
-      <option value="Shotlite Hummingbird H1">Shotlite Hummingbird H1</option>
-      <option value="Dragonfly Helmet">Dragonfly Helmet</option>
-      <option value="R1 Interceptor Helm">R1 Interceptor Helm</option>
-      <option value="Graphene Combat Hood">Graphene Combat Hood</option>
-      <option value="Titan IRN HUD">Titan IRN HUD</option>
-      <option value="Medusa Helmet">Medusa Helmet</option>
-    </select>`
+    <option value="---">---</option>
+    <option value="HVM Kevlar Helmet">HVM Kevlar Helmet</option>
+    <option value="HVM Carbon Fibre Helmet">HVM Carbon Fibre Helmet</option>
+    <option value="Trooper Helmet">Trooper Helmet</option>
+    <option value="Special Forces Helmet">Special Forces Helmet</option>
+    <option value="Hardplate Helm">Hardplate Helm</option>
+    <option value="Shotlite Hummingbird H1">Shotlite Hummingbird H1</option>
+    <option value="Dragonfly Helmet">Dragonfly Helmet</option>
+    <option value="R1 Interceptor Helm">R1 Interceptor Helm</option>
+    <option value="Graphene Combat Hood">Graphene Combat Hood</option>
+    <option value="Titan IRN HUD">Titan IRN HUD</option>
+    <option value="Medusa Helmet">Medusa Helmet</option>
+  </select>`
     }
 }
 
@@ -464,16 +465,16 @@ function setVests(version) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
     update({"Vests": version})
 
-    if (version == "Faction") {
+    if (version == "Other") {
         setVestsSelection(version)
-    } else if (storedData["Vests"] == "Faction") {
+    } else if (storedData["Vests"] == "Other") {
         setVestsSelection(version)
     }
 }
 
 function setVestsSelection(version) {
     document.getElementById("vests").innerHTML = "";
-    if (version == "Faction") {
+    if (version == "Other") {
         vests.innerHTML = `<select class="form-select form-select-sm" id="Vest" name="Vest" type="armour">
     <option value="---">---</option>
     <option value="Dynamo Chest">Dynamo Chest</option>
@@ -506,16 +507,16 @@ function setGloves(version) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
     update({"Gloves": version})
 
-    if (version == "Faction") {
+    if (version == "Other") {
         setGlovesSelection(version)
-    } else if (storedData["Gloves"] == "Faction") {
+    } else if (storedData["Gloves"] == "Other") {
         setGlovesSelection(version)
     }
 }
 
 function setGlovesSelection(version) {
     document.getElementById("gloves").innerHTML = "";
-    if (version == "Faction") {
+    if (version == "Other") {
         gloves.innerHTML = `<select class="form-select form-select-sm" id="Glove" name="Gloves" type="armour">
     <option value="---">---</option>
     <option value="Dynamo Gloves">Dynamo Gloves</option>
@@ -546,16 +547,16 @@ function setPants(version) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
     update({"Pants": version})
 
-    if (version == "Faction") {
+    if (version == "Other") {
         setPantsSelection(version)
-    } else if (storedData["Pants"] == "Faction") {
+    } else if (storedData["Pants"] == "Other") {
         setPantsSelection(version)
     }
 }
 
 function setPantsSelection(version) {
     document.getElementById("pants").innerHTML = "";
-    if (version == "Faction") {
+    if (version == "Other") {
         pants.innerHTML = `<select class="form-select form-select-sm" id="Pant" name="Pants" type="armour">
       <option value="---">---</option>
       <option value="Dynamo Legs">Dynamo Legs</option>
@@ -586,16 +587,16 @@ function setBoots(version) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
     update({"Boots": version})
 
-    if (version == "Faction") {
+    if (version == "Other") {
         setBootsSelection(version)
-    } else if (storedData["Boots"] == "Faction") {
+    } else if (storedData["Boots"] == "Other") {
         setBootsSelection(version)
     }
 }
 
 function setBootsSelection(version) {
     document.getElementById("boots").innerHTML = "";
-    if (version == "Faction") {
+    if (version == "Other") {
         boots.innerHTML = `<select class="form-select form-select-sm" id="Boot" name="Boots" type="armour">
       <option value="---">---</option>
       <option value="Dynamo Boots">Dynamo Boots</option>
