@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Augment Prices</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="static/img/SASZA4_mobile.png">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS + Bootstrap 5 -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+        <!-- Own Scripts + CSS -->
+        <link href="static/css/general.css" rel="stylesheet">
+        <link href="static/css/prices.css" rel="stylesheet">
+        <script src="static/js/prices.js"></script>
+        <script src="static/data/priceData.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="navbar" class="container-fluid bg-light border-bottom">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/index.html">SAS4</a>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/armour.html">Armour<span class="sr-only"></span></a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/weapons.html">Weapons<span class="sr-only"></span></a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/prices.html">Prices<span class="sr-only"></span></a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/discord.html">Discord<span class="sr-only"></span></a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/credits.html">Credits<span class="sr-only"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div id="site-wrapper">
+                <hr>
+                <div class="header">
+                    <h2>Weapon prices</h2>
+                </div>
+                <div id="selectWeapon">
+                  <div class="table-responsive">
+                      <table class="table align-middle">
+                          <thead class="table-secondary align-middle">
+                              <tr>
+                                  <th class="border-secondary">Gun</th>
+                                  <th colspan="4">Version</th>
+                              </tr>
+                          </thead>
+                          <tbody class="table-light">
+                              <tr>
+                                  <td>
+                                      <select name="gun_name">
+                                          <optgroup label="Critical Mass">
+                                              <option value="CM 202">CM 202</option>
+                                              <option value="CM 205">CM 205</option>
+                                              <option value="CM 225">CM 225</option>
+                                              <option value="CM 307">CM 307</option>
+                                              <option value="CM 330">CM 330</option>
+                                              <option value="CM 351 Sunflare">CM 351 Sunflare</option>
+                                              <option value="CM 401 Planet Stormer">CM 401 Planet Stormer</option>
+                                              <option value="CM 440 Titan">CM 440 Titan</option>
+                                              <option value="CM 451 Starburst">CM 451 Starburst</option>
+                                              <option value="CM Gigavolt">CM Gigavolt</option>
+                                              <option value="Sub-light COM2">Sub-light COM2</option>
+                                              <option value="CM 505">CM 505</option>
+                                              <option value="CM 530 BabyCOM">CM 530 BabyCOM</option>
+                                              <option value="CM 800 Jupiter">CM 800 Jupiter</option>
+                                              <option value="CM X-1 Furie">CM X-1 Furie</option>
+                                              <option value="Planet Stormer Ltd Edition">Planet Stormer Ltd Edition</option>
+                                              <option value="CM 352 Quasar">CM 352 Quasar</option>
+                                              <option value="CM 505 Alpha Ltd. Edition">CM 505 Alpha Ltd. Edition</option>
+                                              <option value="CM 369 Starfury">CM 369 Starfury</option>
+                                              <option value="CM Laser Drill">CM Laser Drill</option>
+                                              <option value="CM Proton Arc">CM Proton Arc</option>
+                                              <option value="CM 000 Kelvin">CM 000 Kelvin</option>
+                                              <option value="CM 467">CM 467</option>
+                                          </optgroup>
+                                          <optgroup label="Faction War">
+                                              <option value="GG17">GG17</option>
+                                              <option value="Festungsbrecher">Festungsbrecher</option>
+                                              <option value="Thundershock">Thundershock</option>
+                                              <option value="Phoenix">Phoenix</option>
+                                              <option value="Avalanche">Avalanche</option>
+                                              <option value="Kraken">Kraken</option>
+                                              <option value="Exterminator">Exterminator</option>
+                                              <option value="Krakatoa">Krakatoa</option>
+                                              <option value="Havoc">Havoc</option>
+                                              <option value="Depth Charge">Depth Charge</option>
+                                          </optgroup>
+                                          <optgroup label="HIKS">
+                                              <option value="HIKS S300">HIKS S300</option>
+                                              <option value="HIKS 3100">HIKS 3100</option>
+                                              <option value="HIKS M1000">HIKS M1000</option>
+                                              <option value="HIKS A10">HIKS A10</option>
+                                              <option value="HIKS S4000">HIKS S4000</option>
+                                              <option value="HIKS 888 CAW">HIKS 888 CAW</option>
+                                          </optgroup>
+                                          <optgroup label="HVM">
+                                              <option value="HVM 001">HVM 001</option>
+                                              <option value="HVM 002">HVM 002</option>
+                                              <option value="HVM 004">HVM 004</option>
+                                              <option value="HVM 005 G-Class">HVM 005 G-Class</option>
+                                              <option value="HVM 008">HVM 008</option>
+                                              <option value="HVM MPG">HVM MPG</option>
+                                          </optgroup>
+                                          <optgroup label="Rancor">
+                                              <option value="Poison Claw">Poison Claw</option>
+                                              <option value="Stripper">Stripper</option>
+                                              <option value="Hard Thorn">Hard Thorn</option>
+                                              <option value="Mixmaster">Mixmaster</option>
+                                              <option value="Heartburn">Heartburn</option>
+                                              <option value="Shredder">Shredder</option>
+                                              <option value="Hotspot">Hotspot</option>
+                                              <option value="Vitriol">Vitriol</option>
+                                              <option value="Contagion">Contagion</option>
+                                              <option value="Ricochet">Ricochet</option>
+                                              <option value="Torment">Torment</option>
+                                              <option value="Calamity">Calamity</option>
+                                          </optgroup>
+                                          <optgroup label="Ronson">
+                                              <option value="Ronson 45">Ronson 45</option>
+                                              <option value="Ronson 50">Ronson 50</option>
+                                              <option value="Ronson 55">Ronson 55</option>
+                                              <option value="Ronson 65-a">Ronson 65-a</option>
+                                              <option value="Ronson 70">Ronson 70</option>
+                                              <option value="Ronson LBM">Ronson LBM</option>
+                                              <option value="Ronson WP Flamethrower">Ronson WP Flamethrower</option>
+                                              <option value="Ronson WPX Incinerator">Ronson WPX Incinerator</option>
+                                              <option value="Ronson 5X5">Ronson 5X5</option>
+                                          </optgroup>
+                                          <optgroup label="Rubicon Industries">
+                                              <option value="RIA 313">RIA 313</option>
+                                              <option value="RIA 1010">RIA 1010</option>
+                                              <option value="RIA 7">RIA 7</option>
+                                              <option value="RIA T7">RIA T7</option>
+                                              <option value="RIA 20 Para">RIA 20 Para</option>
+                                              <option value="RIA 20 DSC">RIA 20 DSC</option>
+                                              <option value="RIA 20 Striker">RIA 20 Striker</option>
+                                              <option value="RIA 30 Strikeforce">RIA 30 Strikeforce</option>
+                                              <option value="RIA 40">RIA 40</option>
+                                              <option value="RIA T40">RIA T40</option>
+                                              <option value="RIA 45 Para">RIA 45 Para</option>
+                                              <option value="RIA 50">RIA 50</option>
+                                              <option value="RIA Trident">RIA Trident</option>
+                                              <option value="RIA 8A">RIA 8A</option>
+                                              <option value="RIA 15 SE">RIA 15 SE</option>
+                                              <option value="RIA 75">RIA 75</option>
+                                          </optgroup>
+                                          <optgroup label="Shotlite">
+                                              <option value="Sabre">Sabre</option>
+                                              <option value="Mustang">Mustang</option>
+                                              <option value="Phantom">Phantom</option>
+                                              <option value="Shotlite Tempest">Shotlite Tempest</option>
+                                              <option value="Raptor">Raptor</option>
+                                              <option value="Hornet">Hornet</option>
+                                              <option value="Supermarine">Supermarine</option>
+                                              <option value="Bayonet">Bayonet</option>
+                                              <option value="Banshee">Banshee</option>
+                                              <option value="Supermarine Alpha Ltd Edition">Supermarine Alpha Ltd Edition</option>
+                                          </optgroup>
+                                          <optgroup label="Smokestack">
+                                              <option value="Trailblazer">Trailblazer</option>
+                                              <option value="1887 Shockfield">1887 Shockfield</option>
+                                              <option value="Tombstone">Tombstone</option>
+                                              <option value="Proposition">Proposition</option>
+                                              <option value="Lone Star">Lone Star</option>
+                                              <option value="Ahab">Ahab</option>
+                                              <option value="Donderbus">Donderbus</option>
+                                          </optgroup>
+                                          <optgroup label="Teknoboom">
+                                              <option value="Gebirgskanone">Gebirgskanone</option>
+                                              <option value="T-101 Feldhaubitz">T-101 Feldhaubitz</option>
+                                              <option value="T-102 Jagdfaust">T-102 Jagdfaust</option>
+                                              <option value="Luftplatzen">Luftplatzen</option>
+                                              <option value="Handkanone">Handkanone</option>
+                                              <option value="Zerfallen">Zerfallen</option>
+                                              <option value="T-189 MGL">T-189 MGL</option>
+                                          </optgroup>
+                                          <optgroup label="Z-Armtech">
+                                              <option value="Z-1 Assault">Z-1 Assault</option>
+                                              <option value="Z-2 LMP">Z-2 LMP</option>
+                                              <option value="Z-5 Heavy">Z-5 Heavy</option>
+                                          </optgroup>
+                                          <optgroup label="Other">
+                                              <option value="Helter-Skelter">Helter-Skelter</option>
+                                          </optgroup>
+                                      </select>
+                                  </td>
+                                  <td>
+                                      <label><input type="radio" name="version" value="Normal" checked="checked">Standard</label>
+                                      <label><input type="radio" name="version" value="Red">[RED]</label>
+                                      <label><input type="radio" name="version" value="Black">[BLACK]</label>
+                                  </td>
+                                  <td>
+                                    <button type="button" class="btn btn-light btn-outline-dark" onclick="getPrices()">Calc</button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                </div>
+                <div id="outputPrices">
+                </div>
+                <hr>
+            </div>
+        </div>
+    </body>
+</html>
