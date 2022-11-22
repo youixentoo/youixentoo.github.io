@@ -1,8 +1,17 @@
 
-
-#selectWeapon{
-  max-width: 50%;
+@media only screen and (min-width: 38rem) {
+  #selectWeapon{
+    max-width: 38rem;
+  }
 }
+
+#outputPrices.td{
+  border-color: secondary;
+  border-style: solid;
+  border-right: solid 1px black;
+  border-left-width: 1px;
+}
+
 
 table{
   max-width: 100%;
