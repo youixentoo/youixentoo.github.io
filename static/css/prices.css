@@ -5,10 +5,10 @@
   }
 }
 
-#outputPrices.td{
+#outputPrices td{
   border-color: secondary;
   border-style: solid;
-  border-right: solid 1px black;
+  border-right: solid 1px secondary;
   border-left-width: 1px;
 }
 
