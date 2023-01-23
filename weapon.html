@@ -84,15 +84,15 @@
                                             <div><label><input type="radio" name="character" value="Medic" onchange="setClass(this.value)">Medic</label></div>
                                         </td>
                                         <td>
-                                            <label>Fast Reload: <input type="number" min="0" max="25" step="1" value="0" name="fr"></label>
+                                            <label>Fast Reload: <input type="number" min="0" max="25" step="1" value="4" name="fr"></label>
                                         </td>
                                         <td id="char_skills1">
-                                            <label>Killing Spree: <input type="number" min="0" max="25" step="1" value="0" name="ks"></label>
+                                            <label>Killing Spree: <input type="number" min="0" max="25" step="1" value="25" name="ks"></label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label>Critical Shot: <input type="number" min="0" max="25" step="1" value="0" name="crit"></label>
+                                            <label>Critical Shot: <input type="number" min="0" max="25" step="1" value="25" name="crit"></label>
                                         </td>
                                         <td id="char_skills2">
                                             <label>Deadly Force: <input type="number" min="0" max="25" step="1" value="0" name="df"></label>
@@ -117,22 +117,22 @@
                                 <tbody>
                                     <tr>
                                         <td>Helmet</td>
-                                        <td><input type="number" min="0" max="5" step="1" value="0" name="helmet_mastery"></td>
+                                        <td><input type="number" min="0" max="5" step="1" value="5" name="helmet_mastery"></td>
                                         <td>
                                             <div><label><input type="checkbox" name="helmet_collections_rel" value="Normal">Standard</label></div>
                                             <div><label><input type="checkbox" name="helmet_collections" value="Red">[RED]</label></div>
                                             <div><label><input type="checkbox" name="helmet_collections" value="Black">[BLACK]</label></div>
                                         </td>
                                         <td>
-                                            <div><label>Smart Target <input type="number" min="0" max="12" step="1" value="0" name="smart_target"></label></div>
-                                            <div><label>Target Assist <input type="number" min="0" max="12" step="1" value="0" name="target_assist"></label></div>
+                                            <div><label>Smart Target <input type="number" min="0" max="12" step="1" value="12" name="smart_target"></label></div>
+                                            <div><label>Target Assist <input type="number" min="0" max="12" step="1" value="12" name="target_assist"></label></div>
                                         </td>
                                         <td>
                                             <select name="select_helmet">
                                                 <option value="Hardplate">Hardplate</option>
                                                 <option value="Dragonfly">Dragonfly</option>
-                                                <option value="Titan" selected>Titan</option>
-                                                <option value="Medusa">Medusa</option>
+                                                <option value="Titan">Titan</option>
+                                                <option value="Medusa" selected>Medusa</option>
                                                 <option value="Dynamo">Dynamo</option>
                                                 <option value="Mastodon">Mastodon</option>
                                                 <option value="Overwatch">Overwatch</option>
@@ -148,7 +148,7 @@
                                     </tr>
                                     <tr>
                                         <td>Vest</td>
-                                        <td><input type="number" min="0" max="5" step="1" value="0" name="vest_mastery"></td>
+                                        <td><input type="number" min="0" max="5" step="1" value="5" name="vest_mastery"></td>
                                         <td>
                                             <div><label><input type="checkbox" name="vest_collections" value="Normal">Standard</label></div>
                                             <div><label><input type="checkbox" name="vest_collections" value="Red">[RED]</label></div>
@@ -163,13 +163,13 @@
                                     </tr>
                                     <tr>
                                         <td>Gloves</td>
-                                        <td><input type="number" min="0" max="5" step="1" value="0" name="gloves_mastery"></td>
+                                        <td><input type="number" min="0" max="5" step="1" value="5" name="gloves_mastery"></td>
                                         <td>
                                             <div><label><input type="checkbox" name="gloves_collections_normal" value="Normal">Standard</label></div>
                                             <div><label><input type="checkbox" name="gloves_collections_red" value="Red">[RED]</label></div>
                                             <div><label><input type="checkbox" name="gloves_collections_black" value="Black">[BLACK]</label></div>
                                         </td>
-                                        <td><label>Nimble <input type="number" min="0" max="12" step="1" value="0" name="nimble"></label></td>
+                                        <td><label>Nimble <input type="number" min="0" max="12" step="1" value="12" name="nimble"></label></td>
                                         <td>
                                             <select name="select_gloves">
                                                 <option value="Hardplate">Hardplate</option>
@@ -308,7 +308,7 @@
                                                     <option value="Phantom">Phantom</option>
                                                     <option value="Shotlite Tempest">Shotlite Tempest</option>
                                                     <option value="Raptor">Raptor</option>
-                                                    <option value="Hornet">Hornet</option>
+                                                    <option value="Hornet" selected>Hornet</option>
                                                     <option value="Supermarine">Supermarine</option>
                                                     <option value="Bayonet">Bayonet</option>
                                                     <option value="Banshee">Banshee</option>
@@ -343,9 +343,9 @@
                                             </select>
                                         </td>
                                         <td colspan="4">
-                                            <label><input type="radio" name="version" value="Normal" checked="checked">Standard</label>
+                                            <label><input type="radio" name="version" value="Normal">Standard</label>
                                             <label><input type="radio" name="version" value="Red">[RED]</label>
-                                            <label><input type="radio" name="version" value="Black">[BLACK]</label>
+                                            <label><input type="radio" name="version" value="Black" checked="checked">[BLACK]</label>
                                         </td>
                                     </tr>
                                     <tr>
@@ -353,7 +353,7 @@
                                         <td>
                                             <select name="aug1">
                                                 <option value="---">---</option>
-                                                <option value="Deadly">Deadly</option>
+                                                <option value="Deadly" selected>Deadly</option>
                                                 <option value="Tenacious">Tenacious</option>
                                                 <option value="Overclocked">Overclocked</option>
                                                 <option value="Piercing">Piercing</option>
@@ -366,9 +366,9 @@
                                                 <option value="Adaptive">Adaptive</option>
                                             </select>
                                         </td>
-                                        <td><input type="number" min="0" max="12" step="1" value="0" name="aug1_grade"></td>
+                                        <td><input type="number" min="0" max="12" step="1" value="12" name="aug1_grade"></td>
                                         <td>Mastery</td>
-                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="5" step="1" value="0" name="gun_mastery"></td>
+                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="5" step="1" value="5" name="gun_mastery"></td>
                                     </tr>
                                     <tr>
                                         <td>Augment 2</td>
@@ -377,7 +377,7 @@
                                                 <option value="---">---</option>
                                                 <option value="Deadly">Deadly</option>
                                                 <option value="Tenacious">Tenacious</option>
-                                                <option value="Overclocked">Overclocked</option>
+                                                <option value="Overclocked" selected>Overclocked</option>
                                                 <option value="Piercing">Piercing</option>
                                                 <option value="Capacity">Capacity</option>
                                                 <option value="Race Modded">Race Modded</option>
@@ -388,7 +388,7 @@
                                                 <option value="Adaptive">Adaptive</option>
                                             </select>
                                         </td>
-                                        <td><input type="number" min="0" max="12" step="1" value="0" name="aug2_grade"></td>
+                                        <td><input type="number" min="0" max="12" step="1" value="12" name="aug2_grade"></td>
                                         <td>Collections</td>
                                         <td colspan="2">
                                             <label><input type="checkbox" name="gun_collections_normal" value="Normal">Standard</label>
@@ -409,14 +409,14 @@
                                                 <option value="Race Modded">Race Modded</option>
                                                 <option value="Enlarged">Enlarged</option>
                                                 <option value="Skeletonised">Skeletonised</option>
-                                                <option value="Pinpoint">Pinpoint</option>
+                                                <option value="Pinpoint" selected>Pinpoint</option>
                                                 <option value="Biosynthesis">Biosynthesis</option>
                                                 <option value="Adaptive">Adaptive</option>
                                             </select>
                                         </td>
-                                        <td><input type="number" min="0" max="12" step="1" value="0" name="aug3_grade"></td>
+                                        <td><input type="number" min="0" max="12" step="1" value="12" name="aug3_grade"></td>
                                         <td>Cores</td>
-                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="10" step="1" value="0" name="core" id="core"></td>
+                                        <td colspan="2" style="text-align:center;"><input type="number" min="0" max="10" step="1" value="10" name="core" id="core"></td>
                                     </tr>
                                     <tr>
                                         <td>Augment 4</td>
@@ -427,7 +427,7 @@
                                                 <option value="Tenacious">Tenacious</option>
                                                 <option value="Overclocked">Overclocked</option>
                                                 <option value="Piercing">Piercing</option>
-                                                <option value="Capacity">Capacity</option>
+                                                <option value="Capacity" selected>Capacity</option>
                                                 <option value="Race Modded">Race Modded</option>
                                                 <option value="Enlarged">Enlarged</option>
                                                 <option value="Skeletonised">Skeletonised</option>
@@ -436,7 +436,7 @@
                                                 <option value="Adaptive">Adaptive</option>
                                             </select>
                                         </td>
-                                        <td><input type="number" min="0" max="12" step="1" value="0" name="aug4_grade"></td>
+                                        <td><input type="number" min="0" max="12" step="1" value="12" name="aug4_grade"></td>
                                         <td>Ammo</td>
                                         <td colspan="2">
                                             <select name="hda">

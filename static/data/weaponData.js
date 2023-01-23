@@ -11,7 +11,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 205": {
                 "Class": "Pistol",
@@ -23,7 +24,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 225": {
                 "Class": "Pistol",
@@ -35,7 +37,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 307": {
                 "Class": "SMG",
@@ -47,7 +50,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 330": {
                 "Class": "SMG",
@@ -59,7 +63,8 @@ function weaponJSON() {
                 "Reload": 1.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 351 Sunflare": {
                 "Class": "SMG",
@@ -71,7 +76,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 401 Planet Stormer": {
                 "Class": "Assault Rifle",
@@ -83,7 +89,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 440 Titan": {
                 "Class": "Assault Rifle",
@@ -95,7 +102,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 451 Starburst": {
                 "Class": "Assault Rifle",
@@ -107,7 +115,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM Gigavolt": {
                 "Class": "Assault Rifle",
@@ -119,7 +128,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Sub-light COM2": {
                 "Class": "Assault Rifle",
@@ -131,7 +141,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 505": {
                 "Class": "LMG",
@@ -143,7 +154,8 @@ function weaponJSON() {
                 "Reload": 4.3,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 530 BabyCOM": {
                 "Class": "LMG",
@@ -155,7 +167,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 6,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 800 Jupiter": {
                 "Class": "Sniper",
@@ -167,7 +180,8 @@ function weaponJSON() {
                 "Reload": 4.5,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM X-1 Furie": {
                 "Class": "Launcher",
@@ -179,7 +193,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS S300": {
                 "Class": "Sniper",
@@ -191,7 +206,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS 3100": {
                 "Class": "Launcher",
@@ -203,7 +219,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS M1000": {
                 "Class": "LMG",
@@ -215,7 +232,8 @@ function weaponJSON() {
                 "Reload": 5.0,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 001": {
                 "Class": "Pistol",
@@ -227,7 +245,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 002": {
                 "Class": "SMG",
@@ -239,7 +258,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 004": {
                 "Class": "Shotgun",
@@ -251,7 +271,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 6,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 005 G-Class": {
                 "Class": "Assault Rifle",
@@ -263,7 +284,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 008": {
                 "Class": "LMG",
@@ -275,7 +297,8 @@ function weaponJSON() {
                 "Reload": 4.1,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM MPG": {
                 "Class": "Launcher",
@@ -287,7 +310,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 20,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Poison Claw": {
                 "Class": "Pistol",
@@ -299,7 +323,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Stripper": {
                 "Class": "Shotgun",
@@ -311,7 +336,8 @@ function weaponJSON() {
                 "Reload": 2.7,
                 "Pierce": 2,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Hard Thorn": {
                 "Class": "Assault Rifle",
@@ -323,7 +349,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 1,
                 "Pellets": 6,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Mixmaster": {
                 "Class": "Assault Rifle",
@@ -335,7 +362,8 @@ function weaponJSON() {
                 "Reload": 2.1,
                 "Pierce": 2,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Heartburn": {
                 "Class": "Assault Rifle",
@@ -347,7 +375,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Shredder": {
                 "Class": "Disc Thrower",
@@ -359,7 +388,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 4,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Hotspot": {
                 "Class": "Laser",
@@ -371,7 +401,8 @@ function weaponJSON() {
                 "Reload": 3.7,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 45": {
                 "Class": "Pistol",
@@ -383,7 +414,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 50": {
                 "Class": "SMG",
@@ -395,7 +427,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 55": {
                 "Class": "SMG",
@@ -407,7 +440,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 65-a": {
                 "Class": "Assault Rifle",
@@ -419,7 +453,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 70": {
                 "Class": "Assault Rifle",
@@ -431,7 +466,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson LBM": {
                 "Class": "LMG",
@@ -443,7 +479,8 @@ function weaponJSON() {
                 "Reload": 3.6,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson WP Flamethrower": {
                 "Class": "Flamethrower",
@@ -455,7 +492,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 6,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 313": {
                 "Class": "Pistol",
@@ -467,7 +505,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 1010": {
                 "Class": "Pistol",
@@ -479,7 +518,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 7": {
                 "Class": "SMG",
@@ -491,7 +531,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA T7": {
                 "Class": "SMG",
@@ -503,7 +544,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 20 Para": {
                 "Class": "Assault Rifle",
@@ -515,7 +557,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 20 DSC": {
                 "Class": "Assault Rifle",
@@ -527,7 +570,8 @@ function weaponJSON() {
                 "Reload": 2.3,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 20 Striker": {
                 "Class": "Assault Rifle",
@@ -539,7 +583,8 @@ function weaponJSON() {
                 "Reload": 2.3,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 30 Strikeforce": {
                 "Class": "Shotgun",
@@ -551,7 +596,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 8,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 40": {
                 "Class": "LMG",
@@ -563,7 +609,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA T40": {
                 "Class": "LMG",
@@ -575,7 +622,8 @@ function weaponJSON() {
                 "Reload": 4.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 45 Para": {
                 "Class": "LMG",
@@ -587,7 +635,8 @@ function weaponJSON() {
                 "Reload": 3.4,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 50": {
                 "Class": "Sniper",
@@ -599,7 +648,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA Trident": {
                 "Class": "Assault Rifle",
@@ -611,7 +661,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Sabre": {
                 "Class": "Pistol",
@@ -623,7 +674,8 @@ function weaponJSON() {
                 "Reload": 1.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Mustang": {
                 "Class": "Pistol",
@@ -635,7 +687,8 @@ function weaponJSON() {
                 "Reload": 1.1,
                 "Pierce": 2,
                 "Pellets": 12,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Phantom": {
                 "Class": "SMG",
@@ -647,7 +700,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Shotlite Tempest": {
                 "Class": "Shotgun",
@@ -659,7 +713,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 1,
                 "Pellets": 5,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Raptor": {
                 "Class": "Assault Rifle",
@@ -671,7 +726,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Hornet": {
                 "Class": "Sniper",
@@ -683,7 +739,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Supermarine": {
                 "Class": "LMG",
@@ -695,7 +752,8 @@ function weaponJSON() {
                 "Reload": 3.4,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Trailblazer": {
                 "Class": "Pistol",
@@ -707,7 +765,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "1887 Shockfield": {
                 "Class": "Shotgun",
@@ -719,7 +778,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 10,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Tombstone": {
                 "Class": "LMG",
@@ -731,7 +791,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 2,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Proposition": {
                 "Class": "LMG",
@@ -743,7 +804,8 @@ function weaponJSON() {
                 "Reload": 5.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Lone Star": {
                 "Class": "Launcher",
@@ -755,7 +817,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Gebirgskanone": {
                 "Class": "Launcher",
@@ -767,7 +830,8 @@ function weaponJSON() {
                 "Reload": 4.5,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "T-101 Feldhaubitz": {
                 "Class": "Launcher",
@@ -779,7 +843,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 15,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "T-102 Jagdfaust": {
                 "Class": "Launcher",
@@ -791,7 +856,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 10,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Luftplatzen": {
                 "Class": "Launcher",
@@ -803,7 +869,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 10,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Z-1 Assault": {
                 "Class": "Assault Rifle",
@@ -815,7 +882,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Z-2 LMP": {
                 "Class": "SMG",
@@ -827,7 +895,8 @@ function weaponJSON() {
                 "Reload": 2.1,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Z-5 Heavy": {
                 "Class": "LMG",
@@ -839,7 +908,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "GG17": {
                 "Class": "Pistol",
@@ -851,7 +921,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 5,
                 "Pellets": 1,
-                "Crit": 10
+                "Crit": 10,
+                "ClipPity": true
             },
             "Festungsbrecher": {
                 "Class": "Assault Rifle",
@@ -863,7 +934,8 @@ function weaponJSON() {
                 "Reload": 3.3,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Thundershock": {
                 "Class": "Shotgun",
@@ -875,7 +947,8 @@ function weaponJSON() {
                 "Reload": 1.6,
                 "Pierce": 4,
                 "Pellets": 8,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Phoenix": {
                 "Class": "Flamethrower",
@@ -887,7 +960,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 6,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Avalanche": {
                 "Class": "Flamethrower",
@@ -899,7 +973,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Kraken": {
                 "Class": "LMG",
@@ -911,7 +986,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 2,
                 "Pellets": 10,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Exterminator": {
                 "Class": "Disc Thrower",
@@ -923,19 +999,21 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 10
+                "Crit": 10,
+                "ClipPity": true
             },
             "Krakatoa": {
                 "Class": "Laser",
                 "Type": "Thermal",
                 "Damage": 700,
-                "DOT": 700,
+                "DOT": 0,
                 "RPS": 10.0,
                 "Clip": 220,
                 "Reload": 4.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Havoc": {
                 "Class": "Launcher",
@@ -947,7 +1025,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 20,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Depth Charge": {
                 "Class": "Launcher",
@@ -959,7 +1038,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Planet Stormer Ltd Edition": {
                 "Class": "Assault Rifle",
@@ -971,7 +1051,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 505 Alpha Ltd. Edition": {
                 "Class": "LMG",
@@ -983,7 +1064,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 3,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 352 Quasar": {
                 "Class": "Assault Rifle",
@@ -995,7 +1077,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM Laser Drill": {
                 "Class": "Laser",
@@ -1007,7 +1090,8 @@ function weaponJSON() {
                 "Reload": 3.7,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 369 Starfury": {
                 "Class": "SMG",
@@ -1019,7 +1103,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM Proton Arc": {
                 "Class": "Laser",
@@ -1031,7 +1116,8 @@ function weaponJSON() {
                 "Reload": 5.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 000 Kelvin": {
                 "Class": "Assault Rifle",
@@ -1043,7 +1129,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 3,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 467": {
                 "Class": "SMG",
@@ -1055,7 +1142,8 @@ function weaponJSON() {
                 "Reload": 1.5,
                 "Pierce": 3,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS A10": {
                 "Class": "Assault Rifle",
@@ -1067,7 +1155,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS S4000": {
                 "Class": "Launcher",
@@ -1079,7 +1168,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 15,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS 888 CAW": {
                 "Class": "Sniper",
@@ -1091,7 +1181,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 50,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Vitriol": {
                 "Class": "Launcher",
@@ -1103,7 +1194,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 5,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ricochet": {
                 "Class": "Disc Thrower",
@@ -1115,7 +1207,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 4,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Contagion": {
                 "Class": "LMG",
@@ -1127,7 +1220,8 @@ function weaponJSON() {
                 "Reload": 4.3,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Torment": {
                 "Class": "Launcher",
@@ -1139,7 +1233,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Calamity": {
                 "Class": "Shotgun",
@@ -1151,7 +1246,8 @@ function weaponJSON() {
                 "Reload": 3.7,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson WPX Incinerator": {
                 "Class": "Flamethrower",
@@ -1163,7 +1259,8 @@ function weaponJSON() {
                 "Reload": 3.4,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 5X5": {
                 "Class": "Shotgun",
@@ -1175,7 +1272,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 3,
                 "Pellets": 5,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 8A": {
                 "Class": "SMG",
@@ -1187,7 +1285,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 15 SE": {
                 "Class": "SMG",
@@ -1199,7 +1298,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 75": {
                 "Class": "Sniper",
@@ -1211,7 +1311,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 4,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Bayonet": {
                 "Class": "Assault Rifle",
@@ -1223,7 +1324,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Banshee": {
                 "Class": "SMG",
@@ -1235,7 +1337,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Supermarine Alpha Ltd Edition": {
                 "Class": "LMG",
@@ -1247,7 +1350,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Donderbus": {
                 "Class": "Shotgun",
@@ -1259,7 +1363,8 @@ function weaponJSON() {
                 "Reload": 2.1,
                 "Pierce": 2,
                 "Pellets": 10,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ahab": {
                 "Class": "Sniper",
@@ -1271,7 +1376,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Handkanone": {
                 "Class": "Pistol",
@@ -1283,7 +1389,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 10,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": false
             },
             "T-189 MGL": {
                 "Class": "Launcher",
@@ -1295,7 +1402,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Zerfallen": {
                 "Class": "Launcher",
@@ -1307,7 +1415,8 @@ function weaponJSON() {
                 "Reload": 14.0,
                 "Pierce": 50,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": false
             },
             "Helter-Skelter": {
                 "Class": "Launcher",
@@ -1319,7 +1428,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 20,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             }
         },
         "Red": {
@@ -1333,7 +1443,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 205": {
                 "Class": "Pistol",
@@ -1345,7 +1456,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 225": {
                 "Class": "Pistol",
@@ -1357,7 +1469,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 307": {
                 "Class": "SMG",
@@ -1369,7 +1482,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 330": {
                 "Class": "SMG",
@@ -1381,7 +1495,8 @@ function weaponJSON() {
                 "Reload": 1.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 351 Sunflare": {
                 "Class": "SMG",
@@ -1393,7 +1508,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 401 Planet Stormer": {
                 "Class": "Assault Rifle",
@@ -1405,7 +1521,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 440 Titan": {
                 "Class": "Assault Rifle",
@@ -1417,7 +1534,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 451 Starburst": {
                 "Class": "Assault Rifle",
@@ -1429,7 +1547,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM Gigavolt": {
                 "Class": "Assault Rifle",
@@ -1441,7 +1560,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Sub-light COM2": {
                 "Class": "Assault Rifle",
@@ -1453,7 +1573,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 7,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 505": {
                 "Class": "LMG",
@@ -1465,7 +1586,8 @@ function weaponJSON() {
                 "Reload": 4.3,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 530 BabyCOM": {
                 "Class": "LMG",
@@ -1477,7 +1599,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 6,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 800 Jupiter": {
                 "Class": "Sniper",
@@ -1489,7 +1612,8 @@ function weaponJSON() {
                 "Reload": 4.5,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM X-1 Furie": {
                 "Class": "Launcher",
@@ -1501,7 +1625,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS S300": {
                 "Class": "Sniper",
@@ -1513,7 +1638,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS 3100": {
                 "Class": "Launcher",
@@ -1525,7 +1651,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS M1000": {
                 "Class": "LMG",
@@ -1537,7 +1664,8 @@ function weaponJSON() {
                 "Reload": 5.0,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 001": {
                 "Class": "Pistol",
@@ -1549,7 +1677,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 002": {
                 "Class": "SMG",
@@ -1561,7 +1690,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 004": {
                 "Class": "Shotgun",
@@ -1573,7 +1703,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 6,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 005 G-Class": {
                 "Class": "Assault Rifle",
@@ -1585,7 +1716,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 008": {
                 "Class": "LMG",
@@ -1597,7 +1729,8 @@ function weaponJSON() {
                 "Reload": 4.1,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM MPG": {
                 "Class": "Launcher",
@@ -1609,7 +1742,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 20,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Poison Claw": {
                 "Class": "Pistol",
@@ -1621,7 +1755,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Stripper": {
                 "Class": "Shotgun",
@@ -1633,7 +1768,8 @@ function weaponJSON() {
                 "Reload": 2.7,
                 "Pierce": 2,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Hard Thorn": {
                 "Class": "Assault Rifle",
@@ -1645,7 +1781,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 1,
                 "Pellets": 6,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Mixmaster": {
                 "Class": "Assault Rifle",
@@ -1657,7 +1794,8 @@ function weaponJSON() {
                 "Reload": 2.1,
                 "Pierce": 3,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Heartburn": {
                 "Class": "Assault Rifle",
@@ -1669,7 +1807,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Shredder": {
                 "Class": "Disc Thrower",
@@ -1681,7 +1820,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 4,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Hotspot": {
                 "Class": "Laser",
@@ -1693,7 +1833,8 @@ function weaponJSON() {
                 "Reload": 3.7,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 45": {
                 "Class": "Pistol",
@@ -1705,7 +1846,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 50": {
                 "Class": "SMG",
@@ -1717,7 +1859,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 55": {
                 "Class": "SMG",
@@ -1729,7 +1872,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 65-a": {
                 "Class": "Assault Rifle",
@@ -1741,7 +1885,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 5,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 70": {
                 "Class": "Assault Rifle",
@@ -1753,7 +1898,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson LBM": {
                 "Class": "LMG",
@@ -1765,7 +1911,8 @@ function weaponJSON() {
                 "Reload": 3.6,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson WP Flamethrower": {
                 "Class": "Flamethrower",
@@ -1777,7 +1924,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 6,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 313": {
                 "Class": "Pistol",
@@ -1789,7 +1937,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 1010": {
                 "Class": "Pistol",
@@ -1801,7 +1950,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 7": {
                 "Class": "SMG",
@@ -1813,7 +1963,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA T7": {
                 "Class": "SMG",
@@ -1825,7 +1976,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 20 Para": {
                 "Class": "Assault Rifle",
@@ -1837,7 +1989,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 20 DSC": {
                 "Class": "Assault Rifle",
@@ -1849,7 +2002,8 @@ function weaponJSON() {
                 "Reload": 2.3,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 20 Striker": {
                 "Class": "Assault Rifle",
@@ -1861,7 +2015,8 @@ function weaponJSON() {
                 "Reload": 2.3,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 30 Strikeforce": {
                 "Class": "Shotgun",
@@ -1873,7 +2028,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 8,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 40": {
                 "Class": "LMG",
@@ -1885,7 +2041,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA T40": {
                 "Class": "LMG",
@@ -1897,7 +2054,8 @@ function weaponJSON() {
                 "Reload": 4.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 45 Para": {
                 "Class": "LMG",
@@ -1909,7 +2067,8 @@ function weaponJSON() {
                 "Reload": 3.4,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 50": {
                 "Class": "Sniper",
@@ -1921,7 +2080,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA Trident": {
                 "Class": "Assault Rifle",
@@ -1933,7 +2093,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Sabre": {
                 "Class": "Pistol",
@@ -1945,7 +2106,8 @@ function weaponJSON() {
                 "Reload": 1.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Mustang": {
                 "Class": "Pistol",
@@ -1957,7 +2119,8 @@ function weaponJSON() {
                 "Reload": 1.1,
                 "Pierce": 2,
                 "Pellets": 12,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Phantom": {
                 "Class": "SMG",
@@ -1969,7 +2132,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Shotlite Tempest": {
                 "Class": "Shotgun",
@@ -1981,7 +2145,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 1,
                 "Pellets": 5,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Raptor": {
                 "Class": "Assault Rifle",
@@ -1993,7 +2158,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Hornet": {
                 "Class": "Sniper",
@@ -2005,7 +2171,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Supermarine": {
                 "Class": "LMG",
@@ -2017,7 +2184,8 @@ function weaponJSON() {
                 "Reload": 3.4,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Trailblazer": {
                 "Class": "Pistol",
@@ -2029,7 +2197,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "1887 Shockfield": {
                 "Class": "Shotgun",
@@ -2041,7 +2210,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 3,
                 "Pellets": 10,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Tombstone": {
                 "Class": "LMG",
@@ -2053,7 +2223,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 2,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Proposition": {
                 "Class": "LMG",
@@ -2065,7 +2236,8 @@ function weaponJSON() {
                 "Reload": 5.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Lone Star": {
                 "Class": "Launcher",
@@ -2077,7 +2249,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Gebirgskanone": {
                 "Class": "Launcher",
@@ -2089,7 +2262,8 @@ function weaponJSON() {
                 "Reload": 4.5,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "T-101 Feldhaubitz": {
                 "Class": "Launcher",
@@ -2101,7 +2275,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 15,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "T-102 Jagdfaust": {
                 "Class": "Launcher",
@@ -2113,7 +2288,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 15,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Luftplatzen": {
                 "Class": "Launcher",
@@ -2125,7 +2301,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 10,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Z-1 Assault": {
                 "Class": "Assault Rifle",
@@ -2137,7 +2314,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Z-2 LMP": {
                 "Class": "SMG",
@@ -2149,7 +2327,8 @@ function weaponJSON() {
                 "Reload": 2.1,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Z-5 Heavy": {
                 "Class": "LMG",
@@ -2161,7 +2340,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "GG17": {
                 "Class": "Pistol",
@@ -2173,7 +2353,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 5,
                 "Pellets": 1,
-                "Crit": 10
+                "Crit": 10,
+                "ClipPity": true
             },
             "Festungsbrecher": {
                 "Class": "Assault Rifle",
@@ -2185,7 +2366,8 @@ function weaponJSON() {
                 "Reload": 3.3,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Thundershock": {
                 "Class": "Shotgun",
@@ -2197,7 +2379,8 @@ function weaponJSON() {
                 "Reload": 1.6,
                 "Pierce": 4,
                 "Pellets": 8,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Phoenix": {
                 "Class": "Flamethrower",
@@ -2209,7 +2392,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 6,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Avalanche": {
                 "Class": "Flamethrower",
@@ -2221,7 +2405,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Kraken": {
                 "Class": "LMG",
@@ -2233,7 +2418,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 2,
                 "Pellets": 10,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Exterminator": {
                 "Class": "Disc Thrower",
@@ -2245,19 +2431,21 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 10
+                "Crit": 10,
+                "ClipPity": true
             },
             "Krakatoa": {
                 "Class": "Laser",
                 "Type": "Thermal",
                 "Damage": 700,
-                "DOT": 700,
+                "DOT": 0,
                 "RPS": 10.0,
                 "Clip": 220,
                 "Reload": 4.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Havoc": {
                 "Class": "Launcher",
@@ -2269,7 +2457,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 20,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Depth Charge": {
                 "Class": "Launcher",
@@ -2281,7 +2470,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Planet Stormer Ltd Edition": {
                 "Class": "Assault Rifle",
@@ -2293,7 +2483,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 505 Alpha Ltd. Edition": {
                 "Class": "LMG",
@@ -2305,7 +2496,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 3,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 352 Quasar": {
                 "Class": "Assault Rifle",
@@ -2317,7 +2509,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM Laser Drill": {
                 "Class": "Laser",
@@ -2329,7 +2522,8 @@ function weaponJSON() {
                 "Reload": 3.7,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 369 Starfury": {
                 "Class": "SMG",
@@ -2341,7 +2535,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM Proton Arc": {
                 "Class": "Laser",
@@ -2353,7 +2548,8 @@ function weaponJSON() {
                 "Reload": 5.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 000 Kelvin": {
                 "Class": "Assault Rifle",
@@ -2365,7 +2561,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 3,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 467": {
                 "Class": "SMG",
@@ -2377,7 +2574,8 @@ function weaponJSON() {
                 "Reload": 1.5,
                 "Pierce": 3,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS A10": {
                 "Class": "Assault Rifle",
@@ -2389,7 +2587,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS S4000": {
                 "Class": "Launcher",
@@ -2401,7 +2600,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 15,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS 888 CAW": {
                 "Class": "Sniper",
@@ -2413,7 +2613,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 50,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Vitriol": {
                 "Class": "Launcher",
@@ -2425,7 +2626,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 5,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ricochet": {
                 "Class": "Disc Thrower",
@@ -2437,7 +2639,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 4,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Contagion": {
                 "Class": "LMG",
@@ -2449,7 +2652,8 @@ function weaponJSON() {
                 "Reload": 4.3,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Torment": {
                 "Class": "Launcher",
@@ -2461,7 +2665,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Calamity": {
                 "Class": "Shotgun",
@@ -2473,7 +2678,8 @@ function weaponJSON() {
                 "Reload": 3.7,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson WPX Incinerator": {
                 "Class": "Flamethrower",
@@ -2485,7 +2691,8 @@ function weaponJSON() {
                 "Reload": 3.4,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 5X5": {
                 "Class": "Shotgun",
@@ -2497,7 +2704,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 3,
                 "Pellets": 5,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 8A": {
                 "Class": "SMG",
@@ -2509,7 +2717,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 15 SE": {
                 "Class": "SMG",
@@ -2521,7 +2730,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 75": {
                 "Class": "Sniper",
@@ -2533,7 +2743,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 4,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Bayonet": {
                 "Class": "Assault Rifle",
@@ -2545,7 +2756,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Banshee": {
                 "Class": "SMG",
@@ -2557,7 +2769,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Supermarine Alpha Ltd Edition": {
                 "Class": "LMG",
@@ -2569,7 +2782,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Donderbus": {
                 "Class": "Shotgun",
@@ -2581,7 +2795,8 @@ function weaponJSON() {
                 "Reload": 2.1,
                 "Pierce": 2,
                 "Pellets": 10,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ahab": {
                 "Class": "Sniper",
@@ -2593,7 +2808,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Handkanone": {
                 "Class": "Pistol",
@@ -2605,7 +2821,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 10,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": false
             },
             "T-189 MGL": {
                 "Class": "Launcher",
@@ -2617,7 +2834,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Zerfallen": {
                 "Class": "Launcher",
@@ -2629,7 +2847,8 @@ function weaponJSON() {
                 "Reload": 14.0,
                 "Pierce": 50,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": false
             },
             "Helter-Skelter": {
                 "Class": "Launcher",
@@ -2641,7 +2860,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 20,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             }
         },
         "Black": {
@@ -2655,7 +2875,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 330": {
                 "Class": "SMG",
@@ -2667,7 +2888,8 @@ function weaponJSON() {
                 "Reload": 1.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 351 Sunflare": {
                 "Class": "SMG",
@@ -2679,7 +2901,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 401 Planet Stormer": {
                 "Class": "Assault Rifle",
@@ -2691,7 +2914,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 440 Titan": {
                 "Class": "Assault Rifle",
@@ -2703,7 +2927,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 451 Starburst": {
                 "Class": "Assault Rifle",
@@ -2715,7 +2940,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM Gigavolt": {
                 "Class": "Assault Rifle",
@@ -2727,7 +2953,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Sub-light COM2": {
                 "Class": "Assault Rifle",
@@ -2739,7 +2966,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 7,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 505": {
                 "Class": "LMG",
@@ -2751,7 +2979,8 @@ function weaponJSON() {
                 "Reload": 4.3,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 530 BabyCOM": {
                 "Class": "LMG",
@@ -2763,7 +2992,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 6,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 800 Jupiter": {
                 "Class": "Sniper",
@@ -2775,7 +3005,8 @@ function weaponJSON() {
                 "Reload": 4.5,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM X-1 Furie": {
                 "Class": "Launcher",
@@ -2787,7 +3018,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS S300": {
                 "Class": "Sniper",
@@ -2799,7 +3031,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS 3100": {
                 "Class": "Launcher",
@@ -2811,7 +3044,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS M1000": {
                 "Class": "LMG",
@@ -2823,7 +3057,8 @@ function weaponJSON() {
                 "Reload": 5.0,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 002": {
                 "Class": "SMG",
@@ -2835,7 +3070,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 004": {
                 "Class": "Shotgun",
@@ -2847,7 +3083,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 6,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 005 G-Class": {
                 "Class": "Assault Rifle",
@@ -2859,7 +3096,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM 008": {
                 "Class": "LMG",
@@ -2871,7 +3109,8 @@ function weaponJSON() {
                 "Reload": 4.1,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HVM MPG": {
                 "Class": "Launcher",
@@ -2883,7 +3122,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 20,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Poison Claw": {
                 "Class": "Pistol",
@@ -2895,7 +3135,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Stripper": {
                 "Class": "Shotgun",
@@ -2907,7 +3148,8 @@ function weaponJSON() {
                 "Reload": 2.7,
                 "Pierce": 2,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Hard Thorn": {
                 "Class": "Assault Rifle",
@@ -2919,7 +3161,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 1,
                 "Pellets": 6,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Mixmaster": {
                 "Class": "Assault Rifle",
@@ -2931,7 +3174,8 @@ function weaponJSON() {
                 "Reload": 2.1,
                 "Pierce": 3,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Heartburn": {
                 "Class": "Assault Rifle",
@@ -2943,7 +3187,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Shredder": {
                 "Class": "Disc Thrower",
@@ -2955,7 +3200,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 4,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Hotspot": {
                 "Class": "Laser",
@@ -2967,7 +3213,8 @@ function weaponJSON() {
                 "Reload": 3.7,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 45": {
                 "Class": "Pistol",
@@ -2979,7 +3226,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 50": {
                 "Class": "SMG",
@@ -2991,7 +3239,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 55": {
                 "Class": "SMG",
@@ -3003,7 +3252,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 65-a": {
                 "Class": "Assault Rifle",
@@ -3015,7 +3265,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 5,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 70": {
                 "Class": "Assault Rifle",
@@ -3027,7 +3278,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson LBM": {
                 "Class": "LMG",
@@ -3039,7 +3291,8 @@ function weaponJSON() {
                 "Reload": 3.6,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson WP Flamethrower": {
                 "Class": "Flamethrower",
@@ -3051,7 +3304,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 6,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 7": {
                 "Class": "SMG",
@@ -3063,7 +3317,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA T7": {
                 "Class": "SMG",
@@ -3075,7 +3330,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 20 Para": {
                 "Class": "Assault Rifle",
@@ -3087,7 +3343,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 20 DSC": {
                 "Class": "Assault Rifle",
@@ -3099,7 +3356,8 @@ function weaponJSON() {
                 "Reload": 2.3,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 20 Striker": {
                 "Class": "Assault Rifle",
@@ -3111,7 +3369,8 @@ function weaponJSON() {
                 "Reload": 2.3,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 30 Strikeforce": {
                 "Class": "Shotgun",
@@ -3123,7 +3382,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 2,
                 "Pellets": 8,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 40": {
                 "Class": "LMG",
@@ -3135,7 +3395,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA T40": {
                 "Class": "LMG",
@@ -3147,7 +3408,8 @@ function weaponJSON() {
                 "Reload": 4.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 45 Para": {
                 "Class": "LMG",
@@ -3159,7 +3421,8 @@ function weaponJSON() {
                 "Reload": 3.4,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 50": {
                 "Class": "Sniper",
@@ -3171,7 +3434,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA Trident": {
                 "Class": "Assault Rifle",
@@ -3183,7 +3447,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Mustang": {
                 "Class": "Pistol",
@@ -3195,7 +3460,8 @@ function weaponJSON() {
                 "Reload": 1.1,
                 "Pierce": 2,
                 "Pellets": 12,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Phantom": {
                 "Class": "SMG",
@@ -3207,7 +3473,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Shotlite Tempest": {
                 "Class": "Shotgun",
@@ -3219,7 +3486,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 1,
                 "Pellets": 5,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Raptor": {
                 "Class": "Assault Rifle",
@@ -3231,7 +3499,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Hornet": {
                 "Class": "Sniper",
@@ -3243,7 +3512,8 @@ function weaponJSON() {
                 "Reload": 2.4,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Supermarine": {
                 "Class": "LMG",
@@ -3255,7 +3525,8 @@ function weaponJSON() {
                 "Reload": 3.4,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Trailblazer": {
                 "Class": "Pistol",
@@ -3267,7 +3538,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "1887 Shockfield": {
                 "Class": "Shotgun",
@@ -3279,7 +3551,8 @@ function weaponJSON() {
                 "Reload": 2.0,
                 "Pierce": 3,
                 "Pellets": 10,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Tombstone": {
                 "Class": "LMG",
@@ -3291,7 +3564,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 2,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Proposition": {
                 "Class": "LMG",
@@ -3303,7 +3577,8 @@ function weaponJSON() {
                 "Reload": 5.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Lone Star": {
                 "Class": "Launcher",
@@ -3315,7 +3590,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Gebirgskanone": {
                 "Class": "Launcher",
@@ -3327,7 +3603,8 @@ function weaponJSON() {
                 "Reload": 4.5,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "T-101 Feldhaubitz": {
                 "Class": "Launcher",
@@ -3339,7 +3616,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 15,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "T-102 Jagdfaust": {
                 "Class": "Launcher",
@@ -3351,7 +3629,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 15,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Luftplatzen": {
                 "Class": "Launcher",
@@ -3363,7 +3642,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 10,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Z-1 Assault": {
                 "Class": "Assault Rifle",
@@ -3375,7 +3655,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Z-2 LMP": {
                 "Class": "SMG",
@@ -3387,7 +3668,8 @@ function weaponJSON() {
                 "Reload": 2.1,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Z-5 Heavy": {
                 "Class": "LMG",
@@ -3399,7 +3681,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "GG17": {
                 "Class": "Pistol",
@@ -3411,7 +3694,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 5,
                 "Pellets": 1,
-                "Crit": 10
+                "Crit": 10,
+                "ClipPity": true
             },
             "Festungsbrecher": {
                 "Class": "Assault Rifle",
@@ -3423,7 +3707,8 @@ function weaponJSON() {
                 "Reload": 3.3,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Thundershock": {
                 "Class": "Shotgun",
@@ -3435,7 +3720,8 @@ function weaponJSON() {
                 "Reload": 1.6,
                 "Pierce": 4,
                 "Pellets": 8,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Phoenix": {
                 "Class": "Flamethrower",
@@ -3447,7 +3733,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 6,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Avalanche": {
                 "Class": "Flamethrower",
@@ -3459,7 +3746,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Kraken": {
                 "Class": "LMG",
@@ -3471,7 +3759,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 2,
                 "Pellets": 10,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Exterminator": {
                 "Class": "Disc Thrower",
@@ -3483,19 +3772,21 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 10
+                "Crit": 10,
+                "ClipPity": true
             },
             "Krakatoa": {
                 "Class": "Laser",
                 "Type": "Thermal",
                 "Damage": 700,
-                "DOT": 700,
+                "DOT": 0,
                 "RPS": 10.0,
                 "Clip": 220,
                 "Reload": 4.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Havoc": {
                 "Class": "Launcher",
@@ -3507,7 +3798,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 20,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Depth Charge": {
                 "Class": "Launcher",
@@ -3519,7 +3811,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Planet Stormer Ltd Edition": {
                 "Class": "Assault Rifle",
@@ -3531,7 +3824,8 @@ function weaponJSON() {
                 "Reload": 2.2,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 505 Alpha Ltd. Edition": {
                 "Class": "LMG",
@@ -3543,7 +3837,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 3,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 352 Quasar": {
                 "Class": "Assault Rifle",
@@ -3555,7 +3850,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM Laser Drill": {
                 "Class": "Laser",
@@ -3567,7 +3863,8 @@ function weaponJSON() {
                 "Reload": 3.7,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 369 Starfury": {
                 "Class": "SMG",
@@ -3579,7 +3876,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM Proton Arc": {
                 "Class": "Laser",
@@ -3591,7 +3889,8 @@ function weaponJSON() {
                 "Reload": 5.0,
                 "Pierce": 1,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 000 Kelvin": {
                 "Class": "Assault Rifle",
@@ -3603,7 +3902,8 @@ function weaponJSON() {
                 "Reload": 3.5,
                 "Pierce": 3,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "CM 467": {
                 "Class": "SMG",
@@ -3615,7 +3915,8 @@ function weaponJSON() {
                 "Reload": 1.5,
                 "Pierce": 3,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS A10": {
                 "Class": "Assault Rifle",
@@ -3627,7 +3928,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS S4000": {
                 "Class": "Launcher",
@@ -3639,7 +3941,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 15,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "HIKS 888 CAW": {
                 "Class": "Sniper",
@@ -3651,7 +3954,8 @@ function weaponJSON() {
                 "Reload": 2.8,
                 "Pierce": 50,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Vitriol": {
                 "Class": "Launcher",
@@ -3663,7 +3967,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 5,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ricochet": {
                 "Class": "Disc Thrower",
@@ -3675,7 +3980,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 4,
                 "Pellets": 2,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Contagion": {
                 "Class": "LMG",
@@ -3687,7 +3993,8 @@ function weaponJSON() {
                 "Reload": 4.3,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Torment": {
                 "Class": "Launcher",
@@ -3699,7 +4006,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Calamity": {
                 "Class": "Shotgun",
@@ -3711,7 +4019,8 @@ function weaponJSON() {
                 "Reload": 3.7,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson WPX Incinerator": {
                 "Class": "Flamethrower",
@@ -3723,7 +4032,8 @@ function weaponJSON() {
                 "Reload": 3.4,
                 "Pierce": 4,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ronson 5X5": {
                 "Class": "Shotgun",
@@ -3735,7 +4045,8 @@ function weaponJSON() {
                 "Reload": 2.6,
                 "Pierce": 3,
                 "Pellets": 5,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 8A": {
                 "Class": "SMG",
@@ -3747,7 +4058,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 15 SE": {
                 "Class": "SMG",
@@ -3759,7 +4071,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "RIA 75": {
                 "Class": "Sniper",
@@ -3771,7 +4084,8 @@ function weaponJSON() {
                 "Reload": 4.0,
                 "Pierce": 4,
                 "Pellets": 3,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Bayonet": {
                 "Class": "Assault Rifle",
@@ -3783,7 +4097,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Banshee": {
                 "Class": "SMG",
@@ -3795,7 +4110,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Supermarine Alpha Ltd Edition": {
                 "Class": "LMG",
@@ -3807,7 +4123,8 @@ function weaponJSON() {
                 "Reload": 3.0,
                 "Pierce": 3,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Donderbus": {
                 "Class": "Shotgun",
@@ -3819,7 +4136,8 @@ function weaponJSON() {
                 "Reload": 2.1,
                 "Pierce": 2,
                 "Pellets": 10,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Ahab": {
                 "Class": "Sniper",
@@ -3831,7 +4149,8 @@ function weaponJSON() {
                 "Reload": 2.5,
                 "Pierce": 2,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Handkanone": {
                 "Class": "Pistol",
@@ -3843,7 +4162,8 @@ function weaponJSON() {
                 "Reload": 1.7,
                 "Pierce": 10,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": false
             },
             "T-189 MGL": {
                 "Class": "Launcher",
@@ -3855,7 +4175,8 @@ function weaponJSON() {
                 "Reload": 3.2,
                 "Pierce": 8,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             },
             "Zerfallen": {
                 "Class": "Launcher",
@@ -3867,7 +4188,8 @@ function weaponJSON() {
                 "Reload": 14.0,
                 "Pierce": 50,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": false
             },
             "Helter-Skelter": {
                 "Class": "Launcher",
@@ -3879,7 +4201,8 @@ function weaponJSON() {
                 "Reload": 1.8,
                 "Pierce": 20,
                 "Pellets": 1,
-                "Crit": 0
+                "Crit": 0,
+                "ClipPity": true
             }
         }
     };
@@ -4659,3 +4982,5 @@ function weaponCollections() {
     }
     return data;
 }
+
+
