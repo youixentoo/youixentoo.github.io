@@ -1310,7 +1310,7 @@ function weaponJSON() {
                 "Clip": 48,
                 "Reload": 4.0,
                 "Pierce": 4,
-                "Pellets": 3,
+                "Pellets": 1,
                 "Crit": 0,
                 "ClipPity": true
             },
@@ -2742,7 +2742,7 @@ function weaponJSON() {
                 "Clip": 48,
                 "Reload": 4.0,
                 "Pierce": 4,
-                "Pellets": 3,
+                "Pellets": 1,
                 "Crit": 0,
                 "ClipPity": true
             },
@@ -4083,7 +4083,7 @@ function weaponJSON() {
                 "Clip": 48,
                 "Reload": 4.0,
                 "Pierce": 4,
-                "Pellets": 3,
+                "Pellets": 1,
                 "Crit": 0,
                 "ClipPity": true
             },
@@ -4209,6 +4209,32 @@ function weaponJSON() {
     return data;
 }
 
+function specialCases(weaponName, category) {
+    const data = {
+        "Burst": {
+            "Raptor": {
+                "Amount": 3,
+                "Delay": 0.02
+            },
+            "Calamity": {
+                "Amount": 5,
+                "Delay": 0.04
+            },
+            "RIA 75": {
+                "Amount": 3,
+                "Delay": 0.1
+            }
+        },
+        "Pool": {
+            "Krakatoa": 700
+        },
+        "Split": {
+            "Starfury": true
+        }
+    };
+    return data[category][weaponName];
+}
+
 function armourDPSJSON() {
     // Faction gear, except for OW chest, is classified as normal
     let data = {
@@ -4217,162 +4243,195 @@ function armourDPSJSON() {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": -5
+                    "Reload": -5,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": -8
+                    "Reload": -8,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": -8
+                    "Reload": -8,
+		    "Cap": 0
                 }
             },
             "Dragonfly": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0.04,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0.05,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0.05,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 }
             },
             "Titan": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0.1,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0.15,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0.15,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 }
             },
             "Medusa": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 6
+                    "Reload": 6,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 9
+                    "Reload": 9,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 9
+                    "Reload": 9,
+		    "Cap": 0
                 }
             },
             "Dynamo": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0.03,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0.03,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0.03,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 }
             },
             "Mastodon": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": -9
+                    "Reload": -9,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": -9
+                    "Reload": -9,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": -9
+                    "Reload": -9,
+		    "Cap": 0
                 }
             },
             "Overwatch": {
                 "Normal": {
                     "Crit": 11,
                     "Dmg": 0,
-                    "Reload": -8
+                    "Reload": -8,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 11,
                     "Dmg": 0,
-                    "Reload": -8
+                    "Reload": -8,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 11,
                     "Dmg": 0,
-                    "Reload": -8
+                    "Reload": -8,
+		    "Cap": 0
                 }
             },
             "Mako": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 6
+                    "Reload": 6,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 6
+                    "Reload": 6,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 6
+                    "Reload": 6,
+		    "Cap": 0
                 }
             },
             "Other": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 }
             }
         },
         "Vest": {
             "Overwatch": {
-                "Reload": 9
+                "Reload": 9,
+		"Cap": 0
+            },
+	    "Mastodon": {
+                "Reload": 0,
+		"Cap": 0.4
             },
             "Other": {
-                "Reload": 0
+                "Reload": 0,
+		"Cap": 0
             }
         },
         "Gloves": {
@@ -4380,173 +4439,244 @@ function armourDPSJSON() {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": -5
+                    "Reload": -5,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": -10
+                    "Reload": -10,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": -10
+                    "Reload": -10,
+		    "Cap": 0
                 }
             },
             "Dragonfly": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 3
+                    "Reload": 3,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 5
+                    "Reload": 5,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 5
+                    "Reload": 5,
+		    "Cap": 0
                 }
             },
             "Ronson": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0.02,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0.03,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0.03,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 }
             },
             "Titan": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 10
+                    "Reload": 10,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 15
+                    "Reload": 15,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 15
+                    "Reload": 15,
+		    "Cap": 0
                 }
             },
             "Medusa": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0.04,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0.05,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0.05,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 }
             },
             "Dynamo": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 5
+                    "Reload": 5,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 5
+                    "Reload": 5,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 5
+                    "Reload": 5,
+		    "Cap": 0
+                }
+            },
+            "Mastodon": {
+                "Normal": {
+                    "Crit": 0,
+                    "Dmg": 0,
+                    "Reload": 0,
+		    "Cap": 0.2
+                },
+                "Red": {
+                    "Crit": 0,
+                    "Dmg": 0,
+                    "Reload": 0,
+		    "Cap": 0.2
+                },
+                "Black": {
+                    "Crit": 0,
+                    "Dmg": 0,
+                    "Reload": 0,
+		    "Cap": 0.2
                 }
             },
             "Overwatch": {
                 "Normal": {
                     "Crit": 6,
                     "Dmg": 0,
-                    "Reload": -4
+                    "Reload": -4,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 6,
                     "Dmg": 0,
-                    "Reload": -4
+                    "Reload": -4,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 6,
                     "Dmg": 0,
-                    "Reload": -4
+                    "Reload": -4,
+		    "Cap": 0
                 }
             },
             "Mako": {
                 "Normal": {
                     "Crit": 3,
                     "Dmg": 0,
-                    "Reload": 10
+                    "Reload": 10,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 3,
                     "Dmg": 0,
-                    "Reload": 10
+                    "Reload": 10,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 3,
                     "Dmg": 0,
-                    "Reload": 10
+                    "Reload": 10,
+		    "Cap": 0
                 }
             },
             "Clown": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 8
+                    "Reload": 8,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 8
+                    "Reload": 8,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 8
+                    "Reload": 8,
+		    "Cap": 0
                 }
             },
             "Other": {
                 "Normal": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Red": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 },
                 "Black": {
                     "Crit": 0,
                     "Dmg": 0,
-                    "Reload": 0
+                    "Reload": 0,
+		    "Cap": 0
                 }
             }
+        },
+        "Pants": {
+	    "Mastodon": {
+                "Reload": 0,
+		"Cap": 0.3
+            },
+            "Other": {
+                "Reload": 0,
+		"Cap": 0
+            }
+        },
+        "Boots": {
+	    "Mastodon": {
+                "Reload": 0,
+		"Cap": 0.1
+            },
+            "Other": {
+                "Reload": 0,
+		"Cap": 0
+            }
         }
+        
     }
     return data;
 }

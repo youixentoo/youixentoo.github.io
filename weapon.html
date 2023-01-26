@@ -55,13 +55,19 @@
             <div id="site-wrapper">
                 <hr>
                 <div class="header">
-                    <h2>Weapon dps - BETA - DO NOT USE</h2>
+                    <h2>Weapon dps - Alpha</h2>
                     <p>
-                        Disclaimer: Due to rounding errors, results might not be 100% accurate. <br>
-                        Also, "Displayed stats" might not always line up with the displayed values in-game.<br><br>
-
                         If a gun only has 1 version, you can select Standard, Red or Black, it will give the same values.<br>
-                        As for the Black pistols that don't have any stats, they just won't show.
+                        As for the Black pistols that don't have any stats, they just won't show.<br><br>
+                        
+                        <b>Disclaimers:</b><br>
+                        Due to rounding errors, results might not be 100% accurate.<br>
+                        "Stats" might not always line up with the displayed values in-game.<br>
+                        <!-- Burst weapons are currently a bit weird, clip size affects 'pure dps'.<br> -->
+                        Some weapons are not supported yet: Krakatoa, MGL, Starfury and possibly some others.<br>
+                        HTL bonus is calculated as if it has no cooldown, adrenaline is not supported.<br>
+                        Options are currently pre-selected for easier testing.<br>
+                        Still an early version so don't expect all values to be correct.
                     </p>
                 </div>
                 <hr>
@@ -157,6 +163,7 @@
                                         <td></td>
                                         <td>
                                             <div><label><input type="radio" name="select_vest" value="Other" checked="checked">Other</label></div>
+                                            <div><label><input type="radio" name="select_vest" value="Mastodon">Mastodon</label></div>
                                             <div><label><input type="radio" name="select_vest" value="Overwatch">Overwatch</label></div>
                                         </td>
                                         <td></td>
@@ -178,6 +185,7 @@
                                                 <option value="Medusa">Medusa</option>
                                                 <option value="Ronson">Ronson</option>
                                                 <option value="Dynamo">Dynamo</option>
+                                                <option value="Mastodon">Mastodon</option>
                                                 <option value="Overwatch">Overwatch</option>
                                                 <option value="Mako">Mako</option>
                                                 <option value="Clown">Clown</option>
@@ -190,6 +198,36 @@
                                             <div><label><input type="radio" name="gloves_ver" value="Red">[RED]</label></div>
                                             <div><label><input type="radio" name="gloves_ver" value="Black">[BLACK]</label></div>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pants</td>
+                                        <td><input type="number" min="0" max="5" step="1" value="5" name="vest_mastery"></td>
+                                        <td>
+                                            <div><label><input type="checkbox" name="pants_collections" value="Normal">Standard</label></div>
+                                            <div><label><input type="checkbox" name="pants_collections" value="Red">[RED]</label></div>
+                                            <div><label><input type="checkbox" name="pants_collections" value="Black">[BLACK]</label></div>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <div><label><input type="radio" name="select_pants" value="Other" checked="checked">Other</label></div>
+                                            <div><label><input type="radio" name="select_pants" value="Mastodon">Mastodon</label></div>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Boots</td>
+                                        <td><input type="number" min="0" max="5" step="1" value="5" name="vest_mastery"></td>
+                                        <td>
+                                            <div><label><input type="checkbox" name="boots_collections" value="Normal">Standard</label></div>
+                                            <div><label><input type="checkbox" name="boots_collections" value="Red">[RED]</label></div>
+                                            <div><label><input type="checkbox" name="boots_collections" value="Black">[BLACK]</label></div>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <div><label><input type="radio" name="select_boots" value="Other" checked="checked">Other</label></div>
+                                            <div><label><input type="radio" name="select_boots" value="Mastodon">Mastodon</label></div>
+                                        </td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
