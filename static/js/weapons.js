@@ -1,18 +1,14 @@
 /*
- * TODO List
- * Add support for:
- Calamity, T-189 MGL, Krakatoa, Starfury, Mustang, Raptor, Zerf and others if I forgot any
- Any flamer --> mastery
- Adaptive augment
- 
- Add time to kill a necro? - 18M hp
- 
- Add comments
- 
- Add note explaining pure/average dps
- Add note explaining DoT and other basic terms* trim
- 
- Change super crit formula
+ TODO:
+  - Implement burst weapons - Check pure dps capacity interaction
+  - Other alberk features from sheet
+    - HTL duration - propably not
+  - Comments
+  - Edge cases (T-189 MGL, Krakatoa, Starfury, and others if I forgot any)
+  - Info boxes explaining terms (pure/avg dps, DoT, etc)
+  - Message for unsupported weapons, black pistols etc
+  - Adaptive
+  - Time to kill a nm necro?
  *
  */
 
@@ -24,7 +20,7 @@ function setClass(character) {
         $("#char_skills2").html(`<label>Deadly Force: <input type="number" min="0" max="25" step="1" value="0" name="df"></label>`);
     } else if (character == "Heavy") {
         $("#char_skills1").html(`<label>Hold The Line: <input type="number" min="0" max="25" step="1" value="0" name="htl"></label>`);
-        $("#char_skills2").html("<label></label>");
+        $("#char_skills2").html(`<label>Moving: <input type="checkbox" name="htl_moving" value="true"></label>`);
     } else {
         $("#char_skills1").html("<label></label>");
         $("#char_skills2").html("<label></label>");
@@ -41,8 +37,8 @@ function getDPS() {
     let weapon = weaponData[weaponVersion][weaponName];
     // Easiest to just check if not undefined
     if (!weapon) {
-        setOutput("")
-        console.error("Error getting weapon data")
+        setOutput("Weapon not supported");
+        console.error("Error getting weapon data");
         return null;
     }
     let cores = $('input[name="core"]').val();
@@ -59,8 +55,8 @@ function getDPS() {
 
     let crit_level = $('input[name="crit"]').val();
 
-    let helmetVersion = "Normal";
-    let glovesVersion = "Normal";
+    let helmetVersion = $('input[name="helmet_ver"]:checked').val();
+    let glovesVersion = $('input[name="gloves_ver"]:checked').val();
     let selectedHelmet = $('select[name="select_helmet"] option:selected').val();
 //    if ($.inArray(selectedHelmet, armourWithoutVersion)) {
 //        helmetVersion = $('input[name="helmet_ver"]:checked').val();
@@ -71,10 +67,14 @@ function getDPS() {
 //    if ($.inArray(selectedGloves, armourWithoutVersion)) {
 //        glovesVersion = $('input[name="gloves_ver"]:checked').val();
 //    }
+    let selectedPants = $('input[name="select_pants"]:checked').val();
+    let selectedBoots = $('input[name="select_boots"]:checked').val();
 
     let helmetStats = armourData["Helmet"][selectedHelmet][helmetVersion];
     let vestStats = armourData["Vest"][selectedVest];
     let glovesStats = armourData["Gloves"][selectedGloves][glovesVersion];
+    let pantsStats = armourData["Pants"][selectedPants];
+    let bootsStats = armourData["Boots"][selectedBoots];
 
     let helmet_base_crit_bonus = helmetStats["Crit"];
     let helmet_base_dmg_bonus = helmetStats["Dmg"];
@@ -109,9 +109,12 @@ function getDPS() {
     let gloves_reload_mastery = 0.1 * ($('input[name="gloves_mastery"]').val() >= 3);
     let gloves_reload_collections = $('input[name="gloves_collections_red"]').is(":checked") ? 0.1 : 0;
     let reload_bonus = getReload($('input[name="fr"]').val(), helmet_base_reload_bonus, vest_base_reload_bonus, gloves_base_reload_bonus, $('input[name="nimble"]').val(), gun_mast_coll_reload, gloves_reload_mastery, gloves_reload_collections);
-    console.log("Reload return:", reload_bonus)
+    console.log("Reload return:", reload_bonus);
+    
+    let armour_perc_bonus = helmetStats["Cap"] + vestStats["Cap"] + glovesStats["Cap"] + pantsStats["Cap"] + bootsStats["Cap"];
 
-    let output = calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus);
+    let output = calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, 
+                              helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus);
     setOutput(output);
 }
 
@@ -120,7 +123,8 @@ function setOutput(output) {
 }
 
 
-function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus) {
+function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, 
+                      helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus) {
     //TODO: Mastodon clip size increase?
     //TODO: Add mastery lv 3 flamer
     let base_dmg = weapon["Damage"];
@@ -131,6 +135,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let base_pierce = weapon["Pierce"];
     let pellets = weapon["Pellets"];
     let gun_base_crit = weapon["Crit"];
+    let clipPity = weapon["ClipPity"];
     let base_cores = 1 + (0.05 * cores);
 
     let pinpoint = (3 + (1 * (weaponAugments["Pinpoint"] - 1))) * (weaponAugments["Pinpoint"] > 0);
@@ -162,53 +167,59 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     if (class_char === "Assault") {
         class_bonus = 1 + (0.3 + (0.05 * (class_level - 1))) * (class_level > 0); //1 1.3-2.5
     } else if (class_char === "Heavy") {
-        class_bonus = 1 + (0.3 + (0.04 * (class_level - 1))) * (class_level > 0); //1 1.3-2.26
+        let htl_moving = $('input[name="htl_moving"]').is(":checked") ? 0.5 : 1;
+        class_bonus = 1 + (0.3 + (0.04 * (class_level - 1))) * (class_level > 0) * htl_moving; //1 1.3-2.26
     } else {
         class_bonus = 1;
     }
 
     // Capacity
-    let additionalCap = 0;
-    if (typeof gun_capacity_mastery === 'string' || gun_capacity_mastery instanceof String) {
-        if (weaponName === "Mustang") {
-            additionalCap = 0; //TODO: Implement
-        } else {
-            additionalCap += (clip_size * 1 + Math.round(0.01 * parseInt(gun_capacity_mastery.slice(0, -1))));
-        }
-    } else {
-        additionalCap += gun_capacity_mastery;
-    }
-
-    if (typeof gun_capacity_collections === 'string' || gun_capacity_collections instanceof String) {
-        additionalCap += (clip_size * 1 + Math.round(0.01 * parseInt(gun_capacity_collections.slice(0, -2)))); // So, "5%" gets stored as "5%0"
-    } else {
-        additionalCap += gun_capacity_collections;
-    }
-
-    let cap_aug = clip_size * ([0, 0.1, 0.3, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.5][weaponAugments["Capacity"]]);
-    let capacity = (clip_size * base_cores) + cap_aug + additionalCap;
+    let capacity = getCapacity(clipPity, clip_size, (1*cores), base_cores, gun_capacity_mastery, gun_capacity_collections, weaponAugments["Capacity"], armour_perc_bonus);
 
     // Crit
     let crit_skill_chance = (4 + (0.5 * (crit_level - 1))) * (crit_level > 0); //0% 4%-16%
-    let crit_skill_mult = (1 + (0.05 + (0.04 * (crit_level - 1))) * (crit_level > 0)) + (gun_critdmg_mastery + gun_critdmg_collections) / 100; //1 1.05-2.01
-    let crit_chance = pinpoint + target_assist + crit_skill_chance + gun_crit_mastery + gun_crit_collections + helmet_collections + helmet_base_crit_bonus + gloves_base_crit_bonus + gun_base_crit;
-    let crit_bonus = (crit_chance * crit_skill_mult * super_crit) / 100;
+    let crit_skill_mult = (1 + (0.05 + (0.04 * (crit_level - 1))) * (crit_level > 0)); //1 1.05-2.01
+    let crit_chance = (pinpoint + target_assist + crit_skill_chance + gun_crit_mastery + gun_crit_collections + helmet_collections + helmet_base_crit_bonus + gloves_base_crit_bonus + gun_base_crit)/100;
+    let crit_dmg_bonus = (1+(gun_critdmg_mastery/100))*(1+(gun_critdmg_collections/100));
+//    let crit_bonus = (crit_chance * crit_skill_mult * super_crit) / 100;
 //    console.log("crit_bonus, crit_chance, crit_skill_mult, super_crit - Values:")
 //    console.log(crit_bonus, crit_chance, crit_skill_mult, super_crit)
+    //##
+//    console.log("crit_chance:", crit_chance);
+//    console.log("class_bonus:", class_bonus);
+//    console.log("crit_skill_mult:", crit_skill_mult);
+//    console.log("crit_dmg_bonus:", crit_dmg_bonus);
+//    console.log("super_crit:", super_crit);
+    let damage_boost = (1-crit_chance) * class_bonus + crit_chance * (class_bonus + crit_skill_mult) * crit_dmg_bonus * super_crit;
+//    console.log("damage_boost:", damage_boost);
 
     // Main dps formula:
     let displayed_damage = (1 + (0.1 * weaponAugments["Deadly"])) * base_dmg * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force));
-    let pure_damage = displayed_damage * hda_bonus * (class_bonus + crit_bonus) * (pellets + shotgun_mastery5);
-    let pure_DOT = (1 + (0.1 * weaponAugments["Tenacious"])) * base_DOT * base_cores * hda_bonus * (pellets + shotgun_mastery5); // Every gun that doesn't have DOT has base_DOT = 0
+    let adjust_DOT = (base_DOT * (masteries["flamer3"] ? 1.25 : 1));
+    let pure_damage = displayed_damage * hda_bonus * damage_boost * (pellets + shotgun_mastery5);
+    let pure_DOT = (1 + (0.1 * weaponAugments["Tenacious"])) * adjust_DOT * base_cores * hda_bonus * (pellets + shotgun_mastery5); // Every gun that doesn't have DOT has base_DOT = 0
     let pure_rps = (1 + (0.1 * weaponAugments["Overclocked"])) * base_cores * base_rps * gun_rps_collections * gun_rps_mastery;
-    let pure_dps = Math.floor((pure_damage + pure_DOT) * pure_rps);
-    console.log("############")
+    
+    let burstDelayData = specialCases(weaponName, "Burst");
+    let pure_dps = 0;
+    if(burstDelayData){ // Might change to non-cap clipsize
+        let drainTime = (Math.floor(capacity / burstDelayData["Amount"]) / pure_rps) 
+        let burstAdjust = (capacity % burstDelayData["Amount"] == 0) ? (-1 / pure_rps) :  (capacity % burstDelayData["Amount"] - 1) * burstDelayData["Delay"];
+        let adjustedRPS = capacity / (drainTime + burstAdjust);
+        console.log(drainTime, burstAdjust,  adjustedRPS);
+        pure_dps = Math.floor((pure_damage + pure_DOT) * adjustedRPS); 
+    }else{
+        pure_dps = Math.floor((pure_damage + pure_DOT) * pure_rps);
+    }
+    
+    console.log("############");
     console.log("Displayed dmg:", displayed_damage);
     console.log("Displayed rps:", pure_rps);
     console.log("Displayed cap:", capacity);
 
     // Average
     let uptime = (capacity - 1) / pure_rps / ((capacity - 1) / pure_rps + reload_bonus * reload); // clip_size-1 because the last shot and reloading happen at the same time
+    console.log("uptime", uptime);
     let average_dps = Math.floor(pure_dps * uptime);
 
     // Pierce
@@ -216,6 +227,8 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let pure_pierce = Math.floor(pure_dps * gun_pierce);
     let average_pierce = Math.floor(average_dps * gun_pierce);
 
+    let reload_capped = (reload_bonus == 0.2) ? "(Max)" : ""; // Check condition : true, false
+    
     let tempOutput = `<p><br>
     <u><b>${weaponName}:</u></b><br>
     <i>DPS:</i><br>
@@ -223,18 +236,19 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     <b>Average:</b> ${average_dps.toLocaleString('en-US')}<br>
     <b>Pure pierce:</b> ${pure_pierce.toLocaleString('en-US')}<br>
     <b>Average pierce:</b> ${average_pierce.toLocaleString('en-US')}<br><br>
-    <i>Displayed stats:</i><br>
+    <i>Stats:</i><br>
     <b>Damage: </b> ${displayed_damage.toLocaleString('en-US')}<br>
     <b>RPS: </b> ${pure_rps.toLocaleString('en-US')}<br>
-    <b>Capacity: </b> ${capacity.toLocaleString('en-US')}
+    <b>Capacity: </b> ${capacity.toLocaleString('en-US')}<br>
+    <b>Uptime: </b> ${(uptime*100).toLocaleString('en-US')}% ${reload_capped}
     </p>`;
-    console.log("------------")
-    console.log("DPS:")
+    console.log("------------");
+    console.log("DPS:");
     console.log("Pure: ", pure_dps);
     console.log("Average: ", average_dps);
     console.log("Pure pierce: ", pure_pierce);
     console.log("Average pierce: ", average_pierce);
-    console.log("############end")
+    console.log("############end");
 
     return tempOutput;
     // Special cases:
@@ -256,6 +270,74 @@ function getReload(reload_skill, helmet_base_reload_bonus, vest_base_reload_bonu
     } else {
         return reloadBonus;
     }
+}
+
+function getCapacity(clipPity, clip_size, cores, base_cores, gun_capacity_mastery, gun_capacity_collections, capAug, armour_perc_bonus) {
+    let initialCap = clip_size * ([0, 0.1, 0.3, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.5][capAug]);
+    let capCorrection = [0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0][capAug];
+    if(initialCap % 1 == 0){
+        initialCap -= capCorrection;
+    }else{
+        initialCap = Math.floor(initialCap);
+    }
+    let cap_aug_amount = 0;
+    if(initialCap < capAug){
+        cap_aug_amount = capAug;
+    }else{
+        cap_aug_amount = initialCap;
+    }
+    
+    let clip_cores = 0;
+    if(clipPity){
+        let additionCapCores = Math.floor(clip_size * (base_cores-1));
+        if(additionCapCores < cores){
+            clip_cores = cores;
+        }else{
+            clip_cores = additionCapCores;
+        }
+    }else{
+        clip_cores = Math.round(clip_size * (base_cores-1))
+    }
+    
+    let armour_bonus = Math.floor(clip_size * armour_perc_bonus);
+    if(armour_perc_bonus > 0 & armour_bonus < 1){
+        armour_bonus = 1;
+    }
+     
+    let mastery_cap = 0;
+    if (typeof gun_capacity_mastery === 'string' || gun_capacity_mastery instanceof String) { // if % based
+        let perc_conv = 0.01 * parseInt(gun_capacity_mastery.slice(0, -1));
+        mastery_cap = Math.floor(clip_size * perc_conv);
+        if(mastery_cap < 1){
+            mastery_cap = 1;
+        }
+    } else { // static amount
+        mastery_cap += gun_capacity_mastery;
+    }
+
+    let collections_cap = 0;
+    if (typeof gun_capacity_collections === 'string' || gun_capacity_collections instanceof String) {
+        let coll_perc = 0.01 * parseInt(gun_capacity_collections.slice(0, -2));
+        collections_cap += Math.floor(clip_size * coll_perc); // So, "5%" gets stored as "5%0"
+    } else {
+        collections_cap += gun_capacity_collections;
+    }
+    
+//    let cap_new = clip_size + cap_aug_amount + clip_cores + armour_check + mastery_perc + mastery_abs
+    let capacity = clip_size + cap_aug_amount + clip_cores + armour_bonus + mastery_cap + collections_cap;
+    
+//    console.log("initialCap", initialCap);
+//    console.log("#####");
+//    console.log("clip_size", clip_size);
+//    console.log("cap_aug_amount", cap_aug_amount);
+//    console.log("clip_cores", clip_cores);
+//    console.log("armour_check", armour_bonus);
+//    console.log("mastery_cap", mastery_cap);
+//    console.log("collections_cap", collections_cap);
+//    console.log("#####");
+//    console.log("capacity", capacity);
+    
+    return capacity;
 }
 
 function getAugments(...augments) {
