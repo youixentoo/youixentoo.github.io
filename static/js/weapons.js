@@ -204,7 +204,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let pure_dps = 0;
     if(burstDelayData){ // Might change to non-cap clipsize
         let drainTime = (Math.floor(capacity / burstDelayData["Amount"]) / pure_rps) 
-        let burstAdjust = (capacity % burstDelayData["Amount"] == 0) ? (-1 / pure_rps) :  (capacity % burstDelayData["Amount"] - 1) * burstDelayData["Delay"];
+        let burstAdjust = (capacity % burstDelayData["Amount"] === 0) ? (-1 / pure_rps) :  (capacity % burstDelayData["Amount"] - 1) * burstDelayData["Delay"];
         let adjustedRPS = capacity / (drainTime + burstAdjust);
         console.log(drainTime, burstAdjust,  adjustedRPS);
         pure_dps = Math.floor((pure_damage + pure_DOT) * adjustedRPS); 
