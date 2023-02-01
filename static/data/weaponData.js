@@ -4213,15 +4213,15 @@ function specialCases(weaponName, category) {
     const data = {
         "Burst": {
             "Raptor": {
-                "Amount": 3,
+                "Amount": 4,
                 "Delay": 0.02
             },
             "Calamity": {
-                "Amount": 5,
+                "Amount": 6,
                 "Delay": 0.04
             },
             "RIA 75": {
-                "Amount": 3,
+                "Amount": 4,
                 "Delay": 0.1
             }
         },
