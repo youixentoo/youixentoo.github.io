@@ -59,13 +59,12 @@
                     <p>
                         If a gun only has 1 version, you can select Standard, Red or Black, it will give the same values.<br>
                         As for the Black pistols that don't have any stats, they just won't show.<br><br>
-                        
+
                         <b>Disclaimers:</b><br>
                         Due to rounding errors, results might not be 100% accurate.<br>
                         "Stats" might not always line up with the displayed values in-game.<br>
-                        <!-- Burst weapons are currently a bit weird, clip size affects 'pure dps'.<br> -->
-                        Some weapons are not supported yet: Krakatoa, MGL, Starfury and possibly some others.<br>
-                        HTL bonus is calculated as if it has no cooldown, adrenaline is not supported.<br>
+                        Some weapons are not supported yet: MGL, Starfury and possibly some others.<br>
+                        When using HTL or adrenaline, 'Pure' is without cooldowns, 'Average' is with cooldowns.<br>
                         Options are currently pre-selected for easier testing.<br>
                         Still an early version so don't expect all values to be correct.
                     </p>
@@ -84,7 +83,7 @@
                                 </thead>
                                 <tbody class="table-light">
                                     <tr>
-                                        <td rowspan="2">
+                                        <td rowspan="3">
                                             <div><label><input type="radio" name="character" value="Assault" checked="checked" onchange="setClass(this.value)">Assault</label></div>
                                             <div><label><input type="radio" name="character" value="Heavy" onchange="setClass(this.value)">Heavy</label></div>
                                             <div><label><input type="radio" name="character" value="Medic" onchange="setClass(this.value)">Medic</label></div>
@@ -104,7 +103,14 @@
                                             <label>Deadly Force: <input type="number" min="0" max="25" step="1" value="0" name="df"></label>
                                         </td>
                                     </tr>
-
+                                    <tr>
+                                        <td>
+                                            <label>Grenade Damage: <input type="number" min="0" max="25" step="1" value="25" name="nadeDmg"></label>
+                                        </td>
+                                        <td id="char_skills3">
+                                            <label>Adrenaline: <input type="number" min="0" max="25" step="1" value="0" name="adren"></label>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -201,7 +207,7 @@
                                     </tr>
                                     <tr>
                                         <td>Pants</td>
-                                        <td><input type="number" min="0" max="5" step="1" value="5" name="vest_mastery"></td>
+                                        <td><input type="number" min="0" max="5" step="1" value="5" name="pants_mastery"></td>
                                         <td>
                                             <div><label><input type="checkbox" name="pants_collections" value="Normal">Standard</label></div>
                                             <div><label><input type="checkbox" name="pants_collections" value="Red">[RED]</label></div>
@@ -216,7 +222,7 @@
                                     </tr>
                                     <tr>
                                         <td>Boots</td>
-                                        <td><input type="number" min="0" max="5" step="1" value="5" name="vest_mastery"></td>
+                                        <td><input type="number" min="0" max="5" step="1" value="5" name="boots_mastery"></td>
                                         <td>
                                             <div><label><input type="checkbox" name="boots_collections" value="Normal">Standard</label></div>
                                             <div><label><input type="checkbox" name="boots_collections" value="Red">[RED]</label></div>
@@ -227,6 +233,14 @@
                                             <div><label><input type="radio" name="select_boots" value="Other" checked="checked">Other</label></div>
                                             <div><label><input type="radio" name="select_boots" value="Mastodon">Mastodon</label></div>
                                         </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Grenades</td>
+                                        <td><input type="number" min="0" max="5" step="1" value="5" name="nade_mastery"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td></td>
                                     </tr>
                                 </tbody>
