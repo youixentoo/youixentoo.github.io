@@ -1,5 +1,9 @@
 
-//TODO: Output visualisation
+/*
+TODO:
+Output visualisation
+Add hp calculation; https://discord.com/channels/760402578147115038/981692196099063838/1070506298141052958
+*/
 
 function getArmour() {
     const armourData = armourJSON()
