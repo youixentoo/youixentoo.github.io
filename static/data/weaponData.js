@@ -4230,6 +4230,9 @@ function specialCases(weaponName, category) {
         },
         "Split": {
             "Starfury": true
+        },
+        "Grenades": {
+            "T-189 MGL": true
         }
     };
     return data[category][weaponName];
