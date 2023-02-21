@@ -116,7 +116,7 @@ function getDPS() {
     let collections = getCollections(weapon["Class"], gunNormal, gunRed, gunBlack, helmetColl);
 
     // Race modded multiplier
-     let race_modded_mult = [1, 0.92, 0.88, 0.84, 0.8, 0.76, 0.72, 0.68, 0.64, 0.6, 0.56, 0.52, 0.48][weaponAugments["Race Modded"]]
+    let race_modded_mult = [1, 0.92, 0.88, 0.84, 0.8, 0.76, 0.72, 0.68, 0.64, 0.6, 0.56, 0.52, 0.48][weaponAugments["Race Modded"]];
 
     // Get reload bonus from gun masteries/collections, gloves mastery 3, gloves collection red
     let gun_mast_coll_reload = masteries["gun_reload"] + collections["reload"];
@@ -279,7 +279,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let avg_damage = pure_damage_pre_dmg_boost * damage_boost_avg;
     
     let dps_non_uptime = dps_calc(avg_damage, pure_DOT, poolDmg * damage_boost_avg, display_rps * average_rps_incr);
-    console.log("dps_non_uptime: ", dps_non_uptime, dmg_cooldown, average_rps_incr, pure_dps);
+    //console.log("dps_non_uptime: ", dps_non_uptime, dmg_cooldown, average_rps_incr, pure_dps);
     let average_dps = Math.floor(dps_non_uptime * uptime);
 
     // Calculate pierce
