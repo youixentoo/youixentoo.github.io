@@ -1,11 +1,10 @@
 /*
  TODO:
-  - MGL - check what applied when, it's sooo fucked
-  - Starfury
   - Formatted output
     - Info boxes explaining terms (pure/avg dps, DoT, etc)
   - Message for unsupported weapons, black pistols etc
   - Adaptive
+  - Shooting at boss dps for assault rifles
   - Time to kill a nm necro?
  *
  */
@@ -202,8 +201,6 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     // Only applies to BASE damage, not even cores affect it.
     let nade_mult = specialCases(weaponName, "Grenades") ? (0.15 * $('input[name="nadeDmg"]').val()) : 0;
     let nade_mast_mult = specialCases(weaponName, "Grenades") ? (0.05 * masteries["nade_mast"]) : 0;
-    console.log("nade: ",nade_mult);
-    console.log(nade_mast_mult);
 
     // Calculate capacity
     let capacity = getCapacity(clipPity, clip_size, (1*cores), base_cores, gun_capacity_mastery, gun_capacity_collections, weaponAugments["Capacity"], armour_perc_bonus);
@@ -218,7 +215,16 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
 
     // Pure dmg and rps:
     let damageMultiplier = (1 + (0.1 * weaponAugments["Deadly"])) * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force));
-    let displayed_damage = base_dmg * damageMultiplier; // + (base_dmg * nade_mult) + (base_dmg * nade_mast_mult);
+    let displayed_damage;
+    if(specialCases(weaponName, "Grenades")){
+        let grenade_dmg_mult = 1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force);
+        let nade_dmg_skill = base_dmg * nade_mult;
+        let nade_dmg_mast = base_dmg * nade_mast_mult;
+        let base_with_deadly_cores = (base_dmg*base_cores) * (1 + (0.1 * weaponAugments["Deadly"]));
+        displayed_damage = ((base_with_deadly_cores * grenade_dmg_mult * gun_dmg_mastery * gun_dmg_collections) + nade_dmg_skill + nade_dmg_mast) * helm_mastery2;
+    }else{
+        displayed_damage = base_dmg * damageMultiplier;
+    }       
     let adjust_DOT = (base_DOT * (masteries["flamer3"] ? 1.25 : 1));
     let pure_damage_pre_dmg_boost = displayed_damage * hda_bonus * (pellets + shotgun_mastery5);
     let pure_damage = pure_damage_pre_dmg_boost * damage_boost_pure;
@@ -226,7 +232,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let pure_DOT = display_DOT * hda_bonus * (pellets + shotgun_mastery5);
     let display_rps = (1 + (0.1 * weaponAugments["Overclocked"])) * base_cores * base_rps * gun_rps_collections * gun_rps_mastery;
     
-        // Adrenaline bonus 
+    // Adrenaline bonus 
     let adren_bonus = 1 + roundNumber(1 - 0.75 * Math.pow(0.98, adren - 1), 4) * (adren > 0);
     let pure_rps = display_rps * adren_bonus;
     
@@ -242,7 +248,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let burstDelayData = specialCases(weaponName, "Burst");
     // Burst / non burst
     if(burstDelayData){
-        let drainTime = (Math.floor(capacity / burstDelayData["Amount"]) / pure_rps)
+        let drainTime = (Math.floor(capacity / burstDelayData["Amount"]) / pure_rps);
         let burstAdjust = (capacity % burstDelayData["Amount"] === 0) ? (-1 / pure_rps) : (capacity % burstDelayData["Amount"] - 1) * burstDelayData["Delay"];
         pure_rps = capacity / (drainTime + burstAdjust);
 //        console.log(drainTime, burstAdjust, pure_rps);
@@ -360,7 +366,7 @@ function getCapacity(clipPity, clip_size, cores, base_cores, gun_capacity_master
             clip_cores = additionCapCores;
         }
     }else{
-        clip_cores = Math.round(clip_size * (base_cores-1))
+        clip_cores = Math.round(clip_size * (base_cores-1));
     }
 
     // Extra bullet given by armour bonuses (mastodon only as of right now), gives atleast 1 bullet
