@@ -28,7 +28,7 @@ function setClass(character) {
         $("#char_skills2").html("<label></label>");
         $("#char_skills3").html("<label></label>");
     }
-}
+};
  /*
   * Main dps calculation function
   */
@@ -134,15 +134,26 @@ function getDPS() {
                               helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus, adren);
 
     // Set the output on the webpage
-    setOutput(output);
-}
+    addToTable(output[0], "dpsTable");
+    addToTable(output[1], "statsTable");
+};
 
 /*
  * Display the output in the designated <div>
  */
-function setOutput(output) {
-    $("#resultsNormal").html(output);
-}
+function addToTable(trOut, tableId) {
+    let outTable = document.getElementById(tableId).getElementsByTagName("tbody")[0].insertRow(0);
+    outTable.innerHTML = trOut;
+};
+    
+/*
+ * 
+ * Clears the output tables
+ */
+function clearTable(){
+    $("#dpsTable tbody>tr").remove();
+    $("#statsTable tbody>tr").remove();
+};
 
 
 function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level,
@@ -248,9 +259,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let burstDelayData = specialCases(weaponName, "Burst");
     // Burst / non burst
     if(burstDelayData){
-        let drainTime = (Math.floor(capacity / burstDelayData["Amount"]) / pure_rps);
-        let burstAdjust = (capacity % burstDelayData["Amount"] === 0) ? (-1 / pure_rps) : (capacity % burstDelayData["Amount"] - 1) * burstDelayData["Delay"];
-        pure_rps = capacity / (drainTime + burstAdjust);
+        pure_rps = burst_rps(burstDelayData, capacity, pure_rps);
 //        console.log(drainTime, burstAdjust, pure_rps);
     }
     let pure_dps = dps_calc(pure_damage, pure_DOT, pure_pool, pure_rps);
@@ -278,12 +287,19 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let damage_boost_avg = (1-crit_chance) * class_bonus_cooldown + crit_chance * (class_bonus_cooldown + crit_skill_mult) * crit_dmg_bonus * super_crit;
     let avg_damage = pure_damage_pre_dmg_boost * damage_boost_avg;
     
-    let dps_non_uptime = dps_calc(avg_damage, pure_DOT, poolDmg * damage_boost_avg, display_rps * average_rps_incr);
+    let avg_rps = display_rps * average_rps_incr;
+    if(burstDelayData){
+        avg_rps = burst_rps(burstDelayData, capacity, avg_rps)
+    }
+    
+    
+    let dps_non_uptime = dps_calc(avg_damage, pure_DOT, poolDmg * damage_boost_avg, avg_rps);
     //console.log("dps_non_uptime: ", dps_non_uptime, dmg_cooldown, average_rps_incr, pure_dps);
     let average_dps = Math.floor(dps_non_uptime * uptime);
 
     // Calculate pierce
-    let gun_pierce = (base_pierce * base_cores * (1 + (0.1 * weaponAugments["Piercing"])) + gun_pierce_mastery + gun_pierce_collections) * class_bonus;
+    let pierce_wo_bonus = base_pierce * base_cores * (1 + (0.1 * weaponAugments["Piercing"])) + gun_pierce_mastery + gun_pierce_collections;
+    let gun_pierce = pierce_wo_bonus * class_bonus;
     let pure_pierce = Math.floor(pure_dps * gun_pierce);
     let average_pierce = Math.floor(average_dps * gun_pierce);
 
@@ -292,6 +308,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     // Output display only calcs
     let crit_perc = Math.round(crit_chance * 100);
     let reload_display = roundNumber(reload_bonus * reload, 2);
+    let uptime_rounded = roundNumber(uptime, 4);
     
     console.log("------------");
     console.log("DPS:");
@@ -302,16 +319,27 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     console.log("Uptime: ", uptime);
     console.log("############end");
 
-    return outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average_pierce, displayed_damage, display_rps, capacity, gun_pierce, display_DOT, crit_perc, poolDmg, reload_display, uptime, reload_capped);
-}
+//    return outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average_pierce, displayed_damage, display_rps, capacity, gun_pierce, display_DOT, crit_perc, poolDmg, reload_display, uptime, reload_capped);
+    return [getDpsTR(weaponName, pure_dps, average_dps, uptime_rounded, reload_capped, reload_display, gun_pierce), 
+            getStatsTR(weaponName, displayed_damage, display_rps, capacity, pierce_wo_bonus, pure_DOT, crit_perc, poolDmg, reload_display)];
+};
 
 /*
  * Function to calc dps, made for easier use
  */
 function dps_calc(damage, dot, pool, rps){
     return Math.floor((damage + dot + pool) * rps);
-}
+};
 
+/*
+ * Function for burst rps, as it need to be done twice
+ */
+function burst_rps(burstDelayData, capacity, rps){
+    let drainTime = (Math.floor(capacity / burstDelayData["Amount"]) / rps);
+    let burstAdjust = (capacity % burstDelayData["Amount"] === 0) ? (-1 / rps) : (capacity % burstDelayData["Amount"] - 1) * burstDelayData["Delay"];
+    return (capacity / (drainTime + burstAdjust));
+};
+    
 /*
  * Function to calculate reload bonus.
  * Caps out at 0.2
@@ -332,7 +360,7 @@ function getReload(reload_skill, helmet_base_reload_bonus, vest_base_reload_bonu
     } else {
         return reloadBonus;
     }
-}
+};
 
 /*
  * Function to calculate capacity of weapon
@@ -380,7 +408,7 @@ function getCapacity(clipPity, clip_size, cores, base_cores, gun_capacity_master
     if (typeof gun_capacity_mastery === 'string' || gun_capacity_mastery instanceof String) { // % based
         let perc_conv = 0.01 * parseInt(gun_capacity_mastery.slice(0, -1)); // Because % values get stored in an annoying way
         mastery_cap = Math.floor(clip_size * perc_conv);
-        if(mastery_cap < 1){
+        if(mastery_cap < 1 & mastery_cap > 0){
             mastery_cap = 1;
         }
     } else { // static amount
@@ -411,7 +439,7 @@ function getCapacity(clipPity, clip_size, cores, base_cores, gun_capacity_master
 //    console.log("capacity", capacity);
 
     return capacity;
-}
+};
 
 /*
  * Function to determine selected augments.
@@ -437,7 +465,7 @@ function getAugments(...augments) {
     });
 
     return weaponAugments;
-}
+};
 
 /*
  * Fucntion to get weapon mastery data from weaponData.js and combine it in a single dictionary
@@ -454,7 +482,7 @@ function getMasteries(weaponClass, gunMasteryLevel, hda_mult, HelmetMastery, Nad
 
     let masteries = Object.assign({}, masteryStats, otherMasteries);
     return masteries;
-}
+};
 
 /*
  * Fucntion to get the weapon collection bonuses from weaponData.js and combine them into a single
@@ -490,7 +518,7 @@ function getCollections(weaponClass, gunNormal, gunRed, gunBlack, helmetColl) {
     collections["helmet"] = helmetColl;
 
     return collections;
-}
+};
 
 /*
  * Combines 2 dictionaries into 1
@@ -502,7 +530,7 @@ function addToCollDict(dict1, dict2) {
         }
     }
     return dict1;
-}
+};
 
 /*
  * Rounds a number to a specified amount of decimal places.
@@ -512,12 +540,12 @@ function roundNumber(num, decimalPlaces = 0) {
     var p = Math.pow(10, decimalPlaces);
     var n = (num * p) * (1 + Number.EPSILON);
     return Math.round(n) / p;
-}
+};
 
 /*
  * Used to generate formatted output
  */
-function outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average_pierce, displayed_damage, pure_rps, capacity, gun_pierce, pure_DOT, crit_perc, poolDmg, reload_display, uptime, reload_capped) {
+function outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average_pierce, displayed_damage, display_rps, capacity, gun_pierce, pure_DOT, crit_perc, poolDmg, reload_display, uptime, reload_capped) {
     // Maybe do something like (...augments) and input (stat, value) tuples
     let output = `<p><br>
     <u><b>${weaponName}:</u></b><br>
@@ -528,7 +556,7 @@ function outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average
     <b>Average pierce:</b> ${average_pierce.toLocaleString('en-US')}<br><br>
     <i>Stats:</i><br>
     <b>Damage: </b> ${displayed_damage.toLocaleString('en-US')}<br>
-    <b>RPS: </b> ${pure_rps.toLocaleString('en-US')}<br>
+    <b>RPS: </b> ${display_rps.toLocaleString('en-US')}<br>
     <b>Capacity: </b> ${capacity.toLocaleString('en-US')}<br>
     <b>Pierce: </b> ${gun_pierce.toLocaleString('en-US')} <br>
     <b>DoT: </b> ${pure_DOT.toLocaleString('en-US')} <br>
@@ -539,4 +567,31 @@ function outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average
     </p>`;
     
     return output;
+};
+
+function getDpsTR(weaponName, pure_dps, average_dps, uptime, reload_capped, reload_display, pure_pierce) {
+
+    return `<tr>
+                <td>${weaponName}</td>
+                <td>${pure_dps.toLocaleString()}</td>
+                <td>${average_dps.toLocaleString()}</td>
+                <td>${(uptime*100).toLocaleString()}% ${reload_capped}</td>
+                <td>${reload_display.toLocaleString()}</td>
+                <td>${pure_pierce.toLocaleString()}</td>
+            </tr>`;
+};
+
+function getStatsTR(weaponName, displayed_damage, display_rps, capacity, gun_pierce, pure_DOT, crit_perc, poolDmg, reload_display) {
+
+    return `<tr>
+                <td>${weaponName}</td>
+                <td>${displayed_damage.toLocaleString()}</td>
+                <td>${display_rps.toLocaleString()}</td>
+                <td>${capacity.toLocaleString()}</td>
+                <td>${gun_pierce.toLocaleString()}</td>
+                <td>${pure_DOT.toLocaleString()}</td>
+                <td>${crit_perc.toLocaleString()}%</td>
+                <td>${poolDmg.toLocaleString()}</td>
+                <td>${reload_display.toLocaleString()}</td>
+            </tr>`;
 };

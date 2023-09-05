@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Element resizing like weapons -->
 <html>
     <head>
         <title>Armour calculator</title>
@@ -41,9 +42,6 @@
                                     <a class="nav-link" href="/prices.html">Prices<span class="sr-only"></span></a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Discord<span class="sr-only"></span></a>
-                                </li>
-                                <li class="nav-item active">
                                     <a class="nav-link" href="/credits.html">Credits<span class="sr-only"></span></a>
                                 </li>
                             </ul>
@@ -82,7 +80,7 @@
                                         <th scope="row">Helmet</th>
                                         <td>
                                             <div id="vHelmets">
-                                                <select class="form-select form-select-sm" class="form-select form-select-sm" id="versionHelm" name="versionHelm" onchange="setHelmets(this.value)" type="version">
+                                                <select id="versionHelm" name="versionHelm" onchange="setHelmets(this.value)" type="version">
                                                     <option value="Normal">Normal</option>
                                                     <option value="Red">Red</option>
                                                     <option value="Black">Black</option>
@@ -96,7 +94,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" class="form-select form-select-sm" id="helmAug1" name="helmAug1" type="aug">
+                                                <select id="helmAug1" name="helmAug1" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -111,7 +109,7 @@
                                                 <input id="helmAugLv1" type="number" min="0" max="12" step="1" value="0" >
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" class="form-select form-select-sm" id="helmAug2" name="helmAug2" type="aug">
+                                                <select id="helmAug2" name="helmAug2" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -126,7 +124,7 @@
                                                 <input id="helmAugLv2" type="number" min="0" max="12" step="1" value="0">
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" class="form-select form-select-sm" id="helmAug3" name="helmAug3" type="aug">
+                                                <select id="helmAug3" name="helmAug3" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -155,7 +153,7 @@
                                         <th scope="row">Vest</th>
                                         <td>
                                             <div id="vVests">
-                                                <select class="form-select form-select-sm" id="versionVest" name="versionVest" onchange="setVests(this.value)" type="version">
+                                                <select id="versionVest" name="versionVest" onchange="setVests(this.value)" type="version">
                                                     <option value="Normal">Normal</option>
                                                     <option value="Red">Red</option>
                                                     <option value="Black">Black</option>
@@ -169,7 +167,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="vestAug1" name="vestAug1" type="aug">
+                                                <select id="vestAug1" name="vestAug1" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -184,7 +182,7 @@
                                                 <input id="vestAugLv1" type="number" min="0" max="12" step="1" value="0">
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="vestAug2" name="vestAug2" type="aug">
+                                                <select id="vestAug2" name="vestAug2" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -199,7 +197,7 @@
                                                 <input id="vestAugLv2" type="number" min="0" max="12" step="1" value="0">
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="vestAug3" name="vestAug3" type="aug">
+                                                <select id="vestAug3" name="vestAug3" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -228,7 +226,7 @@
                                         <th scope="row">Gloves</th>
                                         <td>
                                             <div id="vGloves">
-                                                <select class="form-select form-select-sm" id="versionGloves" name="versionGloves" onchange="setGloves(this.value)" type="version">
+                                                <select id="versionGloves" name="versionGloves" onchange="setGloves(this.value)" type="version">
                                                     <option value="Normal">Normal</option>
                                                     <option value="Red">Red</option>
                                                     <option value="Black">Black</option>
@@ -242,7 +240,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="glovesAug1" name="glovesAug1" type="aug">
+                                                <select id="glovesAug1" name="glovesAug1" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -252,7 +250,7 @@
                                                 <input id="glovesAugLv1" type="number" min="0" max="12" step="1" value="0">
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="glovesAug2" name="glovesAug2" type="aug">
+                                                <select id="glovesAug2" name="glovesAug2" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -261,7 +259,7 @@
                                                 <input id="glovesAugLv2" type="number" min="0" max="12" step="1" value="0">
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="glovesAug3" name="glovesAug3" type="aug">
+                                                <select id="glovesAug3" name="glovesAug3" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -285,7 +283,7 @@
                                         <th scope="row">Pants</th>
                                         <td>
                                             <div id=vPants>
-                                                <select class="form-select form-select-sm" id="versionPants" name="versionPants" onchange="setPants(this.value)" type="version">
+                                                <select id="versionPants" name="versionPants" onchange="setPants(this.value)" type="version">
                                                     <option value="Normal">Normal</option>
                                                     <option value="Red">Red</option>
                                                     <option value="Black">Black</option>
@@ -299,7 +297,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="pantsAug1" name="pantsAug1" type="aug">
+                                                <select id="pantsAug1" name="pantsAug1" type="aug">
                                                     <option value="---">---</option
                                                     ><option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -310,7 +308,7 @@
                                                 <input id="pantsAugLv1" type="number" min="0" max="12" step="1" value="0">
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="pantsAug2" name="pantsAug2" type="aug">
+                                                <select id="pantsAug2" name="pantsAug2" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -321,7 +319,7 @@
                                                 <input id="pantsAugLv2" type="number" min="0" max="12" step="1" value="0">
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="pantsAug3" name="pantsAug3" type="aug">
+                                                <select id="pantsAug3" name="pantsAug3" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -346,7 +344,7 @@
                                         <th scope="row">Boots</th>
                                         <td>
                                             <div id="vBoots">
-                                                <select class="form-select form-select-sm" id="versionBoots" name="versionBoots" onchange="setBoots(this.value)" type="version">
+                                                <select id="versionBoots" name="versionBoots" onchange="setBoots(this.value)" type="version">
                                                     <option value="Normal">Normal</option>
                                                     <option value="Red">Red</option>
                                                     <option value="Black">Black</option>
@@ -360,7 +358,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="bootsAug1" name="bootsAug1" type="aug">
+                                                <select id="bootsAug1" name="bootsAug1" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -371,7 +369,7 @@
                                                 <input id="bootsAugLv1" type="number" min="0" max="12" step="1" value="0">
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="bootsAug2" name="bootsAug2" type="aug">
+                                                <select id="bootsAug2" name="bootsAug2" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -382,7 +380,7 @@
                                                 <input id="bootsAugLv2" type="number" min="0" max="12" step="1" value="0">
                                             </div>
                                             <div class="d-flex flex-row">
-                                                <select class="form-select form-select-sm" id="bootsAug3" name="bootsAug3" type="aug">
+                                                <select id="bootsAug3" name="bootsAug3" type="aug">
                                                     <option value="---">---</option>
                                                     <option value="Fortified">Fortified</option>
                                                     <option value="Heat Resistant">Heat Resistant</option>
@@ -416,11 +414,6 @@
                         </div>
                     </div>
                     <div id="mobileResults" class="col-auto table-responsive">
-                    </div>
-                </div>
-                <div class="footer fixed-bottom">
-                    <div>
-                        <p class="copyright" style="color:grey;font-family:Verdana;font-size:11px;text-align:center">Copyright youixentoo 2022</p>
                     </div>
                 </div>
             </div>
