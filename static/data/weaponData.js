@@ -1724,7 +1724,7 @@ function weaponJSON() {
                 "Type": "Physical",
                 "Damage": 320,
                 "DOT": 0,
-                "RPS": 6.0,
+                "RPS": 7.0,
                 "Clip": 180,
                 "Reload": 4.1,
                 "Pierce": 3,
@@ -4839,7 +4839,7 @@ function weaponCollections() {
                 "critc": 0,
                 "critdmg": 0,
                 "capacity": 0,
-                "reload": 5
+                "reload": 0.05
             },
             "Black": {
                 "dmg": 0,

@@ -42,9 +42,6 @@
                                     <a class="nav-link" href="/prices.html">Prices<span class="sr-only"></span></a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="/discord.html">Discord<span class="sr-only"></span></a>
-                                </li>
-                                <li class="nav-item active">
                                     <a class="nav-link" href="/credits.html">Credits<span class="sr-only"></span></a>
                                 </li>
                             </ul>
@@ -64,7 +61,8 @@
                         Due to rounding errors, results might not be 100% accurate.<br>
                         "Stats" might not always line up with the displayed values in-game.<br>
                         When using HTL or adrenaline, 'Pure' is without cooldowns, 'Average' is with cooldowns.<br>
-                        Option for shooting at boss (assault rifle mastery) might be added at some point.
+                        Option for shooting at boss (assault rifle mastery) might be added at some point.<br>
+                        Burst weapons are a pain.
                     </p>
                 </div>
                 <hr>
@@ -147,7 +145,7 @@
                                                 <option value="Mastodon">Mastodon</option>
                                                 <option value="Overwatch">Overwatch</option>
                                                 <option value="Mako">Mako</option>
-                                                <option value="Other">Other</option>
+                                                <option value="Other" selected>Other</option>
                                             </select>
                                         </td>
                                         <td>
@@ -193,7 +191,7 @@
                                                 <option value="Overwatch">Overwatch</option>
                                                 <option value="Mako">Mako</option>
                                                 <option value="Clown">Clown</option>
-                                                <option value="Other">Other</option>
+                                                <option value="Other" selected>Other</option>
                                                 <!-- <option value=""></option> -->
                                             </select>
                                         </td>
@@ -502,19 +500,67 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <div id="resultsNormal" class="col-auto">
-
-                    </div>
-                    <div id="calculations">
-                        <div id="getArmour">
-                            <button type="button" class="btn btn-light btn-outline-dark" onclick="getDPS()">Calc</button>
+                        <div id="buttons" class="d-flex justify-content-between">
+                            <div class="p-1">
+                                <button type="button" class="btn btn-light btn-outline-dark" onclick="getDPS()">Get dps</button>
+                            </div>
+                            <div class="p-1">
+                                <button type="button" class="btn btn-light btn-outline-dark" onclick="clearTable()">Clear tables</button>
+                            </div>
                             <!-- <label>Mobile output <input id="MobileView" class="form-check-input" type="checkbox" name="mobileView" value="true"></label> -->
                         </div>
                     </div>
-                    <div id="mobileResults" class="col-auto table-responsive">
+                    <div id="resultsNormal" class="col-auto">
+                        <ul class="nav nav-tabs" id="outputTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="dps-tab" data-bs-toggle="tab" data-bs-target="#dps" type="button" role="tab" aria-controls="dps" aria-selected="true">DPS</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="stats-tab" data-bs-toggle="tab" data-bs-target="#stats" type="button" role="tab" aria-controls="stats" aria-selected="false">Stats</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="outputTables">
+                            <div class="tab-pane fade show active" id="dps" role="tabpanel" aria-labelledby="dps-tab">
+                                <div class="table-responsive">
+                                    <table id="dpsTable" class="table align-middle">
+                                        <thead>
+                                        <th>Weapon</th>
+                                        <th>Pure dps</th>
+                                        <th>Average dps</th>
+                                        <th>Uptime</th>
+                                        <th>Reload time</th>
+                                        <th>Pierce</th>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+                                <div class="table-responsive">
+                                    <table id="statsTable" class="table align-middle">
+                                        <thead>
+                                        <th>Weapon</th>
+                                        <th>Damage</th>
+                                        <th>RPS</th>
+                                        <th>Capacity</th>
+                                        <th>Pierce</th>
+                                        <th>DoT</th>
+                                        <th>Crit chance</th>
+                                        <th>Pool damage</th>
+                                        <th>Reload time</th>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="why" class="col-auto"> <!--  table-responsive -->
                     </div>
                 </div>
             </div>
+        </div>
     </body>
 </html>

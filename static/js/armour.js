@@ -220,7 +220,7 @@ function calcVestResists(vestRes, bae, checkboxValues) {
     if (vestMast == 5) {
         var addRes = [250, 200, 200]
     } else if (vestMast > 0) {
-        var addRes = [50, 0, 0]
+        var addRes = [50, 50, 50]
     } else {
         var addRes = [0, 0, 0]
     }
@@ -438,7 +438,7 @@ function setHelmets(version) {
 function setHelmetsSelection(version) {
     document.getElementById("helmets").innerHTML = "";
     if (version == "Other") {
-        helmets.innerHTML = `<select class="form-select form-select-sm" id="Helmet" name="Helmet" type="armour">
+        helmets.innerHTML = `<select id="Helmet" name="Helmet" type="armour">
       <option value="---">---</option>
       <option value="Dynamo Helmet">Dynamo Helmet</option>
       <option value="Overwatch Helmet">Overwatch Helmet</option>
@@ -448,7 +448,7 @@ function setHelmetsSelection(version) {
       <option value="Clown Helm">Clown Helm</option>
     </select>`
     } else {
-        helmets.innerHTML = `<select class="form-select form-select-sm" id="Helmet" name="Helmet" type="armour">
+        helmets.innerHTML = `<select id="Helmet" name="Helmet" type="armour">
     <option value="---">---</option>
     <option value="HVM Kevlar Helmet">HVM Kevlar Helmet</option>
     <option value="HVM Carbon Fibre Helmet">HVM Carbon Fibre Helmet</option>
@@ -479,7 +479,7 @@ function setVests(version) {
 function setVestsSelection(version) {
     document.getElementById("vests").innerHTML = "";
     if (version == "Other") {
-        vests.innerHTML = `<select class="form-select form-select-sm" id="Vest" name="Vest" type="armour">
+        vests.innerHTML = `<select id="Vest" name="Vest" type="armour">
     <option value="---">---</option>
     <option value="Dynamo Chest">Dynamo Chest</option>
     <option value="Overwatch Chest">Overwatch Chest</option>
@@ -489,7 +489,7 @@ function setVestsSelection(version) {
     <option value="Clown Chest">Clown Chest</option>
     </select>`
     } else {
-        vests.innerHTML = `<select class="form-select form-select-sm" id="Vest" name="Vest" type="armour">
+        vests.innerHTML = `<select id="Vest" name="Vest" type="armour">
     <option value="---">---</option>
     <option value="HVM Kevlar Vest">HVM Kevlar Vest</option>
     <option value="HVM Carbon Fibre Vest">HVM Carbon Fibre Vest</option>
@@ -522,7 +522,7 @@ function setGloves(version) {
 function setGlovesSelection(version) {
     document.getElementById("gloves").innerHTML = "";
     if (version == "Other") {
-        gloves.innerHTML = `<select class="form-select form-select-sm" id="Glove" name="Gloves" type="armour">
+        gloves.innerHTML = `<select id="Glove" name="Gloves" type="armour">
     <option value="---">---</option>
     <option value="Dynamo Gloves">Dynamo Gloves</option>
     <option value="Overwatch Gloves">Overwatch Gloves</option>
@@ -532,7 +532,7 @@ function setGlovesSelection(version) {
     <option value="Clown Gauntlets">Clown Gauntlets</option>
     </select>`
     } else {
-        gloves.innerHTML = `<select class="form-select form-select-sm" id="Glove" name="Gloves" type="armour">
+        gloves.innerHTML = `<select id="Glove" name="Gloves" type="armour">
     <option value="---" selected="selected">---</option>
     <option value="HVM Kevlar Gloves">HVM Kevlar Gloves</option>
     <option value="HVM Carbon Fibre Gloves">HVM Carbon Fibre Gloves</option>
@@ -563,7 +563,7 @@ function setPants(version) {
 function setPantsSelection(version) {
     document.getElementById("pants").innerHTML = "";
     if (version == "Other") {
-        pants.innerHTML = `<select class="form-select form-select-sm" id="Pant" name="Pants" type="armour">
+        pants.innerHTML = `<select id="Pant" name="Pants" type="armour">
       <option value="---">---</option>
       <option value="Dynamo Legs">Dynamo Legs</option>
       <option value="Overwatch Pants">Overwatch Pants</option>
@@ -573,7 +573,7 @@ function setPantsSelection(version) {
       <option value="Clown Legs">Clown Legs</option>
     </select>`
     } else {
-        pants.innerHTML = `<select class="form-select form-select-sm" id="Pant" name="Pants" type="armour">
+        pants.innerHTML = `<select id="Pant" name="Pants" type="armour">
       <option value="---">---</option>
       <option value="HVM Kevlar Pants">HVM Kevlar Pants</option>
       <option value="HVM Carbon Fibre Pants">HVM Carbon Fibre Pants</option>
@@ -604,7 +604,7 @@ function setBoots(version) {
 function setBootsSelection(version) {
     document.getElementById("boots").innerHTML = "";
     if (version == "Other") {
-        boots.innerHTML = `<select class="form-select form-select-sm" id="Boot" name="Boots" type="armour">
+        boots.innerHTML = `<select id="Boot" name="Boots" type="armour">
       <option value="---">---</option>
       <option value="Dynamo Boots">Dynamo Boots</option>
       <option value="Overwatch Boots">Overwatch Boots</option>
@@ -614,7 +614,7 @@ function setBootsSelection(version) {
       <option value="Clown Boots">Clown Boots</option>
     </select>`
     } else {
-        boots.innerHTML = `<select class="form-select form-select-sm" id="Boot" name="Boots" type="armour">
+        boots.innerHTML = `<select id="Boot" name="Boots" type="armour">
       <option value="---" selected="selected">---</option>
       <option value="HVM Combat Boots">HVM Combat Boots</option>
       <option value="HVM Carbon Fibre Boots">HVM Carbon Fibre Boots</option>
