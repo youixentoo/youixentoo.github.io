@@ -7,6 +7,8 @@
  - Shooting at boss dps for assault rifles
  - Time to kill a nm necro?
  - Cleanup v2
+ - Cut off output table
+ - Weapon version in output
  *
  */
 
@@ -447,9 +449,11 @@ function getCapacity(clipPity, clip_size, cores, base_cores, gun_capacity_master
     let mastery_cap = 0;
     if (typeof gun_capacity_mastery === 'string' || gun_capacity_mastery instanceof String) { // % based
         let perc_conv = 0.01 * parseInt(gun_capacity_mastery.slice(0, -1)); // Because % values get stored in an annoying way
-        mastery_cap = Math.floor(clip_size * perc_conv);
-        if (mastery_cap < 1 & mastery_cap > 0) {
+        let mastery_cap_int = clip_size * perc_conv;
+        if (mastery_cap_int < 1 & mastery_cap_int > 0) {
             mastery_cap = 1;
+        }else{
+            mastery_cap = Math.floor(mastery_cap_int);
         }
     } else { // static amount
         mastery_cap += gun_capacity_mastery;
