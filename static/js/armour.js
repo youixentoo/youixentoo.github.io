@@ -1,9 +1,127 @@
 
 /*
-TODO:
-Output visualisation
-Add hp calculation; https://discord.com/channels/760402578147115038/981692196099063838/1070506298141052958
-*/
+ TODO:
+ Output visualisation
+ Add hp calculation; https://discord.com/channels/760402578147115038/981692196099063838/1070506298141052958
+ Share code: a-z for armour, version, augs.
+ helm, aug1, aug2, aug3, version, vest, aug1, etc.
+ Gear: A-Z
+ Augs: 0-= + Level: 0-<
+ Version: 0-3
+ Cores: 0-:
+ Mastery: 0-5
+ Collections: A or B (*3)
+ BAE: 0-I
+ 
+ ### Rework above entirely ###
+ Make code usable in weapon calc for easy import. 
+ */
+
+const letterNumber = s => s.split('').map(s => s.charCodeAt() - 48);
+const armourVers = ["Normal", "Red", "Black", "Other"];
+
+function compressCode(code){
+    return code;
+}
+
+function decompressCode(code){
+    return code;
+}
+
+function getCode() {
+    // bs here
+    var unCode = "C112233161ABAD223344172BABE132435183ABAF243546194BABG1526371:5ABA?";
+    $('input[name="codeGen"]').val(compressCode(unCode));
+}
+
+function useCode() {
+    var deCode = decompressCode($('input[name="codeGen"]').val());
+    if (deCode.length !== 66) { // Code should always be 66 characters long
+        return;
+    }
+    var convertedCode = letterNumber(deCode);
+    //console.log(convertedCode);
+    // B112233112BBAB112233112BBAB112233112BBAB112233112BBAB112233112BBA<
+
+    // Helm
+    var helmVer = armourVers[convertedCode[7]];
+    setHelmets(helmVer, convertedCode[0], false);
+    $("#versionHelm").val(helmVer);
+    var helmAugs = $("#helmAug1 option").toArray().map(o => o.value);
+    $("#helmAug1").val(helmAugs[convertedCode[1]]).change();
+    $("#helmAug2").val(helmAugs[convertedCode[3]]).change();
+    $("#helmAug3").val(helmAugs[convertedCode[5]]).change(); //-49
+    $("#helmAugLv1").val(convertedCode[2]);
+    $("#helmAugLv2").val(convertedCode[4]);
+    $("#helmAugLv3").val(convertedCode[6]);
+    $("#helmCore").val(convertedCode[8]);
+    $("#helmMast").val(convertedCode[9]);
+
+    // Vest
+    var vestVer = armourVers[convertedCode[20]];
+    console.log(vestVer, convertedCode[13]);
+    setVests(vestVer, convertedCode[13], false);
+    $("#versionVest").val(vestVer);
+    var vestAugs = $("#vestAug1 option").toArray().map(o => o.value);
+    $("#vestAug1").val(vestAugs[convertedCode[14]]).change();
+    $("#vestAug2").val(vestAugs[convertedCode[16]]).change();
+    $("#vestAug3").val(vestAugs[convertedCode[18]]).change();
+    $("#vestAugLv1").val(convertedCode[15]);
+    $("#vestAugLv2").val(convertedCode[17]);
+    $("#vestAugLv3").val(convertedCode[19]);
+    $("#vestCore").val(convertedCode[21]);
+    $("#vestMast").val(convertedCode[22]);
+
+    // Gloves
+    var glovesVer = armourVers[convertedCode[33]];
+    setGloves(glovesVer, convertedCode[26], false);
+    $("#versionGloves").val(glovesVer);
+    var glovesAugs = $("#glovesAug1 option").toArray().map(o => o.value);
+    $("#glovesAug1").val(glovesAugs[convertedCode[27]]).change();
+    $("#glovesAug2").val(glovesAugs[convertedCode[29]]).change();
+    $("#glovesAug3").val(glovesAugs[convertedCode[31]]).change();
+    $("#glovesAugLv1").val(convertedCode[28]);
+    $("#glovesAugLv2").val(convertedCode[30]);
+    $("#glovesAugLv3").val(convertedCode[32]);
+    $("#glovesCore").val(convertedCode[34]);
+    $("#glovesMast").val(convertedCode[35]);
+
+    // Pants
+    var pantsVer = armourVers[convertedCode[46]];
+    setPants(pantsVer, convertedCode[39], false);
+    $("#versionPants").val(pantsVer);
+    var pantsAugs = $("#pantsAug1 option").toArray().map(o => o.value);
+    $("#pantsAug1").val(pantsAugs[convertedCode[40]]).change();
+    $("#pantsAug2").val(pantsAugs[convertedCode[42]]).change();
+    $("#pantsAug3").val(pantsAugs[convertedCode[44]]).change();
+    $("#pantsAugLv1").val(convertedCode[41]);
+    $("#pantsAugLv2").val(convertedCode[43]);
+    $("#pantsAugLv3").val(convertedCode[45]);
+    $("#pantsCore").val(convertedCode[47]);
+    $("#pantsMast").val(convertedCode[48]);
+
+    // Boots
+    var bootsVer = armourVers[convertedCode[59]];
+    setBoots(bootsVer, convertedCode[52], false);
+    $("#versionBoots").val(bootsVer);
+    var bootsAugs = $("#bootsAug1 option").toArray().map(o => o.value);
+    $("#bootsAug1").val(bootsAugs[convertedCode[53]]).change();
+    $("#bootsAug2").val(bootsAugs[convertedCode[55]]).change();
+    $("#bootsAug3").val(bootsAugs[convertedCode[57]]).change();
+    $("#bootsAugLv1").val(convertedCode[54]);
+    $("#bootsAugLv2").val(convertedCode[56]);
+    $("#bootsAugLv3").val(convertedCode[58]);
+    $("#bootsCore").val(convertedCode[60]);
+    $("#bootsMast").val(convertedCode[61]);
+
+    // Not specific
+    $("#bae").val(convertedCode[65]);
+    $(".form-check-input").val([convertedCode[10] === 18 ? "helmetNormal" : " ", convertedCode[11] === 18 ? "helmetRed" : " ", convertedCode[12] === 18 ? "helmetBlack" : " ",
+        convertedCode[23] === 18 ? "vestNormal" : " ", convertedCode[24] === 18 ? "vestRed" : " ", convertedCode[25] === 18 ? "vestBlack" : " ",
+        convertedCode[36] === 18 ? "glovesNormal" : " ", convertedCode[37] === 18 ? "glovesRed" : " ", convertedCode[38] === 18 ? "glovesBlack" : " ",
+        convertedCode[49] === 18 ? "pantsNormal" : " ", convertedCode[50] === 18 ? "pantsRed" : " ", convertedCode[51] === 18 ? "pantsBlack" : " ",
+        convertedCode[62] === 18 ? "bootsNormal" : " ", convertedCode[63] === 18 ? "bootsRed" : " ", convertedCode[64] === 18 ? "bootsBlack" : " "]);
+}
 
 function getArmour() {
     const armourData = armourJSON()
@@ -59,7 +177,7 @@ function getArmour() {
     var percHeat = getPercResists(totalHeat);
     var percHaz = getPercResists(totalHaz);
 
-    if (mobileView == "true") {
+    if (mobileView === "true") {
         document.getElementById("resultsNormal").innerHTML = "";
         document.getElementById("mobileResults").innerHTML = "";
         mobileResults.innerHTML = generateOutput(percFort, percHeat, percHaz, totalFort, totalHeat, totalHaz,
@@ -177,7 +295,7 @@ function generateOutput(percFort, percHeat, percHaz, totalFort, totalHeat, total
           </table>
         </td>
       </tr>
-</table>`
+</table>`;
 
     return outputTable;
 }
@@ -189,56 +307,56 @@ function roundToTwo(num) {
 function getPercResists(totalRes) {
     var perc = 0;
     if (totalRes > 6000) {
-        perc = (Math.sqrt(totalRes - 6000) / 5) + 74
+        perc = (Math.sqrt(totalRes - 6000) / 5) + 74;
         if (perc > 99) {
-            perc = 99
+            perc = 99;
         }
     } else {
-        perc = Math.sqrt(totalRes)
+        perc = Math.sqrt(totalRes);
     }
-    return roundToTwo(perc)
+    return roundToTwo(perc);
 }
 
 
 function calcHelmResists(helmRes, bae) {
     var helmMast = $('input[name="helmetMast"]').val();
     if (helmMast == 5) {
-        var addRes = [100, 100, 100]
+        var addRes = [100, 100, 100];
     } else {
-        var addRes = [0, 0, 0]
+        var addRes = [0, 0, 0];
     }
 
     let helmResists = calcResists(helmRes, [$("#helmAug1 option:selected").val(), $("#helmAugLv1").val()],
             [$("#helmAug2 option:selected").val(), $("#helmAugLv2").val()],
             [$("#helmAug3 option:selected").val(), $("#helmAugLv3").val()],
-            bae, $('input[name="helmetCore"]').val(), addRes, 24)
+            bae, $('input[name="helmetCore"]').val(), addRes, 24);
     return helmResists;
 }
 
 function calcVestResists(vestRes, bae, checkboxValues) {
     var vestMast = $('input[name="vestMast"]').val();
     if (vestMast == 5) {
-        var addRes = [250, 200, 200]
+        var addRes = [250, 200, 200];
     } else if (vestMast > 0) {
-        var addRes = [50, 50, 50]
+        var addRes = [50, 50, 50];
     } else {
-        var addRes = [0, 0, 0]
+        var addRes = [0, 0, 0];
     }
 
-    if ($.inArray("vestNormal", checkboxValues) != -1) {
-        let previousVal = addRes[0]
-        addRes.splice(0, 1, previousVal + 50)
+    if ($.inArray("vestNormal", checkboxValues) !== -1) {
+        let previousVal = addRes[0];
+        addRes.splice(0, 1, previousVal + 50);
     }
 
-    if ($.inArray("vestBlack", checkboxValues) != -1) {
-        let previousVal = addRes[0]
-        addRes.splice(0, 1, previousVal + 250)
+    if ($.inArray("vestBlack", checkboxValues) !== -1) {
+        let previousVal = addRes[0];
+        addRes.splice(0, 1, previousVal + 250);
     }
 
     let vestResists = calcResists(vestRes, [$("#vestAug1 option:selected").val(), $("#vestAugLv1").val()],
             [$("#vestAug2 option:selected").val(), $("#vestAugLv2").val()],
             [$("#vestAug3 option:selected").val(), $("#vestAugLv3").val()],
-            bae, $('input[name="vestCore"]').val(), addRes, 40)
+            bae, $('input[name="vestCore"]').val(), addRes, 40);
 
     return vestResists;
 }
@@ -246,75 +364,75 @@ function calcVestResists(vestRes, bae, checkboxValues) {
 function calcGlovesResists(glovesRes, bae, checkboxValues) {
     var glovesMast = $('input[name="glovesMast"]').val();
     if (glovesMast == 5) {
-        var addRes = [100, 100, 125]
+        var addRes = [100, 100, 125];
     } else if (glovesMast > 0) {
-        var addRes = [0, 0, 25]
+        var addRes = [0, 0, 25];
     } else {
-        var addRes = [0, 0, 0]
+        var addRes = [0, 0, 0];
     }
 
-    if ($.inArray("glovesNormal", checkboxValues) != -1) {
-        let previousVal = addRes[1]
-        addRes.splice(1, 1, previousVal + 50)
+    if ($.inArray("glovesNormal", checkboxValues) !== -1) {
+        let previousVal = addRes[1];
+        addRes.splice(1, 1, previousVal + 50);
     }
 
 
     let glovesResists = calcResists(glovesRes, [$("#glovesAug1 option:selected").val(), $("#glovesAugLv1").val()],
             [$("#glovesAug2 option:selected").val(), $("#glovesAugLv2").val()],
             [$("#glovesAug3 option:selected").val(), $("#glovesAugLv3").val()],
-            bae, $('input[name="glovesCore"]').val(), addRes, 12)
+            bae, $('input[name="glovesCore"]').val(), addRes, 12);
     return glovesResists;
 }
 
 function calcPantsResists(pantsRes, bae, checkboxValues) {
     var pantsMast = $('input[name="pantsMast"]').val();
     if (pantsMast == 5) {
-        var addRes = [100, 150, 100]
+        var addRes = [100, 150, 100];
     } else if (pantsMast > 0) {
-        var addRes = [0, 50, 0]
+        var addRes = [0, 50, 0];
     } else {
-        var addRes = [0, 0, 0]
+        var addRes = [0, 0, 0];
     }
 
-    if ($.inArray("pantsBlack", checkboxValues) != -1) {
-        let previousVal = addRes[1]
-        addRes.splice(1, 1, previousVal + 250)
+    if ($.inArray("pantsBlack", checkboxValues) !== -1) {
+        let previousVal = addRes[1];
+        addRes.splice(1, 1, previousVal + 250);
     }
 
     let pantsResists = calcResists(pantsRes, [$("#pantsAug1 option:selected").val(), $("#pantsAugLv1").val()],
             [$("#pantsAug2 option:selected").val(), $("#pantsAugLv2").val()],
             [$("#pantsAug3 option:selected").val(), $("#pantsAugLv3").val()],
-            bae, $('input[name="pantsCore"]').val(), addRes, 24)
+            bae, $('input[name="pantsCore"]').val(), addRes, 24);
     return pantsResists;
 }
 
 function calcBootsResists(bootsRes, bae, checkboxValues) {
     var bootsMast = $('input[name="bootsMast"]').val();
     if (bootsMast == 5) {
-        var addRes = [100, 125, 125]
+        var addRes = [100, 125, 125];
     } else if (bootsMast == 1) {
-        var addRes = [0, 0, 25]
+        var addRes = [0, 0, 25];
     } else if (bootsMast > 1) {
-        var addRes = [0, 25, 25]
+        var addRes = [0, 25, 25];
     } else {
-        var addRes = [0, 0, 0]
+        var addRes = [0, 0, 0];
     }
 
-    if ($.inArray("bootsNormal", checkboxValues) != -1) {
-        let previousVal = addRes[2]
-        addRes.splice(2, 1, previousVal + 50)
+    if ($.inArray("bootsNormal", checkboxValues) !== -1) {
+        let previousVal = addRes[2];
+        addRes.splice(2, 1, previousVal + 50);
     }
 
-    if ($.inArray("bootsBlack", checkboxValues) != -1) {
-        let previousVal = addRes[2]
-        addRes.splice(2, 1, previousVal + 250)
+    if ($.inArray("bootsBlack", checkboxValues) !== -1) {
+        let previousVal = addRes[2];
+        addRes.splice(2, 1, previousVal + 250);
     }
 
 
     let bootsResists = calcResists(bootsRes, [$("#bootsAug1 option:selected").val(), $("#bootsAugLv1").val()],
             [$("#bootsAug2 option:selected").val(), $("#bootsAugLv2").val()],
             [$("#bootsAug3 option:selected").val(), $("#bootsAugLv3").val()],
-            bae, $('input[name="bootsCore"]').val(), addRes, 12)
+            bae, $('input[name="bootsCore"]').val(), addRes, 12);
     return bootsResists;
 }
 
@@ -324,90 +442,90 @@ function calcResists(armourBaseFHC, aug1_lv, aug2_lv, aug3_lv, bae, core, addedR
     var fortified = 0;
     var heatRes = 0;
     var hazchem = 0;
-    if ($.inArray(aug1_lv[0], ["Fortified", "Heat Resistant", "Hazchem"]) != -1) {
+    if ($.inArray(aug1_lv[0], ["Fortified", "Heat Resistant", "Hazchem"]) !== -1) {
         var resType1 = aug1_lv[0];
         var resLv1 = aug1_lv[1];
-        var res1 = singleResist(armourBaseFHC, armourMod, resType1, resLv1, bae, core, 0)
-        if (res1[0] == "Fortified") {
-            fortified = res1[1]
-        } else if (res1[0] == "Heat Resistant") {
-            heatRes = res1[1]
+        var res1 = singleResist(armourBaseFHC, armourMod, resType1, resLv1, bae, core, 0);
+        if (res1[0] === "Fortified") {
+            fortified = res1[1];
+        } else if (res1[0] === "Heat Resistant") {
+            heatRes = res1[1];
         } else {
-            hazchem = res1[1]
+            hazchem = res1[1];
         }
     }
 
-    if ($.inArray(aug2_lv[0], ["Fortified", "Heat Resistant", "Hazchem"]) != -1) {
+    if ($.inArray(aug2_lv[0], ["Fortified", "Heat Resistant", "Hazchem"]) !== -1) {
         var resType2 = aug2_lv[0];
         var resLv2 = aug2_lv[1];
-        var res2 = singleResist(armourBaseFHC, armourMod, resType2, resLv2, bae, core, 0)
-        if (res2[0] == "Fortified") {
-            fortified = res2[1]
-        } else if (res2[0] == "Heat Resistant") {
-            heatRes = res2[1]
+        var res2 = singleResist(armourBaseFHC, armourMod, resType2, resLv2, bae, core, 0);
+        if (res2[0] === "Fortified") {
+            fortified = res2[1];
+        } else if (res2[0] === "Heat Resistant") {
+            heatRes = res2[1];
         } else {
-            hazchem = res2[1]
+            hazchem = res2[1];
         }
     }
 
-    if ($.inArray(aug3_lv[0], ["Fortified", "Heat Resistant", "Hazchem"]) != -1) {
+    if ($.inArray(aug3_lv[0], ["Fortified", "Heat Resistant", "Hazchem"]) !== -1) {
         var resType3 = aug3_lv[0];
         var resLv3 = aug3_lv[1];
-        var res3 = singleResist(armourBaseFHC, armourMod, resType3, resLv3, bae, core, 0)
-        if (res3[0] == "Fortified") {
-            fortified = res3[1]
-        } else if (res3[0] == "Heat Resistant") {
-            heatRes = res3[1]
+        var res3 = singleResist(armourBaseFHC, armourMod, resType3, resLv3, bae, core, 0);
+        if (res3[0] === "Fortified") {
+            fortified = res3[1];
+        } else if (res3[0] === "Heat Resistant") {
+            heatRes = res3[1];
         } else {
-            hazchem = res3[1]
+            hazchem = res3[1];
         }
     }
 
-    if (fortified == 0) {
-        fortified = (armourBaseFHC[0] * (1 + (0.05 * core))) * (1 + 0.07 * bae)
+    if (fortified === 0) {
+        fortified = (armourBaseFHC[0] * (1 + (0.05 * core))) * (1 + 0.07 * bae);
     }
-    if (heatRes == 0) {
-        heatRes = (armourBaseFHC[1] * (1 + (0.05 * core))) * (1 + 0.07 * bae)
+    if (heatRes === 0) {
+        heatRes = (armourBaseFHC[1] * (1 + (0.05 * core))) * (1 + 0.07 * bae);
     }
-    if (hazchem == 0) {
-        hazchem = (armourBaseFHC[2] * (1 + (0.05 * core))) * (1 + 0.07 * bae)
+    if (hazchem === 0) {
+        hazchem = (armourBaseFHC[2] * (1 + (0.05 * core))) * (1 + 0.07 * bae);
     }
 
-    return {"Fortified": fortified + addedResFHC[0], "Heat Resistant": heatRes + addedResFHC[1], "Hazchem": hazchem + addedResFHC[2]}
+    return {"Fortified": fortified + addedResFHC[0], "Heat Resistant": heatRes + addedResFHC[1], "Hazchem": hazchem + addedResFHC[2]};
 }
 
 
 function singleResist(armourBaseFHC, armourMod, resType, resLv, bae, core, addedRes) {
     var resists = 0;
-    if (resType == "Fortified") {
+    if (resType === "Fortified") {
         if (resLv > 5) {
-            var resAugs = armourBaseFHC[0] * ((0.3 * resLv + 0.5) + (0.05 * core)) + (armourMod * resLv)
-            resists = (1 + 0.07 * bae) * resAugs + addedRes
+            var resAugs = armourBaseFHC[0] * ((0.3 * resLv + 0.5) + (0.05 * core)) + (armourMod * resLv);
+            resists = (1 + 0.07 * bae) * resAugs + addedRes;
         } else {
-            var resAugs = armourBaseFHC[0] * ((0.2 * resLv + 1) + (0.05 * core)) + (armourMod * resLv)
-            resists = (1 + 0.07 * bae) * resAugs + addedRes
+            var resAugs = armourBaseFHC[0] * ((0.2 * resLv + 1) + (0.05 * core)) + (armourMod * resLv);
+            resists = (1 + 0.07 * bae) * resAugs + addedRes;
         }
-    } else if (resType == "Heat Resistant") {
+    } else if (resType === "Heat Resistant") {
         if (resLv > 5) {
-            var resAugs = armourBaseFHC[1] * ((0.3 * resLv + 0.5) + (0.05 * core)) + (armourMod * resLv)
-            resists = (1 + 0.07 * bae) * resAugs + addedRes
+            var resAugs = armourBaseFHC[1] * ((0.3 * resLv + 0.5) + (0.05 * core)) + (armourMod * resLv);
+            resists = (1 + 0.07 * bae) * resAugs + addedRes;
         } else {
-            var resAugs = armourBaseFHC[1] * ((0.2 * resLv + 1) + (0.05 * core)) + (armourMod * resLv)
-            resists = (1 + 0.07 * bae) * resAugs + addedRes
+            var resAugs = armourBaseFHC[1] * ((0.2 * resLv + 1) + (0.05 * core)) + (armourMod * resLv);
+            resists = (1 + 0.07 * bae) * resAugs + addedRes;
         }
     } else {
         if (resLv > 6) {
-            var resAugs = armourBaseFHC[2] * ((0.5 * resLv) + (0.05 * core)) + (armourMod * resLv)
-            resists = (1 + 0.07 * bae) * resAugs + addedRes
+            var resAugs = armourBaseFHC[2] * ((0.5 * resLv) + (0.05 * core)) + (armourMod * resLv);
+            resists = (1 + 0.07 * bae) * resAugs + addedRes;
         } else if (resLv > 4) {
-            var resAugs = armourBaseFHC[2] * ((0.4 * resLv + 0.6) + (0.05 * core)) + (armourMod * resLv)
-            resists = (1 + 0.07 * bae) * resAugs + addedRes
+            var resAugs = armourBaseFHC[2] * ((0.4 * resLv + 0.6) + (0.05 * core)) + (armourMod * resLv);
+            resists = (1 + 0.07 * bae) * resAugs + addedRes;
         } else {
-            var resAugs = armourBaseFHC[2] * ((0.3 * resLv + 1) + (0.05 * core)) + (armourMod * resLv)
-            resists = (1 + 0.07 * bae) * resAugs + addedRes
+            var resAugs = armourBaseFHC[2] * ((0.3 * resLv + 1) + (0.05 * core)) + (armourMod * resLv);
+            resists = (1 + 0.07 * bae) * resAugs + addedRes;
         }
     }
-    return [resType, resists]
+    return [resType, resists];
 }
 
 function setSelection(armourType, version) {
@@ -418,237 +536,252 @@ function update(value) {
     let storedData = JSON.parse(sessionStorage.getItem('armourData'));
     Object.keys(value).forEach(function (val, key) {
         storedData[val] = value[val];
-    })
+    });
     sessionStorage.setItem('armourData', JSON.stringify(storedData));
 }
 
 
 
-function setHelmets(version) {
+function setHelmets(version, setIndex=17, fromChange=true) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
-    update({"Helmets": version})
-
-    if (version == "Other") {
-        setHelmetsSelection(version)
-    } else if (storedData["Helmets"] == "Other") {
-        setHelmetsSelection(version)
+    update({"Helmets": version});
+    if (fromChange) {
+        if (version === "Other") {
+            setHelmetsSelection(version, setIndex)
+        } else if (storedData["Helmets"] == "Other") {
+            setHelmetsSelection(version, setIndex)
+        }
+    } else {
+        setHelmetsSelection(version, setIndex);
     }
 }
 
-function setHelmetsSelection(version) {
+function setHelmetsSelection(version, setIndex) {
     document.getElementById("helmets").innerHTML = "";
-    if (version == "Other") {
+    if (version === "Other") {
         helmets.innerHTML = `<select id="Helmet" name="Helmet" type="armour">
-      <option value="---">---</option>
-      <option value="Dynamo Helmet">Dynamo Helmet</option>
-      <option value="Overwatch Helmet">Overwatch Helmet</option>
-      <option value="Mastodon Helm">Mastodon Helm</option>
-      <option value="Vulkan Helmet">Vulkan Helmet</option>
-      <option value="Mako Helmet">Mako Helmet</option>
-      <option value="Clown Helm">Clown Helm</option>
-    </select>`
+      <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+      <option value="Dynamo Helmet" ${setIndex === 18 ? 'selected=selected' : ''}>Dynamo Helmet</option>
+      <option value="Overwatch Helmet" ${setIndex === 19 ? 'selected=selected' : ''}>Overwatch Helmet</option>
+      <option value="Mastodon Helm" ${setIndex === 20 ? 'selected=selected' : ''}>Mastodon Helm</option>
+      <option value="Vulkan Helmet" ${setIndex === 21 ? 'selected=selected' : ''}>Vulkan Helmet</option>
+      <option value="Mako Helmet" ${setIndex === 22 ? 'selected=selected' : ''}>Mako Helmet</option>
+      <option value="Clown Helm" ${setIndex === 23 ? 'selected=selected' : ''}>Clown Helm</option>
+    </select>`;
     } else {
         helmets.innerHTML = `<select id="Helmet" name="Helmet" type="armour">
-    <option value="---">---</option>
-    <option value="HVM Kevlar Helmet">HVM Kevlar Helmet</option>
-    <option value="HVM Carbon Fibre Helmet">HVM Carbon Fibre Helmet</option>
-    <option value="Trooper Helmet">Trooper Helmet</option>
-    <option value="Special Forces Helmet">Special Forces Helmet</option>
-    <option value="Hardplate Helm">Hardplate Helm</option>
-    <option value="Shotlite Hummingbird H1">Shotlite Hummingbird H1</option>
-    <option value="Dragonfly Helmet">Dragonfly Helmet</option>
-    <option value="R1 Interceptor Helm">R1 Interceptor Helm</option>
-    <option value="Graphene Combat Hood">Graphene Combat Hood</option>
-    <option value="Titan IRN HUD">Titan IRN HUD</option>
-    <option value="Medusa Helmet">Medusa Helmet</option>
-  </select>`
+    <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+    <option value="HVM Kevlar Helmet" ${setIndex === 18 ? 'selected=selected' : ''}>HVM Kevlar Helmet</option>
+    <option value="HVM Carbon Fibre Helmet" ${setIndex === 19 ? 'selected=selected' : ''}>HVM Carbon Fibre Helmet</option>
+    <option value="Trooper Helmet" ${setIndex === 20 ? 'selected=selected' : ''}>Trooper Helmet</option>
+    <option value="Special Forces Helmet" ${setIndex === 21 ? 'selected=selected' : ''}>Special Forces Helmet</option>
+    <option value="Hardplate Helm" ${setIndex === 22 ? 'selected=selected' : ''}>Hardplate Helm</option>
+    <option value="Shotlite Hummingbird H1" ${setIndex === 23 ? 'selected=selected' : ''}>Shotlite Hummingbird H1</option>
+    <option value="Dragonfly Helmet" ${setIndex === 24 ? 'selected=selected' : ''}>Dragonfly Helmet</option>
+    <option value="R1 Interceptor Helm" ${setIndex === 25 ? 'selected=selected' : ''}>R1 Interceptor Helm</option>
+    <option value="Graphene Combat Hood" ${setIndex === 26 ? 'selected=selected' : ''}>Graphene Combat Hood</option>
+    <option value="Titan IRN HUD" ${setIndex === 27 ? 'selected=selected' : ''}>Titan IRN HUD</option>
+    <option value="Medusa Helmet" ${setIndex === 28 ? 'selected=selected' : ''}>Medusa Helmet</option>
+  </select>`;
     }
 }
 
-function setVests(version) {
+function setVests(version, setIndex=17, fromChange=true) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
-    update({"Vests": version})
-
-    if (version == "Other") {
-        setVestsSelection(version)
-    } else if (storedData["Vests"] == "Other") {
-        setVestsSelection(version)
+    update({"Vests": version});
+    if (fromChange) {
+        if (version === "Other") {
+            setVestsSelection(version, setIndex);
+        } else if (storedData["Vests"] == "Other") {
+            setVestsSelection(version, setIndex);
+        }
+    } else {
+        setVestsSelection(version, setIndex);
     }
 }
 
-function setVestsSelection(version) {
+function setVestsSelection(version, setIndex) {
     document.getElementById("vests").innerHTML = "";
-    if (version == "Other") {
+    if (version === "Other") {
         vests.innerHTML = `<select id="Vest" name="Vest" type="armour">
-    <option value="---">---</option>
-    <option value="Dynamo Chest">Dynamo Chest</option>
-    <option value="Overwatch Chest">Overwatch Chest</option>
-    <option value="Mastodon Chest">Mastodon Chest</option>
-    <option value="Vulkan Vest">Vulkan Vest</option>
-    <option value="Mako Vest">Mako Vest</option>
-    <option value="Clown Chest">Clown Chest</option>
-    </select>`
+    <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+    <option value="Dynamo Chest" ${setIndex === 18 ? 'selected=selected' : ''}>Dynamo Chest</option>
+    <option value="Overwatch Chest" ${setIndex === 19 ? 'selected=selected' : ''}>Overwatch Chest</option>
+    <option value="Mastodon Chest" ${setIndex === 20 ? 'selected=selected' : ''}>Mastodon Chest</option>
+    <option value="Vulkan Vest" ${setIndex === 21 ? 'selected=selected' : ''}>Vulkan Vest</option>
+    <option value="Mako Vest" ${setIndex === 22 ? 'selected=selected' : ''}>Mako Vest</option>
+    <option value="Clown Chest" ${setIndex === 23 ? 'selected=selected' : ''}>Clown Chest</option>
+    </select>`;
     } else {
         vests.innerHTML = `<select id="Vest" name="Vest" type="armour">
-    <option value="---">---</option>
-    <option value="HVM Kevlar Vest">HVM Kevlar Vest</option>
-    <option value="HVM Carbon Fibre Vest">HVM Carbon Fibre Vest</option>
-    <option value="Trooper Vest">Trooper Vest</option>
-    <option value="Special Forces Vest">Special Forces Vest</option>
-    <option value="Hardplate Chest">Hardplate Chest</option>
-    <option value="Rubicon Power Assist">Rubicon Power Assist</option>
-    <option value="Heavy Trooper Vest">Heavy Trooper Vest</option>
-    <option value="Shotlite Hummingbird V1">Shotlite Hummingbird V1</option>
-    <option value="Dragonfly Vest">Dragonfly Vest</option>
-    <option value="R4 Guardian Vest">R4 Guardian Vest</option>
-    <option value="Graphene Body Suit Top">Graphene Body Suit Top</option>
-    <option value="Titan Teslashock">Titan Teslashock</option>
-    <option value="Medusa Vest">Medusa Vest</option>
-    </select>`
+    <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+    <option value="HVM Kevlar Vest" ${setIndex === 18 ? 'selected=selected' : ''}>HVM Kevlar Vest</option>
+    <option value="HVM Carbon Fibre Vest" ${setIndex === 19 ? 'selected=selected' : ''}>HVM Carbon Fibre Vest</option>
+    <option value="Trooper Vest" ${setIndex === 20 ? 'selected=selected' : ''}>Trooper Vest</option>
+    <option value="Special Forces Vest" ${setIndex === 21 ? 'selected=selected' : ''}>Special Forces Vest</option>
+    <option value="Hardplate Chest" ${setIndex === 22 ? 'selected=selected' : ''}>Hardplate Chest</option>
+    <option value="Rubicon Power Assist" ${setIndex === 23 ? 'selected=selected' : ''}>Rubicon Power Assist</option>
+    <option value="Heavy Trooper Vest" ${setIndex === 24 ? 'selected=selected' : ''}>Heavy Trooper Vest</option>
+    <option value="Shotlite Hummingbird V1" ${setIndex === 25 ? 'selected=selected' : ''}>Shotlite Hummingbird V1</option>
+    <option value="Dragonfly Vest" ${setIndex === 26 ? 'selected=selected' : ''}>Dragonfly Vest</option>
+    <option value="R4 Guardian Vest" ${setIndex === 27 ? 'selected=selected' : ''}>R4 Guardian Vest</option>
+    <option value="Graphene Body Suit Top" ${setIndex === 28 ? 'selected=selected' : ''}>Graphene Body Suit Top</option>
+    <option value="Titan Teslashock" ${setIndex === 29 ? 'selected=selected' : ''}>Titan Teslashock</option>
+    <option value="Medusa Vest" ${setIndex === 30 ? 'selected=selected' : ''}>Medusa Vest</option>
+    </select>`;
     }
 }
 
-function setGloves(version) {
+function setGloves(version, setIndex=17, fromChange=true) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
-    update({"Gloves": version})
-
-    if (version == "Other") {
-        setGlovesSelection(version)
-    } else if (storedData["Gloves"] == "Other") {
-        setGlovesSelection(version)
+    update({"Gloves": version});
+    if (fromChange) {
+        if (version === "Other") {
+            setGlovesSelection(version, setIndex);
+        } else if (storedData["Gloves"] == "Other") {
+            setGlovesSelection(version, setIndex);
+        }
+    } else {
+        setGlovesSelection(version, setIndex);
     }
 }
 
-function setGlovesSelection(version) {
+function setGlovesSelection(version, setIndex) {
     document.getElementById("gloves").innerHTML = "";
-    if (version == "Other") {
+    if (version === "Other") {
         gloves.innerHTML = `<select id="Glove" name="Gloves" type="armour">
-    <option value="---">---</option>
-    <option value="Dynamo Gloves">Dynamo Gloves</option>
-    <option value="Overwatch Gloves">Overwatch Gloves</option>
-    <option value="Mastodon Gauntlets">Mastodon Gauntlets</option>
-    <option value="Vulkan Gloves">Vulkan Gloves</option>
-    <option value="Mako Gloves">Mako Gloves</option>
-    <option value="Clown Gauntlets">Clown Gauntlets</option>
-    </select>`
+    <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+    <option value="Dynamo Gloves" ${setIndex === 18 ? 'selected=selected' : ''}>Dynamo Gloves</option>
+    <option value="Overwatch Gloves" ${setIndex === 19 ? 'selected=selected' : ''}>Overwatch Gloves</option>
+    <option value="Mastodon Gauntlets" ${setIndex === 20 ? 'selected=selected' : ''}>Mastodon Gauntlets</option>
+    <option value="Vulkan Gloves" ${setIndex === 21 ? 'selected=selected' : ''}>Vulkan Gloves</option>
+    <option value="Mako Gloves" ${setIndex === 22 ? 'selected=selected' : ''}>Mako Gloves</option>
+    <option value="Clown Gauntlets" ${setIndex === 23 ? 'selected=selected' : ''}>Clown Gauntlets</option>
+    </select>`;
     } else {
         gloves.innerHTML = `<select id="Glove" name="Gloves" type="armour">
-    <option value="---" selected="selected">---</option>
-    <option value="HVM Kevlar Gloves">HVM Kevlar Gloves</option>
-    <option value="HVM Carbon Fibre Gloves">HVM Carbon Fibre Gloves</option>
-    <option value="Trooper Gloves">Trooper Gloves</option>
-    <option value="Special Forces Gloves">Special Forces Gloves</option>
-    <option value="Hardplate Gauntlets">Hardplate Gauntlets</option>
-    <option value="Shotlite Hummingbird G1">Shotlite Hummingbird G1</option>
-    <option value="Dragonfly Gloves">Dragonfly Gloves</option>
-    <option value="R6 Flamejuggler Gloves">R6 Flamejuggler Gloves</option>
-    <option value="Graphene Gloves">Graphene Gloves</option>
-    <option value="Titan IDS 01">Titan IDS 01</option>
-    <option value="Medusa Gloves">Medusa Gloves</option>
-    </select>`
+    <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+    <option value="HVM Kevlar Gloves" ${setIndex === 18 ? 'selected=selected' : ''}>HVM Kevlar Gloves</option>
+    <option value="HVM Carbon Fibre Gloves" ${setIndex === 19 ? 'selected=selected' : ''}>HVM Carbon Fibre Gloves</option>
+    <option value="Trooper Gloves" ${setIndex === 20 ? 'selected=selected' : ''}>Trooper Gloves</option>
+    <option value="Special Forces Gloves" ${setIndex === 21 ? 'selected=selected' : ''}>Special Forces Gloves</option>
+    <option value="Hardplate Gauntlets" ${setIndex === 22 ? 'selected=selected' : ''}>Hardplate Gauntlets</option>
+    <option value="Shotlite Hummingbird G1" ${setIndex === 23 ? 'selected=selected' : ''}>Shotlite Hummingbird G1</option>
+    <option value="Dragonfly Gloves" ${setIndex === 24 ? 'selected=selected' : ''}>Dragonfly Gloves</option>
+    <option value="R6 Flamejuggler Gloves" ${setIndex === 25 ? 'selected=selected' : ''}>R6 Flamejuggler Gloves</option>
+    <option value="Graphene Gloves" ${setIndex === 26 ? 'selected=selected' : ''}>Graphene Gloves</option>
+    <option value="Titan IDS 01" ${setIndex === 27 ? 'selected=selected' : ''}>Titan IDS 01</option>
+    <option value="Medusa Gloves" ${setIndex === 28 ? 'selected=selected' : ''}>Medusa Gloves</option>
+    </select>`;
     }
 }
 
-function setPants(version) {
+function setPants(version, setIndex=17, fromChange=true) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
-    update({"Pants": version})
-
-    if (version == "Other") {
-        setPantsSelection(version)
-    } else if (storedData["Pants"] == "Other") {
-        setPantsSelection(version)
+    update({"Pants": version});
+    if (fromChange) {
+        if (version === "Other") {
+            setPantsSelection(version, setIndex);
+        } else if (storedData["Pants"] == "Other") {
+            setPantsSelection(version, setIndex);
+        }
+    } else {
+        setPantsSelection(version, setIndex);
     }
 }
 
-function setPantsSelection(version) {
+function setPantsSelection(version, setIndex) {
     document.getElementById("pants").innerHTML = "";
-    if (version == "Other") {
+    if (version === "Other") {
         pants.innerHTML = `<select id="Pant" name="Pants" type="armour">
-      <option value="---">---</option>
-      <option value="Dynamo Legs">Dynamo Legs</option>
-      <option value="Overwatch Pants">Overwatch Pants</option>
-      <option value="Mastodon Legs">Mastodon Legs</option>
-      <option value="Vulkan Pants">Vulkan Pants</option>
-      <option value="Mako Pants">Mako Pants</option>
-      <option value="Clown Legs">Clown Legs</option>
-    </select>`
+      <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+      <option value="Dynamo Legs" ${setIndex === 18 ? 'selected=selected' : ''}>Dynamo Legs</option>
+      <option value="Overwatch Pants" ${setIndex === 19 ? 'selected=selected' : ''}>Overwatch Pants</option>
+      <option value="Mastodon Legs" ${setIndex === 20 ? 'selected=selected' : ''}>Mastodon Legs</option>
+      <option value="Vulkan Pants" ${setIndex === 21 ? 'selected=selected' : ''}>Vulkan Pants</option>
+      <option value="Mako Pants" ${setIndex === 22 ? 'selected=selected' : ''}>Mako Pants</option>
+      <option value="Clown Legs" ${setIndex === 23 ? 'selected=selected' : ''}>Clown Legs</option>
+    </select>`;
     } else {
         pants.innerHTML = `<select id="Pant" name="Pants" type="armour">
-      <option value="---">---</option>
-      <option value="HVM Kevlar Pants">HVM Kevlar Pants</option>
-      <option value="HVM Carbon Fibre Pants">HVM Carbon Fibre Pants</option>
-      <option value="Trooper Pants">Trooper Pants</option>
-      <option value="Special Forces Pants">Special Forces Pants</option>
-      <option value="Hardplate Leg Protection">Hardplate Leg Protection</option>
-      <option value="Shotlite Hummingbird P1">Shotlite Hummingbird P1</option>
-      <option value="Dragonfly Pants">Dragonfly Pants</option>
-      <option value="R7 Guardian Pants">R7 Guardian Pants</option>
-      <option value="Graphene Body Suit Bottom">Graphene Body Suit Bottom</option>
-      <option value="Titan MEM Trooper">Titan MEM Trooper</option>
-      <option value="Medusa Pants">Medusa Pants</option>
-    </select>`
+      <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+      <option value="HVM Kevlar Pants" ${setIndex === 18 ? 'selected=selected' : ''}>HVM Kevlar Pants</option>
+      <option value="HVM Carbon Fibre Pants" ${setIndex === 19 ? 'selected=selected' : ''}>HVM Carbon Fibre Pants</option>
+      <option value="Trooper Pants" ${setIndex === 20 ? 'selected=selected' : ''}>Trooper Pants</option>
+      <option value="Special Forces Pants" ${setIndex === 21 ? 'selected=selected' : ''}>Special Forces Pants</option>
+      <option value="Hardplate Leg Protection" ${setIndex === 22 ? 'selected=selected' : ''}>Hardplate Leg Protection</option>
+      <option value="Shotlite Hummingbird P1" ${setIndex === 23 ? 'selected=selected' : ''}>Shotlite Hummingbird P1</option>
+      <option value="Dragonfly Pants" ${setIndex === 24 ? 'selected=selected' : ''}>Dragonfly Pants</option>
+      <option value="R7 Guardian Pants" ${setIndex === 25 ? 'selected=selected' : ''}>R7 Guardian Pants</option>
+      <option value="Graphene Body Suit Bottom" ${setIndex === 26 ? 'selected=selected' : ''}>Graphene Body Suit Bottom</option>
+      <option value="Titan MEM Trooper" ${setIndex === 27 ? 'selected=selected' : ''}>Titan MEM Trooper</option>
+      <option value="Medusa Pants" ${setIndex === 28 ? 'selected=selected' : ''}>Medusa Pants</option>
+    </select>`;
     }
 }
 
-function setBoots(version) {
+function setBoots(version, setIndex=17, fromChange=true) {
     let storedData = JSON.parse(sessionStorage.getItem("armourData"));
-    update({"Boots": version})
-
-    if (version == "Other") {
-        setBootsSelection(version)
-    } else if (storedData["Boots"] == "Other") {
-        setBootsSelection(version)
+    update({"Boots": version});
+    if (fromChange) {
+        if (version === "Other") {
+            setBootsSelection(version, setIndex);
+        } else if (storedData["Boots"] == "Other") {
+            setBootsSelection(version, setIndex);
+        }
+    } else {
+        setBootsSelection(version, setIndex);
     }
 }
 
-function setBootsSelection(version) {
+function setBootsSelection(version, setIndex) {
     document.getElementById("boots").innerHTML = "";
-    if (version == "Other") {
+    if (version === "Other") {
         boots.innerHTML = `<select id="Boot" name="Boots" type="armour">
-      <option value="---">---</option>
-      <option value="Dynamo Boots">Dynamo Boots</option>
-      <option value="Overwatch Boots">Overwatch Boots</option>
-      <option value="Mastodon Boots">Mastodon Boots</option>
-      <option value="Vulkan Boots">Vulkan Boots</option>
-      <option value="Mako Boots">Mako Boots</option>
-      <option value="Clown Boots">Clown Boots</option>
-    </select>`
+      <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+      <option value="Dynamo Boots" ${setIndex === 18 ? 'selected=selected' : ''}>Dynamo Boots</option>
+      <option value="Overwatch Boots" ${setIndex === 19 ? 'selected=selected' : ''}>Overwatch Boots</option>
+      <option value="Mastodon Boots" ${setIndex === 20 ? 'selected=selected' : ''}>Mastodon Boots</option>
+      <option value="Vulkan Boots" ${setIndex === 21 ? 'selected=selected' : ''}>Vulkan Boots</option>
+      <option value="Mako Boots" ${setIndex === 22 ? 'selected=selected' : ''}>Mako Boots</option>
+      <option value="Clown Boots" ${setIndex === 23 ? 'selected=selected' : ''}>Clown Boots</option>
+    </select>`;
     } else {
         boots.innerHTML = `<select id="Boot" name="Boots" type="armour">
-      <option value="---" selected="selected">---</option>
-      <option value="HVM Combat Boots">HVM Combat Boots</option>
-      <option value="HVM Carbon Fibre Boots">HVM Carbon Fibre Boots</option>
-      <option value="Trooper Boots">Trooper Boots</option>
-      <option value="Special Forces Boots">Special Forces Boots</option>
-      <option value="Hardplate Boots">Hardplate Boots</option>
-      <option value="Shotlite Starwalk Boots">Shotlite Starwalk Boots</option>
-      <option value="Dragonfly Boots">Dragonfly Boots</option>
-      <option value="R8 Huntsman Boots">R8 Huntsman Boots</option>
-      <option value="Graphene Boots">Graphene Boots</option>
-      <option value="Titan MEM Sprint">Titan MEM Sprint</option>
-      <option value="Medusa Boots">Medusa Boots</option>
-    </select>`
+      <option value="---" ${setIndex === 17 ? 'selected=selected' : ''}>---</option>
+      <option value="HVM Combat Boots" ${setIndex === 18 ? 'selected=selected' : ''}>HVM Combat Boots</option>
+      <option value="HVM Carbon Fibre Boots" ${setIndex === 19 ? 'selected=selected' : ''}>HVM Carbon Fibre Boots</option>
+      <option value="Trooper Boots" ${setIndex === 20 ? 'selected=selected' : ''}>Trooper Boots</option>
+      <option value="Special Forces Boots" ${setIndex === 21 ? 'selected=selected' : ''}>Special Forces Boots</option>
+      <option value="Hardplate Boots" ${setIndex === 22 ? 'selected=selected' : ''}>Hardplate Boots</option>
+      <option value="Shotlite Starwalk Boots" ${setIndex === 23 ? 'selected=selected' : ''}>Shotlite Starwalk Boots</option>
+      <option value="Dragonfly Boots" ${setIndex === 24 ? 'selected=selected' : ''}>Dragonfly Boots</option>
+      <option value="R8 Huntsman Boots" ${setIndex === 25 ? 'selected=selected' : ''}>R8 Huntsman Boots</option>
+      <option value="Graphene Boots" ${setIndex === 26 ? 'selected=selected' : ''}>Graphene Boots</option>
+      <option value="Titan MEM Sprint" ${setIndex === 27 ? 'selected=selected' : ''}>Titan MEM Sprint</option>
+      <option value="Medusa Boots" ${setIndex === 28 ? 'selected=selected' : ''}>Medusa Boots</option>
+    </select>`;
     }
 }
 
 document.addEventListener('readystatechange', event => {
     // When HTML/DOM elements are ready:
     if (event.target.readyState === "interactive") {   //does same as:  ..addEventListener("DOMContentLoaded"..
-        $("#MobileView").prop("checked", mobileCheck())
+        $("#MobileView").prop("checked", mobileCheck());
         if (pageAccessedByReload) {
             let storedData = JSON.parse(sessionStorage.getItem("armourData"));
-            setHelmetsSelection(storedData["Helmets"])
-            setVestsSelection(storedData["Vests"])
-            setGlovesSelection(storedData["Gloves"])
-            setPantsSelection(storedData["Pants"])
-            setBootsSelection(storedData["Boots"])
+            setHelmetsSelection(storedData["Helmets"]);
+            setVestsSelection(storedData["Vests"]);
+            setGlovesSelection(storedData["Gloves"]);
+            setPantsSelection(storedData["Pants"]);
+            setBootsSelection(storedData["Boots"]);
         } else {
-            setHelmetsSelection("Normal")
-            setVestsSelection("Normal")
-            setGlovesSelection("Normal")
-            setPantsSelection("Normal")
-            setBootsSelection("Normal")
-            let data = {"Helmets": "null", "Vests": "null", "Gloves": "null", "Pants": "null", "Boots": "null"}
+            setHelmetsSelection("Normal");
+            setVestsSelection("Normal");
+            setGlovesSelection("Normal");
+            setPantsSelection("Normal");
+            setBootsSelection("Normal");
+            let data = {"Helmets": "null", "Vests": "null", "Gloves": "null", "Pants": "null", "Boots": "null"};
             sessionStorage.setItem('armourData', JSON.stringify(data));
         }
     }
@@ -661,8 +794,7 @@ function mobileCheck() {
             check = true;
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
-}
-;
+};
 
 const pageAccessedByReload = (
         (window.performance.navigation && window.performance.navigation.type === 1) ||
@@ -670,4 +802,4 @@ const pageAccessedByReload = (
         .getEntriesByType('navigation')
         .map((nav) => nav.type)
         .includes('reload')
-        );
+);

@@ -6,9 +6,10 @@
  - Adaptive
  - Shooting at boss dps for assault rifles
  - Time to kill a nm necro?
- - Cleanup v2
+ - Cleanup
  - Cut off output table
  - Weapon version in output
+ - Import armour code
  *
  */
 
