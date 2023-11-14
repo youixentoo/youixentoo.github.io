@@ -36,7 +36,7 @@
                                     <a class="nav-link" href="/armour.html">Armour<span class="sr-only"></span></a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="/weapons.html">Weapons<span class="sr-only"></span></a>
+                                    <a class="nav-link" href="/weapon.html">DPS<span class="sr-only"></span></a>
                                 </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" href="/prices.html">Prices<span class="sr-only"></span></a>
@@ -55,8 +55,15 @@
                     <h2>Armour Calculator</h2>
                 </div>
                 <hr>
+                <div class="col-auto">
+                    <label>Body Armour Expert: <input id="bae" type="number" min="0" max="25" step="1" value="0" name="bae"></label>
+                    <!-- # Ignore, why are you even here #
+                    <input class="code" type="text" name="codeGen" value="B112233112BBAB112233112BBAB112233112BBAB112233112BBAB112233112BBA<"> 
+                    <button type="button" class="btn-light btn-outline-dark border-1" onclick="useCode()">Submit</button>
+                    <button type="button" class="btn-light btn-outline-dark border-1" onclick="getCode()">Generate</button>
+                    -->
+                </div>
                 <div class="row gx-1">
-                    <label>Body Armour Expert: <input type="number" min="0" max="25" step="1" value="0" name="bae"></label>
                     <div id="armourSelection" class="col-auto">
                         <div class="table-responsive">
                             <table class="table align-middle">
@@ -140,14 +147,14 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="number" min="0" max="10" step="1" value="0" name="helmetCore">
+                                            <input id="helmCore" type="number" min="0" max="10" step="1" value="0" name="helmetCore">
                                         </td>
                                         <td>
-                                            <input class="mastery" type="number" min="0" max="5" value="0" name="helmetMast">
+                                            <input id="helmMast" class="mastery" type="number" min="0" max="5" value="0" name="helmetMast">
                                         </td>
-                                        <td><input class="form-check-input" type="checkbox" name="helmetColl" value="helmetNormal"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="helmetColl" value="helmetRed"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="helmetColl" value="helmetBlack"></td>
+                                        <td><input class="form-check-input" id="helmColl" type="checkbox" name="helmetColl" value="helmetNormal"></td>
+                                        <td><input class="form-check-input" id="helmColl" type="checkbox" name="helmetColl" value="helmetRed"></td>
+                                        <td><input class="form-check-input" id="helmColl" type="checkbox" name="helmetColl" value="helmetBlack"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Vest</th>
@@ -213,10 +220,10 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="number" min="0" max="10" step="1" value="0" name="vestCore">
+                                            <input id="vestCore" type="number" min="0" max="10" step="1" value="0" name="vestCore">
                                         </td>
                                         <td>
-                                            <input class="mastery" type="number" min="0" max="5" value="0" name="vestMast">
+                                            <input id="vestMast" class="mastery" type="number" min="0" max="5" value="0" name="vestMast">
                                         </td>
                                         <td><input class="form-check-input" type="checkbox" name="vestColl" value="vestNormal"></td>
                                         <td><input class="form-check-input" type="checkbox" name="vestColl" value="vestRed"></td>
@@ -270,10 +277,10 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="number" min="0" max="10" step="1" value="0" name="glovesCore">
+                                            <input id="glovesCore" type="number" min="0" max="10" step="1" value="0" name="glovesCore">
                                         </td>
                                         <td>
-                                            <input class="mastery" type="number" min="0" max="5" value="0" name="glovesMast">
+                                            <input id="glovesMast" class="mastery" type="number" min="0" max="5" value="0" name="glovesMast">
                                         </td>
                                         <td><input class="form-check-input" type="checkbox" name="glovesColl" value="glovesNormal"></td>
                                         <td><input class="form-check-input" type="checkbox" name="glovesColl" value="glovesRed"></td>
@@ -331,10 +338,10 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="number" min="0" max="10" step="1" value="0" name="pantsCore">
+                                            <input id="pantsCore" type="number" min="0" max="10" step="1" value="0" name="pantsCore">
                                         </td>
                                         <td>
-                                            <input class="mastery" type="number" min="0" max="5" value="0" name="pantsMast">
+                                            <input id="pantsMast" class="mastery" type="number" min="0" max="5" value="0" name="pantsMast">
                                         </td>
                                         <td><input class="form-check-input" type="checkbox" name="pantsColl" value="pantsNormal"></td>
                                         <td><input class="form-check-input" type="checkbox" name="pantsColl" value="pantsRed"></td>
@@ -392,10 +399,10 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="number" min="0" max="10" step="1" value="0" name="bootsCore">
+                                            <input id="bootsCore" type="number" min="0" max="10" step="1" value="0" name="bootsCore">
                                         </td>
                                         <td>
-                                            <input class="mastery" type="number" min="0" max="5" value="0" name="bootsMast">
+                                            <input id="bootsMast" class="mastery" type="number" min="0" max="5" value="0" name="bootsMast">
                                         </td>
                                         <td><input class="form-check-input" type="checkbox" name="bootsColl" value="bootsNormal"></td>
                                         <td><input class="form-check-input" type="checkbox" name="bootsColl" value="bootsRed"></td>
