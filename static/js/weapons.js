@@ -9,7 +9,6 @@
  - Cleanup
  - Cut off output table
  - Weapon version in output
- - Import armour code
  *
  */
 
@@ -20,20 +19,73 @@
 function setClass(character) {
 //    console.log(character);
     if (character == "Assault") {
+        $("#radioAss").prop("checked", true);
         $("#char_skills1").html(`<label>Killing Spree: <input type="number" min="0" max="25" step="1" value="0" name="ks"></label>`);
         $("#char_skills2").html(`<label>Deadly Force: <input type="number" min="0" max="25" step="1" value="0" name="df"></label>`);
         $("#char_skills3").html(`<label>Adrenaline: <input type="number" min="0" max="25" step="1" value="0" name="adren"></label>`);
     } else if (character == "Heavy") {
+        $("#radioHea").prop("checked", true);
         $("#char_skills1").html(`<label>Hold The Line: <input type="number" min="0" max="25" step="1" value="0" name="htl"></label>`);
         $("#char_skills2").html(`<label>Moving: <input type="checkbox" name="htl_moving" value="true"></label>`);
         $("#char_skills3").html("<label></label>");
     } else {
+        $("#radioMed").prop("checked", true);
         $("#char_skills1").html(`<label>Bio Bomb: <input type="number" min="0" max="25" step="1" value="0" name="biob"></label>`);
         $("#char_skills2").html("<label></label>");
         $("#char_skills3").html("<label></label>");
     }
 }
 ;
+
+function loadXS1Builds(character) {
+    setClass(character);
+    if (character == "Assault") {
+        $('input[name="fr"]').val(4);
+        $('input[name="crit"]').val(1);
+        $('input[name="nadeDmg"]').val(0);
+        $('input[name="ks"]').val(25);
+        $('input[name="df"]').val(0);
+        $('input[name="adren"]').val(25);
+        $('input[name="target_assist"]').val(0);
+    } else if (character == "Heavy") {
+        $('input[name="fr"]').val(4);
+        $('input[name="crit"]').val(25);
+        $('input[name="nadeDmg"]').val(0);
+        $('input[name="htl"]').val(25);
+        $('input[name="target_assist"]').val(12); 
+    } else {
+        $('input[name="fr"]').val(4);
+        $('input[name="crit"]').val(25);
+        $('input[name="nadeDmg"]').val(0);
+        $('input[name="target_assist"]').val(12); 
+    }
+
+    $('select[name="select_helmet"]').val("Medusa").change();
+    $('input[name="helmet_ver"][value="Black"]').prop("checked", true);
+    $('input[name="select_vest"][value="Other"]').prop("checked", true);
+    $('select[name="select_gloves"]').val("Titan").change();
+    $('input[name="gloves_ver"][value="Black"]').prop("checked", true);
+    $('input[name="select_pants"][value="Other"]').prop("checked", true);
+    $('input[name="select_boots"][value="Other"]').prop("checked", true);
+
+    $('input[name="smart_target"]').val(12); 
+    $('input[name="nimble"]').val(12);
+    $('input[name$="_mastery"]').each(function () { // $= --> ends with 
+        $(this).val(5);
+    });
+    
+    $('input[name$="_collections"]').each(function () { // $= --> ends with 
+        if($(this).val() != "Black"){
+            $(this).prop("checked", true);
+        }
+    });
+    $('input[name$="gloves_collections_red"]').prop("checked", true);
+    $('input[name$="helmet_collections_rel"]').prop("checked", true);
+
+}
+;
+
+
 /*
  * Main dps calculation function
  */
@@ -109,7 +161,7 @@ function getDPS() {
             [$('select[name="aug3"] option:selected').val(), $('input[name="aug3_grade"]').val()], [$('select[name="aug4"] option:selected').val(), $('input[name="aug4_grade"]').val()]);
 
     // Stats from dps relevant masteries
-    let masteries = getMasteries(weapon["Class"], $('input[name="gun_mastery"]').val(), $('select[name="hda"] option:selected').val(), $('input[name="helmet_mastery"]').val(), $('input[name="nade_mastery"]').val());
+    let masteries = getMasteries(weapon["Class"], $('input[name="mastery_gun"]').val(), $('select[name="hda"] option:selected').val(), $('input[name="helmet_mastery"]').val(), $('input[name="nade_mastery"]').val());
 
     // Finding which relevant collections are selected
     let helmetColl = $('input[name="helmet_collections_rel"]').is(":checked") ? true : false;
@@ -350,7 +402,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
 
 //    return outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average_pierce, displayed_damage, display_rps, capacity, gun_pierce, display_DOT, crit_perc, poolDmg, reload_display, uptime, reload_capped);
     return [getDpsTR(weaponName, pure_dps, average_dps, uptime_rounded, reload_capped, reload_display, gun_pierce),
-        getStatsTR(weaponName, displayed_damage, display_rps, capacity, pierce_wo_bonus, pure_DOT, crit_perc, poolDmg, reload_display)];
+        getStatsTR(weaponName, displayed_damage, display_rps, capacity, pierce_wo_bonus, display_DOT, crit_perc, poolDmg, reload_display)];
 }
 ;
 
@@ -453,7 +505,7 @@ function getCapacity(clipPity, clip_size, cores, base_cores, gun_capacity_master
         let mastery_cap_int = clip_size * perc_conv;
         if (mastery_cap_int < 1 & mastery_cap_int > 0) {
             mastery_cap = 1;
-        }else{
+        } else {
             mastery_cap = Math.floor(mastery_cap_int);
         }
     } else { // static amount
@@ -634,7 +686,7 @@ function getDpsTR(weaponName, pure_dps, average_dps, uptime, reload_capped, relo
 }
 ;
 
-function getStatsTR(weaponName, displayed_damage, display_rps, capacity, gun_pierce, pure_DOT, crit_perc, poolDmg, reload_display) {
+function getStatsTR(weaponName, displayed_damage, display_rps, capacity, gun_pierce, display_DOT, crit_perc, poolDmg, reload_display) {
 
     return `<tr>
                 <td>${weaponName}</td>
@@ -642,7 +694,7 @@ function getStatsTR(weaponName, displayed_damage, display_rps, capacity, gun_pie
                 <td>${display_rps.toLocaleString()}</td>
                 <td>${capacity.toLocaleString()}</td>
                 <td>${gun_pierce.toLocaleString()}</td>
-                <td>${pure_DOT.toLocaleString()}</td>
+                <td>${display_DOT.toLocaleString()}</td>
                 <td>${crit_perc.toLocaleString()}%</td>
                 <td>${poolDmg.toLocaleString()}</td>
                 <td>${reload_display.toLocaleString()}</td>

@@ -1,6 +1,4 @@
-
-
-td{
+td, th{
   vertical-align: middle;
 }
 
@@ -9,6 +7,15 @@ input[name="mobileView"]{
 }
 
 
-button{
+.dps_but{
     margin-bottom: 10rem;
 }
+
+.clear_but{
+    margin-bottom: 10rem;
+}
+
+.dropdownMenuButton{
+    margin: 0;
+}
+
