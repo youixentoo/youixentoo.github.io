@@ -372,9 +372,9 @@ function priceJSON() {
             "Normal": 1389,
             "Red": 25276
         },
-        "Titan IDS 0Physical": {
+        "Titan IDS 01": {
             "Normal": 144000,
-            "Red": 0
+            "Red": 389470
         },
         "Heavy Trooper Vest": {
             "Normal": 30000,
