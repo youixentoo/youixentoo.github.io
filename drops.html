@@ -20,6 +20,10 @@
 
     <!-- Own Scripts + CSS -->
     <link href="static/css/general.css" rel="stylesheet">
+    <link href="static/css/drops.css" rel="stylesheet">
+    <script src="static/data/dropsData.js"></script>
+    <script src="static/js/drops.js"></script>
+
 </head>
 
 <body>
@@ -50,14 +54,47 @@
                 </div>
             </nav>
         </div>
-
         <div id="site-wrapper">
-            <h2>Temporary index</h2><br>
-            <div>
-                <a href="/armour.html">Armour calculator</a><br>
-                <a href="/weapon.html">DPS calculator</a><br>
-                <a href="/prices.html">Item prices</a><br>
-                <a href="/drops.html">Item drop rates</a>
+            <hr>
+            <div class="header">
+                <h2>Droprate viewer</h2>
+            </div>
+            <p>
+                Display droprates for the highest grades of weapons and armour.<br>
+                There is no data available for non-nantonium boxes for lv 21-24 and 26-99.<br><br>
+                Drop range shows the level range, but is not implemented yet.
+            </p>
+            <hr>
+            <div class="row">
+                <div class="col-auto">
+                    <input id="searchTerm" type="text" name="searchTerm" value="" placeholder="Search"
+                        onkeyup="search(this.value)"> <!-- Js call for searching, passing the inputted search term -->
+                    <label>Level: <input id="playerLevel" type="number" min="1" max="100" step="1" value="1"
+                            name="playerLevel" onchange="search($('#searchTerm').val())"></label>
+                    <!-- Same js call as above, passing same value -->
+                </div>
+                <div class="row-auto" id="output">
+                    <div class="table-responsive">
+                        <table class="table align-middle cell-width">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th>Item<br></th>
+                                    <th>Drop Range</th>
+                                    <th>Steel</th>
+                                    <th>Titanium</th>
+                                    <th>Molybdenum</th>
+                                    <th>Iridium</th>
+                                    <th>Neodymium</th>
+                                    <th>Promethium</th>
+                                    <th>Thulium</th>
+                                    <th>Nantonium</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-light" id="tableOutput">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

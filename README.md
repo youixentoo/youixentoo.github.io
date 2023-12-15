@@ -5,3 +5,4 @@ Make a SAS4 mobile webpage for calculators.
 - Armour calculator
 - DPS calculator
 - Weapon/armour prices
+- Droprate viewer

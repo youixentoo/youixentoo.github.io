@@ -1,429 +1,468 @@
 <!DOCTYPE html>
 <!-- Element resizing like weapons -->
 <html>
-    <head>
-        <title>Armour calculator</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="static/img/SASZA4_mobile.png">
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<head>
+    <title>Armour calculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/img/SASZA4_mobile.png">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-        <!-- Popper JS + Bootstrap 5 -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <!-- Own Scripts + CSS -->
-        <link href="static/css/general.css" rel="stylesheet">
-        <link href="static/css/armour.css" rel="stylesheet">
-        <script src="static/data/armourData.js"></script>
-        <script src="static/js/armour.js"></script>
-    </head>
-    <body>
-        <div id="main">
-            <div id="navbar" class="container-fluid bg-light border-bottom">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="/index.html">SAS4</a>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="/armour.html">Armour<span class="sr-only"></span></a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="/weapon.html">DPS<span class="sr-only"></span></a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="/prices.html">Prices<span class="sr-only"></span></a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="/credits.html">Credits<span class="sr-only"></span></a>
-                                </li>
-                            </ul>
-                        </div>
+    <!-- Popper JS + Bootstrap 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- Own Scripts + CSS -->
+    <link href="static/css/general.css" rel="stylesheet">
+    <link href="static/css/armour.css" rel="stylesheet">
+    <script src="static/data/armourData.js"></script>
+    <script src="static/js/armour.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="navbar" class="container-fluid bg-light border-bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/index.html">SAS4</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/armour.html">Armour<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/weapon.html">DPS<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/prices.html">Prices<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/drops.html">Drops<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/credits.html">Credits<span class="sr-only"></span></a>
+                            </li>
+                        </ul>
                     </div>
-                </nav>
-            </div>
-            <div id="site-wrapper">
-                <hr>
-                <div class="header">
-                    <h2>Armour Calculator</h2>
                 </div>
-                <hr>
-                <div class="col-auto">
-                    <label>Body Armour Expert: <input id="bae" type="number" min="0" max="25" step="1" value="0" name="bae"></label>
-                    <!-- # Ignore, why are you even here #
+            </nav>
+        </div>
+        <div id="site-wrapper">
+            <hr>
+            <div class="header">
+                <h2>Armour Calculator</h2>
+            </div>
+            <hr>
+            <div class="col-auto">
+                <label>Body Armour Expert: <input id="bae" type="number" min="0" max="25" step="1" value="0"
+                        name="bae"></label>
+                <!-- # Ignore, why are you even here #
                     <input class="code" type="text" name="codeGen" value="B112233112BBAB112233112BBAB112233112BBAB112233112BBAB112233112BBA<"> 
                     <button type="button" class="btn-light btn-outline-dark border-1" onclick="useCode()">Submit</button>
                     <button type="button" class="btn-light btn-outline-dark border-1" onclick="getCode()">Generate</button>
                     -->
-                </div>
-                <div class="row gx-1">
-                    <div id="armourSelection" class="col-auto">
-                        <div class="table-responsive">
-                            <table class="table align-middle">
-                                <thead class="table-secondary align-middle">
-                                    <tr>
-                                        <th class="border-secondary" rowspan="2">Piece</th>
-                                        <th class="border-secondary" rowspan="2">Version</th>
-                                        <th class="border-secondary" rowspan="2">Armour</th>
-                                        <th class="border-secondary" rowspan="2">Augments</th>
-                                        <th class="border-secondary" rowspan="2">Cores</th>
-                                        <th class="border-secondary" rowspan="2">Mastery</th>
-                                        <th colspan="3" class="text-center" name="borderless">Collections</th>
-                                    </tr>
+            </div>
+            <div class="row gx-1">
+                <div id="armourSelection" class="col-auto">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-secondary align-middle">
+                                <tr>
+                                    <th class="border-secondary" rowspan="2">Piece</th>
+                                    <th class="border-secondary" rowspan="2">Version</th>
+                                    <th class="border-secondary" rowspan="2">Armour</th>
+                                    <th class="border-secondary" rowspan="2">Augments</th>
+                                    <th class="border-secondary" rowspan="2">Cores</th>
+                                    <th class="border-secondary" rowspan="2">Mastery</th>
+                                    <th colspan="3" class="text-center" name="borderless">Collections</th>
+                                </tr>
                                 <th class="text-center border-secondary" name="Collection">Normal</th>
                                 <th class="text-center border-secondary" name="Collection">Red</th>
                                 <th class="text-center border-secondary" name="Collection">Black</th>
                                 </tr>
-                                </thead>
-                                <tbody class="table-light">
-                                    <tr>
-                                        <th scope="row">Helmet</th>
-                                        <td>
-                                            <div id="vHelmets">
-                                                <select id="versionHelm" name="versionHelm" onchange="setHelmets(this.value)" type="version">
-                                                    <option value="Normal">Normal</option>
-                                                    <option value="Red">Red</option>
-                                                    <option value="Black">Black</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div id="helmets" class="d-flex justify-content-left">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex flex-row">
-                                                <select id="helmAug1" name="helmAug1" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Body Fuelling">Body Fuelling</option>
-                                                    <option value="Smart Target">Smart Target</option>
-                                                    <option value="Target Assist">Target Assist</option>
-                                                    <option value="Energised">Energised</option>
-                                                    <option value="Revitalising">Revitalising</option>
-                                                    <option value="Resuscitating">Resuscitating</option>
-                                                </select>
-                                                <input id="helmAugLv1" type="number" min="0" max="12" step="1" value="0" >
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="helmAug2" name="helmAug2" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Body Fuelling">Body Fuelling</option>
-                                                    <option value="Smart Target">Smart Target</option>
-                                                    <option value="Target Assist">Target Assist</option>
-                                                    <option value="Energised">Energised</option>
-                                                    <option value="Revitalising">Revitalising</option>
-                                                    <option value="Resuscitating">Resuscitating</option>
-                                                </select>
-                                                <input id="helmAugLv2" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="helmAug3" name="helmAug3" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Body Fuelling">Body Fuelling</option>
-                                                    <option value="Smart Target">Smart Target</option>
-                                                    <option value="Target Assist">Target Assist</option>
-                                                    <option value="Energised">Energised</option>
-                                                    <option value="Revitalising">Revitalising</option>
-                                                    <option value="Resuscitating">Resuscitating</option>
-                                                </select>
-                                                <input id="helmAugLv3" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <input id="helmCore" type="number" min="0" max="10" step="1" value="0" name="helmetCore">
-                                        </td>
-                                        <td>
-                                            <input id="helmMast" class="mastery" type="number" min="0" max="5" value="0" name="helmetMast">
-                                        </td>
-                                        <td><input class="form-check-input" id="helmColl" type="checkbox" name="helmetColl" value="helmetNormal"></td>
-                                        <td><input class="form-check-input" id="helmColl" type="checkbox" name="helmetColl" value="helmetRed"></td>
-                                        <td><input class="form-check-input" id="helmColl" type="checkbox" name="helmetColl" value="helmetBlack"></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Vest</th>
-                                        <td>
-                                            <div id="vVests">
-                                                <select id="versionVest" name="versionVest" onchange="setVests(this.value)" type="version">
-                                                    <option value="Normal">Normal</option>
-                                                    <option value="Red">Red</option>
-                                                    <option value="Black">Black</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div id="vests">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex flex-row">
-                                                <select id="vestAug1" name="vestAug1" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Body Fuelling">Body Fuelling</option>
-                                                    <option value="Tissue Repair">Tissue Repair</option>
-                                                    <option value="Energised">Energised</option>
-                                                    <option value="Revitalising">Revitalising</option>
-                                                    <option value="Resuscitating">Resuscitating</option>
-                                                    <option value="CQC Enhanced">CQC Enhanced</option>
-                                                </select>
-                                                <input id="vestAugLv1" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="vestAug2" name="vestAug2" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Body Fuelling">Body Fuelling</option>
-                                                    <option value="Tissue Repair">Tissue Repair</option>
-                                                    <option value="Energised">Energised</option>
-                                                    <option value="Revitalising">Revitalising</option>
-                                                    <option value="Resuscitating">Resuscitating</option>
-                                                    <option value="CQC Enhanced">CQC Enhanced</option>
-                                                </select>
-                                                <input id="vestAugLv2" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="vestAug3" name="vestAug3" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Body Fuelling">Body Fuelling</option>
-                                                    <option value="Tissue Repair">Tissue Repair</option>
-                                                    <option value="Energised">Energised</option>
-                                                    <option value="Revitalising">Revitalising</option>
-                                                    <option value="Resuscitating">Resuscitating</option>
-                                                    <option value="CQC Enhanced">CQC Enhanced</option>
-                                                </select>
-                                                <input id="vestAugLv3" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <input id="vestCore" type="number" min="0" max="10" step="1" value="0" name="vestCore">
-                                        </td>
-                                        <td>
-                                            <input id="vestMast" class="mastery" type="number" min="0" max="5" value="0" name="vestMast">
-                                        </td>
-                                        <td><input class="form-check-input" type="checkbox" name="vestColl" value="vestNormal"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="vestColl" value="vestRed"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="vestColl" value="vestBlack"></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Gloves</th>
-                                        <td>
-                                            <div id="vGloves">
-                                                <select id="versionGloves" name="versionGloves" onchange="setGloves(this.value)" type="version">
-                                                    <option value="Normal">Normal</option>
-                                                    <option value="Red">Red</option>
-                                                    <option value="Black">Black</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div id="gloves">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex flex-row">
-                                                <select id="glovesAug1" name="glovesAug1" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Nimble">Nimble</option>
-                                                </select>
-                                                <input id="glovesAugLv1" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="glovesAug2" name="glovesAug2" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option><option value="Nimble">Nimble</option>
-                                                </select>
-                                                <input id="glovesAugLv2" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="glovesAug3" name="glovesAug3" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Nimble">Nimble</option>
-                                                </select>
-                                                <input id="glovesAugLv3" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <input id="glovesCore" type="number" min="0" max="10" step="1" value="0" name="glovesCore">
-                                        </td>
-                                        <td>
-                                            <input id="glovesMast" class="mastery" type="number" min="0" max="5" value="0" name="glovesMast">
-                                        </td>
-                                        <td><input class="form-check-input" type="checkbox" name="glovesColl" value="glovesNormal"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="glovesColl" value="glovesRed"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="glovesColl" value="glovesBlack"></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Pants</th>
-                                        <td>
-                                            <div id=vPants>
-                                                <select id="versionPants" name="versionPants" onchange="setPants(this.value)" type="version">
-                                                    <option value="Normal">Normal</option>
-                                                    <option value="Red">Red</option>
-                                                    <option value="Black">Black</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div id="pants">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex flex-row">
-                                                <select id="pantsAug1" name="pantsAug1" type="aug">
-                                                    <option value="---">---</option
-                                                    ><option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Machine Assisted">Machine Assisted</option>
-                                                    <option value="Body Fuelling">Body Fuelling</option>
-                                                </select>
-                                                <input id="pantsAugLv1" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="pantsAug2" name="pantsAug2" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Machine Assisted">Machine Assisted</option>
-                                                    <option value="Body Fuelling">Body Fuelling</option>
-                                                </select>
-                                                <input id="pantsAugLv2" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="pantsAug3" name="pantsAug3" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Machine Assisted">Machine Assisted</option>
-                                                    <option value="Body Fuelling">Body Fuelling</option>
-                                                </select>
-                                                <input id="pantsAugLv3" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <input id="pantsCore" type="number" min="0" max="10" step="1" value="0" name="pantsCore">
-                                        </td>
-                                        <td>
-                                            <input id="pantsMast" class="mastery" type="number" min="0" max="5" value="0" name="pantsMast">
-                                        </td>
-                                        <td><input class="form-check-input" type="checkbox" name="pantsColl" value="pantsNormal"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="pantsColl" value="pantsRed"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="pantsColl" value="pantsBlack"></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Boots</th>
-                                        <td>
-                                            <div id="vBoots">
-                                                <select id="versionBoots" name="versionBoots" onchange="setBoots(this.value)" type="version">
-                                                    <option value="Normal">Normal</option>
-                                                    <option value="Red">Red</option>
-                                                    <option value="Black">Black</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div id="boots">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex flex-row">
-                                                <select id="bootsAug1" name="bootsAug1" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Machine Assisted">Machine Assisted</option>
-                                                    <option value="Revitalising">Revitalising</option>
-                                                </select>
-                                                <input id="bootsAugLv1" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="bootsAug2" name="bootsAug2" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Machine Assisted">Machine Assisted</option>
-                                                    <option value="Revitalising">Revitalising</option>
-                                                </select>
-                                                <input id="bootsAugLv2" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <select id="bootsAug3" name="bootsAug3" type="aug">
-                                                    <option value="---">---</option>
-                                                    <option value="Fortified">Fortified</option>
-                                                    <option value="Heat Resistant">Heat Resistant</option>
-                                                    <option value="Hazchem">Hazchem</option>
-                                                    <option value="Machine Assisted">Machine Assisted</option>
-                                                    <option value="Revitalising">Revitalising</option>
-                                                </select>
-                                                <input id="bootsAugLv3" type="number" min="0" max="12" step="1" value="0">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <input id="bootsCore" type="number" min="0" max="10" step="1" value="0" name="bootsCore">
-                                        </td>
-                                        <td>
-                                            <input id="bootsMast" class="mastery" type="number" min="0" max="5" value="0" name="bootsMast">
-                                        </td>
-                                        <td><input class="form-check-input" type="checkbox" name="bootsColl" value="bootsNormal"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="bootsColl" value="bootsRed"></td>
-                                        <td><input class="form-check-input" type="checkbox" name="bootsColl" value="bootsBlack"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                            </thead>
+                            <tbody class="table-light">
+                                <tr>
+                                    <th scope="row">Helmet</th>
+                                    <td>
+                                        <div id="vHelmets">
+                                            <select id="versionHelm" name="versionHelm"
+                                                onchange="setHelmets(this.value)" type="version">
+                                                <option value="Normal">Normal</option>
+                                                <option value="Red">Red</option>
+                                                <option value="Black">Black</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="helmets" class="d-flex justify-content-left">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-row">
+                                            <select id="helmAug1" name="helmAug1" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Body Fuelling">Body Fuelling</option>
+                                                <option value="Smart Target">Smart Target</option>
+                                                <option value="Target Assist">Target Assist</option>
+                                                <option value="Energised">Energised</option>
+                                                <option value="Revitalising">Revitalising</option>
+                                                <option value="Resuscitating">Resuscitating</option>
+                                            </select>
+                                            <input id="helmAugLv1" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="helmAug2" name="helmAug2" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Body Fuelling">Body Fuelling</option>
+                                                <option value="Smart Target">Smart Target</option>
+                                                <option value="Target Assist">Target Assist</option>
+                                                <option value="Energised">Energised</option>
+                                                <option value="Revitalising">Revitalising</option>
+                                                <option value="Resuscitating">Resuscitating</option>
+                                            </select>
+                                            <input id="helmAugLv2" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="helmAug3" name="helmAug3" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Body Fuelling">Body Fuelling</option>
+                                                <option value="Smart Target">Smart Target</option>
+                                                <option value="Target Assist">Target Assist</option>
+                                                <option value="Energised">Energised</option>
+                                                <option value="Revitalising">Revitalising</option>
+                                                <option value="Resuscitating">Resuscitating</option>
+                                            </select>
+                                            <input id="helmAugLv3" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="helmCore" type="number" min="0" max="10" step="1" value="0"
+                                            name="helmetCore">
+                                    </td>
+                                    <td>
+                                        <input id="helmMast" class="mastery" type="number" min="0" max="5" value="0"
+                                            name="helmetMast">
+                                    </td>
+                                    <td><input class="form-check-input" id="helmColl" type="checkbox" name="helmetColl"
+                                            value="helmetNormal"></td>
+                                    <td><input class="form-check-input" id="helmColl" type="checkbox" name="helmetColl"
+                                            value="helmetRed"></td>
+                                    <td><input class="form-check-input" id="helmColl" type="checkbox" name="helmetColl"
+                                            value="helmetBlack"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Vest</th>
+                                    <td>
+                                        <div id="vVests">
+                                            <select id="versionVest" name="versionVest" onchange="setVests(this.value)"
+                                                type="version">
+                                                <option value="Normal">Normal</option>
+                                                <option value="Red">Red</option>
+                                                <option value="Black">Black</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="vests">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-row">
+                                            <select id="vestAug1" name="vestAug1" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Body Fuelling">Body Fuelling</option>
+                                                <option value="Tissue Repair">Tissue Repair</option>
+                                                <option value="Energised">Energised</option>
+                                                <option value="Revitalising">Revitalising</option>
+                                                <option value="Resuscitating">Resuscitating</option>
+                                                <option value="CQC Enhanced">CQC Enhanced</option>
+                                            </select>
+                                            <input id="vestAugLv1" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="vestAug2" name="vestAug2" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Body Fuelling">Body Fuelling</option>
+                                                <option value="Tissue Repair">Tissue Repair</option>
+                                                <option value="Energised">Energised</option>
+                                                <option value="Revitalising">Revitalising</option>
+                                                <option value="Resuscitating">Resuscitating</option>
+                                                <option value="CQC Enhanced">CQC Enhanced</option>
+                                            </select>
+                                            <input id="vestAugLv2" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="vestAug3" name="vestAug3" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Body Fuelling">Body Fuelling</option>
+                                                <option value="Tissue Repair">Tissue Repair</option>
+                                                <option value="Energised">Energised</option>
+                                                <option value="Revitalising">Revitalising</option>
+                                                <option value="Resuscitating">Resuscitating</option>
+                                                <option value="CQC Enhanced">CQC Enhanced</option>
+                                            </select>
+                                            <input id="vestAugLv3" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="vestCore" type="number" min="0" max="10" step="1" value="0"
+                                            name="vestCore">
+                                    </td>
+                                    <td>
+                                        <input id="vestMast" class="mastery" type="number" min="0" max="5" value="0"
+                                            name="vestMast">
+                                    </td>
+                                    <td><input class="form-check-input" type="checkbox" name="vestColl"
+                                            value="vestNormal"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="vestColl" value="vestRed">
+                                    </td>
+                                    <td><input class="form-check-input" type="checkbox" name="vestColl"
+                                            value="vestBlack"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Gloves</th>
+                                    <td>
+                                        <div id="vGloves">
+                                            <select id="versionGloves" name="versionGloves"
+                                                onchange="setGloves(this.value)" type="version">
+                                                <option value="Normal">Normal</option>
+                                                <option value="Red">Red</option>
+                                                <option value="Black">Black</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="gloves">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-row">
+                                            <select id="glovesAug1" name="glovesAug1" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Nimble">Nimble</option>
+                                            </select>
+                                            <input id="glovesAugLv1" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="glovesAug2" name="glovesAug2" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Nimble">Nimble</option>
+                                            </select>
+                                            <input id="glovesAugLv2" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="glovesAug3" name="glovesAug3" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Nimble">Nimble</option>
+                                            </select>
+                                            <input id="glovesAugLv3" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="glovesCore" type="number" min="0" max="10" step="1" value="0"
+                                            name="glovesCore">
+                                    </td>
+                                    <td>
+                                        <input id="glovesMast" class="mastery" type="number" min="0" max="5" value="0"
+                                            name="glovesMast">
+                                    </td>
+                                    <td><input class="form-check-input" type="checkbox" name="glovesColl"
+                                            value="glovesNormal"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="glovesColl"
+                                            value="glovesRed"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="glovesColl"
+                                            value="glovesBlack"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Pants</th>
+                                    <td>
+                                        <div id=vPants>
+                                            <select id="versionPants" name="versionPants"
+                                                onchange="setPants(this.value)" type="version">
+                                                <option value="Normal">Normal</option>
+                                                <option value="Red">Red</option>
+                                                <option value="Black">Black</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="pants">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-row">
+                                            <select id="pantsAug1" name="pantsAug1" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Machine Assisted">Machine Assisted</option>
+                                                <option value="Body Fuelling">Body Fuelling</option>
+                                            </select>
+                                            <input id="pantsAugLv1" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="pantsAug2" name="pantsAug2" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Machine Assisted">Machine Assisted</option>
+                                                <option value="Body Fuelling">Body Fuelling</option>
+                                            </select>
+                                            <input id="pantsAugLv2" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="pantsAug3" name="pantsAug3" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Machine Assisted">Machine Assisted</option>
+                                                <option value="Body Fuelling">Body Fuelling</option>
+                                            </select>
+                                            <input id="pantsAugLv3" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="pantsCore" type="number" min="0" max="10" step="1" value="0"
+                                            name="pantsCore">
+                                    </td>
+                                    <td>
+                                        <input id="pantsMast" class="mastery" type="number" min="0" max="5" value="0"
+                                            name="pantsMast">
+                                    </td>
+                                    <td><input class="form-check-input" type="checkbox" name="pantsColl"
+                                            value="pantsNormal"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="pantsColl"
+                                            value="pantsRed"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="pantsColl"
+                                            value="pantsBlack"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Boots</th>
+                                    <td>
+                                        <div id="vBoots">
+                                            <select id="versionBoots" name="versionBoots"
+                                                onchange="setBoots(this.value)" type="version">
+                                                <option value="Normal">Normal</option>
+                                                <option value="Red">Red</option>
+                                                <option value="Black">Black</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="boots">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-row">
+                                            <select id="bootsAug1" name="bootsAug1" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Machine Assisted">Machine Assisted</option>
+                                                <option value="Revitalising">Revitalising</option>
+                                            </select>
+                                            <input id="bootsAugLv1" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="bootsAug2" name="bootsAug2" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Machine Assisted">Machine Assisted</option>
+                                                <option value="Revitalising">Revitalising</option>
+                                            </select>
+                                            <input id="bootsAugLv2" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <select id="bootsAug3" name="bootsAug3" type="aug">
+                                                <option value="---">---</option>
+                                                <option value="Fortified">Fortified</option>
+                                                <option value="Heat Resistant">Heat Resistant</option>
+                                                <option value="Hazchem">Hazchem</option>
+                                                <option value="Machine Assisted">Machine Assisted</option>
+                                                <option value="Revitalising">Revitalising</option>
+                                            </select>
+                                            <input id="bootsAugLv3" type="number" min="0" max="12" step="1" value="0">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input id="bootsCore" type="number" min="0" max="10" step="1" value="0"
+                                            name="bootsCore">
+                                    </td>
+                                    <td>
+                                        <input id="bootsMast" class="mastery" type="number" min="0" max="5" value="0"
+                                            name="bootsMast">
+                                    </td>
+                                    <td><input class="form-check-input" type="checkbox" name="bootsColl"
+                                            value="bootsNormal"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="bootsColl"
+                                            value="bootsRed"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="bootsColl"
+                                            value="bootsBlack"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div id="resultsNormal" class="col-auto">
+                </div>
+                <div id="resultsNormal" class="col-auto">
+                </div>
+                <div id="calculations">
+                    <div id="getArmour">
+                        <button type="button" class="btn btn-light btn-outline-dark" onclick="getArmour()">Calc</button>
+                        <label name=mobileOut>Mobile output <input id="MobileView" class="form-check-input"
+                                type="checkbox" name="mobileView" value="true"></label>
                     </div>
-                    <div id="calculations">
-                        <div id="getArmour">
-                            <button type="button" class="btn btn-light btn-outline-dark" onclick="getArmour()">Calc</button>
-                            <label name=mobileOut>Mobile output <input id="MobileView" class="form-check-input" type="checkbox" name="mobileView" value="true"></label>
-                        </div>
-                    </div>
-                    <div id="mobileResults" class="col-auto table-responsive">
-                    </div>
+                </div>
+                <div id="mobileResults" class="col-auto table-responsive">
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

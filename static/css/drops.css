@@ -1,0 +1,46 @@
+/* .tg  {border:none;border-collapse:collapse;border-spacing:0;}
+.tg td{border-style:solid;border-width:0px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;
+  padding:10px 5px;word-break:normal;}
+.tg th{border-style:solid;border-width:0px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}} */
+
+.cell-width {
+    table-layout: fixed;
+}
+
+td {
+    overflow: hidden;
+    word-break: normal;
+    text-overflow: ellipsis;
+    border-bottom: 0px;
+}
+
+td.itemName {
+    border-right: 1px solid rgb(236, 236, 236);
+}
+
+td.cellR {
+    background-color: red;
+}
+
+td.cellO {
+    background-color: orange;
+}
+
+td.cellY {
+    background-color: yellow;
+}
+
+td.cellLG {
+    background-color: lightgreen;
+}
+
+td.cellDG {
+    background-color: rgb(74, 216, 74);
+}
+
+#playerLevel {
+    width: 3.5rem;
+}
