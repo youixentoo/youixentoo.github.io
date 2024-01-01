@@ -2,13 +2,11 @@
  TODO:
  - Formatted output
  - Info boxes explaining terms (pure/avg dps, DoT, etc)
- - Message for unsupported weapons, black pistols etc
  - Adaptive
  - Shooting at boss dps for assault rifles
  - Time to kill a nm necro?
  - Cleanup
  - Cut off output table
- - Weapon version in output
  *
  */
 
@@ -17,7 +15,7 @@
  * Function for displaying skills for the different classes
  */
 function setClass(character) {
-//    console.log(character);
+    //    console.log(character);
     if (character == "Assault") {
         $("#radioAss").prop("checked", true);
         $("#char_skills1").html(`<label>Killing Spree: <input type="number" min="0" max="25" step="1" value="0" name="ks"></label>`);
@@ -52,12 +50,12 @@ function loadXS1Builds(character) {
         $('input[name="crit"]').val(25);
         $('input[name="nadeDmg"]').val(0);
         $('input[name="htl"]').val(25);
-        $('input[name="target_assist"]').val(12); 
+        $('input[name="target_assist"]').val(12);
     } else {
         $('input[name="fr"]').val(4);
         $('input[name="crit"]').val(25);
         $('input[name="nadeDmg"]').val(0);
-        $('input[name="target_assist"]').val(12); 
+        $('input[name="target_assist"]').val(12);
     }
 
     $('select[name="select_helmet"]').val("Medusa").change();
@@ -68,14 +66,14 @@ function loadXS1Builds(character) {
     $('input[name="select_pants"][value="Other"]').prop("checked", true);
     $('input[name="select_boots"][value="Other"]').prop("checked", true);
 
-    $('input[name="smart_target"]').val(12); 
+    $('input[name="smart_target"]').val(12);
     $('input[name="nimble"]').val(12);
     $('input[name$="_mastery"]').each(function () { // $= --> ends with 
         $(this).val(5);
     });
-    
+
     $('input[name$="_collections"]').each(function () { // $= --> ends with 
-        if($(this).val() != "Black"){
+        if ($(this).val() != "Black") {
             $(this).prop("checked", true);
         }
     });
@@ -102,7 +100,9 @@ function getDPS() {
     if (!weapon) {
         // TODO: Add some sort of message: black pistols that don't exist go here for example
         //setOutput("Weapon not supported");
-        console.error("Error getting weapon data");
+        //console.error("Error getting weapon data");
+        alert(`Error getting weapon data.
+(Non-existant black pistol)`)
         return null;
     }
 
@@ -158,16 +158,16 @@ function getDPS() {
 
     // Augments on weapon
     let weaponAugments = getAugments([$('select[name="aug1"] option:selected').val(), $('input[name="aug1_grade"]').val()], [$('select[name="aug2"] option:selected').val(), $('input[name="aug2_grade"]').val()],
-            [$('select[name="aug3"] option:selected').val(), $('input[name="aug3_grade"]').val()], [$('select[name="aug4"] option:selected').val(), $('input[name="aug4_grade"]').val()]);
+        [$('select[name="aug3"] option:selected').val(), $('input[name="aug3_grade"]').val()], [$('select[name="aug4"] option:selected').val(), $('input[name="aug4_grade"]').val()]);
 
     // Stats from dps relevant masteries
     let masteries = getMasteries(weapon["Class"], $('input[name="mastery_gun"]').val(), $('select[name="hda"] option:selected').val(), $('input[name="helmet_mastery"]').val(), $('input[name="nade_mastery"]').val());
 
     // Finding which relevant collections are selected
-    let helmetColl = $('input[name="helmet_collections_rel"]').is(":checked") ? true : false;
-    let gunNormal = $('input[name="gun_collections_normal"]').is(":checked") ? true : false;
-    let gunRed = $('input[name="gun_collections_red"]').is(":checked") ? true : false;
-    let gunBlack = $('input[name="gun_collections_black"]').is(":checked") ? true : false;
+    let helmetColl = $('input[name="helmet_collections_rel"]').is(":checked");
+    let gunNormal = $('input[name="gun_collections_normal"]').is(":checked");
+    let gunRed = $('input[name="gun_collections_red"]').is(":checked");
+    let gunBlack = $('input[name="gun_collections_black"]').is(":checked");
 
     // Get the stats for each selected collection
     let collections = getCollections(weapon["Class"], gunNormal, gunRed, gunBlack, helmetColl);
@@ -188,11 +188,12 @@ function getDPS() {
 
     // Calculate dps (function itself has more function calls)
     let output = calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level,
-            helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus, adren);
+        helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus, adren, weaponVersion);
 
     // Set the output on the webpage
     addToTable(output[0], "dpsTable");
     addToTable(output[1], "statsTable");
+    addToTable(output[2], "infoTable")
 }
 ;
 
@@ -212,12 +213,13 @@ function addToTable(trOut, tableId) {
 function clearTable() {
     $("#dpsTable tbody>tr").remove();
     $("#statsTable tbody>tr").remove();
+    $("#infoTable tbody>tr").remove();
 }
 ;
 
 
 function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level,
-        helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus, adren) {
+    helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus, adren, weaponVersion) {
     // Various base stats and the +% from amount of base cores
     let base_dmg = weapon["Damage"];
     let base_DOT = weapon["DOT"];
@@ -321,7 +323,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     // Burst / non burst
     if (burstDelayData) {
         pure_rps = burst_rps(burstDelayData, capacity, pure_rps);
-//        console.log(drainTime, burstAdjust, pure_rps);
+        //        console.log(drainTime, burstAdjust, pure_rps);
     }
     let pure_dps = dps_calc(pure_damage, pure_DOT, pure_pool, pure_rps);
 
@@ -332,7 +334,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let rps_cooldown;
     if (class_char === "Assault") {
         dmg_cooldown = 1;
-        rps_cooldown = (adren > 0) ? ((5 + 0.25 * (class_level - 1)) / 25) : 1; //adren
+        rps_cooldown = (adren > 0) ? (5 + 0.25 * (adren - 1)) / 25 : 1; //adren
     } else if (class_char === "Heavy") {
         dmg_cooldown = (class_level > 0) ? ((8 + 0.8 * (class_level - 1)) / 30) : 1;
         rps_cooldown = 1;// htl
@@ -400,9 +402,10 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     // console.log("Uptime: ", uptime);
     // console.log("############end");
 
-//    return outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average_pierce, displayed_damage, display_rps, capacity, gun_pierce, display_DOT, crit_perc, poolDmg, reload_display, uptime, reload_capped);
-    return [getDpsTR(weaponName, pure_dps, average_dps, uptime_rounded, reload_capped, reload_display, gun_pierce),
-        getStatsTR(weaponName, displayed_damage, display_rps, capacity, pierce_wo_bonus, display_DOT, crit_perc, poolDmg, reload_display)];
+    //    return outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average_pierce, displayed_damage, display_rps, capacity, gun_pierce, display_DOT, crit_perc, poolDmg, reload_display, uptime, reload_capped);
+    return [getDpsTR(weaponName, weaponVersion, pure_dps, average_dps, uptime_rounded, reload_capped, reload_display, gun_pierce),
+    getStatsTR(weaponName, weaponVersion, displayed_damage, display_rps, capacity, pierce_wo_bonus, display_DOT, crit_perc, poolDmg, reload_display),
+    getInfoTR(weaponName, weaponVersion, cores)];
 }
 ;
 
@@ -524,16 +527,16 @@ function getCapacity(clipPity, clip_size, cores, base_cores, gun_capacity_master
     // Total clip size after all bonuses
     let capacity = clip_size + cap_aug_amount + clip_cores + armour_bonus + mastery_cap + collections_cap;
 
-//    console.log("initialCap", initialCap);
-//    console.log("#####");
-//    console.log("clip_size", clip_size);
-//    console.log("cap_aug_amount", cap_aug_amount);
-//    console.log("clip_cores", clip_cores);
-//    console.log("armour_check", armour_bonus);
-//    console.log("mastery_cap", mastery_cap);
-//    console.log("collections_cap", collections_cap);
-//    console.log("#####");
-//    console.log("capacity", capacity);
+    //    console.log("initialCap", initialCap);
+    //    console.log("#####");
+    //    console.log("clip_size", clip_size);
+    //    console.log("cap_aug_amount", cap_aug_amount);
+    //    console.log("clip_cores", clip_cores);
+    //    console.log("armour_check", armour_bonus);
+    //    console.log("mastery_cap", mastery_cap);
+    //    console.log("collections_cap", collections_cap);
+    //    console.log("#####");
+    //    console.log("capacity", capacity);
 
     return capacity;
 }
@@ -673,10 +676,10 @@ function outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average
 }
 ;
 
-function getDpsTR(weaponName, pure_dps, average_dps, uptime, reload_capped, reload_display, pure_pierce) {
+function getDpsTR(weaponName, weaponVersion, pure_dps, average_dps, uptime, reload_capped, reload_display, pure_pierce) {
 
     return `<tr>
-                <td>${weaponName}</td>
+                <td>${weaponName}${(weaponVersion == "Normal") ? "" : ` [${weaponVersion}]`}</td>
                 <td>${pure_dps.toLocaleString()}</td>
                 <td>${average_dps.toLocaleString()}</td>
                 <td>${(uptime * 100).toLocaleString()}% ${reload_capped}</td>
@@ -686,10 +689,10 @@ function getDpsTR(weaponName, pure_dps, average_dps, uptime, reload_capped, relo
 }
 ;
 
-function getStatsTR(weaponName, displayed_damage, display_rps, capacity, gun_pierce, display_DOT, crit_perc, poolDmg, reload_display) {
+function getStatsTR(weaponName, weaponVersion, displayed_damage, display_rps, capacity, gun_pierce, display_DOT, crit_perc, poolDmg, reload_display) {
 
     return `<tr>
-                <td>${weaponName}</td>
+                <td>${weaponName}${(weaponVersion == "Normal") ? "" : ` [${weaponVersion}]`}</td>
                 <td>${displayed_damage.toLocaleString()}</td>
                 <td>${display_rps.toLocaleString()}</td>
                 <td>${capacity.toLocaleString()}</td>
@@ -701,3 +704,17 @@ function getStatsTR(weaponName, displayed_damage, display_rps, capacity, gun_pie
             </tr>`;
 }
 ;
+
+function getInfoTR(weaponName, weaponVersion, cores) {
+    return `<tr>
+                <td>${weaponName}${(weaponVersion == "Normal") ? "" : ` [${weaponVersion}]`}</td>
+                <td>${$('select[name="aug1"] option:selected').val()}: ${$('input[name="aug1_grade"]').val()}<br>
+                ${$('select[name="aug2"] option:selected').val()}: ${$('input[name="aug2_grade"]').val()}</td>
+                <td>${$('select[name="aug3"] option:selected').val()}: ${$('input[name="aug3_grade"]').val()}<br>
+                ${$('select[name="aug4"] option:selected').val()}: ${$('input[name="aug4_grade"]').val()}</td>
+                <td><b>Mastery:</b> ${$('input[name="mastery_gun"]').val()}<br>
+                <b>Cores:</b> ${cores}</td>
+                <td><b>Collections:</b> ${$('input[name="gun_collections_normal"]').is(":checked") ? "Standard " : ""}${$('input[name="gun_collections_red"]').is(":checked") ? "Red " : ""}${$('input[name="gun_collections_black"]').is(":checked") ? "Black" : ""}<br>
+                <b>Ammo:</b> ${$('select[name="hda"] option:selected').text()}</td>
+            </tr>`
+};

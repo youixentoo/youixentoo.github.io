@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>DPS calculator</title>
+    <title>DPS Calculator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="static/img/SASZA4_mobile.png">
@@ -59,16 +59,15 @@
             <div class="header">
                 <h2>Weapon dps - Beta</h2>
                 <p>
-                    If a gun only has 1 version, you can select Standard, Red or Black, it will give the same
-                    values.<br>
-                    As for the Black pistols that don't have any stats, they just won't show.<br><br>
+                    Calculate dps for weapons<br><br>
 
                     <b>Notes:</b><br>
-                    Due to rounding errors, results might not be 100% accurate.<br>
-                    "Stats" might not always line up with the displayed values in-game.<br>
+                    If a gun only has 1 version, you can select Standard, Red or Black, it will give the same
+                    values.<br>
                     When using HTL or adrenaline, 'Pure' is without cooldowns, 'Average' is with cooldowns.<br>
-                    Option for shooting at boss (assault rifle mastery) might be added at some point.<br>
-                    Burst weapons are a pain.
+                    Results might not be 100% accurate with in-game.<br>
+                    "Stats" might not always line up with the displayed values in-game.<br>
+                    Option for shooting at boss (assault rifle mastery) might be added at some point.
                 </p>
             </div>
             <hr>
@@ -594,7 +593,7 @@
                         <!-- <label>Mobile output <input id="MobileView" class="form-check-input" type="checkbox" name="mobileView" value="true"></label> -->
                     </div>
                 </div>
-                <div id="resultsNormal" class="col-auto">
+                <div id="resultsNormal" class="col">
                     <ul class="nav nav-tabs" id="outputTabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="dps-tab" data-bs-toggle="tab" data-bs-target="#dps"
@@ -603,6 +602,10 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="stats-tab" data-bs-toggle="tab" data-bs-target="#stats"
                                 type="button" role="tab" aria-controls="stats" aria-selected="false">Stats</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info"
+                                type="button" role="tab" aria-controls="stats" aria-selected="false">Info</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="outputTables">
@@ -641,9 +644,20 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                            <div class="table-responsive">
+                                <table id="infoTable" class="table align-middle">
+                                    <thead>
+                                        <th>Weapon</th>
+                                        <th colspan="2">Augments</th>
+                                        <th colspan="2">Other</th>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div id="why" class="col-auto"> <!--  table-responsive -->
                 </div>
             </div>
         </div>
