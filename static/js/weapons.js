@@ -102,7 +102,7 @@ function getDPS() {
         //setOutput("Weapon not supported");
         //console.error("Error getting weapon data");
         alert(`Error getting weapon data.
-(Non-existant black pistol)`)
+(Non-existant black pistol?)`)
         return null;
     }
 
