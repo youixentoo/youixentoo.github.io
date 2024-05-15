@@ -1,2 +1,3 @@
-# Weapons page is broken
-weapons.html
+# Excluded
+*.py
+*.txt
