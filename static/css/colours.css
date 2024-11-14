@@ -1,0 +1,82 @@
+#container {
+    position: left;
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+/* #item {
+	height: 120px;
+	padding: 13px 30px;
+	background-color: whitesmoke;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+} */
+
+input[type="text"] {
+    width: 100px;
+}
+
+input[type="number"] {
+    width: 60px;
+}
+  
+
+.tg {
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0px auto;
+}
+
+.tg td {
+    border-style: solid;
+    border-width: 0px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    word-break: normal;
+}
+
+.tg th {
+    border-style: solid;
+    border-width: 0px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.tg .tg-rgba {
+    background-color: #efefef;
+    border-color: #000000;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.tg .tg-hexInt {
+    background-color: #efefef;
+    border-color: #000000;
+    text-align: left;
+    vertical-align: middle;
+}
+/* 
+@media screen and (max-width: 767px) {
+    .tg {
+        width: auto !important;
+    }
+
+    .tg col {
+        width: auto !important;
+    }
+
+    .tg-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: auto 0px;
+    }
+} */
