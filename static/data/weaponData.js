@@ -4233,6 +4233,11 @@ function specialCases(weaponName, category) {
         },
         "Grenades": {
             "T-189 MGL": true
+        },
+        "PBE": {
+            "Contagion": true,
+            "Festungsbrecher": true,
+            "CM 800 Jupiter": true
         }
     };
     return data[category][weaponName];
@@ -4695,6 +4700,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 0,
             "gun_pierce": 0,
             "gun_reload": 0,
+            "gun_boss": 1,
             "flamer3": false,
             "shotgun5": 0,
             "superCrit": false
@@ -4708,6 +4714,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 0,
             "gun_pierce": 0,
             "gun_reload": 0.05 * (gunMasteryLevel >= 1),
+            "gun_boss": 1,
             "flamer3": false,
             "shotgun5": 1 * (gunMasteryLevel == 5),
             "superCrit": false
@@ -4721,6 +4728,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 0,
             "gun_pierce": 1 * (gunMasteryLevel == 5),
             "gun_reload": 0,
+            "gun_boss": 1,
             "flamer3": false,
             "shotgun5": 0,
             "superCrit": false
@@ -4734,6 +4742,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 0,
             "gun_pierce": 1 * (gunMasteryLevel == 5),
             "gun_reload": 0,
+            "gun_boss": (gunMasteryLevel >= 3 ) ? 1.1 : 1,
             "flamer3": false,
             "shotgun5": 0,
             "superCrit": false
@@ -4747,6 +4756,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 0,
             "gun_pierce": 1 * (gunMasteryLevel >= 2),
             "gun_reload": 0,
+            "gun_boss": 1,
             "flamer3": false,
             "shotgun5": 0,
             "superCrit": (gunMasteryLevel == 5)
@@ -4760,6 +4770,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 25 * (gunMasteryLevel == 5),
             "gun_pierce": 2 * (gunMasteryLevel >= 4),
             "gun_reload": 0,
+            "gun_boss": 1,
             "flamer3": false,
             "shotgun5": 0,
             "superCrit": false
@@ -4773,6 +4784,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 25 * (gunMasteryLevel >= 4),
             "gun_pierce": 1 * (gunMasteryLevel >= 1),
             "gun_reload": 0,
+            "gun_boss": 1,
             "flamer3": (gunMasteryLevel >= 3),
             "shotgun5": 0,
             "superCrit": false
@@ -4786,6 +4798,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 35 * (gunMasteryLevel == 5),
             "gun_pierce": 1 * (gunMasteryLevel >= 3),
             "gun_reload": 0,
+            "gun_boss": 1,
             "flamer3": false,
             "shotgun5": 0,
             "superCrit": false
@@ -4799,6 +4812,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 0,
             "gun_pierce": 0,
             "gun_reload": 0,
+            "gun_boss": 1,
             "flamer3": false,
             "shotgun5": 0,
             "superCrit": false
@@ -4812,6 +4826,7 @@ function weaponMasteries(weaponClass, gunMasteryLevel) {
             "gun_adaptive": 0,
             "gun_pierce": 0,
             "gun_reload": 0,
+            "gun_boss": 1,
             "flamer3": false,
             "shotgun5": 0,
             "superCrit": false
@@ -5116,4 +5131,18 @@ function weaponCollections() {
     return data;
 }
 
-
+function ammoPrices() {
+    const ammoData = {
+        "Pistol": 0.075,
+        "SMG": 0.1,
+        "Assault Rifle": 0.2,
+        "Shotgun": 0.4,
+        "Sniper": (4/3),
+        "Launcher": 4,
+        "Flamethrower": 0.4,
+        "LMG": 0.3,
+        "Disc Thrower": (1/3),
+        "Laser": 0.1
+    }
+    return ammoData;
+}

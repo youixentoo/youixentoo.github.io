@@ -23,7 +23,9 @@
     <link href="static/css/general.css" rel="stylesheet">
     <link href="static/css/weapons.css" rel="stylesheet">
     <script src="static/js/weapons.js"></script>
+    <script src="static/js/codes.js"></script>
     <script src="static/data/weaponData.js"></script>
+    <script src="static/data/bossData.js"></script>
 </head>
 
 <body>
@@ -57,7 +59,7 @@
         <div id="site-wrapper">
             <hr>
             <div class="header">
-                <h2>Weapon dps - Beta</h2>
+                <h2>Weapon dps</h2>
                 <p>
                     Calculate dps for weapons<br><br>
 
@@ -66,11 +68,16 @@
                     values.<br>
                     When using HTL or adrenaline, 'Pure' is without cooldowns, 'Average' is with cooldowns.<br>
                     Results might not be 100% accurate with in-game.<br>
-                    "Stats" might not always line up with the displayed values in-game.<br>
-                    Option for shooting at boss (assault rifle mastery) might be added at some point.
+                    "Stats" might not always line up with the displayed values in-game.<br><br>
+                    Time to kill (TTK) available as an alpha<br>
+                    Burst, PBE and other mechanics are not yet implemented,<br>
+                    alot of data also still needs to be verified. <u>Use at your own risk</u>
                 </p>
             </div>
             <hr>
+            <!-- <input class="code" type="text" name="codeGen" value=""> 
+            <button type="button" class="btn-light btn-outline-dark border-1" onclick="useCode('weapon')">Submit</button>
+            <button type="button" class="btn-light btn-outline-dark border-1" onclick="getCode('weapon')">Generate</button> -->
 
             <div class="row">
                 <div id="weaponSelection" class="col-auto">
@@ -105,13 +112,14 @@
                             <tbody class="table-light">
                                 <tr>
                                     <td rowspan="3">
+                                        <div id="classSelect">
                                         <div><label><input id="radioAss" type="radio" name="character" value="Assault"
                                                     checked="checked" onchange="setClass(this.value)">Assault</label>
                                         </div>
                                         <div><label><input id="radioHea" type="radio" name="character" value="Heavy"
                                                     onchange="setClass(this.value)">Heavy</label></div>
                                         <div><label><input id="radioMed" type="radio" name="character" value="Medic"
-                                                    onchange="setClass(this.value)">Medic</label></div>
+                                                    onchange="setClass(this.value)">Medic</label></div></div>
                                     </td>
                                     <td>
                                         <label>Fast Reload: <input type="number" min="0" max="25" step="1" value="0"
@@ -584,7 +592,9 @@
                     <div id="buttons" class="d-flex justify-content-between">
                         <div class="p-1">
                             <button id="dps_but" type="button" class="btn btn-light btn-outline-dark"
-                                onclick="getDPS()">Get dps</button>
+                                onclick="getDPS(false)">Get dps</button>
+                            <button type="button" class="btn btn-light btn-outline-dark"
+                                onclick="ttk()">TTK alpha</button>
                         </div>
                         <div class="p-1">
                             <button id="clear_but" type="button" class="btn btn-light btn-outline-dark"
@@ -605,7 +615,11 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info"
-                                type="button" role="tab" aria-controls="stats" aria-selected="false">Info</button>
+                                type="button" role="tab" aria-controls="info" aria-selected="false">Info</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="ttk-tab" data-bs-toggle="tab" data-bs-target="#ttk"
+                                type="button" role="tab" aria-controls="ttk" aria-selected="false">TTK alpha</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="outputTables">
@@ -656,6 +670,10 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <div class="tab-pane fade" id="ttk" role="tabpanel" aria-labelledby="ttk-tab">
+                            <b>Alpha output</b>
+                            <div id="ttk-out"></div>
                         </div>
                     </div>
                 </div>

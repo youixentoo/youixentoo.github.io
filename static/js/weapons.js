@@ -2,14 +2,455 @@
  TODO:
  - Formatted output
  - Info boxes explaining terms (pure/avg dps, DoT, etc)
- - Adaptive
- - Shooting at boss dps for assault rifles
- - Time to kill a nm necro?
+
+ - Code saving/exporting for sharing builds (Edit armour code)
+    - Menu with pre-loaded codes
+ - Time to kill menu for bosses
+    - Adaptive/BCB
+    - Shooting at boss dps for assault rifles
+    - Stacked bosses? (Capped by pierce)
+
  - Cleanup
  - Cut off output table
  *
  */
 
+function ttk(){
+    // Black pistols are not caught, not sure if it's worth the effort
+    // Verify kill times
+    //  - Zerf time seems high
+    // Burst
+    // Fest standing still
+    // PBE
+    const bossData = bossJSON();
+    let dpsData = getDPS(true);
+    // let drainTime = dpsData[1] / (dpsData[5] * dpsData[7])
+    // console.log("dps data", dpsData);
+
+    // ### User defined variables ###
+    let selectedBoss = "Necrosis";
+    let bossVersion = "Savage";
+    // let selectedBoss = "Regurgitator";
+    // let bossVersion = "Standard";
+    let bossMod = "Nightmare";
+    let zombieModifier = "Elite"; // Elite - None - Nightmarish
+    let stackedBosses = 2; // 1 - 60 (spawn cap)
+
+    // ### End of user defined variables ###
+    let bossHP = bossData[selectedBoss][bossVersion]["HP"][bossMod];
+    let bossResists = bossData[selectedBoss][bossVersion]["Resists"][dpsData[0][11]]/100;
+    if(zombieModifier === "Nightmarish" & bossResists < 0.75){
+        bossResists = 0.75; // TODO: Check if true for all bosses (or like check how it works for like mech and wicker)
+    }
+
+    [classDmgBonus, classDmgDuration] = getClassDmgSkillBonusses(dpsData[0][4], dpsData[0][5]);
+    const dmgSingleShotWithBonusses = getDmgOneShot(dpsData[0][0], classDmgBonus, dpsData[0][13], dpsData[0][14], dpsData[0][15], dpsData[0][16], dpsData[0][2], dpsData[0][1], dpsData[0][21]);
+    const dmgSingleShotWithoutBonusses = getDmgOneShot(dpsData[0][0], 1, dpsData[0][13], dpsData[0][14], dpsData[0][15], dpsData[0][16], dpsData[0][2], dpsData[0][1], dpsData[0][21]);
+    const effectiveBossResistances = getEffectiveBossResistances(bossResists, dpsData[0][9], dpsData[0][12], dpsData[0][10]);
+    
+    let maxClipsRequired = maxClipsToKill(selectedBoss, bossHP, effectiveBossResistances, (dpsData[0][0] + dpsData[0][1] + dpsData[0][2]), dpsData[0][9], dpsData[0][12], dpsData[0][10], dpsData[0][8]);
+    // console.log("Max clips needed: ", maxClipsRequired, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses);
+
+    timeScale = shotsTimeScale(maxClipsRequired, dpsData);
+    [accumulativeTime, accumulativeShots] = bossKill(selectedBoss, bossHP, effectiveBossResistances, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses, classDmgDuration, timeScale)
+
+    let bossVersionMessage;
+    if(bossVersion === "Standard"){
+        bossVersionMessage = " ";
+    }else{
+        bossVersionMessage = ` ${bossVersion} `;
+    }
+
+    let bossModMessage;
+    if(zombieModifier === "None"){
+        bossModMessage = "";
+    }else{
+        bossModMessage = " Elite";
+    }
+
+    let ammoPriceMessage = getAmmoCost(dpsData[0][18], dpsData[0][11], dpsData[0][20], dpsData[0][19], accumulativeShots);
+    let TTKMessage = `When using a ${dpsData[0][22]}, killing a ${bossMod}${bossVersionMessage}${selectedBoss}${bossModMessage} will take on average ${roundNumber(accumulativeTime, 1).toLocaleString()} seconds. Requiring ${accumulativeShots.toLocaleString()} shots and costing $${ammoPriceMessage.toLocaleString()}`
+    console.log(TTKMessage);
+
+    let outArea = document.getElementById("ttk-out");
+    outArea.innerHTML+=`<a>${TTKMessage}</a><br>`;
+
+function getAmmoCost(weaponClass, damageType, weaponVersion, hdaBonusMultiplier, shotsFired){
+    // Premium ammo is standard_ammo * 6.4; chem/heat is *2, energy *3. Std and Black pistol ammo is free. 
+    // red: std * 10, black: std * 12
+    const initialAmmoPrices = ammoPrices();
+    let ammoCost = initialAmmoPrices[weaponClass];
+
+    if(damageType === "Energy"){
+        ammoCost *= 3;
+    }else if(damageType === "Physical"){
+    }else{
+        ammoCost *= 2;
+    }
+
+    if(weaponVersion === "Normal"){
+        if(weaponClass === "Pistol" & hdaBonusMultiplier == 1.0){
+            ammoCost = 0;
+        }
+    }else if(weaponVersion === "Red"){
+        ammoCost *= 10;
+    }else{
+        if(weaponClass === "Pistol" & hdaBonusMultiplier == 1.0){
+            ammoCost = 0;
+        }else{
+            ammoCost *= 12;
+        }
+    }
+    
+    if(hdaBonusMultiplier > 1.0){
+        ammoCost *= 6.4;
+    }
+
+    return Math.ceil(shotsFired*ammoCost);
+}
+
+function bossKill(selectedBoss, currentBossHP, effectiveBossResists, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses, currentClassDmgDuration, timeScale){
+    const devEnragedSplit = [0.8, 0.2];
+    
+        // let damageScale = [];
+    // let metaData, timeSpend;
+    // for([metaData, timeSpend] of flattenedShotsArray){
+        
+    // }
+    let accumulativeTime = 0;
+    let accumulativeShots = 0;
+    let index = 0;
+    while(currentBossHP > 0){
+        [shotOrReload, time] = timeScale[index]
+        if(shotOrReload === "reload"){
+            accumulativeTime += time;
+            currentClassDmgDuration -= time;
+        }else{
+            if(currentClassDmgDuration > 0){
+                if(selectedBoss === "Devastator"){
+                    if(currentBossHP > (currentBossHP * devEnragedSplit[1])){
+                        currentBossHP -= dmgSingleShotWithBonusses;
+                    }
+                }else{
+                    currentBossHP -= dmgSingleShotWithBonusses * (1-effectiveBossResists);
+                }
+                currentClassDmgDuration -= time;
+            }else{
+                if(selectedBoss === "Devastator"){
+                    if(currentBossHP > (currentBossHP * devEnragedSplit[1])){
+                        currentBossHP -= dmgSingleShotWithoutBonusses;
+                    }else{
+                        currentBossHP -= dmgSingleShotWithoutBonusses * (1-effectiveBossResists);
+                    }
+                }else{
+                    currentBossHP -= dmgSingleShotWithoutBonusses * (1-effectiveBossResists);
+                }
+            }
+            // bossHP -= shotOrReload;
+            accumulativeShots++;
+            accumulativeTime += time;
+        }
+        index++;
+    }
+    return [accumulativeTime, accumulativeShots];
+
+}
+
+function getEffectiveBossResistances(bossResistances, adaptive, mastery, bioBomb){
+    let effectiveBossResistances = (bossResistances - adaptive - mastery) * bioBomb;
+    if(effectiveBossResistances < 0){
+        effectiveBossResistances = 0;
+    }
+    return effectiveBossResistances;
+}
+
+
+function maxClipsToKill(selectedBoss, bossHP, bossResists, damage, adaptive, mastery, bioBomb, capacity){
+    const devEnraged = [0.8, 0.2];
+    // console.log(selectedBoss, bossHP, bossResists, damage, adaptive, mastery, bioBomb);
+    let newBossResists = (bossResists - adaptive - mastery) * bioBomb;
+    // console.log(newBossResists);
+    if(newBossResists < 0){
+        newBossResists = 0;
+    };
+    // console.log(newBossResists);
+    let shotsRequired;
+    if(selectedBoss === "Devastator"){
+        shotsRequired = ((bossHP*devEnraged[0]) / damage) + ((bossHP*devEnraged[1]) / (damage * (1-newBossResists)))
+    }else{
+        shotsRequired = bossHP / (damage * (1-newBossResists)) 
+    }
+    return Math.ceil(shotsRequired / capacity);
+}
+
+
+function shotsTimeScale(maxClipsRequired, dpsData){
+    let adrenBonus = dpsData[0][6];
+    let adrenDuration = dpsData[0][7];
+    let capacity =  dpsData[0][8];
+    let burstData = specialCases(dpsData[0][22], "Burst")
+    // console.log(classDmgBonus, classDmgDuration, adrenBonus, adrenDuration, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses);
+    console.log("has burst", burstData);
+
+    let maxScaleSize = maxClipsRequired + (maxClipsRequired - 1);
+
+    let shotsArray = [];
+    for(let crI = 0; crI < maxScaleSize; crI++){
+        if(crI % 2 == 0){
+            // console.log(crI, "even");
+            [adrenDuration, clipTimes] = calcClipDrainTime(capacity, dpsData[0][3], adrenBonus, adrenDuration);
+            shotsArray.push(clipTimes);
+        }else{
+            [adrenDuration, reloadTime] = calcTimeSpendReloading(dpsData[0][17], adrenBonus, adrenDuration);
+            shotsArray.push(reloadTime);
+            // shotsArray.push(["reload", 0.1])
+        }
+    };
+    let flattenedShotsArray = shotsArray.flat() // From [ Array(x) [ Array(x) [ Array(2) ] ] ] to [ Array(x) [ Array(2) ] ]
+
+    // console.log("\n####\nshowArray flat: ", flattenedShotsArray);
+    return flattenedShotsArray;
+}
+
+function calcTimeSpendReloading(regularReloadTime, adrenBonus, remainingAdrenTime){
+    // console.log("adren", adrenBonus)
+    const reloadingWithAdren = regularReloadTime * (1-(adrenBonus - 1));
+    let reloadTime = [];
+    if(reloadingWithAdren <= remainingAdrenTime){
+        reloadTime.push(["reload", reloadingWithAdren]);
+        remainingAdrenTime -= reloadingWithAdren;
+    }else{
+        let fractionAmountReloadingWithAdren = remainingAdrenTime / reloadingWithAdren;
+        let timeSpendReloadAdren = reloadingWithAdren * fractionAmountReloadingWithAdren;
+        let timeLeftReloading = regularReloadTime * (1 - fractionAmountReloadingWithAdren);
+        reloadTime.push(["reload", timeSpendReloadAdren + timeLeftReloading])
+    }
+    return [remainingAdrenTime, reloadTime];
+}
+
+function calcClipDrainTime(capacity, gunRps, adrenBonus, remainingAdrenTime){
+    // console.log("calcClipDrainTime", capacity, gunRps, adrenBonus, remainingAdrenTime);
+    const fullClipAdrenTime = capacity / (gunRps * adrenBonus);
+    const timeOfAdrenShot = fullClipAdrenTime / capacity;
+    const regularClipTime = capacity / gunRps;
+    const timeOfRegularShot = regularClipTime / capacity;
+    let clipTimes = [];
+    if(fullClipAdrenTime <= remainingAdrenTime){
+        for(let shot = 0; shot < capacity; shot++){
+            clipTimes.push(["shot", timeOfAdrenShot]);
+        }
+        remainingAdrenTime -= fullClipAdrenTime;
+    }else{
+        for(let shot = 0; shot < capacity; shot++){
+            if(timeOfAdrenShot <= remainingAdrenTime){
+                clipTimes.push(["shot", timeOfAdrenShot]);
+                remainingAdrenTime -= timeOfAdrenShot;
+            }else{
+                clipTimes.push(["shot", timeOfRegularShot]);
+            }
+        }
+    }
+    return [remainingAdrenTime, clipTimes];
+}
+    
+
+    // < array: [[shot, time],[shot, time],["reload", time],[shot, time],...] >
+    // next:
+    // < array: [[dmg, time],[dmg, time],["reload", time],[dmg, time],...] >
+    // next:
+    /*
+    let accumulativeTime = 0;
+    let accumulativeShots = 0;
+    let index = 0;
+    while(bossHP > 0){
+        [dmgOrReload, time] = array[index]
+        if(dmgOrReload === "reload"){
+            accumulativeTime += time;
+        }else{
+            bossHP -= dmgOrReload;
+            accumulativeShots++;
+            accumulativeTime += time;
+        }
+        index++;
+    }
+    return [accumulativeTime, accumulativeShots];
+
+    */
+   
+    
+
+
+
+function getClassDmgSkillBonusses(classChar, classLevel){
+    let classBonus;
+    let classDuration;
+    if (classChar === "Assault") {
+        classBonus = 1 + (0.3 + (0.05 * (classLevel - 1))) * (classLevel > 0); //1 1.3-2.5
+        classDuration = (classLevel > 0) ? (2 + 0.1 * (classLevel - 1)) : 0;
+    } else if (classChar === "Heavy") {
+        let htl_moving = $('input[name="htl_moving"]').is(":checked") ? 0.5 : 1;
+        classBonus = 1 + (0.3 + (0.04 * (classLevel - 1))) * (classLevel > 0) * htl_moving; //1 1.3-2.26
+        classDuration = (classLevel > 0) ? (8 + 0.8 * (classLevel - 1)) : 0;
+    } else {
+        classBonus = 1;
+        classDuration = 0;
+    }
+    return [classBonus, classDuration];
+}
+
+function getDmgOneShot(pureDamagePreDmgBoost, classBonus, critChance, critSkillMult, critDmgBonus, superCrit, poolDmg, DOTDmg, arMastery3){
+    let damageBoostPure = (1 - critChance) * classBonus + critChance * (classBonus + critSkillMult) * critDmgBonus * superCrit;
+    let pureDirectDmg = pureDamagePreDmgBoost * damageBoostPure * arMastery3;
+    return pureDirectDmg + (poolDmg * classBonus * arMastery3) + DOTDmg;
+}
+
+
+    /*
+    ## Burst weapons need additional processing for display_rps
+    ## Boss standing still (fest)
+    ## Stacked bosses (pbe)
+
+    Calculate Time to Kill:
+    
+    Based on a damage scale:
+    <dmg per shot:0.1 sec> <dmg per shot:0.1 sec> <...:.. sec> <reload:0.3 sec> <dmg per shot:0.1 sec> <dmg per shot:0.1 sec> <...:.. sec> ...
+    Place boss hp over the scale to get the time to kill
+
+    Scale size:
+        - scale size (max clips) = boss hp / non-htl or ks dmg
+
+    Per clip:
+        - Check if adren/ks/htl has run out and adjust dmg and time between shots accordingly
+
+    ## Extra: 
+        - "On average, killing a {boss_name} will take {shots_taken} shots, costing ${shots_taken * ammo_price}"
+
+0: "pure_damage_pre_dmg_boost"
+1: "pure_DOT"
+2: "poolDmg"
+3: "display_rps"
+4: "class_char"
+5: "ks/htl level"
+6: "adren_bonus"
+7: "adren_duration"
+8: "capacity"
+9: "adaptive"
+10: "bioBombMult"
+11: "dmg_type"
+12: "gun_adaptive"
+13: "critChance"
+14: "critSkillMult"
+15: "critDmgBonus"
+16: "superCrit"
+17: "regular reload time"
+18: "weapon class"
+19: "hda_bonus"
+20: "weaponVersion"
+21: "bonus_boss_dmg"
+22: "weaponName"
+
+0: 140
+1: 0
+2: 0
+3: 5
+4: "Assault"
+5: "0"
+6: 1
+7: 0
+8: 18
+9: 0
+10: 1
+11: "Physical"
+12: 0
+13: 0
+14: 1
+15: 1
+16: 1
+​​17: 1.7
+18: "Pistol"
+​​19: 1.25
+20: Standard
+21: 1
+22: "CM 202"
+    
+    Calculating Time to kill (old):
+        - Get dmg of gun, including +10% AR mastery
+            - ks/htl? -- for now assume the uptime of these skills is 100%
+
+        - Calculate amount of shots needed to kill (on average)
+            Apply adaptive/masteries and biobomb to boss resists
+                boss resists = (resistance - adap - mastery) * 0.5
+                if boss resists < 0:
+                    boss resists = 0
+            if devastator:
+                ((hp*devEnraged[0]) / dmg) + ((hp*devEnraged[1]) / (dmg * (1-boss resists))
+            else:
+                hp / (dmg * (1-boss resists))
+
+        - Check if amount of shots is higher or lower than clip size
+        if lower:
+            - Check if drain time using adren is higher than skill duration
+            if yes:
+                - split into with and without adren
+                    - Shots_adren = (rps * adren_bonus) * adren_duration
+                    - Shots_remainder = amount of shots - Shots_adren
+                    - TTK = (Shots_adren / (rps * adren_bonus)) + (shots_remainder / rps)
+            else:
+                - TTK = amount of shots / (rps * adren_bonus)
+
+        else: (if higher)
+            - Calculate amount of clips needed to kill boss
+            - Amount of reloads = clips needed - 1
+            - Get reload time  
+                - Calculate adren reload
+            - Calculate shooting/reloading during adren
+                - Account for adren running out during shooting or reloading
+                - Cycle:
+                    #1
+                    - Adren duration = Adren duration - Time spend shooting with adren
+                    if boss not dead and adren duration positive:
+                        - Adren duration = Adren duration - Time spend reloading with adren
+                        if boss not dead and adren duration positive:
+                            back to #1
+                    else if boss not dead and adren duration 0:
+                        break cycle and continue without adren bonus
+                    else if boss not dead and adren duration 0:
+                        split into adren and non-adren times
+                    else if boss dead:
+                        TTK = sum of times
+                - TTK = sum of times
+
+                
+        Stats needed:
+        pure_rps
+        adren_bonus
+        adren_duration
+        average_dmg
+        htl_boost
+        ks_boost
+        capacity
+        adaptive
+        biobomb
+        boss hp
+        boss resistances
+        weapon_damage_type
+
+        let class_bonus;
+        let class_duration;
+    if (class_char === "Assault") {
+        class_bonus = 1 + (0.3 + (0.05 * (class_level - 1))) * (class_level > 0); //1 1.3-2.5
+        class_duration = (class_level > 0) ? (2 + 0.1 * (class_level - 1)) : 0;
+    } else if (class_char === "Heavy") {
+        let htl_moving = $('input[name="htl_moving"]').is(":checked") ? 0.5 : 1;
+        class_bonus = 1 + (0.3 + (0.04 * (class_level - 1))) * (class_level > 0) * htl_moving; //1 1.3-2.26
+        class_duration = (class_level > 0) ? (8 + 0.8 * (class_level - 1)) : 0;
+    } else {
+        class_bonus = 1;
+        class_duration = 0;
+    }
+
+    */
+}
 
 /*
  * Function for displaying skills for the different classes
@@ -87,7 +528,7 @@ function loadXS1Builds(character) {
 /*
  * Main dps calculation function
  */
-function getDPS() {
+function getDPS(ttk) {
     const weaponData = weaponJSON();
     const armourData = armourDPSJSON();
 
@@ -95,6 +536,7 @@ function getDPS() {
     let weaponVersion = $('input[name="version"]:checked').val();
     let weaponName = $('select[name="gun_name"] option:selected').val();
     let weapon = weaponData[weaponVersion][weaponName];
+    let weaponDamageType = weapon["Type"]
 
     // Calculating dps only works if there is any data for it. Easiest to just check if not undefined.
     if (!weapon) {
@@ -111,12 +553,15 @@ function getDPS() {
     let class_level = 0;
     let deadly_force = 0;
     let adren = 0;
+    let bioBombMult = 1
     if (class_char === "Assault") {
         class_level = $('input[name="ks"]').val();
         deadly_force = $('input[name="df"]').val();
         adren = $('input[name="adren"]').val();
     } else if (class_char === "Heavy") {
         class_level = $('input[name="htl"]').val();
+    } else if (class_char === "Medic") {
+        bioBombMult = ($('input[name="biob"]').val() > 0) ? 0.5 : 1;
     }
 
     // Amount of base cores and the level of crit skill
@@ -187,13 +632,18 @@ function getDPS() {
     let armour_perc_bonus = helmetStats["Cap"] + vestStats["Cap"] + glovesStats["Cap"] + pantsStats["Cap"] + bootsStats["Cap"];
 
     // Calculate dps (function itself has more function calls)
-    let output = calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level,
-        helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus, adren, weaponVersion);
+    let output = calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level, 
+        helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus, adren, weaponVersion, bioBombMult, ttk);
 
-    // Set the output on the webpage
-    addToTable(output[0], "dpsTable");
-    addToTable(output[1], "statsTable");
-    addToTable(output[2], "infoTable")
+    if(ttk){
+        return output
+    }else{
+        // Set the output on the webpage
+        addToTable(output[0], "dpsTable");
+        addToTable(output[1], "statsTable");
+        addToTable(output[2], "infoTable")
+    }
+    
 }
 ;
 
@@ -214,12 +664,13 @@ function clearTable() {
     $("#dpsTable tbody>tr").remove();
     $("#statsTable tbody>tr").remove();
     $("#infoTable tbody>tr").remove();
+    $("#ttk-out").empty();
 }
 ;
 
 
 function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments, masteries, collections, class_char, class_level, deadly_force, crit_level,
-    helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus, adren, weaponVersion) {
+    helmet_base_crit_bonus, gloves_base_crit_bonus, helmet_base_dmg_bonus, gloves_base_dmg_bonus, reload_bonus, armour_perc_bonus, adren, weaponVersion, bioBombMult, ttk) {
     // Various base stats and the +% from amount of base cores
     let base_dmg = weapon["Damage"];
     let base_DOT = weapon["DOT"];
@@ -234,7 +685,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
 
     // Augments
     let pinpoint = (3 + (1 * (weaponAugments["Pinpoint"] - 1))) * (weaponAugments["Pinpoint"] > 0);
-    let adaptive = weaponAugments["Adaptive"];
+    let adaptive = [0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.45, 0.5][weaponAugments["Adaptive"]];
     let smart_target = [0, 0.02, 0.04, 0.06, 0.08, 0.095, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17][armourAugments["smart_target"]];
     let target_assist = (2.5 + (0.5 * (armourAugments["target_assist"] - 1))) * (armourAugments["target_assist"] > 0);
 
@@ -249,6 +700,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let gun_capacity_mastery = masteries["gun_capacity"];
     let shotgun_mastery5 = masteries["shotgun5"];
     let super_crit = 1 + (0.45 * masteries["superCrit"]);
+    let bonus_boss_dmg = (ttk) ? masteries["gun_boss"]: 1; // Only if ttk is enabled
 
     // Collection bonuses
     let gun_dmg_collections = 1 + (0.01 * collections["dmg"]);
@@ -284,7 +736,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let crit_chance = (pinpoint + target_assist + crit_skill_chance + gun_crit_mastery + gun_crit_collections + helmet_collections + helmet_base_crit_bonus + gloves_base_crit_bonus + gun_base_crit) / 100;
     let crit_dmg_bonus = (1 + (gun_critdmg_mastery / 100)) * (1 + (gun_critdmg_collections / 100));
 
-    let damage_boost_pure = (1 - crit_chance) * class_bonus + crit_chance * (class_bonus + crit_skill_mult) * crit_dmg_bonus * super_crit;
+    let damage_boost_pure = (1 - crit_chance) * class_bonus + crit_chance * (class_bonus + crit_skill_mult) * crit_dmg_bonus * super_crit; // * bonus_boss_dmg;
 
     // Pure dmg and rps:
     let damageMultiplier = (1 + (0.1 * weaponAugments["Deadly"])) * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force));
@@ -307,6 +759,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
 
     // Adrenaline bonus 
     let adren_bonus = 1 + roundNumber(1 - 0.75 * Math.pow(0.98, adren - 1), 4) * (adren > 0);
+    let adren_duration = (adren > 0) ? (5 + 0.25 * (adren - 1)) : 0;
     let pure_rps = display_rps * adren_bonus;
 
     // Pool damage
@@ -339,6 +792,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
         dmg_cooldown = (class_level > 0) ? ((8 + 0.8 * (class_level - 1)) / 30) : 1;
         rps_cooldown = 1;// htl
     } else {
+        active_uptime = 0;
         dmg_cooldown = 1;
         rps_cooldown = 1;
     }
@@ -351,7 +805,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
 
     // Recalculate dmg boost for cooldowns
     let class_bonus_cooldown = 1 + ((class_bonus - 1) * dmg_cooldown);
-    let damage_boost_avg = (1 - crit_chance) * class_bonus_cooldown + crit_chance * (class_bonus_cooldown + crit_skill_mult) * crit_dmg_bonus * super_crit;
+    let damage_boost_avg = (1 - crit_chance) * class_bonus_cooldown + crit_chance * (class_bonus_cooldown + crit_skill_mult) * crit_dmg_bonus * super_crit; // * bonus_boss_dmg;
     let avg_damage = pure_damage_pre_dmg_boost * damage_boost_avg;
 
     let avg_rps = display_rps * average_adren_incr;
@@ -401,6 +855,10 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     // console.log("Average pierce: ", average_pierce);
     // console.log("Uptime: ", uptime);
     // console.log("############end");
+    if(ttk){ // ### return
+        return [[pure_damage_pre_dmg_boost, pure_DOT, poolDmg, display_rps, class_char, class_level, adren_bonus, adren_duration, capacity, adaptive, bioBombMult, weapon["Type"], masteries["gun_adaptive"], crit_chance, crit_skill_mult, crit_dmg_bonus, super_crit, (reload_bonus * reload), weapon["Class"], hda_bonus, weaponVersion, bonus_boss_dmg, weaponName],
+        ["pure_damage_pre_dmg_boost", "pure_DOT", "poolDmg", "display_rps", "class_char", "ks/htl level", "adren_bonus", "adren_duration", "capacity", "adaptive", "bioBombMult", "dmg_type", "gun_adaptive", "critChance", "critSkillMult", "critDmgBonus", "superCrit", "regular reload time", "weapon_class", "hda_bonus", "weaponVersion", "bonus_boss_dmg", "weaponName"]]
+    }
 
     //    return outputGenerator(weaponName, pure_dps, average_dps, pure_pierce, average_pierce, displayed_damage, display_rps, capacity, gun_pierce, display_DOT, crit_perc, poolDmg, reload_display, uptime, reload_capped);
     return [getDpsTR(weaponName, weaponVersion, pure_dps, average_dps, uptime_rounded, reload_capped, reload_display, gun_pierce),
