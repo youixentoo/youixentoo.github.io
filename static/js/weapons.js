@@ -19,9 +19,16 @@ function ttk(){
     // Black pistols are not caught, not sure if it's worth the effort
     // Verify kill times
     //  - Zerf time seems high
-    // Burst
-    // Fest standing still
-    // PBE
+    // Burst: time between shots not affected by adren / burst timeout not reset after reload
+    // General damage multiplier --> zerf wall/corner (needs input/button)
+    // standing still with pbe
+    // Concussion?
+    // PBE --> Multiple bosses stacked
+    //     - PBE/General: pierce capped
+    // Adren cooldown
+    // HTL cooldown
+    // Toggle KS perma on/off -- possibly specify duration of ks
+    // >> NOT << checking if enough energy to activate adren/htl continuously >> NOT <<
     const bossData = bossJSON();
     let dpsData = getDPS(true);
     // let drainTime = dpsData[1] / (dpsData[5] * dpsData[7])
@@ -34,6 +41,7 @@ function ttk(){
     // let bossVersion = "Standard";
     let bossMod = "Nightmare";
     let zombieModifier = "Elite"; // Elite - None - Nightmarish
+    let damageMultiplier = 1;
     let stackedBosses = 2; // 1 - 60 (spawn cap)
 
     // ### End of user defined variables ###
@@ -44,8 +52,8 @@ function ttk(){
     }
 
     [classDmgBonus, classDmgDuration] = getClassDmgSkillBonusses(dpsData[0][4], dpsData[0][5]);
-    const dmgSingleShotWithBonusses = getDmgOneShot(dpsData[0][0], classDmgBonus, dpsData[0][13], dpsData[0][14], dpsData[0][15], dpsData[0][16], dpsData[0][2], dpsData[0][1], dpsData[0][21]);
-    const dmgSingleShotWithoutBonusses = getDmgOneShot(dpsData[0][0], 1, dpsData[0][13], dpsData[0][14], dpsData[0][15], dpsData[0][16], dpsData[0][2], dpsData[0][1], dpsData[0][21]);
+    const dmgSingleShotWithBonusses = getDmgOneShot(dpsData[0][0], classDmgBonus, dpsData[0][13], dpsData[0][14], dpsData[0][15], dpsData[0][16], dpsData[0][2], dpsData[0][1], dpsData[0][21], damageMultiplier);
+    const dmgSingleShotWithoutBonusses = getDmgOneShot(dpsData[0][0], 1, dpsData[0][13], dpsData[0][14], dpsData[0][15], dpsData[0][16], dpsData[0][2], dpsData[0][1], dpsData[0][21], damageMultiplier);
     const effectiveBossResistances = getEffectiveBossResistances(bossResists, dpsData[0][9], dpsData[0][12], dpsData[0][10]);
     
     let maxClipsRequired = maxClipsToKill(selectedBoss, bossHP, effectiveBossResistances, (dpsData[0][0] + dpsData[0][1] + dpsData[0][2]), dpsData[0][9], dpsData[0][12], dpsData[0][10], dpsData[0][8]);
@@ -191,14 +199,16 @@ function shotsTimeScale(maxClipsRequired, dpsData){
     let burstData = specialCases(dpsData[0][22], "Burst")
     // console.log(classDmgBonus, classDmgDuration, adrenBonus, adrenDuration, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses);
     console.log("has burst", burstData);
+    
 
     let maxScaleSize = maxClipsRequired + (maxClipsRequired - 1);
 
+    let burstShotsRemaining = 0;
     let shotsArray = [];
     for(let crI = 0; crI < maxScaleSize; crI++){
         if(crI % 2 == 0){
             // console.log(crI, "even");
-            [adrenDuration, clipTimes] = calcClipDrainTime(capacity, dpsData[0][3], adrenBonus, adrenDuration);
+            [adrenDuration, clipTimes, burstShotsRemaining] = calcClipDrainTime(capacity, dpsData[0][3], adrenBonus, adrenDuration, burstData, burstShotsRemaining);
             shotsArray.push(clipTimes);
         }else{
             [adrenDuration, reloadTime] = calcTimeSpendReloading(dpsData[0][17], adrenBonus, adrenDuration);
@@ -228,29 +238,94 @@ function calcTimeSpendReloading(regularReloadTime, adrenBonus, remainingAdrenTim
     return [remainingAdrenTime, reloadTime];
 }
 
-function calcClipDrainTime(capacity, gunRps, adrenBonus, remainingAdrenTime){
+function calcClipDrainTime(capacity, gunRps, adrenBonus, remainingAdrenTime, burstData, burstShotsRemaining){
     // console.log("calcClipDrainTime", capacity, gunRps, adrenBonus, remainingAdrenTime);
     const fullClipAdrenTime = capacity / (gunRps * adrenBonus);
     const timeOfAdrenShot = fullClipAdrenTime / capacity;
     const regularClipTime = capacity / gunRps;
     const timeOfRegularShot = regularClipTime / capacity;
     let clipTimes = [];
-    if(fullClipAdrenTime <= remainingAdrenTime){
-        for(let shot = 0; shot < capacity; shot++){
-            clipTimes.push(["shot", timeOfAdrenShot]);
+    let burstShotsQueued = 0;
+    if(burstData){ // --> if the weapon is a burst weapon
+        if(burstShotsRemaining != 0){
+
+        }else{
+            // raptor: 4 rps, 0.02s delay
+            // Time between bursts: 1/4 = 0.25s
+            // 1 burst takes 0.08s, after which there is 0.25-0.08=0.17 cooldown
+            // positive
+            // --
+            // 10 cores, oc 12: 13.2 rps 
+            // TbB: 1/13.2 = 0.07575
+            // With a burst time of 0.08, there is a 0.07575-0.08=-0.004242 cooldown
+            // negative
+
+            // ria 75: 1 rps, 0.1s delay
+            // time between bursts: 1/1 = 1s
+            // 1 burst takes 0.4s, after which there is a 1-0.4=0.6s cooldown 
+            // positive
+            // --
+            // 10 cores, oc 12: 3.3 rps 
+            // time between bursts: 1/3.3 = 0.3030. 
+            // With a burst time of 0.4, there is a 0.3030-0.4=-0.09696 cooldown 
+            // negative
+            // (~5 rps and -0.2s cooldown with adren)
+            /*
+            shot1burst1, 0.1s, shot2burst1, 0.1s, shot3burst1, 0.003s, shot1burst2, 0.097s, shot4burst1, 0.003s, shot1burst2, 0.1s, shot3burst2, 0.003s, shot1burst3, 0.097s, shot4burst2, 0.003s, shot2burst3, 0.1s, ....
+
+            burstTimeFrame = burstAmount * burstDelay (0.4)
+            timeBetweenBursts = 1/rps (0.3 maxed) (0.6 non)
+            shots = []
+            if timeBetweenBursts > burstTimeFrame: // standard, easy calc
+                cooldown = timeBetweenBursts - burstTimeFrame 
+                for index, shot in clip:
+                    if index+1 % burstAmount == 3 and index+1 > 0:
+                        shots.push(["shot", burstDelay+cooldown]) 
+                    else:
+                        shots.push(["shot", burstDelay])
+
+
+            else if timeBetweenBursts < burstTimeFrame:
+                for shot in clip:
+                    pass
+            else: // if both are equal
+                for shot in clip:
+                    pass
+
+            */
+            // ==
+            // 
+            // oc 10: 2 rps
+            // time between bursts: 1/2 = 0.5s
+            // with a burst time of 0.4, there is a 0.5-0.4=0.1 cooldown
+            // positive
+            // --
+            // 5 cores, oc 10: 2.5 rps
+            // time between bursts: 1/2.5 = 0.4s
+            // with a burst time of 0.4, there is a 0.4-0.4=0 cooldown
+            // equal
+
+
         }
-        remainingAdrenTime -= fullClipAdrenTime;
-    }else{
-        for(let shot = 0; shot < capacity; shot++){
-            if(timeOfAdrenShot <= remainingAdrenTime){
+    }else{  // --> if the weapon is NOT a burst weapon
+        if(fullClipAdrenTime <= remainingAdrenTime){ // if adren active for whole clip
+            for(let shot = 0; shot < capacity; shot++){
                 clipTimes.push(["shot", timeOfAdrenShot]);
-                remainingAdrenTime -= timeOfAdrenShot;
-            }else{
-                clipTimes.push(["shot", timeOfRegularShot]);
+            }
+            remainingAdrenTime -= fullClipAdrenTime;
+        }else{ 
+            for(let shot = 0; shot < capacity; shot++){
+                if(timeOfAdrenShot <= remainingAdrenTime){ // if adren is only active for a partial clip
+                    clipTimes.push(["shot", timeOfAdrenShot]);
+                    remainingAdrenTime -= timeOfAdrenShot;
+                }else{                                     // if adren is not active
+                    clipTimes.push(["shot", timeOfRegularShot]);
+                }
             }
         }
     }
-    return [remainingAdrenTime, clipTimes];
+    
+    return [remainingAdrenTime, clipTimes, burstShotsQueued];
 }
     
 
@@ -298,10 +373,10 @@ function getClassDmgSkillBonusses(classChar, classLevel){
     return [classBonus, classDuration];
 }
 
-function getDmgOneShot(pureDamagePreDmgBoost, classBonus, critChance, critSkillMult, critDmgBonus, superCrit, poolDmg, DOTDmg, arMastery3){
+function getDmgOneShot(pureDamagePreDmgBoost, classBonus, critChance, critSkillMult, critDmgBonus, superCrit, poolDmg, DOTDmg, arMastery3, damageMultiplier){
     let damageBoostPure = (1 - critChance) * classBonus + critChance * (classBonus + critSkillMult) * critDmgBonus * superCrit;
     let pureDirectDmg = pureDamagePreDmgBoost * damageBoostPure * arMastery3;
-    return pureDirectDmg + (poolDmg * classBonus * arMastery3) + DOTDmg;
+    return (pureDirectDmg + (poolDmg * classBonus * arMastery3) + DOTDmg) * damageMultiplier;
 }
 
 
@@ -881,7 +956,32 @@ function dps_calc(damage, dot, pool, rps) {
 function burst_rps(burstDelayData, capacity, rps) {
     let drainTime = (Math.floor(capacity / burstDelayData["Amount"]) / rps);
     let burstAdjust = (capacity % burstDelayData["Amount"] === 0) ? (-1 / rps) : (capacity % burstDelayData["Amount"] - 1) * burstDelayData["Delay"];
-    return (capacity / (drainTime + burstAdjust));
+    
+    let oldRps = (capacity / (drainTime + burstAdjust));
+    //return (capacity / (drainTime + burstAdjust));
+
+    let burstTime = burstDelayData["Amount"] * burstDelayData["Delay"];
+    let timeBetweenBursts = 1 / rps;
+    let amountOfBursts = capacity / burstDelayData["Amount"];
+    // required for adjusting the drain time for the last burst at high rps, as it won't get overlapped
+    let timeAdjust = Math.max(burstTime - timeBetweenBursts, 0) * (1+(amountOfBursts - Math.ceil(amountOfBursts)));
+    
+    let newRps = capacity / ((timeBetweenBursts * amountOfBursts) + timeAdjust);
+
+    // console.log("Old:", oldRps, "-", "New:", newRps);
+    return newRps;
+    
+    // let timeAdjust = Math.abs(timeBetweenBursts - burstTime);
+    /*
+    let burstTime = burstDelayData["Amount"] * burstDelayData["Delay"];
+    let timeBetweenBursts = 1 / rps;
+    let amountOfBursts = capacity / burstDelayData["Amount"];
+
+    return capacity / (timeBetweenBursts * amountOfBursts) + Math.abs(timeBetweenBursts - burstTime);
+
+    capacity / ((1 / rps) * (capacity / burstDelayData["Amount"])) + Math.abs((1 / rps) - (burstDelayData["Amount"] * burstDelayData["Delay"]));
+    3388, 2165, 63.59
+    */
 }
 ;
 
