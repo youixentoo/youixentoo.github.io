@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ZAR dps</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/img/SASZA4_mobile.png">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS + Bootstrap 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- Own Scripts + CSS -->
+    <link href="static/css/zar.css" rel="stylesheet">
+    <link href="static/css/general.css" rel="stylesheet">
+    <script src="static/js/zar.js"></script>
+    <script src="static/data/zarWeaponData.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="navbar" class="container-fluid bg-light border-bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/index.html">SAS4</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/armour.html">Armour<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/weapon.html">DPS<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/prices.html">Prices<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/drops.html">Drops<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/credits.html">Credits<span class="sr-only"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div id="site-wrapper">
+            <hr>
+            <div class="row">
+                <div class="row">
+                    <div class="col">
+                        <h2>Weapon dps</h2>
+                        <p>
+                            Basic dps calculation for weapons. Player skill allocation not supported<br><br>
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div id="weaponSelection" class="col">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="table-secondary align-middle">
+                                    <tr>
+                                        <th class="border-secondary"><b>Weapon</b></th>
+                                        <th class="border-secondary"><b>Rarity</b></th>
+                                        <th class="border-secondary"><b>Level</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-light">
+                                    <tr>
+                                        <td>
+                                            <select name="gun_name">
+                                                <optgroup label="Critical Mass">
+                                                    <option value="CM 458 Polaris">CM 458 Polaris</option>
+                                                    <option value="CM-Sniper">CM 818 Hyperion</option>
+                                                    <option value="CM_372_Binary_Eclipse">CM 372 Binary Eclipse</option>
+                                                    <option value="Critical Mass CM 273 Pulsar">CM 273 Pulsar</option>
+                                                </optgroup>
+                                                <optgroup label="HIKS">
+                                                    <option value="HIKS_M450_LMG">HIKS M450</option>
+                                                </optgroup>
+                                                <optgroup label="HVM">
+                                                    <option value="HVM 019">HVM 019</option>
+                                                    <option value="HVM 026">HVM 026</option>
+                                                    <option value="HVM 040">HVM 040</option>
+                                                    <option value="HVM 055" selected>HVM 055</option>
+                                                    <option value="HVM 082">HVM 082</option>
+                                                </optgroup>
+                                                <optgroup label="Morlok">
+                                                    <option value="Morlok Blizzard">Morlok Blizzard</option>
+                                                    <option value="Morlok Voltaic Bolter">Morlok Voltaic Bolter</option>
+                                                    <option value="Morlok_Frostbite">Morlok Frostbite</option>
+                                                    <option value="Morlok_Galvanizer">Morlok Galvanizer</option>
+                                                </optgroup>
+                                                <optgroup label="Rancor">
+                                                    <option value="AR_Razor_Edge">Razor Edge</option>
+                                                    <option value="Rancor Acidic Swarm">Rancor Acidic Swarm</option>
+                                                    <option value="Rancor Venom">Rancor Venom</option>
+                                                </optgroup>
+                                                <optgroup label="Ronson">
+                                                    <option value="Ronson 46">Ronson 46</option>
+                                                    <option value="Ronson 77-A">Ronson 77-A</option>
+                                                    <option value="Ronson KR-3182">Ronson KR-3182</option>
+                                                    <option value="Ronson LBM-15">Ronson LBM-15</option>
+                                                    <option value="Ronson_59-9">Ronson 59-9</option>
+                                                </optgroup>
+                                                <optgroup label="Rubicon">
+                                                    <option value="Rubicon RIA T9">RIA T9</option>
+                                                    <option value="RIA T25 Igniter">RIA T25 Igniter</option>
+                                                    <option value="RIA T35 Scorch">RIA T35 Scorch</option>
+                                                    <option value="Rubicon RIA T48 Blaze">RIA T48 Blaze</option>
+                                                    <option value="Rubicon_RIA_T71_Strike">RIA T71 Strike</option>
+                                                </optgroup>
+                                                <optgroup label="Shotlite">
+                                                    <option value="Shotlite Dominator">Shotlite Dominator</option>
+                                                    <option value="Shotlite_Marauder">Shotlite Marauder</option>
+                                                    <option value="Shotlite_Shiden">Shotlite Shiden</option>
+                                                </optgroup>
+                                                <optgroup label="Smokestack">
+                                                    <option value="Smokestack_Liberator">Smokestack Liberator</option>
+                                                    <option value="Smokestack_Pathfinder">Smokestack Pathfinder</option>
+                                                </optgroup>
+                                                <optgroup label="Teknoboom">
+                                                    <option value="Teknoboom_Vernichter">Teknoboom Vernichter</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="gun_rarity">
+                                                <option value="0">Common</option>
+                                                <option value="1">Uncommon</option>
+                                                <option value="2">Rare</option>
+                                                <option value="3">Epic</option>
+                                                <option value="4">Legendary</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="gun_level">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="mods">
+                                <form id="modsForm">
+                                    <div class="table-responsive">
+                                        <table class="table align-middle">
+                                            <thead class="table-secondary align-middle">
+                                                <tr>
+                                                    <th class="border-secondary">Optic mod</th>
+                                                    <th class="border-secondary">Barrel mod</th>
+                                                    <th class="border-secondary">Grip mod</th>
+                                                    <th class="border-secondary">Core mod</th>
+                                                    <th class="border-secondary">Clip mod</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-light">
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <select name="op1">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="op1_v" size="4">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="ba1">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="ba1_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="gr1">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="gr1_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="co1">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="co1_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="cl1">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="cl1_v">
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <select name="op2">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="op2_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="ba2">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="ba2_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="gr2">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="gr2_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="co2">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="co2_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="cl2">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="cl2_v">
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <select name="op0">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="op0_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="ba0">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="ba0_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="gr0">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="gr0_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="co0">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="co0_v">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <select name="cl0">
+                                                                <option value="" selected>None</option>
+                                                                <option value="Range">Range</option>
+                                                                <option value="Damage">Damage</option>
+                                                                <option value="Accuracy">Accuracy</option>
+                                                                <option value="Crit">Crit Chance</option>
+                                                                <option value="Reload">Reload</option>
+                                                                <option value="Clip">Clip Size</option>
+                                                                <option value="Movement">Movement</option>
+                                                            </select>
+                                                            <input type="number" min="-100" max="100" step="0.1"
+                                                                value="0" name="cl0_v">
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="buttons" class="d-flex">
+                                <div class="p-1">
+                                    <button id="dps_but" type="button" class="btn btn-light btn-outline-dark"
+                                        onclick="getDPS()">Get dps</button>
+                                </div>
+                                <div class="p-1">
+                                    <button id="clear_but" type="button" class="btn btn-light btn-outline-dark"
+                                        onclick="clearTable()">Clear tables</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="resultsNormal" class="col-4">
+                        <div class="table-responsive">
+                            <table id="dpsTable" class="table align-middle">
+                                <thead>
+                                    <th>Weapon</th>
+                                    <th>Pure dps</th>
+                                    <th>Average dps</th>
+                                    <th>Uptime</th>
+                                    <th>Reload time</th>
+                                    <th>Pierce</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>
