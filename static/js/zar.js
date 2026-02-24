@@ -5,6 +5,7 @@ function getDPS() {
 
     // Select weapon from page and get the associated for it
     let weaponName = $('select[name="gun_name"] option:selected').val();
+    let weaponDisplayName = $('select[name="gun_name"] option:selected').text();
     let weaponVersion = $('select[name="gun_rarity"] option:selected').val();
     let weaponLevel = $('select[name="gun_level"] option:selected').val();
     let weapon = weaponData[weaponName];
@@ -15,9 +16,7 @@ function getDPS() {
     // let weaponDamageType = weapon["Type"]
     // console.log(weaponName, weaponVersion, rarity_dmg_mult, weaponLevel, weapon);
 
-    calcDPS(weaponName, weaponVersion, weaponLevel, weapon, weaponLevel, rarity_dmg_mult, weaponMods);
-
-
+    calcDPS(weaponDisplayName, weaponVersion, weaponLevel, weapon, weaponLevel, rarity_dmg_mult, weaponMods);
 };
 
 

@@ -513,6 +513,33 @@ function zarWeaponJSON() {
       "dot": "168",
       "dot_duration": "3"
    },
+   "RL_HVM": {
+      "pierce": 1,
+      "range": 10.0,
+      "hdAmmoDamageMultiplier": 2.0,
+      "magazineCapacity": 2,
+      "maxCapacity": 1000,
+      "reloadTime": 3.0,
+      "timeBetweenShots": 1.0,
+      "hasVariableTimeBetweenShots": 0,
+      "burstSize": 1,
+      "burstDelay": 0.33333334,
+      "hasLastInBurstOverrides": 0,
+      "lastInBurstCritChance": 0.5,
+      "projectilePelletCount": 0,
+      "projectileMultiPellet": 0,
+      "damagePierceAttenuation": 1.0,
+      "damage": 800.0,
+      "critChance": 0.0,
+      "critFalloff": 0.1,
+      "critDamageMultiplier": 2,
+      "sneakAttackDamageMultiplier": 1.0,
+      "damageType": {
+         "value": 0
+      },
+      "dot": "0",
+      "dot_duration": "0"
+   },
    "Ronson 46": {
       "pierce": 2,
       "range": 8.0,
