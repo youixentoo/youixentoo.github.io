@@ -483,8 +483,8 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 5
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "dot": "151.111",
+      "dot_duration": "3"
    },
    "RIA T25 Igniter": {
       "pierce": 3,
