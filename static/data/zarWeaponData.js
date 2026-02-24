@@ -135,6 +135,33 @@ function zarWeaponJSON() {
       "dot": "0",
       "dot_duration": "0"
    },
+   "Gatling_Power_Weapon": {
+      "pierce": 2,
+      "range": 17.0,
+      "hdAmmoDamageMultiplier": 2.0,
+      "magazineCapacity": 250,
+      "maxCapacity": 0,
+      "reloadTime": 2.6,
+      "timeBetweenShots": 0.06666667,
+      "hasVariableTimeBetweenShots": 0,
+      "burstSize": 1,
+      "burstDelay": 0.33333334,
+      "hasLastInBurstOverrides": 0,
+      "lastInBurstCritChance": 0.5,
+      "projectilePelletCount": 0,
+      "projectileMultiPellet": 0,
+      "damagePierceAttenuation": 0.5,
+      "damage": 125.0,
+      "critChance": 0.01,
+      "critFalloff": 0.5,
+      "critDamageMultiplier": 2.0,
+      "sneakAttackDamageMultiplier": 1.0,
+      "damageType": {
+         "value": 0
+      },
+      "dot": "0",
+      "dot_duration": "0"
+   },
    "HIKS_M450_LMG": {
       "pierce": 3,
       "range": 20.0,
