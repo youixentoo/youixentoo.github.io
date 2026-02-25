@@ -16,6 +16,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 3,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.6,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.15,
+      "firingMovementReduction": 0.18,
       "damage": 40.0,
       "critChance": 0.1,
       "critFalloff": 0.5,
@@ -24,8 +30,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Rifle",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "CM 458 Polaris": {
       "pierce": 2,
@@ -43,6 +52,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.1,
+      "firingMovementReduction": 0.2,
       "damage": 45.0,
       "critChance": 0.01,
       "critFalloff": 0.25,
@@ -51,8 +66,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 3
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Rifle",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "CM-Sniper": {
       "pierce": 6,
@@ -70,6 +88,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.9,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.0,
+      "firingMovementReduction": 0.0,
       "damage": 1250.0,
       "critChance": 0.05,
       "critFalloff": 1.0,
@@ -78,8 +102,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Sniper",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "CM_372_Binary_Eclipse": {
       "pierce": 2,
@@ -97,6 +124,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.25,
+      "elementalEffectInfo": {
+         "chance": 0.1,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.05,
+      "firingMovementReduction": 0.1,
       "damage": 85.0,
       "critChance": 0.15,
       "critFalloff": 0.8,
@@ -105,8 +138,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 3
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "SMG",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Critical Mass CM 273 Pulsar": {
       "pierce": 1,
@@ -124,6 +160,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.75,
+      "elementalEffectInfo": {
+         "chance": 0.05,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.0,
+      "firingMovementReduction": 0.15,
       "damage": 120.0,
       "critChance": 0.05,
       "critFalloff": 0.75,
@@ -132,8 +174,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 3
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Pistol",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Gatling_Power_Weapon": {
       "pierce": 2,
@@ -151,6 +196,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.2,
+      "firingMovementReduction": 0.3,
       "damage": 125.0,
       "critChance": 0.01,
       "critFalloff": 0.5,
@@ -159,8 +210,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "LMG",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "HIKS_M450_LMG": {
       "pierce": 3,
@@ -178,6 +232,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.6,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.3,
+      "firingMovementReduction": 0.36,
       "damage": 130.0,
       "critChance": 0.01,
       "critFalloff": 0.5,
@@ -186,8 +246,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "LMG",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "HVM 019": {
       "pierce": 1,
@@ -205,6 +268,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 1.0,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.0,
+      "firingMovementReduction": 0.1,
       "damage": 120.0,
       "critChance": 0.05,
       "critFalloff": 0.75,
@@ -213,8 +282,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Pistol",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "HVM 026": {
       "pierce": 1,
@@ -232,6 +304,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.03,
+      "firingMovementReduction": 0.08,
       "damage": 50.0,
       "critChance": 0.01,
       "critFalloff": 0.5,
@@ -240,8 +318,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "SMG",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "HVM 040": {
       "pierce": 1,
@@ -259,6 +340,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 6,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.3,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.09,
+      "firingMovementReduction": 0.15,
       "damage": 85.0,
       "critChance": 0.01,
       "critFalloff": 0.15,
@@ -267,8 +354,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Shotgun",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "HVM 055": {
       "pierce": 2,
@@ -286,6 +376,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.12,
+      "firingMovementReduction": 0.15,
       "damage": 80.0,
       "critChance": 0.01,
       "critFalloff": 0.5,
@@ -294,8 +390,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Rifle",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "HVM 082": {
       "pierce": 3,
@@ -313,6 +412,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.75,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.25,
+      "firingMovementReduction": 0.32,
       "damage": 70.0,
       "critChance": 0.01,
       "critFalloff": 0.5,
@@ -321,8 +426,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "LMG",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Morlok Blizzard": {
       "pierce": 3,
@@ -340,6 +448,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 3,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.25,
+      "elementalEffectInfo": {
+         "chance": 0.1,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.16,
+      "firingMovementReduction": 0.24,
       "damage": 24.0,
       "critChance": 0.01,
       "critFalloff": 0.5,
@@ -348,8 +462,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 2
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Rifle",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Morlok Voltaic Bolter": {
       "pierce": 2,
@@ -367,6 +484,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 0.05,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.0,
+      "firingMovementReduction": 0.04,
       "damage": 80.0,
       "critChance": 0.05,
       "critFalloff": 0.75,
@@ -375,8 +498,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 3
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Pistol",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Morlok_Frostbite": {
       "pierce": 3,
@@ -394,6 +520,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.45,
+      "elementalEffectInfo": {
+         "chance": 1.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.02,
+      "firingMovementReduction": 0.12,
       "damage": 150.0,
       "critChance": 0.04,
       "critFalloff": 0.5,
@@ -402,8 +534,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 2
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Pistol",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Morlok_Galvanizer": {
       "pierce": 2,
@@ -421,6 +556,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.35,
+      "elementalEffectInfo": {
+         "chance": 0.1,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.04,
+      "firingMovementReduction": 0.11,
       "damage": 35.0,
       "critChance": 0.05,
       "critFalloff": 0.5,
@@ -429,8 +570,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 3
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "SMG",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Rancor Acidic Swarm": {
       "pierce": 4,
@@ -448,6 +592,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 2,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.8,
+      "elementalEffectInfo": {
+         "chance": 1.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.28,
+      "firingMovementReduction": 0.5,
       "damage": 4.0,
       "critChance": 0.0,
       "critFalloff": 0.0,
@@ -456,8 +606,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 5
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "LMG",
+      "dotData": {
+         "dot": 151.11111111111111,
+         "dot_duration": "3"
+      }
    },
    "Rancor Venom": {
       "pierce": 2,
@@ -475,6 +628,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 16,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.1,
+      "elementalEffectInfo": {
+         "chance": 0.25,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.15,
+      "firingMovementReduction": 0.3,
       "damage": 30.0,
       "critChance": 0.01,
       "critFalloff": 0.15,
@@ -483,8 +642,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 5
       },
-      "dot": "151.111",
-      "dot_duration": "3"
+      "weaponCategory": "Shotgun",
+      "dotData": {
+         "dot": 151.11111111111111,
+         "dot_duration": "3"
+      }
    },
    "RIA T25 Igniter": {
       "pierce": 3,
@@ -502,6 +664,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.1,
+      "elementalEffectInfo": {
+         "chance": 1.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.13,
+      "firingMovementReduction": 0.16,
       "damage": 60.0,
       "critChance": 0.02,
       "critFalloff": 0.2,
@@ -510,8 +678,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 1
       },
-      "dot": "168",
-      "dot_duration": "3"
+      "weaponCategory": "Rifle",
+      "dotData": {
+         "dot": "168",
+         "dot_duration": "3"
+      }
    },
    "RIA T35 Scorch": {
       "pierce": 2,
@@ -529,6 +700,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 10,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.1,
+      "elementalEffectInfo": {
+         "chance": 1.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.1,
+      "firingMovementReduction": 0.13,
       "damage": 30.0,
       "critChance": 0.02,
       "critFalloff": 0.15,
@@ -537,8 +714,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 1
       },
-      "dot": "168",
-      "dot_duration": "3"
+      "weaponCategory": "Shotgun",
+      "dotData": {
+         "dot": "168",
+         "dot_duration": "3"
+      }
    },
    "RL_HVM": {
       "pierce": 1,
@@ -556,16 +736,25 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 1.0,
-      "damage": 800.0,
-      "critChance": 0.0,
-      "critFalloff": 0.1,
-      "critDamageMultiplier": 2,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.3,
+      "firingMovementReduction": 0.0,
+      "damage": 100.0,
+      "critChance": 0.01,
+      "critFalloff": 0.15,
+      "critDamageMultiplier": 1.5,
       "sneakAttackDamageMultiplier": 1.0,
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Rocket",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Ronson 46": {
       "pierce": 2,
@@ -583,6 +772,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.75,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.02,
+      "firingMovementReduction": 0.05,
       "damage": 50.0,
       "critChance": 0.2,
       "critFalloff": 0.75,
@@ -591,8 +786,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Pistol",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Ronson 77-A": {
       "pierce": 2,
@@ -610,6 +808,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.25,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.11,
+      "firingMovementReduction": 0.2,
       "damage": 75.0,
       "critChance": 0.05,
       "critFalloff": 0.5,
@@ -618,8 +822,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Rifle",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Ronson KR-3182": {
       "pierce": 2,
@@ -637,6 +844,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 12,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.05,
+      "elementalEffectInfo": {
+         "chance": 1.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.1,
+      "firingMovementReduction": 0.22,
       "damage": 20.0,
       "critChance": 0.02,
       "critFalloff": 0.15,
@@ -645,8 +858,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 2
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Shotgun",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Ronson LBM-15": {
       "pierce": 3,
@@ -664,6 +880,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.25,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.2,
+      "firingMovementReduction": 0.28,
       "damage": 65.0,
       "critChance": 0.02,
       "critFalloff": 0.5,
@@ -672,8 +894,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "LMG",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Ronson_59-9": {
       "pierce": 2,
@@ -691,6 +916,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.35,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.04,
+      "firingMovementReduction": 0.11,
       "damage": 35.0,
       "critChance": 0.05,
       "critFalloff": 0.5,
@@ -699,8 +930,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "SMG",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Rubicon RIA T48 Blaze": {
       "pierce": 3,
@@ -718,6 +952,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 2,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 1.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.2,
+      "firingMovementReduction": 0.3,
       "damage": 60.0,
       "critChance": 0.01,
       "critFalloff": 0.2,
@@ -726,8 +966,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 1
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "LMG",
+      "dotData": {
+         "dot": "168",
+         "dot_duration": "3"
+      }
    },
    "Rubicon RIA T9": {
       "pierce": 3,
@@ -745,6 +988,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 1.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.02,
+      "firingMovementReduction": 0.06,
       "damage": 35.0,
       "critChance": 0.01,
       "critFalloff": 0.75,
@@ -753,8 +1002,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 1
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Pistol",
+      "dotData": {
+         "dot": "168",
+         "dot_duration": "3"
+      }
    },
    "Rubicon_RIA_T71_Strike": {
       "pierce": 3,
@@ -772,6 +1024,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 2,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 1.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.06,
+      "firingMovementReduction": 0.12,
       "damage": 30.0,
       "critChance": 0.01,
       "critFalloff": 0.5,
@@ -780,8 +1038,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 1
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "SMG",
+      "dotData": {
+         "dot": "168",
+         "dot_duration": "3"
+      }
    },
    "Shotlite Dominator": {
       "pierce": 1,
@@ -799,6 +1060,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 10,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.3,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.08,
+      "firingMovementReduction": 0.2,
       "damage": 35.0,
       "critChance": 0.02,
       "critFalloff": 0.25,
@@ -807,8 +1074,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Shotgun",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Shotlite_Marauder": {
       "pierce": 6,
@@ -826,6 +1096,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 1.0,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.2,
+      "firingMovementReduction": 0.0,
       "damage": 750.0,
       "critChance": 0.05,
       "critFalloff": 0.0,
@@ -834,8 +1110,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Rocket",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Shotlite_Shiden": {
       "pierce": 1,
@@ -853,6 +1132,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 2,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.6,
+      "elementalEffectInfo": {
+         "chance": 0.07,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.12,
+      "firingMovementReduction": 0.2,
       "damage": 35.0,
       "critChance": 0.05,
       "critFalloff": 0.75,
@@ -861,8 +1146,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 3
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "SMG",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Smokestack_Liberator": {
       "pierce": 3,
@@ -880,6 +1168,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.12,
+      "firingMovementReduction": 0.15,
       "damage": 450.0,
       "critChance": 0.01,
       "critFalloff": 0.5,
@@ -888,8 +1182,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Rifle",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Smokestack_Pathfinder": {
       "pierce": 4,
@@ -907,6 +1204,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 0,
       "projectileMultiPellet": 0,
       "damagePierceAttenuation": 0.9,
+      "elementalEffectInfo": {
+         "chance": 1.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.0,
+      "firingMovementReduction": 0.0,
       "damage": 400.0,
       "critChance": 0.25,
       "critFalloff": 1.0,
@@ -915,8 +1218,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 3
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Sniper",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    },
    "Teknoboom_Vernichter": {
       "pierce": 5,
@@ -934,6 +1240,12 @@ function zarWeaponJSON() {
       "projectilePelletCount": 4,
       "projectileMultiPellet": 1,
       "damagePierceAttenuation": 0.5,
+      "elementalEffectInfo": {
+         "chance": 0.0,
+         "setLevel": 1
+      },
+      "equippedMovementReduction": 0.15,
+      "firingMovementReduction": 0.25,
       "damage": 100.0,
       "critChance": 0.1,
       "critFalloff": 0.75,
@@ -942,8 +1254,11 @@ function zarWeaponJSON() {
       "damageType": {
          "value": 0
       },
-      "dot": "0",
-      "dot_duration": "0"
+      "weaponCategory": "Shotgun",
+      "dotData": {
+         "dot": "0",
+         "dot_duration": "0"
+      }
    }
 };
 }

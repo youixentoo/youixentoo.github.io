@@ -58,7 +58,7 @@
             <hr>
             <div class="row">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-auto">
                         <h2>Weapon dps</h2>
                         <p>
                             Basic dps calculation for weapons. Player skill allocation not supported<br><br>
@@ -67,7 +67,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div id="weaponSelection" class="col">
+                    <div id="weaponSelection" class="col-auto">
                         <div class="table-responsive">
                             <table class="table align-middle">
                                 <thead class="table-secondary align-middle">
@@ -437,24 +437,31 @@
                             </div>
                         </div>
                     </div>
-                    <div id="resultsNormal" class="col-4">
-                        <div class="table-responsive">
-                            <table id="dpsTable" class="table align-middle">
-                                <thead>
-                                    <th>Weapon</th>
-                                    <th>Pure dps</th>
-                                    <th>Average dps</th>
-                                    <th>Uptime</th>
-                                    <th>Reload time</th>
-                                    <th>Pierce</th>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
+                </div>
+                <div id="resultsNormal" class="col-auto">
+                    <div class="table-responsive">
+                        <table id="dpsTable" class="table align-middle">
+                            <thead>
+                                <th>Weapon</th>
+                                <th>Category</th>
+                                <th>Pure dps</th>
+                                <th>Average dps</th>
+                                <th>Uptime</th>
+                                <th>Capacity</th>
+                                <th>Reload time</th>
+                                <th>Pierce</th>
+                                <th>Range</th>
+                                <th>Movement</th>
+                                <th>Movement (Firing)</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 </body>
 
 </html>
