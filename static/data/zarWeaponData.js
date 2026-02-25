@@ -34,7 +34,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "CM 458 Polaris": {
       "pierce": 2,
@@ -70,7 +71,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "CM-Sniper": {
       "pierce": 6,
@@ -106,7 +108,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "CM_372_Binary_Eclipse": {
       "pierce": 2,
@@ -142,7 +145,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Critical Mass CM 273 Pulsar": {
       "pierce": 1,
@@ -178,7 +182,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Gatling_Power_Weapon": {
       "pierce": 2,
@@ -214,7 +219,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "HIKS_M450_LMG": {
       "pierce": 3,
@@ -250,7 +256,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "HVM 019": {
       "pierce": 1,
@@ -286,7 +293,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "HVM 026": {
       "pierce": 1,
@@ -322,7 +330,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "HVM 040": {
       "pierce": 1,
@@ -358,7 +367,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "HVM 055": {
       "pierce": 2,
@@ -394,7 +404,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "HVM 082": {
       "pierce": 3,
@@ -430,7 +441,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Morlok Blizzard": {
       "pierce": 3,
@@ -466,7 +478,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Morlok Voltaic Bolter": {
       "pierce": 2,
@@ -502,7 +515,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Morlok_Frostbite": {
       "pierce": 3,
@@ -538,7 +552,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Morlok_Galvanizer": {
       "pierce": 2,
@@ -574,7 +589,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Rancor Acidic Swarm": {
       "pierce": 4,
@@ -610,7 +626,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": 151.11111111111111,
          "dot_duration": "3"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Rancor Venom": {
       "pierce": 2,
@@ -646,7 +663,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": 151.11111111111111,
          "dot_duration": "3"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "RIA T25 Igniter": {
       "pierce": 3,
@@ -682,7 +700,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "168",
          "dot_duration": "3"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "RIA T35 Scorch": {
       "pierce": 2,
@@ -718,7 +737,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "168",
          "dot_duration": "3"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "RL_HVM": {
       "pierce": 1,
@@ -742,7 +762,7 @@ function zarWeaponJSON() {
       },
       "equippedMovementReduction": 0.3,
       "firingMovementReduction": 0.0,
-      "damage": 100.0,
+      "damage": 900.0,
       "critChance": 0.01,
       "critFalloff": 0.15,
       "critDamageMultiplier": 1.5,
@@ -754,6 +774,10 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
+      },
+      "2nd_type": {
+         "value": 1,
+         "explosionDamage": 800.0
       }
    },
    "Ronson 46": {
@@ -790,7 +814,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Ronson 77-A": {
       "pierce": 2,
@@ -826,7 +851,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Ronson KR-3182": {
       "pierce": 2,
@@ -862,7 +888,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Ronson LBM-15": {
       "pierce": 3,
@@ -898,7 +925,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Ronson_59-9": {
       "pierce": 2,
@@ -934,7 +962,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Rubicon RIA T48 Blaze": {
       "pierce": 3,
@@ -970,7 +999,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "168",
          "dot_duration": "3"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Rubicon RIA T9": {
       "pierce": 3,
@@ -1006,7 +1036,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "168",
          "dot_duration": "3"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Rubicon_RIA_T71_Strike": {
       "pierce": 3,
@@ -1042,7 +1073,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "168",
          "dot_duration": "3"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Shotlite Dominator": {
       "pierce": 1,
@@ -1078,7 +1110,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Shotlite_Marauder": {
       "pierce": 6,
@@ -1102,7 +1135,7 @@ function zarWeaponJSON() {
       },
       "equippedMovementReduction": 0.2,
       "firingMovementReduction": 0.0,
-      "damage": 750.0,
+      "damage": 1350.0,
       "critChance": 0.05,
       "critFalloff": 0.0,
       "critDamageMultiplier": 1.5,
@@ -1114,6 +1147,10 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
+      },
+      "2nd_type": {
+         "value": 1,
+         "explosionDamage": 600.0
       }
    },
    "Shotlite_Shiden": {
@@ -1150,7 +1187,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Smokestack_Liberator": {
       "pierce": 3,
@@ -1186,7 +1224,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Smokestack_Pathfinder": {
       "pierce": 4,
@@ -1222,7 +1261,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    },
    "Teknoboom_Vernichter": {
       "pierce": 5,
@@ -1258,7 +1298,8 @@ function zarWeaponJSON() {
       "dotData": {
          "dot": "0",
          "dot_duration": "0"
-      }
+      },
+      "2nd_type": "N/A"
    }
 };
 }
