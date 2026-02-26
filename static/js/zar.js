@@ -1,3 +1,5 @@
+// TODO: Add damage type icons to guns in output
+
 const weaponColours = ["white", "lightgreen", "lightblue", "magenta", "gold"];
 
 function getDPS() {
@@ -29,8 +31,8 @@ function calcDPS(weaponName, weaponVersion, weaponLevel, weapon, weaponLevel, ra
     let base_clipsize = weapon["magazineCapacity"];
     let base_range = weapon["range"];
 
-    let dot = weapon["dot"] * rarity_dmg_mult;
-    let dot_duration = weapon["dot_duration"];
+    let dot = weapon["dotData"]["dot"] * rarity_dmg_mult;
+    let dot_duration = weapon["dotData"]["dot_duration"];
     let dot_chance = weapon["elementalEffectInfo"]["chance"];
 
     let crit_dmg_mult = weapon["critDamageMultiplier"];
