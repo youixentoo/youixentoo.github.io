@@ -55,8 +55,9 @@ function calcDPS(weaponName, weaponVersion, weaponLevel, weapon, weaponLevel, ra
     // console.log(base_clipsize, weaponMods["Clip"], clipSize);
 
     // Else it uses the reload of only the first shot in a clip for shotguns
+    // Tested on Scorch to be equal to reload * clipsize-1
     if(wepCategory === "Shotgun"){
-        base_reload = base_reload * clipSize;
+        base_reload = base_reload * (clipSize-1);
     }
     let reloadTime = getReloadTime(base_reload, weaponMods["Reload"]);
     // console.log(base_reload, weaponMods["Reload"], reloadTime);
