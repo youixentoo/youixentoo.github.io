@@ -211,7 +211,7 @@ function weaponJSON() {
             },
             "HIKS 3100": {
                 "Class": "Launcher",
-                "Type": "Thermal",
+                "Type": "Energy",
                 "Damage": 720,
                 "DOT": 0,
                 "RPS": 4.0,
@@ -1643,7 +1643,7 @@ function weaponJSON() {
             },
             "HIKS 3100": {
                 "Class": "Launcher",
-                "Type": "Thermal",
+                "Type": "Energy",
                 "Damage": 1955,
                 "DOT": 0,
                 "RPS": 4.0,
@@ -3036,7 +3036,7 @@ function weaponJSON() {
             },
             "HIKS 3100": {
                 "Class": "Launcher",
-                "Type": "Thermal",
+                "Type": "Energy",
                 "Damage": 2932.5,
                 "DOT": 0.0,
                 "RPS": 4.0,

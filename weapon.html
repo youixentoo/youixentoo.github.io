@@ -58,21 +58,57 @@
         </div>
         <div id="site-wrapper">
             <hr>
-            <div class="header">
-                <h2>Weapon dps</h2>
-                <p>
-                    Calculate dps for weapons<br><br>
+            <div class="row">
+                <div class="col">
+                    <h2>Weapon dps</h2>
+                    <p>
+                        Calculate dps for weapons<br><br>
 
-                    <b>Notes:</b><br>
-                    If a gun only has 1 version, you can select Standard, Red or Black, it will give the same
-                    values.<br>
-                    When using HTL or adrenaline, 'Pure' is without cooldowns, 'Average' is with cooldowns.<br>
-                    Results might not be 100% accurate with in-game.<br>
-                    "Stats" might not always line up with the displayed values in-game.<br><br>
-                    Time to kill (TTK) available as an alpha<br>
-                    Burst, PBE and other mechanics are not yet implemented,<br>
-                    alot of data also still needs to be verified. <u>Use at your own risk</u>
-                </p>
+                        <b>Notes:</b><br>
+                        If a gun only has 1 version, you can select Standard, Red or Black, it will give the same
+                        values.<br>
+                        When using HTL or adrenaline, 'Pure' is without cooldowns, 'Average' is with cooldowns.<br>
+                        Results might not be 100% accurate with in-game.<br>
+                        "Stats" might not always line up with the displayed values in-game.<br><br>
+                        Time to kill (TTK) available as an alpha<br>
+                        <u>Use at your own risk</u>
+                    </p>
+                </div>
+                <div class="col">
+                    <p>Time to kill settings needed to go somewhere [WIP]</p>
+                    <select name="ttk_version">
+                        <option value="Standard">Standard</option>
+                        <option value="Savage" selected>Savage</option>
+                    </select>
+                    <select name="ttk_boss">
+                        <option value="Regurgitator">Regurgitator</option>
+                        <option value="Wicker">Wicker</option>
+                        <option value="Zombie Mech">Zombie Mech</option>
+                        <option value="Devastator">Devastator</option>
+                        <option value="Necrosis" selected>Necrosis</option>
+                        <option value="Thermal Necrosis Spawn">Thermal Necrosis Spawn</option>
+                        <option value="Chemical Necrosis Spawn">Chemical Necrosis Spawn</option>
+                        <option value="Physical Necrosis Spawn">Physical Necrosis Spawn</option>
+                        <option value="Loaderbot">Loaderbot</option>
+                    </select>
+                    <select name="ttk_modifier">
+                        <option value="None">None</option>
+                        <option value="Elite" selected>Elite</option>
+                        <option value="Nightmarish">Nightmarish</option>
+                    </select>
+                    <br><br>
+                    <select name="ttk_location">
+                        <option value="Normal">Normal</option>
+                        <!-- <option value="placeholder">placeholder</option> -->
+                        <option value="Nightmare" selected>Nightmare</option>
+                    </select><br><br>
+                    <label>Damage multiplier: <input type="number" min="1" max="1000" step="0.01" value="1" style="width: 4rem"
+                                                name="ttk_dmg_mult"></label><br>
+                    <label>KS duration (s): <input type="number" min="0" max="Infinite" step="1" value="0" style="width: 4rem"
+                                                name="ttk_ks_duration"></label> 
+                        <label>Infinite: <input type="checkbox" name="ttk_ks_infinte" value="true"></label>
+
+                </div>
             </div>
             <hr>
             <!-- <input class="code" type="text" name="codeGen" value=""> 
@@ -80,7 +116,7 @@
             <button type="button" class="btn-light btn-outline-dark border-1" onclick="getCode('weapon')">Generate</button> -->
 
             <div class="row">
-                <div id="weaponSelection" class="col-auto">
+                <div id="weaponSelection" class="col">
                     <div class="table-responsive">
                         <table class="table align-middle">
                             <thead class="table-secondary align-middle">
@@ -113,13 +149,15 @@
                                 <tr>
                                     <td rowspan="3">
                                         <div id="classSelect">
-                                        <div><label><input id="radioAss" type="radio" name="character" value="Assault"
-                                                    checked="checked" onchange="setClass(this.value)">Assault</label>
+                                            <div><label><input id="radioAss" type="radio" name="character"
+                                                        value="Assault" checked="checked"
+                                                        onchange="setClass(this.value)">Assault</label>
+                                            </div>
+                                            <div><label><input id="radioHea" type="radio" name="character" value="Heavy"
+                                                        onchange="setClass(this.value)">Heavy</label></div>
+                                            <div><label><input id="radioMed" type="radio" name="character" value="Medic"
+                                                        onchange="setClass(this.value)">Medic</label></div>
                                         </div>
-                                        <div><label><input id="radioHea" type="radio" name="character" value="Heavy"
-                                                    onchange="setClass(this.value)">Heavy</label></div>
-                                        <div><label><input id="radioMed" type="radio" name="character" value="Medic"
-                                                    onchange="setClass(this.value)">Medic</label></div></div>
                                     </td>
                                     <td>
                                         <label>Fast Reload: <input type="number" min="0" max="25" step="1" value="0"
@@ -437,7 +475,7 @@
                                                 <option value="Mustang">Mustang</option>
                                                 <option value="Phantom">Phantom</option>
                                                 <option value="Shotlite Tempest">Shotlite Tempest</option>
-                                                <option value="Raptor">Raptor</option>
+                                                <option value="Raptor" selected>Raptor</option>
                                                 <option value="Hornet">Hornet</option>
                                                 <option value="Supermarine">Supermarine</option>
                                                 <option value="Bayonet">Bayonet</option>
@@ -473,11 +511,15 @@
                                             </optgroup>
                                         </select>
                                     </td>
-                                    <td colspan="4">
+                                    <td colspan="3">
                                         <label><input type="radio" name="version" value="Normal"
                                                 checked="checked">Standard</label>
                                         <label><input type="radio" name="version" value="Red">[RED]</label>
                                         <label><input type="radio" name="version" value="Black">[BLACK]</label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="shooting_at_boss_dps"
+                                                value="1">Shooting at boss</label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -593,8 +635,8 @@
                         <div class="p-1">
                             <button id="dps_but" type="button" class="btn btn-light btn-outline-dark"
                                 onclick="getDPS(false)">Get dps</button>
-                            <button type="button" class="btn btn-light btn-outline-dark"
-                                onclick="ttk()">TTK alpha</button>
+                            <button type="button" class="btn btn-light btn-outline-dark" onclick="ttk()">TTK
+                                alpha</button>
                         </div>
                         <div class="p-1">
                             <button id="clear_but" type="button" class="btn btn-light btn-outline-dark"

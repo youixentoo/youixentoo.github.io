@@ -25,9 +25,10 @@ function ttk(){
     // Concussion?
     // PBE --> Multiple bosses stacked
     //     - PBE/General: pierce capped
-    // Adren cooldown
-    // HTL cooldown
-    // Toggle KS perma on/off -- possibly specify duration of ks
+
+    // Adren cooldown - done
+    // HTL cooldown - done
+    // Toggle KS perma on/off -- possibly specify duration of ks - done
     // >> NOT << checking if enough energy to activate adren/htl continuously >> NOT <<
     const bossData = bossJSON();
     let dpsData = getDPS(true);
@@ -35,23 +36,33 @@ function ttk(){
     // console.log("dps data", dpsData);
 
     // ### User defined variables ###
-    let selectedBoss = "Necrosis";
-    let bossVersion = "Savage";
-    // let selectedBoss = "Regurgitator";
-    // let bossVersion = "Standard";
-    let bossMod = "Nightmare";
-    let zombieModifier = "Elite"; // Elite - None - Nightmarish
-    let damageMultiplier = 1;
+    // let selectedBoss = "Necrosis";
+    // let bossVersion = "Savage";
+    const isHeavy = (dpsData[0][4] === "Heavy");
+    let selectedBoss = $('select[name="ttk_boss"] option:selected').val();
+    let bossVersion = $('select[name="ttk_version"] option:selected').val();
+    let bossMod = $('select[name="ttk_location"] option:selected').val();
+    let zombieModifier = $('select[name="ttk_modifier"] option:selected').val(); // Elite - None - Nightmarish
+    let damageMultiplier = $('input[name="ttk_dmg_mult"]').val();
     let stackedBosses = 2; // 1 - 60 (spawn cap)
+    // let ksDuration;
+    // let ksDuration = Infinity;
+    let ks_infinite = $('input[name="ttk_ks_infinte"]').is(":checked");
+    if(ks_infinite){
+        ksDuration = Infinity;
+    }else{
+        ksDuration = $('input[name="ttk_ks_duration"]').val();
+    }
+    // console.log("selcteds", selectedBoss, bossVersion, bossMod, zombieModifier, ksDuration);
 
     // ### End of user defined variables ###
     let bossHP = bossData[selectedBoss][bossVersion]["HP"][bossMod];
     let bossResists = bossData[selectedBoss][bossVersion]["Resists"][dpsData[0][11]]/100;
-    if(zombieModifier === "Nightmarish" & bossResists < 0.75){
+    if(zombieModifier === "Nightmarish" & bossResists < 0.75){ // resists stay at 75% for nightmarish enraged devs
         bossResists = 0.75; // TODO: Check if true for all bosses (or like check how it works for like mech and wicker)
     }
 
-    [classDmgBonus, classDmgDuration] = getClassDmgSkillBonusses(dpsData[0][4], dpsData[0][5]);
+    [classDmgBonus, classDmgDuration] = getClassDmgSkillBonusses(dpsData[0][4], dpsData[0][5], ksDuration);
     const dmgSingleShotWithBonusses = getDmgOneShot(dpsData[0][0], classDmgBonus, dpsData[0][13], dpsData[0][14], dpsData[0][15], dpsData[0][16], dpsData[0][2], dpsData[0][1], dpsData[0][21], damageMultiplier);
     const dmgSingleShotWithoutBonusses = getDmgOneShot(dpsData[0][0], 1, dpsData[0][13], dpsData[0][14], dpsData[0][15], dpsData[0][16], dpsData[0][2], dpsData[0][1], dpsData[0][21], damageMultiplier);
     const effectiveBossResistances = getEffectiveBossResistances(bossResists, dpsData[0][9], dpsData[0][12], dpsData[0][10]);
@@ -60,7 +71,8 @@ function ttk(){
     // console.log("Max clips needed: ", maxClipsRequired, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses);
 
     timeScale = shotsTimeScale(maxClipsRequired, dpsData);
-    [accumulativeTime, accumulativeShots] = bossKill(selectedBoss, bossHP, effectiveBossResistances, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses, classDmgDuration, timeScale)
+    console.log("timescale", timeScale); // print timescale
+    [accumulativeTime, accumulativeShots] = bossKill(selectedBoss, bossHP, effectiveBossResistances, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses, classDmgDuration, isHeavy, timeScale)
 
     let bossVersionMessage;
     if(bossVersion === "Standard"){
@@ -77,7 +89,7 @@ function ttk(){
     }
 
     let ammoPriceMessage = getAmmoCost(dpsData[0][18], dpsData[0][11], dpsData[0][20], dpsData[0][19], accumulativeShots);
-    let TTKMessage = `When using a ${dpsData[0][22]}, killing a ${bossMod}${bossVersionMessage}${selectedBoss}${bossModMessage} will take on average ${roundNumber(accumulativeTime, 1).toLocaleString()} seconds. Requiring ${accumulativeShots.toLocaleString()} shots and costing $${ammoPriceMessage.toLocaleString()}`
+    let TTKMessage = `When using a ${dpsData[0][22]}, killing a ${bossMod}${bossVersionMessage}${selectedBoss}${bossModMessage} will take on average ${roundNumber(accumulativeTime, 4).toLocaleString()} seconds, for an average dps of ${roundNumber(bossHP/accumulativeTime, 4).toLocaleString()}. Requiring ${accumulativeShots.toLocaleString()} shots and costing $${ammoPriceMessage.toLocaleString()}`
     console.log(TTKMessage);
 
     let outArea = document.getElementById("ttk-out");
@@ -117,44 +129,84 @@ function getAmmoCost(weaponClass, damageType, weaponVersion, hdaBonusMultiplier,
     return Math.ceil(shotsFired*ammoCost);
 }
 
-function bossKill(selectedBoss, currentBossHP, effectiveBossResists, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses, currentClassDmgDuration, timeScale){
+function bossKill(selectedBoss, currentBossHP, effectiveBossResists, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses, currentClassDmgDuration, hasCooldown, timeScale){
+    // hasCooldown only applies to htl, calc assumes 100% uptime of biobomb and ks doesnt get retriggered if running out
     const devEnragedSplit = [0.8, 0.2];
+    const htlCooldown = 30 - currentClassDmgDuration;
+    const baseClassDuration = currentClassDmgDuration;
+    let cooldownClassSkill = htlCooldown;
     
-        // let damageScale = [];
-    // let metaData, timeSpend;
-    // for([metaData, timeSpend] of flattenedShotsArray){
-        
-    // }
     let accumulativeTime = 0;
     let accumulativeShots = 0;
     let index = 0;
+    let currentDmgOfShot;
+    let currentDmgReductionOfShot;
+    
     while(currentBossHP > 0){
         [shotOrReload, time] = timeScale[index]
         if(shotOrReload === "reload"){
             accumulativeTime += time;
-            currentClassDmgDuration -= time;
-        }else{
-            if(currentClassDmgDuration > 0){
-                if(selectedBoss === "Devastator"){
-                    if(currentBossHP > (currentBossHP * devEnragedSplit[1])){
-                        currentBossHP -= dmgSingleShotWithBonusses;
+            if(hasCooldown){
+                if(cooldownClassSkill === htlCooldown){ // if htl is active
+                    if(time <= currentClassDmgDuration){ // if reload time is shorter or equal to remaining duration
+                        currentClassDmgDuration -= time;
+                    }else{ // htl running out during reloading
+                        currentClassDmgDuration -= time;
+                        cooldownClassSkill = htlCooldown + currentClassDmgDuration;
+                        currentClassDmgDuration = baseClassDuration;
                     }
-                }else{
-                    currentBossHP -= dmgSingleShotWithBonusses * (1-effectiveBossResists);
+                }else{ // htl not active
+                    if(cooldownClassSkill <= time){ // reload time is shorter or equal to remaining cooldown
+                        cooldownClassSkill -= time;
+                    }else{ // htl activating during reloading
+                        cooldownClassSkill -= time;
+                        currentClassDmgDuration = baseClassDuration + cooldownClassSkill;
+                        cooldownClassSkill = htlCooldown;
+                    }
                 }
-                currentClassDmgDuration -= time;
             }else{
-                if(selectedBoss === "Devastator"){
-                    if(currentBossHP > (currentBossHP * devEnragedSplit[1])){
-                        currentBossHP -= dmgSingleShotWithoutBonusses;
-                    }else{
-                        currentBossHP -= dmgSingleShotWithoutBonusses * (1-effectiveBossResists);
+                currentClassDmgDuration -= time;
+            }
+
+        }else{
+            if(hasCooldown){
+                // remainingAdrenTime > 0 & remainingAdrenCooldown === adrenCooldownTime){ // check if adren is still active and not on cooldown
+                if(currentClassDmgDuration > 0 & cooldownClassSkill == htlCooldown){
+                    currentDmgOfShot = dmgSingleShotWithBonusses;
+                    if(time <= currentClassDmgDuration){
+                        currentClassDmgDuration -= time;
+                    }else{ // shot will be shot with htl bonus, but htl will end and be on cooldown
+                        cooldownClassSkill = htlCooldown - currentClassDmgDuration;
+                        currentClassDmgDuration = baseClassDuration;
                     }
+                }else{ // when htl is off and/or on cooldown
+                    if(cooldownClassSkill <= 0){ // if cooldown is over --> htl active again
+                        currentDmgOfShot = dmgSingleShotWithBonusses;
+                        currentClassDmgDuration -= time;
+                        cooldownClassSkill = htlCooldown;
+                    }else{
+                        currentDmgOfShot = dmgSingleShotWithoutBonusses;
+                        cooldownClassSkill -= time;
+                    }
+                }
+
+            }else{ // for ks as it does have a skill duration, but no cooldown
+                if(currentClassDmgDuration > 0){
+                    currentDmgOfShot = dmgSingleShotWithBonusses;
+                    currentClassDmgDuration -= time;
                 }else{
-                    currentBossHP -= dmgSingleShotWithoutBonusses * (1-effectiveBossResists);
+                    currentDmgOfShot = dmgSingleShotWithoutBonusses;
                 }
             }
+
+            // damage reduction calculations
+            if(selectedBoss === "Devastator" & currentBossHP > (currentBossHP * devEnragedSplit[1])){
+                currentDmgReductionOfShot = 1;
+            }else{
+                currentDmgReductionOfShot = (1-effectiveBossResists);
+            }
             // bossHP -= shotOrReload;
+            currentBossHP -= currentDmgOfShot * currentDmgReductionOfShot;
             accumulativeShots++;
             accumulativeTime += time;
         }
@@ -193,139 +245,329 @@ function maxClipsToKill(selectedBoss, bossHP, bossResists, damage, adaptive, mas
 
 
 function shotsTimeScale(maxClipsRequired, dpsData){
-    let adrenBonus = dpsData[0][6];
-    let adrenDuration = dpsData[0][7];
+    // Cooldown htl: 30 sec, adrenaline: 25 sec
+    const adrenBonus = dpsData[0][6];
+    const adrenDuration = dpsData[0][7];
+    const adrenCooldownTime = 25 - adrenDuration;
     let capacity =  dpsData[0][8];
     let burstData = specialCases(dpsData[0][22], "Burst")
     // console.log(classDmgBonus, classDmgDuration, adrenBonus, adrenDuration, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses);
     console.log("has burst", burstData);
     
-
     let maxScaleSize = maxClipsRequired + (maxClipsRequired - 1);
 
-    let burstShotsRemaining = 0;
+    let remainingAdrenTime = adrenDuration;
+    let remainingAdrenCooldown = adrenCooldownTime;
+
+    let burstCarryOver = 0;
     let shotsArray = [];
+    // crI; clip/reload index, always has the pattern of clip-reload-clip etc
     for(let crI = 0; crI < maxScaleSize; crI++){
-        if(crI % 2 == 0){
-            // console.log(crI, "even");
-            [adrenDuration, clipTimes, burstShotsRemaining] = calcClipDrainTime(capacity, dpsData[0][3], adrenBonus, adrenDuration, burstData, burstShotsRemaining);
+        if(crI % 2 == 0){ // even
+            [remainingAdrenTime, remainingAdrenCooldown, clipTimes, burstCarryOver] = calcClipDrainTime(capacity, dpsData[0][3], adrenBonus, remainingAdrenTime, remainingAdrenCooldown, adrenDuration, adrenCooldownTime, burstData, burstCarryOver);
             shotsArray.push(clipTimes);
-        }else{
-            [adrenDuration, reloadTime] = calcTimeSpendReloading(dpsData[0][17], adrenBonus, adrenDuration);
+        }else{ // odd
+            [remainingAdrenTime, remainingAdrenCooldown, reloadTime] = calcTimeSpendReloading(dpsData[0][17], adrenBonus, remainingAdrenTime, remainingAdrenCooldown, adrenDuration, adrenCooldownTime);
             shotsArray.push(reloadTime);
-            // shotsArray.push(["reload", 0.1])
         }
     };
     let flattenedShotsArray = shotsArray.flat() // From [ Array(x) [ Array(x) [ Array(2) ] ] ] to [ Array(x) [ Array(2) ] ]
 
-    // console.log("\n####\nshowArray flat: ", flattenedShotsArray);
+    console.log("\n####\nshowArray flat: ", flattenedShotsArray);
     return flattenedShotsArray;
 }
 
-function calcTimeSpendReloading(regularReloadTime, adrenBonus, remainingAdrenTime){
+function calcTimeSpendReloading(regularReloadTime, adrenBonus, remainingAdrenTime, remainingAdrenCooldown, adrenDuration, adrenCooldownTime){
     // console.log("adren", adrenBonus)
-    const reloadingWithAdren = regularReloadTime * (1-(adrenBonus - 1));
+    const reloadingWithAdren = regularReloadTime / (1+(adrenBonus - 1));
     let reloadTime = [];
-    if(reloadingWithAdren <= remainingAdrenTime){
-        reloadTime.push(["reload", reloadingWithAdren]);
-        remainingAdrenTime -= reloadingWithAdren;
-    }else{
-        let fractionAmountReloadingWithAdren = remainingAdrenTime / reloadingWithAdren;
-        let timeSpendReloadAdren = reloadingWithAdren * fractionAmountReloadingWithAdren;
-        let timeLeftReloading = regularReloadTime * (1 - fractionAmountReloadingWithAdren);
-        reloadTime.push(["reload", timeSpendReloadAdren + timeLeftReloading])
+    
+    if(remainingAdrenCooldown === adrenCooldownTime){   // if adren active or partially active and not on cooldown
+        if(reloadingWithAdren <= remainingAdrenTime){  // if shot time is lower of equal to remaining active time
+            reloadTime.push(["reload", reloadingWithAdren]);
+            remainingAdrenTime -= reloadingWithAdren;
+        }else{ // when shot time is longer than remaining active time (partial) (adren running out)
+            let fractionAmountReloadingWithAdren = remainingAdrenTime / reloadingWithAdren;
+            [timeSpendReloadAdren, timeLeftReloading] = calcPartialReload(fractionAmountReloadingWithAdren, reloadingWithAdren, regularReloadTime);
+            reloadTime.push(["reload", timeSpendReloadAdren + timeLeftReloading]);
+
+            remainingAdrenTime = adrenDuration;
+            remainingAdrenCooldown = adrenCooldownTime - timeLeftReloading;
+        }
+    }else{ // reloading when adren on cooldown
+        if(remainingAdrenCooldown <= 0){ // if adren cooldown over, accounts for partial activation
+            remainingAdrenTime += remainingAdrenCooldown;
+            let fractionalReloadAdren = (adrenDuration - remainingAdrenTime) / reloadingWithAdren;
+            [timeSpendReloadAdren, timeLeftReloading] = calcPartialReload(fractionalReloadAdren, reloadingWithAdren, regularReloadTime)
+            reloadTime.push(["reload", timeSpendReloadAdren + timeLeftReloading])
+
+            remainingAdrenCooldown = adrenCooldownTime;
+            remainingAdrenTime = adrenDuration - timeSpendReloadAdren;
+        }else{ // reloading without adren
+            reloadTime.push(["reload", regularReloadTime])
+            remainingAdrenCooldown -= regularReloadTime;
+        }
     }
-    return [remainingAdrenTime, reloadTime];
+    
+    return [remainingAdrenTime, remainingAdrenCooldown, reloadTime];
 }
 
-function calcClipDrainTime(capacity, gunRps, adrenBonus, remainingAdrenTime, burstData, burstShotsRemaining){
-    // console.log("calcClipDrainTime", capacity, gunRps, adrenBonus, remainingAdrenTime);
+function calcPartialReload(fractionAmountReloadingWithAdren, reloadingWithAdren, regularReloadTime){
+    let timeSpendReloadAdren = reloadingWithAdren * fractionAmountReloadingWithAdren;
+    let timeLeftReloading = regularReloadTime * (1 - fractionAmountReloadingWithAdren);
+    return [timeSpendReloadAdren, timeLeftReloading];
+}
+
+function calcClipDrainTime(capacity, gunRps, adrenBonus, remainingAdrenTime, remainingAdrenCooldown, adrenDuration, adrenCooldownTime, burstData, burstCarryOver){
+    // console.log("funalcClipDrainTime", capacity, gunRps, adrenBonus, remainingAdrenTime);
     const fullClipAdrenTime = capacity / (gunRps * adrenBonus);
     const timeOfAdrenShot = fullClipAdrenTime / capacity;
     const regularClipTime = capacity / gunRps;
     const timeOfRegularShot = regularClipTime / capacity;
     let clipTimes = [];
-    let burstShotsQueued = 0;
+    // let burstCarryOver = 0;
+
+    // #### TODO: check if the remaining burst time gets added before or after the reload, if neither, this might actually give a higher rps than it's supposed to
     if(burstData){ // --> if the weapon is a burst weapon
-        if(burstShotsRemaining != 0){
+        const burstTime = burstData["Amount"] * burstData["Delay"];
+        const timeBetweenBurstsAdren = 1 / (gunRps * adrenBonus);
+        const timeBetweenBurstsReg = 1 / gunRps;
+        const amountOfBursts = capacity / burstData["Amount"];
+        const reloadOverlap = (amountOfBursts - Math.floor(amountOfBursts)) * burstData["Amount"];
+        let toSortTimeLine = []
 
-        }else{
-            // raptor: 4 rps, 0.02s delay
-            // Time between bursts: 1/4 = 0.25s
-            // 1 burst takes 0.08s, after which there is 0.25-0.08=0.17 cooldown
-            // positive
-            // --
-            // 10 cores, oc 12: 13.2 rps 
-            // TbB: 1/13.2 = 0.07575
-            // With a burst time of 0.08, there is a 0.07575-0.08=-0.004242 cooldown
-            // negative
+        let burstStartTime = 0;
+        // if(burstCarryOver > 0){
 
-            // ria 75: 1 rps, 0.1s delay
-            // time between bursts: 1/1 = 1s
-            // 1 burst takes 0.4s, after which there is a 1-0.4=0.6s cooldown 
-            // positive
-            // --
-            // 10 cores, oc 12: 3.3 rps 
-            // time between bursts: 1/3.3 = 0.3030. 
-            // With a burst time of 0.4, there is a 0.3030-0.4=-0.09696 cooldown 
-            // negative
-            // (~5 rps and -0.2s cooldown with adren)
-            /*
-            shot1burst1, 0.1s, shot2burst1, 0.1s, shot3burst1, 0.003s, shot1burst2, 0.097s, shot4burst1, 0.003s, shot1burst2, 0.1s, shot3burst2, 0.003s, shot1burst3, 0.097s, shot4burst2, 0.003s, shot2burst3, 0.1s, ....
+        // }else{ // } // burst carry over
+        // if(remainingAdrenTime > 0 & remainingAdrenCooldown == adrenCooldownTime){ // if adren active for whole clip
+        let timeBetweenBursts;
+        // let adrenActive = (adrenDuration > 0) ? true : false;
+        for(let burstIndex = 0; burstIndex < Math.floor(amountOfBursts); burstIndex++){ // time between bursts is affected by adren (rps), shots within a burst arent 
+            let shot;
+            if(remainingAdrenTime > 0 & remainingAdrenCooldown == adrenCooldownTime){ // adren hasnt run out and isnt on cooldown
+                timeBetweenBursts = timeBetweenBurstsAdren
+            }else{
+                if(remainingAdrenCooldown <= 0){ // adren cooldown over --> adren active again
+                    timeBetweenBursts = timeBetweenBurstsAdren
+                }else{ // adren on cooldown or off
+                    timeBetweenBursts = timeBetweenBurstsReg
+                }
+            }
 
-            burstTimeFrame = burstAmount * burstDelay (0.4)
-            timeBetweenBursts = 1/rps (0.3 maxed) (0.6 non)
-            shots = []
-            if timeBetweenBursts > burstTimeFrame: // standard, easy calc
-                cooldown = timeBetweenBursts - burstTimeFrame 
-                for index, shot in clip:
-                    if index+1 % burstAmount == 3 and index+1 > 0:
-                        shots.push(["shot", burstDelay+cooldown]) 
-                    else:
-                        shots.push(["shot", burstDelay])
+            for(shot = 1; shot <= burstData["Amount"]; shot++){
+                var shotIn_timeLine = burstStartTime + (shot * burstData["Delay"])
+                toSortTimeLine.push({startTime: burstStartTime, shotCount: shot-1, value: shotIn_timeLine});
 
+                if(remainingAdrenTime > 0 & remainingAdrenCooldown == adrenCooldownTime){ // if adren active and not on cooldown
+                    remainingAdrenTime -= timeBetweenBursts;
+                }else{
+                    if(remainingAdrenCooldown == adrenCooldownTime){ // if adren ran out last shot
+                        remainingAdrenCooldown += remainingAdrenTime;
+                        remainingAdrenTime = adrenCooldownTime;
+                    }else{ // if adren is off and is currently on cooldown
+                        if(remainingAdrenCooldown <= 0){ // if cooldown is over --> adren active again
+                            remainingAdrenTime = (adrenDuration - timeBetweenBursts) + remainingAdrenCooldown; // can only be negative or 0 here, can activate just before the shot is fired
+                            remainingAdrenCooldown = adrenCooldownTime;
+                        }else{
+                            remainingAdrenCooldown -= timeBetweenBursts;
+                        }
+                    }
+                }
+                
+            }
+            // console.log("burst s time", burstStartTime);
+            burstStartTime += (timeBetweenBursts);
+            remainingAdrenTime -= timeBetweenBursts
 
-            else if timeBetweenBursts < burstTimeFrame:
-                for shot in clip:
-                    pass
-            else: // if both are equal
-                for shot in clip:
-                    pass
-
-            */
-            // ==
-            // 
-            // oc 10: 2 rps
-            // time between bursts: 1/2 = 0.5s
-            // with a burst time of 0.4, there is a 0.5-0.4=0.1 cooldown
-            // positive
-            // --
-            // 5 cores, oc 10: 2.5 rps
-            // time between bursts: 1/2.5 = 0.4s
-            // with a burst time of 0.4, there is a 0.4-0.4=0 cooldown
-            // equal
-
-
+            
         }
-    }else{  // --> if the weapon is NOT a burst weapon
-        if(fullClipAdrenTime <= remainingAdrenTime){ // if adren active for whole clip
-            for(let shot = 0; shot < capacity; shot++){
-                clipTimes.push(["shot", timeOfAdrenShot]);
+
+        for(let remainingShots = 1; remainingShots <= reloadOverlap; remainingShots++){
+            var remShotIn_timeLine = burstStartTime + (remainingShots * burstData["Delay"])
+            toSortTimeLine.push({startTime: burstStartTime, shotCount: remainingShots-1, value: remShotIn_timeLine});
+            remainingAdrenTime -= remShotIn_timeLine;
+        }
+
+        burstCarryOver = reloadOverlap;
+ 
+        /*
+        if(fullClipAdrenTime <= remainingAdrenTime & remainingAdrenCooldown == adrenCooldownTime){ // if adren active for whole clip
+            for(let shot = 1; shot <= capacity; shot++){
+                if(shot == capacity){ // last shot, happens at same time of reload, so no subtraction
+                    clipTimes.push(["shot", 0]);
+                }else{
+                    // console.log("shot:cap", shot, capacity);
+                    clipTimes.push(["shot", timeOfAdrenShot]);
+                }
             }
             remainingAdrenTime -= fullClipAdrenTime;
         }else{ 
-            for(let shot = 0; shot < capacity; shot++){
-                if(timeOfAdrenShot <= remainingAdrenTime){ // if adren is only active for a partial clip
+            for(let shot = 1; shot <= capacity; shot++){
+                if(shot == capacity){ // last shot, happens at same time of reload, so no subtraction
+                    clipTimes.push(["shot", 0]);
+                }else{
+                    if(remainingAdrenTime > 0 & remainingAdrenCooldown === adrenCooldownTime){ // check if adren is still active and not on cooldown
+                        clipTimes.push(["shot", timeOfAdrenShot]);
+                        if(timeOfAdrenShot <= remainingAdrenTime){ // if there is time remaining for a adren shot
+                            remainingAdrenTime -= timeOfAdrenShot;
+                        }else{ // shot will still be shot with adren active, but adren will end and will be on cooldown
+                            remainingAdrenCooldown = adrenCooldownTime - remainingAdrenTime;
+                            remainingAdrenTime = adrenDuration; // reset adren
+                        }
+                    }else{ // when adren is off and/or on cooldown
+                        if(remainingAdrenCooldown <= 0){ // if cooldown is over --> adren active again
+                            clipTimes.push(["shot", timeOfAdrenShot]);
+                            remainingAdrenTime = (adrenDuration - timeOfAdrenShot) + remainingAdrenCooldown; // can only be negative or 0 here, can activate just before the shot is fired
+                            remainingAdrenCooldown = adrenCooldownTime;
+                        }else{  // adren off and not on cooldown (no adren)
+                            clipTimes.push(["shot", timeOfRegularShot]);
+                            remainingAdrenCooldown -= timeOfRegularShot;
+                        }
+                    }
+                }
+            }
+        }*/
+        
+
+        // console.log("unsort", toSortTimeLine);
+        toSortTimeLine.sort((a,b) => a.value - b.value)
+
+        console.log("sorted", toSortTimeLine)
+        // required for adjusting the drain time for the last burst at high rps, as it won't get overlapped
+        // let timeAdjust = Math.max(burstTime - timeBetweenBursts, 0) * (1+(amountOfBursts - Math.ceil(amountOfBursts)));
+        // [ 0, 0.02, 0.04, 0.06, 0.05510844239294082, 0.07510844239294082, 0.09510844239294082, 0.11510844239294082, 0.11021688478588164, 0.13021688478588164, … ]
+        // let newRps = capacity / ((timeBetweenBursts * amountOfBursts) + timeAdjust);
+
+        /*
+        #####
+
+        To get accurate times for clipTimes, you need to find the difference between the current and next shot ==> To get the time value of x, subtract index x with index x-1.
+
+        Loop over list, start at index 1
+        #####
+
+        0: Object { startTime: 0, shotCount: 0, value: 0.02 }
+        1: Object { startTime: 0, shotCount: 1, value: 0.04 }
+        2: Object { startTime: 0, shotCount: 2, value: 0.06 }
+        3: Object { startTime: 0.04925079687789349, shotCount: 0, value: 0.06925079687789348 }
+        4: Object { startTime: 0, shotCount: 3, value: 0.08 }
+
+        ==>
+            cliptimes = [["shot", 0.02], ["shot", 0.02], ["shot", 0.02], ["shot", 0,00925079687789348], ["shot", 0,01074920312210652]]
+
+        */
+
+        // toSortTimeLine.forEach((obj) => {
+        //     clipTimes.push(["shot", obj.value - (obj.startTime)]);
+        // });
+        clipTimes.push(["shot", toSortTimeLine[0].value]) // To store first shot of clip
+        for(let indexSortTimeLine = 1; indexSortTimeLine < toSortTimeLine.length; indexSortTimeLine++){
+            clipTimes.push(["shot", toSortTimeLine[indexSortTimeLine].value-toSortTimeLine[indexSortTimeLine-1].value])
+        }
+
+        console.log("clip time", clipTimes)
+        // console.log("bursT", capacity, burstTime, timeBetweenBursts, amountOfBursts, reloadOverlap, Math.floor(amountOfBursts), timeBetweenBursts - burstTime);
+        // exit
+        // if(burstShotsRemaining != 0){ // shooting 1 of 4 shots before reload, does not reset the 'burst' after reloading. 
+
+        // }else{
+        //     // raptor: 4 rps, 0.02s delay
+        //     // Time between bursts: 1/4 = 0.25s
+        //     // 1 burst takes 0.08s, after which there is 0.25-0.08=0.17 cooldown
+        //     // positive
+        //     // --
+        //     // 10 cores, oc 12: 13.2 rps 
+        //     // TbB: 1/13.2 = 0.07575
+        //     // With a burst time of 0.08, there is a 0.07575-0.08=-0.004242 cooldown
+        //     // negative
+
+        //     // ria 75: 1 rps, 0.1s delay
+        //     // time between bursts: 1/1 = 1s
+        //     // 1 burst takes 0.4s, after which there is a 1-0.4=0.6s cooldown 
+        //     // positive
+        //     // --
+        //     // 10 cores, oc 12: 3.3 rps 
+        //     // time between bursts: 1/3.3 = 0.3030. 
+        //     // With a burst time of 0.4, there is a 0.3030-0.4=-0.09696 cooldown 
+        //     // negative
+        //     // (~5 rps and -0.2s cooldown with adren)
+        //     /*
+        //     shot1burst1, 0.1s, shot2burst1, 0.1s, shot3burst1, 0.003s, shot1burst2, 0.097s, shot4burst1, 0.003s, shot1burst2, 0.1s, shot3burst2, 0.003s, shot1burst3, 0.097s, shot4burst2, 0.003s, shot2burst3, 0.1s, ....
+
+        //     burstTimeFrame = burstAmount * burstDelay (0.4)
+        //     timeBetweenBursts = 1/rps (0.3 maxed) (0.6 non)
+        //     shots = []
+        //     if timeBetweenBursts > burstTimeFrame: // standard, easy calc
+        //         cooldown = timeBetweenBursts - burstTimeFrame 
+        //         for index, shot in clip:
+        //             if index+1 % burstAmount == 3 and index+1 > 0:
+        //                 shots.push(["shot", burstDelay+cooldown]) 
+        //             else:
+        //                 shots.push(["shot", burstDelay])
+
+
+        //     else if timeBetweenBursts < burstTimeFrame:
+        //         for shot in clip:
+        //             pass
+        //     else: // if both are equal
+        //         for shot in clip:
+        //             pass
+
+        //     */
+        //     // ==
+        //     // 
+        //     // oc 10: 2 rps
+        //     // time between bursts: 1/2 = 0.5s
+        //     // with a burst time of 0.4, there is a 0.5-0.4=0.1 cooldown
+        //     // positive
+        //     // --
+        //     // 5 cores, oc 10: 2.5 rps
+        //     // time between bursts: 1/2.5 = 0.4s
+        //     // with a burst time of 0.4, there is a 0.4-0.4=0 cooldown
+        //     // equal
+        // }
+    }else{  // --> if the weapon is NOT a burst weapon
+        if(fullClipAdrenTime <= remainingAdrenTime & remainingAdrenCooldown == adrenCooldownTime){ // if adren active for whole clip
+            for(let shot = 1; shot <= capacity; shot++){
+                if(shot == capacity){ // last shot, happens at same time of reload, so no subtraction
+                    clipTimes.push(["shot", 0]);
+                }else{
+                    // console.log("shot:cap", shot, capacity);
                     clipTimes.push(["shot", timeOfAdrenShot]);
-                    remainingAdrenTime -= timeOfAdrenShot;
-                }else{                                     // if adren is not active
-                    clipTimes.push(["shot", timeOfRegularShot]);
+                }
+            }
+            remainingAdrenTime -= fullClipAdrenTime;
+        }else{ 
+            for(let shot = 1; shot <= capacity; shot++){
+                if(shot == capacity){ // last shot, happens at same time of reload, so no subtraction
+                    clipTimes.push(["shot", 0]);
+                }else{
+                    if(remainingAdrenTime > 0 & remainingAdrenCooldown === adrenCooldownTime){ // check if adren is still active and not on cooldown
+                        clipTimes.push(["shot", timeOfAdrenShot]);
+                        if(timeOfAdrenShot <= remainingAdrenTime){ // if there is time remaining for a adren shot
+                            remainingAdrenTime -= timeOfAdrenShot;
+                        }else{ // shot will still be shot with adren active, but adren will end and will be on cooldown
+                            remainingAdrenCooldown = adrenCooldownTime - remainingAdrenTime;
+                            remainingAdrenTime = adrenDuration; // reset adren
+                        }
+                    }else{ // when adren is off and/or on cooldown
+                        if(remainingAdrenCooldown <= 0){ // if cooldown is over --> adren active again
+                            clipTimes.push(["shot", timeOfAdrenShot]);
+                            remainingAdrenTime = (adrenDuration - timeOfAdrenShot) + remainingAdrenCooldown; // can only be negative or 0 here, can activate just before the shot is fired
+                            remainingAdrenCooldown = adrenCooldownTime;
+                        }else{  // adren off and not on cooldown (no adren)
+                            clipTimes.push(["shot", timeOfRegularShot]);
+                            remainingAdrenCooldown -= timeOfRegularShot;
+                        }
+                    }
                 }
             }
         }
     }
     
-    return [remainingAdrenTime, clipTimes, burstShotsQueued];
+    console.log("returnvalsclipdraintime", [remainingAdrenTime, remainingAdrenCooldown, clipTimes, burstCarryOver]);
+    return [remainingAdrenTime, remainingAdrenCooldown, clipTimes, burstCarryOver];
 }
     
 
@@ -356,12 +598,17 @@ function calcClipDrainTime(capacity, gunRps, adrenBonus, remainingAdrenTime, bur
 
 
 
-function getClassDmgSkillBonusses(classChar, classLevel){
+function getClassDmgSkillBonusses(classChar, classLevel, ksDuration){
     let classBonus;
     let classDuration;
     if (classChar === "Assault") {
         classBonus = 1 + (0.3 + (0.05 * (classLevel - 1))) * (classLevel > 0); //1 1.3-2.5
-        classDuration = (classLevel > 0) ? (2 + 0.1 * (classLevel - 1)) : 0;
+        classDuration = ksDuration;
+        // if(ksOverride){
+        //     classDuration = ksDuration;
+        // }else{
+        //     classDuration = (classLevel > 0) ? (2 + 0.1 * (classLevel - 1)) : 0;
+        // } 
     } else if (classChar === "Heavy") {
         let htl_moving = $('input[name="htl_moving"]').is(":checked") ? 0.5 : 1;
         classBonus = 1 + (0.3 + (0.04 * (classLevel - 1))) * (classLevel > 0) * htl_moving; //1 1.3-2.26
@@ -389,6 +636,7 @@ function getDmgOneShot(pureDamagePreDmgBoost, classBonus, critChance, critSkillM
     
     Based on a damage scale:
     <dmg per shot:0.1 sec> <dmg per shot:0.1 sec> <...:.. sec> <reload:0.3 sec> <dmg per shot:0.1 sec> <dmg per shot:0.1 sec> <...:.. sec> ...
+     adjustment:    <dps:0.1 sec><last shot:0 sec><reload:0.3 sec> --> last shot and reload at same time
     Place boss hp over the scale to get the time to kill
 
     Scale size:
@@ -775,7 +1023,17 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let gun_capacity_mastery = masteries["gun_capacity"];
     let shotgun_mastery5 = masteries["shotgun5"];
     let super_crit = 1 + (0.45 * masteries["superCrit"]);
-    let bonus_boss_dmg = (ttk) ? masteries["gun_boss"]: 1; // Only if ttk is enabled
+
+    // If shooting at boss, for the +10% dmg from ar mastery
+    let bonus_boss_dmg; //shooting_at_boss_dps
+    let boss_check_dps = $('input[name="shooting_at_boss_dps"]').is(":checked");
+    if(ttk){
+        bonus_boss_dmg = masteries["gun_boss"]; // Only if ttk is enabled
+    }else if(!ttk & boss_check_dps){
+        bonus_boss_dmg = masteries["gun_boss"];
+    }else{
+        bonus_boss_dmg = 1;
+    }
 
     // Collection bonuses
     let gun_dmg_collections = 1 + (0.01 * collections["dmg"]);
@@ -811,7 +1069,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     let crit_chance = (pinpoint + target_assist + crit_skill_chance + gun_crit_mastery + gun_crit_collections + helmet_collections + helmet_base_crit_bonus + gloves_base_crit_bonus + gun_base_crit) / 100;
     let crit_dmg_bonus = (1 + (gun_critdmg_mastery / 100)) * (1 + (gun_critdmg_collections / 100));
 
-    let damage_boost_pure = (1 - crit_chance) * class_bonus + crit_chance * (class_bonus + crit_skill_mult) * crit_dmg_bonus * super_crit; // * bonus_boss_dmg;
+    let damage_boost_pure = (1 - crit_chance) * class_bonus + crit_chance * (class_bonus + crit_skill_mult) * crit_dmg_bonus * super_crit;
 
     // Pure dmg and rps:
     let damageMultiplier = (1 + (0.1 * weaponAugments["Deadly"])) * base_cores * gun_dmg_mastery * gun_dmg_collections * helm_mastery2 * (1 + helmet_base_dmg_bonus + gloves_base_dmg_bonus + smart_target + (0.01 * deadly_force));
@@ -827,7 +1085,7 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
     }
     let adjust_DOT = (base_DOT * (masteries["flamer3"] ? 1.25 : 1));
     let pure_damage_pre_dmg_boost = displayed_damage * hda_bonus * (pellets + shotgun_mastery5);
-    let pure_damage = pure_damage_pre_dmg_boost * damage_boost_pure;
+    let pure_damage = pure_damage_pre_dmg_boost * damage_boost_pure * bonus_boss_dmg;
     let display_DOT = (1 + (0.1 * weaponAugments["Tenacious"])) * adjust_DOT * base_cores; // Every gun that doesn't have DOT has base_DOT = 0
     let pure_DOT = display_DOT * hda_bonus * (pellets + shotgun_mastery5);
     let display_rps = (1 + (0.1 * weaponAugments["Overclocked"])) * base_cores * base_rps * gun_rps_collections * gun_rps_mastery;
@@ -880,8 +1138,14 @@ function calculateDPS(weapon, weaponName, cores, weaponAugments, armourAugments,
 
     // Recalculate dmg boost for cooldowns
     let class_bonus_cooldown = 1 + ((class_bonus - 1) * dmg_cooldown);
-    let damage_boost_avg = (1 - crit_chance) * class_bonus_cooldown + crit_chance * (class_bonus_cooldown + crit_skill_mult) * crit_dmg_bonus * super_crit; // * bonus_boss_dmg;
-    let avg_damage = pure_damage_pre_dmg_boost * damage_boost_avg;
+    /*
+    let damageBoostPure = (1 - critChance) * classBonus + critChance * (classBonus + critSkillMult) * critDmgBonus * superCrit;
+    let pureDirectDmg = pureDamagePreDmgBoost * damageBoostPure * arMastery3;
+    return (pureDirectDmg + (poolDmg * classBonus * arMastery3) + DOTDmg) * damageMultiplier;
+    */
+
+    let damage_boost_avg = (1 - crit_chance) * class_bonus_cooldown + crit_chance * (class_bonus_cooldown + crit_skill_mult) * crit_dmg_bonus * super_crit;
+    let avg_damage = pure_damage_pre_dmg_boost * damage_boost_avg * bonus_boss_dmg;
 
     let avg_rps = display_rps * average_adren_incr;
     if (burstDelayData) {
