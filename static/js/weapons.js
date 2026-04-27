@@ -123,7 +123,11 @@ function getAmmoCost(weaponClass, damageType, weaponVersion, hdaBonusMultiplier,
     }
     
     if(hdaBonusMultiplier > 1.0){
-        ammoCost *= 6.4;
+        if(weaponClass === "Launcher"){
+            ammoCost *= 4.8;
+        }else{
+            ammoCost *= 6.4;
+        }   
     }
 
     return Math.ceil(shotsFired*ammoCost);
