@@ -67,11 +67,12 @@ function ttk(){
     const dmgSingleShotWithoutBonusses = getDmgOneShot(dpsData[0][0], 1, dpsData[0][13], dpsData[0][14], dpsData[0][15], dpsData[0][16], dpsData[0][2], dpsData[0][1], dpsData[0][21], damageMultiplier);
     const effectiveBossResistances = getEffectiveBossResistances(bossResists, dpsData[0][9], dpsData[0][12], dpsData[0][10]);
     
-    let maxClipsRequired = maxClipsToKill(selectedBoss, bossHP, effectiveBossResistances, (dpsData[0][0] + dpsData[0][1] + dpsData[0][2]), dpsData[0][9], dpsData[0][12], dpsData[0][10], dpsData[0][8]);
+    // , dpsData[0][9], dpsData[0][12], dpsData[0][10]
+    let maxClipsRequired = maxClipsToKill(selectedBoss, bossHP, effectiveBossResistances, (dpsData[0][0] + dpsData[0][1] + dpsData[0][2]), dpsData[0][8]);
     // console.log("Max clips needed: ", maxClipsRequired, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses);
 
     timeScale = shotsTimeScale(maxClipsRequired, dpsData);
-    console.log("timescale", timeScale); // print timescale
+    // console.log("timescale", timeScale); // print timescale
     [accumulativeTime, accumulativeShots] = bossKill(selectedBoss, bossHP, effectiveBossResistances, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses, classDmgDuration, isHeavy, timeScale)
 
     let bossVersionMessage;
@@ -228,21 +229,21 @@ function getEffectiveBossResistances(bossResistances, adaptive, mastery, bioBomb
     return effectiveBossResistances;
 }
 
-
-function maxClipsToKill(selectedBoss, bossHP, bossResists, damage, adaptive, mastery, bioBomb, capacity){
+// adaptive, mastery, bioBomb, 
+function maxClipsToKill(selectedBoss, bossHP, bossResists, damage, capacity){
     const devEnraged = [0.8, 0.2];
     // console.log(selectedBoss, bossHP, bossResists, damage, adaptive, mastery, bioBomb);
-    let newBossResists = (bossResists - adaptive - mastery) * bioBomb;
-    // console.log(newBossResists);
-    if(newBossResists < 0){
-        newBossResists = 0;
-    };
+    // let newBossResists = (bossResists - adaptive - mastery) * bioBomb;
+    // // console.log(newBossResists);
+    // if(newBossResists < 0){
+    //     newBossResists = 0;
+    // };
     // console.log(newBossResists);
     let shotsRequired;
     if(selectedBoss === "Devastator"){
-        shotsRequired = ((bossHP*devEnraged[0]) / damage) + ((bossHP*devEnraged[1]) / (damage * (1-newBossResists)))
+        shotsRequired = ((bossHP*devEnraged[0]) / damage) + ((bossHP*devEnraged[1]) / (damage * (1-bossResists)))
     }else{
-        shotsRequired = bossHP / (damage * (1-newBossResists)) 
+        shotsRequired = bossHP / (damage * (1-bossResists)) 
     }
     return Math.ceil(shotsRequired / capacity);
 }
@@ -256,7 +257,7 @@ function shotsTimeScale(maxClipsRequired, dpsData){
     let capacity =  dpsData[0][8];
     let burstData = specialCases(dpsData[0][22], "Burst")
     // console.log(classDmgBonus, classDmgDuration, adrenBonus, adrenDuration, dmgSingleShotWithBonusses, dmgSingleShotWithoutBonusses);
-    console.log("has burst", burstData);
+    // console.log("has burst", burstData);
     
     let maxScaleSize = maxClipsRequired + (maxClipsRequired - 1);
 
@@ -277,7 +278,7 @@ function shotsTimeScale(maxClipsRequired, dpsData){
     };
     let flattenedShotsArray = shotsArray.flat() // From [ Array(x) [ Array(x) [ Array(2) ] ] ] to [ Array(x) [ Array(2) ] ]
 
-    console.log("\n####\nshowArray flat: ", flattenedShotsArray);
+    // console.log("\n####\nshowArray flat: ", flattenedShotsArray);
     return flattenedShotsArray;
 }
 
@@ -570,7 +571,7 @@ function calcClipDrainTime(capacity, gunRps, adrenBonus, remainingAdrenTime, rem
         }
     }
     
-    console.log("returnvalsclipdraintime", [remainingAdrenTime, remainingAdrenCooldown, clipTimes, burstCarryOver]);
+    // console.log("returnvalsclipdraintime", [remainingAdrenTime, remainingAdrenCooldown, clipTimes, burstCarryOver]);
     return [remainingAdrenTime, remainingAdrenCooldown, clipTimes, burstCarryOver];
 }
     
